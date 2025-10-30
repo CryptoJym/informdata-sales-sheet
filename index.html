@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InformData Pricing Breakout</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f6fb;
+      --surface: #ffffff;
+      --surface-alt: #f0f2f8;
+      --border: #d0d7e2;
+      --text: #1f2937;
+      --muted: #667085;
+      --accent: #2563eb;
+      --accent-soft: #e0e9ff;
+      --positive: #047857;
+      --negative: #b91c1c;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .page { max-width: 1320px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+    header.hero { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+    header.hero h1 { margin: 0; font-size: 2.5rem; font-weight: 700; }
+    header.hero p { margin: 0; color: var(--muted); max-width: 60ch; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.1rem; border-radius: 0.65rem; border: 1px solid transparent; font-weight: 600; cursor: pointer; transition: transform 0.15s ease, box-shadow 0.15s ease; }
+    .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 8px 16px rgba(37, 99, 235, 0.18); }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 18px rgba(37, 99, 235, 0.22); }
+    .btn-outline { background: var(--surface); border: 1px solid var(--border); color: var(--accent); }
+    .btn-outline:hover { background: var(--accent-soft); }
+    .sticky-controls { position: sticky; top: 0; z-index: 50; padding: 1.25rem 1.5rem; background: rgba(245, 246, 251, 0.9); backdrop-filter: blur(12px); margin: 0 -1.5rem 1.5rem; border-bottom: 1px solid rgba(208, 215, 226, 0.6); }
+    .summary-bar { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-bottom: 1.5rem; }
+    .summary-card { background: var(--surface); border: 1px solid var(--border); border-radius: 0.9rem; padding: 1rem 1.1rem; box-shadow: 0 8px 16px rgba(15, 23, 42, 0.08); position: relative; }
+    .summary-card strong { display: block; font-size: 1.65rem; font-weight: 700; }
+    .summary-card span { color: var(--muted); font-size: 0.9rem; }
+    .summary-card button.info { position: absolute; top: 0.85rem; right: 0.85rem; background: none; border: none; color: var(--muted); cursor: pointer; font-weight: 600; }
+    .summary-card button.info:focus { outline: 2px solid var(--accent); border-radius: 999px; }
+    .tooltip { position: absolute; top: 2.6rem; right: 0.5rem; background: var(--surface); border: 1px solid var(--border); padding: 0.6rem 0.8rem; border-radius: 0.5rem; color: var(--muted); font-size: 0.85rem; box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12); width: 220px; opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.15s ease, transform 0.15s ease; }
+    .summary-card[data-open='true'] .tooltip { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .filter-panel { display: flex; flex-direction: column; gap: 1rem; background: rgba(255,255,255,0.85); border: 1px solid rgba(208,215,226,0.6); border-radius: 1rem; padding: 1.1rem; box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12); }
+    .filter-row { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); align-items: center; }
+    .filter-row label { font-size: 0.85rem; font-weight: 600; color: var(--muted); margin-bottom: 0.3rem; display: block; }
+    .filter-row input[type='search'], .filter-row select { width: 100%; padding: 0.55rem 0.75rem; border-radius: 0.6rem; border: 1px solid var(--border); background: var(--surface); font-size: 0.95rem; }
+    .chip-tray { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .chip, .chip-toggle { border: 1px solid var(--border); background: var(--surface); color: var(--muted); padding: 0.45rem 0.85rem; border-radius: 999px; font-size: 0.85rem; cursor: pointer; transition: all 0.15s ease; }
+    .chip.active { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 6px 14px rgba(37, 99, 235, 0.18); }
+    .chip-toggle.clear { font-weight: 600; }
+    .chip-toggle.clear:hover { background: rgba(37, 99, 235, 0.08); color: var(--accent); }
+    .cards { display: grid; gap: 1rem; margin-top: 1.8rem; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); }
+    .card { position: relative; background: var(--surface); border-radius: 1.1rem; border: 1px solid var(--border); padding: 1.15rem 1.25rem 1.35rem; box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12); display: flex; flex-direction: column; gap: 0.9rem; }
+    .card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.75rem; }
+    .card-title { font-size: 1.2rem; font-weight: 700; margin: 0; }
+    .card-subtitle { margin: 0; color: var(--muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .badge-pass { background: rgba(4, 120, 87, 0.12); color: var(--positive); padding: 0.3rem 0.6rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
+    .badge-margin { background: rgba(37, 99, 235, 0.1); color: var(--accent); padding: 0.3rem 0.6rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
+    .grid { display: grid; gap: 0.6rem; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+    dl { margin: 0; }
+    dt { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    dd { margin: 0.1rem 0 0.35rem; font-weight: 600; }
+    .notes { background: var(--surface-alt); border-radius: 0.75rem; padding: 0.75rem 0.9rem; border: 1px solid rgba(208, 215, 226, 0.6); font-size: 0.9rem; color: var(--muted); }
+    .notes strong { display: block; color: var(--text); margin-bottom: 0.35rem; }
+    .card-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; align-items: center; }
+    .card-actions a { font-size: 0.85rem; font-weight: 600; }
+    .empty-state { margin-top: 2.5rem; text-align: center; color: var(--muted); background: var(--surface); border-radius: 1rem; border: 1px dashed var(--border); padding: 2.5rem 1rem; }
+    #scrollTop { position: fixed; bottom: 2rem; right: 2rem; width: 2.75rem; height: 2.75rem; border-radius: 50%; border: none; background: var(--accent); color: #fff; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity 0.2s ease, transform 0.2s ease; box-shadow: 0 10px 24px rgba(37, 99, 235, 0.22); cursor: pointer; }
+    #scrollTop.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    @media (max-width: 640px) {
+      .page { padding: 2rem 1rem 4rem; }
+      header.hero h1 { font-size: 2rem; }
+      .sticky-controls { margin: 0 -1rem 1rem; padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <h1>InformData Pricing Breakout</h1>
+      <p>Sales-ready view of every InformData service we can deliver. Quickly compare vendor cost, our internal automation spend, pass-through items, and target positioning vs public MSRPs. Updated October 30, 2025.</p>
+      <div class="cta-row">
+        <button id="openGamma" class="btn btn-primary" type="button">Open Gamma Deck</button>
+        <button id="downloadCsv" class="btn btn-outline" type="button">Download Filtered CSV</button>
+      </div>
+    </header>
+
+    <div class="sticky-controls">
+      <section class="summary-bar" id="summaryBar">
+        <div class="summary-card" data-metric="count">
+          <strong id="statCount">--</strong>
+          <span>Total services in view</span>
+          <button class="info" aria-label="Service count tooltip" type="button">ℹ️</button>
+          <div class="tooltip">Number of services matching the current filters.</div>
+        </div>
+        <div class="summary-card" data-metric="pass">
+          <strong id="statPass">--</strong>
+          <span>Pass-through items</span>
+          <button class="info" aria-label="Pass-through tooltip" type="button">ℹ️</button>
+          <div class="tooltip">Items billed to customers at vendor rate (no automation margin). Mirror competitor MSRP to stay even.</div>
+        </div>
+        <div class="summary-card" data-metric="margin">
+          <strong id="statMedian">--</strong>
+          <span>Median margin</span>
+          <button class="info" aria-label="Margin tooltip" type="button">ℹ️</button>
+          <div class="tooltip">Median of recommended price minus total cost across filtered services (excludes pass-through).</div>
+        </div>
+      </section>
+
+      <section class="filter-panel">
+        <div class="filter-row">
+          <div>
+            <label for="searchInput">Search</label>
+            <input id="searchInput" type="search" placeholder="Search service, use case, compliance notes..." />
+          </div>
+          <div>
+            <label for="passFilter">Pass-through</label>
+            <select id="passFilter">
+              <option value="all">All services</option>
+              <option value="true">Pass-through only</option>
+              <option value="false">Margin-bearing only</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label>Quick categories</label>
+          <div class="chip-tray" id="chipTray">
+            <button class="chip" data-chip="Core Service">Core Service</button>
+            <button class="chip-toggle clear" type="button" id="clearChips">Clear all</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section id="cards" class="cards" aria-live="polite"></section>
+    <div id="emptyState" class="empty-state" hidden>
+      <h2>No services match those filters yet</h2>
+      <p>Try clearing filters or adjusting your search terms to see more pricing options.</p>
+    </div>
+  </main>
+  <button id="scrollTop" type="button" aria-label="Scroll to top">↑</button>
+
+  <script>
+    const SERVICES = [{"service_id": "COUNTY_CIVIL_LOWER", "service_name": "County Civil Lower", "category": "Core Service", "unit": "per_search", "informdata_cost": 4.25, "automation_spend": 0.0, "platform_overhead": 0.0, "pass_through_cost": 0.0, "internal_cost": 4.25, "total_cost": 4.25, "currency": "USD", "competitor_name": "Checkr", "analogous_service_name": "County Civil Search", "msrp_amount": 40.0, "msrp_currency": "USD", "price_delta": 35.75, "recommended_price": 38.0, "recommended_margin": 33.75, "pricing_notes": "Recommended price maintains ≥$1 contribution while positioning slightly under competitor MSRP.", "use_cases": "Lower/small claims court activity for tenant, contractor, or small business risk.", "compliance_notes": "Small-claims and eviction records—check local reporting restrictions.", "pass_through": false, "evidence_url": "https://checkr.com/pricing", "observed_date": "2025-10-30", "cost_notes": null, "competitor_notes": "Flat per-county civil search fee (upper/lower courts)."}, {"service_id": "COUNTY_CIVIL_UPPER", "service_name": "County Civil Upper", "category": "Core Service", "unit": "per_search", "informdata_cost": 4.25, "automation_spend": 0.0, "platform_overhead": 0.0, "pass_through_cost": 0.0, "internal_cost": 4.25, "total_cost": 4.25, "currency": "USD", "competitor_name": "Checkr", "analogous_service_name": "County Civil Search", "msrp_amount": 40.0, "msrp_currency": "USD", "price_delta": 35.75, "recommended_price": 38.0, "recommended_margin": 33.75, "pricing_notes": "Recommended price maintains ≥$1 contribution while positioning slightly under competitor MSRP.", "use_cases": "Upper court civil cases for large claim litigation risk.", "compliance_notes": "State civil court permissible purpose required; respect retention limits.", "pass_through": false, "evidence_url": "https://checkr.com/pricing", "observed_date": "2025-10-30", "cost_notes": null, "competitor_notes": "Flat per-county civil search fee (upper/lower courts)."}, {"service_id": "COUNTY_CIVIL_UPPER_LOWER_COMBINED", "service_name": "County Civil Uper/Lower Combined", "category": "Core Service", "unit": "per_search", "informdata_cost": 8.5, "automation_spend": 0.0, "platform_overhead": 0.0, "pass_through_cost": 0.0, "internal_cost": 8.5, "total_cost": 8.5, "currency": "USD", "competitor_name": "Checkr", "analogous_service_name": "County Civil Search (Unlimited)", "msrp_amount": 40.0, "msrp_currency": "USD", "price_delta": 31.5, "recommended_price": 38.0, "recommended_margin": 29.5, "pricing_notes": "Recommended price maintains ≥$1 contribution while positioning slightly under competitor MSRP.", "use_cases": "Combined court search when both upper/lower visibility required by policy.", "compliance_notes": null, "pass_through": false, "evidence_url": "https://checkr.com/pricing", "observed_date": "2025-10-30", "cost_notes": null, "competitor_notes": "Published rate per county; unlimited coverage requires volume agreement."}, {"service_id": "CRIMINAL_ACTIVITY_MONITORING", "service_name": "Criminal Activity Monitoring", "category": "Core Service", "unit": "per_subject_month", "informdata_cost": 1.25, "automation_spend": 0.0, "platform_overhead": 0.0, "pass_through_cost": 0.0, "internal_cost": 1.25, "total_cost": 1.25, "currency": "USD", "competitor_name": "Checkr", "analogous_service_name": "Continuous Criminal Monitoring", "msrp_amount": 1.7, "msrp_currency": "USD", "price_delta": 0.45, "recommended_price": 1.7, "recommended_margin": 0.45, "pricing_notes": "Pass-through fee; match public MSRP to avoid subsidizing the service.", "use_cases": "Ongoing post-hire monitoring for finance, healthcare, or education organizations that require continuous alerts.", "compliance_notes": "FCRA + state monitoring laws (e.g., CA ICRAA). Provide opt-in and adverse action notices for new hits.", "pass_through": true, "evidence_url": "https://checkr.com/pricing", "observed_date": "2025-10-30", "cost_notes": "per subject per month", "competitor_notes": "Monthly monitoring fee per individual."}, {"service_id": "ESSENTIAL_CHECK", "service_name": "Essential Check (SSN + NatCrim + SOR)", "category": "Core Service", "unit": "per_applicant", "informdata_cost": 1.9, "automation_spend": 1.0, "platform_overhead": 0.0, "pass_through_cost": 0.0, "internal_cost": 2.9, "total_cost": 2.9, "currency": "USD", "competitor_name": "Checkr", "analogous_service_name": "Basic+ bundle", "msrp_amount": 29.99, "msrp_currency": "USD", "price_delta": 27.09, "recommended_price": 28.49, "recommended_margin": 25.59, "pricing_notes": "Bundle price sits just under Checkr Basic+ while covering InformData inputs and $1 automation overhead.", "use_cases": "Pre-employment screening bundle covering SSN trace, national criminal, and sex offender search—mirrors Checkr Basic+ for volume hiring funnels.", "compliance_notes": "FCRA governs consumer reports; follow adverse action process. Includes SSN, national criminal, sex offender components; respect local ban-the-box laws.", "pass_through": false, "evidence_url": "https://checkr.com/pricing", "observed_date": "2025-10-30", "cost_notes": "Includes InformData SSN trace, national criminal, and SOR costs plus $1 automation overhead.", "competitor_notes": "Benchmarked against Checkr Basic+ public MSRP."}, {"service_id": "FEDERAL_CIVIL", "service_name": "Federal Civil", "category": "Core Service", "unit": "per_search", "informdata_cost": 1.75, "automation_spend": 0.0, "platform_overhead": 0.0, "pass_through_cost": 0.0, "internal_cost": 1.75, "total_cost": 1.75, "currency": "USD", "competitor_name": "Checkr", "analogous_service_name": "Federal Civil Search", "msrp_amount": 15.0, "msrp_currency": "USD", "price_delta": 13.25, "recommended_price": 14.25, "recommended_margin": 12.5, "pricing_notes": "Recommended price maintains ≥$1 contribution while positioning slightly under competitor MSRP.", "use_cases": "Federal civil litigation search for executives, investors, or high liability vendor due diligence.", "compliance_notes": "PACER civil docket; often used for executive/vendor diligence under FCRA.", "pass_through": false, "evidence_url": "https://checkr.com/pricing", "observed_date": "2025-10-30", "cost_notes": null, "competitor_notes": "Per search pricing."}, {"service_id": "FEDERAL_CIVIL_MATCH_NO_MATCH", "service_name": "Federal Civil Match/No Match", "category": "Core Service", "unit": "per_search", "informdata_cost": 0.3, "automation_spend": 0.0, "platform_overhead": 0.0, "pass_through_cost": 0.0, "internal_cost": 0.3, "total_cost": 0.3, "currency": "USD", "competitor_name": "Checkr", "analogous_service_name": "Federal Civil Search (results delivery)", "msrp_amount": 15.0, "msrp_currency": "USD", "price_delta": 14.7, "recommended_price": 14.25, "recommended_margin": 13.95, "pricing_notes": "Recommended price maintains ≥$1 contribution while positioning slightly under competitor MSRP.", "use_cases": "Result delivery flag tied to federal civil search adjudication.", "compliance_notes": null, "pass_through": false, "evidence_url": "https://checkr.com/pricing", "observed_date": "2025-10-30", "cost_notes": null, "competitor_notes": "Match/No Match status bundled with federal civil search."}, {"service_id": "FEDERAL_CRIMINAL", "service_name": "Federal Criminal", "category": "Core Service", "unit": "per_search", "informdata_cost": 1.85, "automation_spend": 0.0, "platform_overhead": 0.0, "pass_through_cost": 0.0, "internal_cost": 1.85, "total_cost": 1.85, "currency": "USD", "competitor_name": "Checkr", "analogous_service_name": "Federal Criminal Search", "msrp_amount": 10.0, "msrp_currency": "USD", "price_delta": 8.15, "recommended_price": 9.5, "recommended_margin": 7.65, "pricing_notes": "Recommended price maintains ≥$1 contribution while positioning slightly under competitor MSRP.", "use_cases": "Federal district criminal search for roles with federal exposure (banking, defense contractors).", "compliance_notes": "PACER; verify identity and follow FCRA adverse action workflow.", "pass_through": false, "evidence_url": "https://checkr.com/pricing", "observed_date": "2025-10-30", "cost_notes": null, "competitor_notes": "Per search pricing."}, {"service_id": "FEDERAL_CRIMINAL_MATCH_NO_MATCH", "service_name": "Federal Criminal Match/No Match", "category": "Core Service", "unit": "per_search", "informdata_cost": 0.3, "automation_spend": 0.0, "platform_overhead": 0.0, "pass_through_cost": 0.0, "internal_cost": 0.3, "total_cost": 0.3, "currency": "USD", "competitor_name": "Checkr", "analogous_service_name": "Federal Criminal Search (results delivery)", "msrp_amount": 10.0, "msrp_currency": "USD", "price_delta": 9.7, "recommended_price": 9.5, "recommended_margin": 9.2, "pricing_notes": "Recommended price maintains ≥$1 contribution while positioning slightly under competitor MSRP.", "use_cases": "Result delivery flag tied to federal criminal search adjudication.", "compliance_notes": null, "pass_through": false, "evidence_url": "https://checkr.com/pricing", "observed_date": "2025-10-30", "cost_notes": null, "competitor_notes": "Match/No Match status bundled with federal criminal search."}, {"service_id": "INTERNATIONAL_EDUCATION", "service_name": "International Education", "category": "Core Service", "unit": "per_verification", "informdata_cost": 35.0, "automation_spend": 0.0, "platform_overhead": 0.0, "pass_through_cost": 0.0, "internal_cost": 35.0, "total_cost": 35.0, "currency": "USD", "competitor_name": "Checkr", "analogous_service_name": "International Professional Package", "msrp_amount": 102.94, "msrp_currency": "USD", "price_delta": 67.94, "recommended_price": 97.79, "recommended_margin": 62.79, "pricing_notes": "Recommended price maintains ≥$1 contribution while positioning slightly under competitor MSRP.", "use_cases": "International degree verification for knowledge workers or visa processes.", "compliance_notes": "Many countries require signed authorizations; confirm institution accreditation.", "pass_through": false, "evidence_url": "https://checkr.com/pricing", "observed_date": "2025-10-30", "cost_notes": null, "competitor_notes": "Same package covers degree verification."}, {"service_id": "INTERNATIONAL_EMPLOYMENT", "service_name": "International  Employment", "category": "Core Service", "unit": "per_verification", "informdata_cost": 35.0, "automation_spend": 0.0, "platform_overhead": 0.0, "pass_through_cost": 0.0, "internal_cost": 35.0, "total_cost": 35.0, "currency": "USD", "competitor_name": "Checkr", "analogous_service_name": "International Professional Package", "msrp_amount": 102.94, "msrp_currency": "USD", "price_delta": 67.94, "recommended_price": 97.79, "recommended_margin": 62.79, "pricing_notes": "Recommended price maintains ≥$1 contribution while positioning slightly under competitor MSRP.", "use_cases": "Global employment verification for distributed workforce or contractor onboarding.", "compliance_notes": "International privacy (GDPR, PIPEDA); obtain candidate release and use approved processors.", "pass_through": false, "evidence_url": "https://checkr.com/pricing", "observed_date": "2025-10-30", "cost_notes": null, "competitor_notes": "Package covers one employment + one education verification outside US."}, {"service_id": "MED_EX_COMPLETE", "service_name": "Med Ex Complete", "category": "Core Service", "unit": "per_subject", "informdata_cost": 2.75, "automation_spend": 0.0, "platform_overhead": 0.0, "pass_through_cost": 0.0, "internal_cost": 2.75, "total_cost": 2.75, "currency": "USD", "competitor_name": "GoodHire", "analogous_service_name": "Healthcare Sanctions Search (Level 3)", "msrp_amount": 5.99, "msrp_currency": "USD", "price_delta": 3.24, "recommended_price": 5.49, "recommended_margin": 2.74, "pricing_notes": "Recommended price maintains ≥$1 contribution while positioning slightly under competitor MSRP.", "use_cases": "Comprehensive sanctions sweep before onboarding executives or high-risk practitioners.", "compliance_notes": "Supports Joint Commission / NCQA credentialing audits; maintain evidence of checks.", "pass_through": false, "evidence_url": "https://www.bestreviewguide.com/en/reviews/services/best-background-check/goodhire-review/", "observed_date": "2025-10-30", "cost_notes": null, "competitor_notes": "Highest tier bundles additional registries; public rate is entry level."}, {"service_id": "MED_EX_COMPLETE_MONITORING", "service_name": "Med Ex Complete Monitoring", "category": "Core Service", "unit": "per_subject_month", "informdata_cost": 2.65, "automation_spend": 0.0, "platform_overhead": 0.0, "pass_through_cost": 0.0, "internal_cost": 2.65, "total_cost": 2.65, "currency": "USD", "competitor_name": "GoodHire", "analogous_service_name": "Healthcare Sanctions Monitoring (Level 3 + Alerts)", "msrp_amount": 5.99, "msrp_currency": "USD", "price_delta": 3.34, "recommended_price": 5.49, "recommended_margin": 2.84, "pricing_notes": "Recommended price maintains ≥$1 contribution while positioning slightly under competitor MSRP.", "use_cases": "Enterprise-grade sanctions monitoring covering national, state, and abuse registries.", "compliance_notes": null, "pass_through": false, "evidence_url": "https://www.bestreviewguide.com/en/reviews/services/best-background-check/goodhire-review/", "observed_date": "2025-10-30", "cost_notes": null, "competitor_notes": "Ongoing alerts typically quote-based; placeholder uses published start price."}, {"service_id": "MED_EX_PLUS", "service_name": "Med Ex Plus", "category": "Core Service", "unit": "per_subject", "informdata_cost": 1.9, "automation_spend": 0.0, "platform_overhead": 0.0, "pass_through_cost": 0.0, "internal_cost": 1.9, "total_cost": 1.9, "currency": "USD", "competitor_name": "GoodHire", "analogous_service_name": "Healthcare Sanctions Search (Level 1)", "msrp_amount": 5.99, "msrp_currency": "USD", "price_delta": 4.09, "recommended_price": 5.49, "recommended_margin": 3.59, "pricing_notes": "Recommended price maintains ≥$1 contribution while positioning slightly under competitor MSRP.", "use_cases": "Healthcare exclusion search to meet OIG/SAM screening obligations.", "compliance_notes": "OIG/SAM exclusion screening required for Medicare/Medicaid billing; document results for audits.", "pass_through": false, "evidence_url": "https://www.bestreviewguide.com/en/reviews/services/best-background-check/goodhire-review/", "observed_date": "2025-10-30", "cost_notes": "per subject", "competitor_notes": "Base add-on rate for healthcare sanctions search."}, {"service_id": "MED_EX_PLUS_MONITORING", "service_name": "Med Ex Plus Monitoring", "category": "Core Service", "unit": "per_subject_month", "informdata_cost": 2.3, "automation_spend": 0.0, "platform_overhead": 0.0, "pass_through_cost": 0.0, "internal_cost": 2.3, "total_cost": 2.3, "currency": "USD", "competitor_name": "GoodHire", "analogous_service_name": "Healthcare Sanctions Alerts", "msrp_amount": 5.99, "msrp_currency": "USD", "price_delta": 3.69, "recommended_price": 5.49, "recommended_margin": 3.19, "pricing_notes": "Recommended price maintains ≥$1 contribution while positioning slightly under competitor MSRP.", "use_cases": "Monthly sanctions monitoring for clinics/hospitals needing continuous compliance.", "compliance_notes": "Ensure HIPAA/BAA coverage for automated monitoring of provider rosters.", "pass_through": false, "evidence_url": "https://www.bestreviewguide.com/en/reviews/services/best-background-check/goodhire-review/", "observed_date": "2025-10-30", "cost_notes": null, "competitor_notes": "Published starting rate; ongoing alerts typically quote-based."}, {"service_id": "MED_EX_PRO", "service_name": "Med Ex Pro", "category": "Core Service", "unit": "per_subject", "informdata_cost": 3.15, "automation_spend": 0.0, "platform_overhead": 0.0, "pass_through_cost": 0.0, "internal_cost": 3.15, "total_cost": 3.15, "currency": "USD", "competitor_name": "GoodHire", "analogous_service_name": "Healthcare Sanctions Search (Level 2)", "msrp_amount": 5.99, "msrp_currency": "USD", "price_delta": 2.84, "recommended_price": 5.49, "recommended_margin": 2.34, "pricing_notes": "Recommended price maintains ≥$1 contribution while positioning slightly under competitor MSRP.", "use_cases": "Expanded sanctions search including state boards and disciplinary actions for advanced practitioners.", "compliance_notes": "Include state board checks; confirm disciplinary actions before adverse action.", "pass_through": false, "evidence_url": "https://www.bestreviewguide.com/en/reviews/services/best-background-check/goodhire-review/", "observed_date": "2025-10-30", "cost_notes": null, "competitor_notes": "Tiered pricing; public rate reflects entry-level add-on."}, {"service_id": "MED_EX_PRO_MONITORING", "service_name": "Med Ex  Pro Monitoring", "category": "Core Service", "unit": "per_subject_month", "informdata_cost": 2.55, "automation_spend": 0.0, "platform_overhead": 0.0, "pass_through_cost": 0.0, "internal_cost": 2.55, "total_cost": 2.55, "currency": "USD", "competitor_name": "GoodHire", "analogous_service_name": "Healthcare Sanctions Monitoring (Level 3)", "msrp_amount": 5.99, "msrp_currency": "USD", "price_delta": 3.44, "recommended_price": 5.49, "recommended_margin": 2.94, "pricing_notes": "Recommended price maintains ≥$1 contribution while positioning slightly under competitor MSRP.", "use_cases": "High-frequency monitoring for telehealth networks or multi-state provider rosters.", "compliance_notes": null, "pass_through": false, "evidence_url": "https://www.bestreviewguide.com/en/reviews/services/best-background-check/goodhire-review/", "observed_date": "2025-10-30", "cost_notes": null, "competitor_notes": "Volume/level pricing quoted; placeholder uses published base price."}, {"service_id": "MVR_CDLIS", "service_name": "MVR CDLIS", "category": "Core Service", "unit": "per_search", "informdata_cost": 2.95, "automation_spend": 0.0, "platform_overhead": 0.0, "pass_through_cost": 0.0, "internal_cost": 2.95, "total_cost": 2.95, "currency": "USD", "competitor_name": "Checkr", "analogous_service_name": "Commercial MVR + CDLIS", "msrp_amount": 14.5, "msrp_currency": "USD", "price_delta": 11.55, "recommended_price": 13.77, "recommended_margin": 10.82, "pricing_notes": "Recommended price maintains ≥$1 contribution while positioning slightly under competitor MSRP.", "use_cases": "Commercial driver screening with CDLIS lookup for DOT-regulated fleets.", "compliance_notes": "FMCSA 391.23 for commercial drivers; CDLIS only available to DOT-regulated employers.", "pass_through": false, "evidence_url": "https://checkr.com/pricing", "observed_date": "2025-10-30", "cost_notes": null, "competitor_notes": "DOT-oriented MVR bundle with CDLIS data."}, {"service_id": "MVR_STANDARD", "service_name": "MVR", "category": "Core Service", "unit": "per_search", "informdata_cost": 2.95, "automation_spend": 0.0, "platform_overhead": 0.0, "pass_through_cost": 0.0, "internal_cost": 2.95, "total_cost": 2.95, "currency": "USD", "competitor_name": "Checkr", "analogous_service_name": "Motor Vehicle Record (MVR)", "msrp_amount": 9.5, "msrp_currency": "USD", "price_delta": 6.55, "recommended_price": 9.0, "recommended_margin": 6.05, "pricing_notes": "Recommended price maintains ≥$1 contribution while positioning slightly under competitor MSRP.", "use_cases": "Standard MVR for fleets/delivery to satisfy DOT/FMCSA pull requirements.", "compliance_notes": "DPPA/DOT: driver consent required; comply with FMCSA retention schedules and state re-disclosure rules.", "pass_through": false, "evidence_url": "https://checkr.com/pricing", "observed_date": "2025-10-30", "cost_notes": null, "competitor_notes": "Per-pull driver record pricing."}, {"service_id": "NAT_CRIMINAL", "service_name": "NAT Criminal", "category": "Core Service", "unit": "per_subject", "informdata_cost": 0.85, "automation_spend": 0.0, "platform_overhead": 0.0, "pass_through_cost": 0.0, "internal_cost": 0.85, "total_cost": 0.85, "currency": "USD", "competitor_name": "Checkr", "analogous_service_name": "Basic+ package (National Criminal)", "msrp_amount": 29.99, "msrp_currency": "USD", "price_delta": 29.14, "recommended_price": 28.49, "recommended_margin": 27.64, "pricing_notes": "Recommended price maintains ≥$1 contribution while positioning slightly under competitor MSRP.", "use_cases": "National database search for high-volume hiring funnels; pair with county confirms for adjudication.", "compliance_notes": "Use as pointer search; confirm hits with county/state records before adjudication per PBSA guidelines.", "pass_through": false, "evidence_url": "https://checkr.com/pricing", "observed_date": "2025-10-30", "cost_notes": "per subject", "competitor_notes": "Published Basic+ bundle pricing."}, {"service_id": "SOR_PLUS", "service_name": "SOR+", "category": "Core Service", "unit": "per_search", "informdata_cost": 0.8, "automation_spend": 0.0, "platform_overhead": 0.0, "pass_through_cost": 0.0, "internal_cost": 0.8, "total_cost": 0.8, "currency": "USD", "competitor_name": "Checkr", "analogous_service_name": "Basic+ package (Sex Offender Registry)", "msrp_amount": 29.99, "msrp_currency": "USD", "price_delta": 29.19, "recommended_price": 28.49, "recommended_margin": 27.69, "pricing_notes": "Recommended price maintains ≥$1 contribution while positioning slightly under competitor MSRP.", "use_cases": "Standalone sex offender registry search for regulated industries (childcare, education, healthcare).", "compliance_notes": null, "pass_through": false, "evidence_url": "https://checkr.com/pricing", "observed_date": "2025-10-30", "cost_notes": null, "competitor_notes": "Published Basic+ bundle; includes SSN trace and national criminal search."}, {"service_id": "SSN_TRACE", "service_name": "SSN Trace", "category": "Core Service", "unit": "per_search", "informdata_cost": 0.25, "automation_spend": 0.0, "platform_overhead": 0.0, "pass_through_cost": 0.0, "internal_cost": 0.25, "total_cost": 0.25, "currency": "USD", "competitor_name": "Checkr", "analogous_service_name": "Basic+ package (SSN Trace)", "msrp_amount": 29.99, "msrp_currency": "USD", "price_delta": 29.74, "recommended_price": 28.49, "recommended_margin": 28.24, "pricing_notes": "Recommended price maintains ≥$1 contribution while positioning slightly under competitor MSRP.", "use_cases": "Identity validation + alias discovery to determine downstream court searches.", "compliance_notes": "Identity/authentication check; do not take adverse action solely on SSN trace results (FCRA).", "pass_through": false, "evidence_url": "https://checkr.com/pricing", "observed_date": "2025-10-30", "cost_notes": null, "competitor_notes": "Included within Basic+ bundle; no standalone price disclosed."}, {"service_id": "VERIFICATIONS", "service_name": "Verifications", "category": "Core Service", "unit": "per_subject_call", "informdata_cost": 6.25, "automation_spend": 0.0, "platform_overhead": 0.0, "pass_through_cost": 0.0, "internal_cost": 6.25, "total_cost": 6.25, "currency": "USD", "competitor_name": "Checkr", "analogous_service_name": "Employment Verification", "msrp_amount": 12.5, "msrp_currency": "USD", "price_delta": 6.25, "recommended_price": 11.88, "recommended_margin": 5.63, "pricing_notes": "Recommended price maintains ≥$1 contribution while positioning slightly under competitor MSRP.", "use_cases": "Employment/education verification when candidates hold sensitive roles or credentials.", "compliance_notes": null, "pass_through": false, "evidence_url": "https://checkr.com/pricing", "observed_date": "2025-10-30", "cost_notes": "per subject per call", "competitor_notes": "Per employer verification."}];
+    const CATEGORY_CHIPS = Array.from(new Set(SERVICES.map(s => s.category).filter(Boolean)));
+    const state = {
+      search: '',
+      passThrough: 'all',
+      categories: new Set(),
+    };
+
+    const elements = {
+      search: document.getElementById('searchInput'),
+      pass: document.getElementById('passFilter'),
+      chipTray: document.getElementById('chipTray'),
+      clearChips: document.getElementById('clearChips'),
+      cards: document.getElementById('cards'),
+      empty: document.getElementById('emptyState'),
+      statCount: document.getElementById('statCount'),
+      statPass: document.getElementById('statPass'),
+      statMedian: document.getElementById('statMedian'),
+      download: document.getElementById('downloadCsv'),
+      openGamma: document.getElementById('openGamma'),
+      scrollTop: document.getElementById('scrollTop'),
+      summaryCards: document.querySelectorAll('.summary-card'),
+    };
+
+    const GAMMA_URL = 'https://gamma.app/docs/y6u7e86751shwz1';
+    const CSV_COLUMNS = [
+      'service_name','category','unit','informdata_cost','automation_spend','platform_overhead','pass_through_cost','total_cost','pass_through','competitor_name','analogous_service_name','msrp_amount','recommended_price','recommended_margin','pricing_notes','use_cases','compliance_notes'
+    ];
+
+    function formatCurrency(value) {
+      if (value === null || value === undefined || isNaN(value)) return '—';
+      return `$${Number(value).toFixed(2)}`;
+    }
+
+    function formatMargin(value) {
+      if (value === null || value === undefined || isNaN(value)) return '—';
+      const sign = Number(value) >= 0 ? '' : '-';
+      return `${sign}$${Math.abs(Number(value)).toFixed(2)}`;
+    }
+
+    function buildCompetitorText(service) {
+      const competitor = service.competitor_name || '—';
+      const product = service.analogous_service_name || '';
+      if (!product) return competitor;
+      return `${competitor} • ${product}`;
+    }
+
+    function renderChips() {
+      CATEGORY_CHIPS.forEach(cat => {
+        const chip = elements.chipTray.querySelector(`[data-chip="${cat}"]`);
+        if (!chip) return;
+        chip.classList.toggle('active', state.categories.has(cat));
+      });
+    }
+
+    function applyFilters(updateQuery=true) {
+      const query = state.search.trim().toLowerCase();
+      const filtered = SERVICES.filter(service => {
+        const matchesSearch = !query || Object.values(service).some(val => {
+          if (val === null || val === undefined) return false;
+          if (typeof val === 'string') return val.toLowerCase().includes(query);
+          return false;
+        });
+        const matchesPass = state.passThrough === 'all' ? true : String(!!service.pass_through) === state.passThrough;
+        const matchesCat = state.categories.size === 0 ? true : state.categories.has(service.category);
+        return matchesSearch && matchesPass && matchesCat;
+      });
+
+      renderCards(filtered);
+      updateSummary(filtered);
+      elements.empty.hidden = filtered.length !== 0;
+
+      if (updateQuery) updateQueryString();
+      return filtered;
+    }
+
+    function renderCards(services) {
+      if (!services.length) {
+        elements.cards.innerHTML = '';
+        return;
+      }
+      elements.cards.innerHTML = services.map(service => {
+        const passBadge = service.pass_through ? '<span class="badge-pass">Pass-through</span>' : `<span class="badge-margin">Margin target ${formatMargin(service.recommended_margin)}</span>`;
+        const evidenceLink = service.evidence_url ? `<a href="${service.evidence_url}" target="_blank" rel="noopener">View evidence ↗</a>` : '';
+        return `
+          <article class="card" data-service-id="${service.service_id}">
+            <div class="card-header">
+              <div>
+                <p class="card-subtitle">${service.category || 'Uncategorized'}</p>
+                <h2 class="card-title">${service.service_name}</h2>
+                <div class="card-actions">
+                  <span>Unit • <strong>${service.unit}</strong></span>
+                  ${passBadge}
+                </div>
+              </div>
+            </div>
+
+            <div class="grid">
+              <dl>
+                <dt>Vendor cost</dt>
+                <dd>${formatCurrency(service.informdata_cost)}</dd>
+              </dl>
+              <dl>
+                <dt>Automation spend</dt>
+                <dd>${formatCurrency(service.automation_spend)}</dd>
+              </dl>
+              <dl>
+                <dt>Platform overhead</dt>
+                <dd>${formatCurrency(service.platform_overhead)}</dd>
+              </dl>
+              <dl>
+                <dt>Pass-through cost</dt>
+                <dd>${formatCurrency(service.pass_through_cost)}</dd>
+              </dl>
+              <dl>
+                <dt>Total cost to Vuplicity</dt>
+                <dd>${formatCurrency(service.total_cost)}</dd>
+              </dl>
+              <dl>
+                <dt>Competitor MSRP</dt>
+                <dd>${formatCurrency(service.msrp_amount)}</dd>
+              </dl>
+              <dl>
+                <dt>Recommended price</dt>
+                <dd>${formatCurrency(service.recommended_price)}</dd>
+              </dl>
+              <dl>
+                <dt>Recommended margin</dt>
+                <dd>${formatMargin(service.recommended_margin)}</dd>
+              </dl>
+            </div>
+
+            <div class="notes">
+              <strong>Pricing notes</strong>
+              <p>${service.pricing_notes || '—'}</p>
+            </div>
+            <div class="notes">
+              <strong>Use cases</strong>
+              <p>${service.use_cases || '—'}</p>
+            </div>
+            <div class="notes">
+              <strong>Compliance</strong>
+              <p>${service.compliance_notes || '—'}</p>
+            </div>
+
+            <div class="card-actions">
+              <span>${buildCompetitorText(service)}</span>
+              ${evidenceLink}
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function updateSummary(services) {
+      elements.statCount.textContent = services.length;
+      const passCount = services.filter(s => s.pass_through).length;
+      elements.statPass.textContent = passCount;
+      const marginVals = services
+        .filter(s => !s.pass_through && s.recommended_margin !== null && s.recommended_margin !== undefined)
+        .map(s => Number(s.recommended_margin))
+        .filter(v => !Number.isNaN(v))
+        .sort((a, b) => a - b);
+      let median = '—';
+      if (marginVals.length) {
+        const mid = Math.floor(marginVals.length / 2);
+        median = marginVals.length % 2 ? marginVals[mid] : (marginVals[mid - 1] + marginVals[mid]) / 2;
+        median = `$${median.toFixed(2)}`;
+      }
+      elements.statMedian.textContent = median;
+    }
+
+    function updateQueryString() {
+      const params = new URLSearchParams();
+      if (state.search) params.set('q', state.search);
+      if (state.passThrough !== 'all') params.set('pass', state.passThrough);
+      if (state.categories.size) params.set('cat', Array.from(state.categories).join(','));
+      const query = params.toString();
+      history.replaceState(null, '', query ? `?${query}` : window.location.pathname);
+    }
+
+    function hydrateFromQuery() {
+      const params = new URLSearchParams(window.location.search);
+      const q = params.get('q');
+      const pass = params.get('pass');
+      const cat = params.get('cat');
+      if (q) { state.search = q; elements.search.value = q; }
+      if (pass && ['true','false','all'].includes(pass)) { state.passThrough = pass; elements.pass.value = pass; }
+      if (cat) {
+        cat.split(',').filter(Boolean).forEach(c => state.categories.add(c));
+      }
+      renderChips();
+      applyFilters(false);
+    }
+
+    function attachEvents() {
+      elements.search.addEventListener('input', event => {
+        state.search = event.target.value;
+        applyFilters();
+      });
+      elements.pass.addEventListener('change', event => {
+        state.passThrough = event.target.value;
+        applyFilters();
+      });
+      elements.chipTray.addEventListener('click', event => {
+        const chip = event.target.closest('[data-chip]');
+        if (!chip) return;
+        const cat = chip.dataset.chip;
+        if (state.categories.has(cat)) state.categories.delete(cat); else state.categories.add(cat);
+        renderChips();
+        applyFilters();
+      });
+      elements.clearChips.addEventListener('click', () => {
+        state.categories.clear();
+        renderChips();
+        applyFilters();
+      });
+      elements.summaryCards.forEach(card => {
+        const btn = card.querySelector('.info');
+        btn.addEventListener('click', () => {
+          const isOpen = card.getAttribute('data-open') === 'true';
+          document.querySelectorAll('.summary-card').forEach(c => c.setAttribute('data-open', 'false'));
+          card.setAttribute('data-open', String(!isOpen));
+        });
+      });
+      document.addEventListener('click', event => {
+        if (!event.target.closest('.summary-card')) {
+          document.querySelectorAll('.summary-card').forEach(c => c.setAttribute('data-open', 'false'));
+        }
+      });
+      elements.download.addEventListener('click', () => {
+        const filtered = applyFilters(false);
+        if (!filtered.length) return;
+        const header = CSV_COLUMNS.join(',');
+        const rows = filtered.map(service => CSV_COLUMNS.map(col => {
+          const val = service[col];
+          if (val === null || val === undefined) return '';
+          if (typeof val === 'string') {
+            const escaped = val.replace(/"/g, '""');
+            return val.includes(',') ? `"${escaped}"` : escaped;
+          }
+          return val;
+        }).join(','));
+        const csvContent = [header, ...rows].join('\n');
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `informdata_pricing_filtered_${Date.now()}.csv`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      });
+      if (GAMMA_URL) {
+        elements.openGamma.addEventListener('click', () => window.open(GAMMA_URL, '_blank', 'noopener'));
+      } else {
+        elements.openGamma.disabled = true;
+        elements.openGamma.textContent = 'Gamma deck unavailable';
+      }
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 600) {
+          elements.scrollTop.classList.add('show');
+        } else {
+          elements.scrollTop.classList.remove('show');
+        }
+      });
+      elements.scrollTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        elements.search.focus({ preventScroll: true });
+      });
+    }
+
+    hydrateFromQuery();
+    renderChips();
+    applyFilters(false);
+    attachEvents();
+  </script>
+</body>
+</html>
