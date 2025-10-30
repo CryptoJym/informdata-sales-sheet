@@ -1,0 +1,4 @@
+service_id,competitor_name,analogous_service_name,msrp_currency,msrp_amount,evidence_url,observed_date,region,notes
+SOR_PLUS,ScreenCorp,"Nationwide Sex Offender Search",USD,1.75,https://example.com/screencorp/sor,2025-07-10,United States,Monthly subscription includes alerts
+MVR_STANDARD,CheckPro,"Motor Vehicle Record",USD,3.50,https://example.com/checkpro/mvr,2025-07-11,United States,
+MED_EX_PLUS,VerifySure,"Healthcare Sanctions Comprehensive",USD,2.75,https://example.com/verifysure/medex,2025-07-09,United States,Requires annual commitment

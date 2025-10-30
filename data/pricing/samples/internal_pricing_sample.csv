@@ -1,0 +1,4 @@
+service_id,service_name,unit,currency,base_cost,ai_saas_margin,internal_price,effective_date,computation_version,source_cost_ref,notes
+SOR_PLUS,SOR+ Sex Offender Registry,per_search,USD,0.80,1.00,1.80,2025-07-01,1.0.0,FIN-2025-07-18,Includes AI disposition support
+MVR_STANDARD,Motor Vehicle Record,per_search,USD,2.95,1.00,3.95,2025-07-01,1.0.0,FIN-2025-07-18,
+MED_EX_PLUS,Med Ex Plus,per_subject,USD,1.90,1.00,2.90,2025-07-01,1.0.0,FIN-2025-07-18,

@@ -1,0 +1,11 @@
+# InformData Sales Collateral PRD
+
+## Objective
+Produce a sales-ready pricing sheet for Vuplicity.com covering InformData services, in-house pricing (InformData cost + $1 AI/SaaS margin), competitive MSRPs, and key use cases.
+
+## Key Requirements
+- Gather approved InformData service costs from finance sources.
+- Add $1 per line item to represent AI+SaaS overhead.
+- Document competitor MSRPs for analogous services.
+- Summarize use cases and relevance for buyers.
+- Prepare content for export to Gamma presentation for the sales team.

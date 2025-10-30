@@ -1,0 +1,60 @@
+dataset_id: internal_pricing
+version: 1.0.0
+description: Internal InformData pricing after AI+SaaS margin policy
+file_pattern: data/pricing/internal_pricing.csv
+primary_key:
+  - service_id
+fields:
+  - name: service_id
+    dtype: string
+    required: true
+    unique: true
+  - name: service_name
+    dtype: string
+    required: true
+  - name: unit
+    dtype: string
+    required: true
+  - name: currency
+    dtype: string
+    required: true
+    regex: "^[A-Z]{3}$"
+  - name: base_cost
+    dtype: number
+    required: true
+    min: 0
+  - name: ai_saas_margin
+    dtype: number
+    required: true
+    min: 1
+  - name: internal_price
+    dtype: number
+    required: true
+    min: 0
+  - name: effective_date
+    dtype: date
+    required: true
+    format: "%Y-%m-%d"
+  - name: computation_version
+    dtype: string
+    required: true
+    regex: "^\\d+\\.\\d+\\.\\d+$"
+  - name: source_cost_ref
+    dtype: string
+    required: true
+    example: FIN-2025-07-18
+  - name: notes
+    dtype: string
+    required: false
+constraints:
+  - name: currency_iso
+    type: regex
+    field: currency
+    pattern: "^[A-Z]{3}$"
+  - name: version_semver
+    type: regex
+    field: computation_version
+    pattern: "^\\d+\\.\\d+\\.\\d+$"
+  - name: price_gte_cost_plus_margin
+    type: compare
+    expression: internal_price >= base_cost + ai_saas_margin

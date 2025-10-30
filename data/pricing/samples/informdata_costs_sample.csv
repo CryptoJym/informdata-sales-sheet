@@ -1,0 +1,4 @@
+service_id,service_name,unit,cost_currency,cost_amount,effective_date,approval_ref,source_system,notes
+SOR_PLUS,SOR+ Sex Offender Registry,per_search,USD,0.80,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,Primary SOR feed
+MVR_STANDARD,Motor Vehicle Record,per_search,USD,2.95,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
+MED_EX_PLUS,Med Ex Plus,per_subject,USD,1.90,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,Includes sanctions and license checks

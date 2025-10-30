@@ -1,0 +1,58 @@
+dataset_id: competitor_msrps
+version: 1.0.0
+description: Comparable competitor MSRP data with evidence links
+file_pattern: data/pricing/competitor_msps.csv
+primary_key:
+  - service_id
+  - competitor_name
+fields:
+  - name: service_id
+    dtype: string
+    required: true
+    example: SOR_PLUS
+  - name: competitor_name
+    dtype: string
+    required: true
+    example: "LeadingScreens Inc."
+  - name: analogous_service_name
+    dtype: string
+    required: true
+    example: "Nationwide Sex Offender Search"
+  - name: msrp_currency
+    dtype: string
+    required: true
+    regex: "^[A-Z]{3}$"
+    example: USD
+  - name: msrp_amount
+    dtype: number
+    required: true
+    min: 0
+    example: 1.50
+  - name: evidence_url
+    dtype: string
+    required: true
+    regex: "^https?://.+"
+  - name: observed_date
+    dtype: date
+    required: true
+    format: "%Y-%m-%d"
+  - name: region
+    dtype: string
+    required: false
+    example: "United States"
+  - name: notes
+    dtype: string
+    required: false
+constraints:
+  - name: msrp_currency_iso
+    type: regex
+    field: msrp_currency
+    pattern: "^[A-Z]{3}$"
+  - name: evidence_url_http
+    type: regex
+    field: evidence_url
+    pattern: "^https?://.+"
+  - name: observed_date_not_future
+    type: max_date
+    field: observed_date
+    max: today

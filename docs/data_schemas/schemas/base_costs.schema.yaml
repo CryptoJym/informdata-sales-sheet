@@ -1,0 +1,54 @@
+dataset_id: base_costs
+version: 1.0.0
+description: Canonical InformData service cost feed from finance
+file_pattern: data/pricing/informdata_costs.csv
+primary_key:
+  - service_id
+fields:
+  - name: service_id
+    dtype: string
+    required: true
+    unique: true
+    example: SOR_PLUS
+  - name: service_name
+    dtype: string
+    required: true
+    example: "SOR+ Sex Offender Registry"
+  - name: unit
+    dtype: string
+    required: true
+    example: per_search
+  - name: cost_currency
+    dtype: string
+    required: true
+    regex: "^[A-Z]{3}$"
+    example: USD
+  - name: cost_amount
+    dtype: number
+    required: true
+    min: 0
+    example: 0.80
+  - name: effective_date
+    dtype: date
+    required: true
+    format: "%Y-%m-%d"
+  - name: approval_ref
+    dtype: string
+    required: true
+    example: FIN-2025-07-18
+  - name: source_system
+    dtype: string
+    required: true
+    example: "Vuplicity LLC Pricing 052925.xlsx"
+  - name: notes
+    dtype: string
+    required: false
+constraints:
+  - name: cost_currency_iso
+    type: regex
+    field: cost_currency
+    pattern: "^[A-Z]{3}$"
+  - name: effective_date_not_future
+    type: max_date
+    field: effective_date
+    max: today

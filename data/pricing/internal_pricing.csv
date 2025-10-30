@@ -1,0 +1,23 @@
+service_id,service_name,unit,currency,base_cost,ai_saas_margin,internal_price,effective_date,computation_version,source_cost_ref,notes
+SOR_PLUS,SOR+,per_search,USD,0.8,1.0,1.8,2025-07-01,1.0.0,FIN-2025-07-18,
+MVR_STANDARD,MVR,per_search,USD,2.95,1.0,3.95,2025-07-01,1.0.0,FIN-2025-07-18,
+MVR_CDLIS,MVR CDLIS,per_search,USD,2.95,1.0,3.95,2025-07-01,1.0.0,FIN-2025-07-18,
+VERIFICATIONS,Verifications,per_subject_call,USD,6.25,1.0,7.25,2025-07-01,1.0.0,FIN-2025-07-18,per subject per call
+CRIMINAL_ACTIVITY_MONITORING,Criminal Activity Monitoring,per_subject_month,USD,1.25,1.0,2.25,2025-07-01,1.0.0,FIN-2025-07-18,per subject per month
+NAT_CRIMINAL,NAT Criminal,per_subject,USD,0.85,1.0,1.85,2025-07-01,1.0.0,FIN-2025-07-18,per subject
+SSN_TRACE,SSN Trace,per_search,USD,0.25,1.0,1.25,2025-07-01,1.0.0,FIN-2025-07-18,
+MED_EX_PLUS,Med Ex Plus,per_subject,USD,1.9,1.0,2.9,2025-07-01,1.0.0,FIN-2025-07-18,per subject
+MED_EX_PLUS_MONITORING,Med Ex Plus Monitoring,per_subject_month,USD,2.3,1.0,3.3,2025-07-01,1.0.0,FIN-2025-07-18,
+MED_EX_PRO,Med Ex Pro,per_subject,USD,3.15,1.0,4.15,2025-07-01,1.0.0,FIN-2025-07-18,
+MED_EX_PRO_MONITORING,Med Ex  Pro Monitoring,per_subject_month,USD,2.55,1.0,3.55,2025-07-01,1.0.0,FIN-2025-07-18,
+MED_EX_COMPLETE,Med Ex Complete,per_subject,USD,2.75,1.0,3.75,2025-07-01,1.0.0,FIN-2025-07-18,
+MED_EX_COMPLETE_MONITORING,Med Ex Complete Monitoring,per_subject_month,USD,2.65,1.0,3.65,2025-07-01,1.0.0,FIN-2025-07-18,
+FEDERAL_CRIMINAL,Federal Criminal,per_search,USD,1.85,1.0,2.85,2025-07-01,1.0.0,FIN-2025-07-18,
+FEDERAL_CRIMINAL_MATCH_NO_MATCH,Federal Criminal Match/No Match,per_search,USD,0.3,1.0,1.3,2025-07-01,1.0.0,FIN-2025-07-18,
+FEDERAL_CIVIL,Federal Civil,per_search,USD,1.75,1.0,2.75,2025-07-01,1.0.0,FIN-2025-07-18,
+FEDERAL_CIVIL_MATCH_NO_MATCH,Federal Civil Match/No Match,per_search,USD,0.3,1.0,1.3,2025-07-01,1.0.0,FIN-2025-07-18,
+COUNTY_CIVIL_UPPER,County Civil Upper,per_search,USD,4.25,1.0,5.25,2025-07-01,1.0.0,FIN-2025-07-18,
+COUNTY_CIVIL_LOWER,County Civil Lower,per_search,USD,4.25,1.0,5.25,2025-07-01,1.0.0,FIN-2025-07-18,
+COUNTY_CIVIL_UPPER_LOWER_COMBINED,County Civil Uper/Lower Combined,per_search,USD,8.5,1.0,9.5,2025-07-01,1.0.0,FIN-2025-07-18,
+INTERNATIONAL_EMPLOYMENT,International  Employment,per_verification,USD,35.0,1.0,36.0,2025-07-01,1.0.0,FIN-2025-07-18,
+INTERNATIONAL_EDUCATION,International Education,per_verification,USD,35.0,1.0,36.0,2025-07-01,1.0.0,FIN-2025-07-18,

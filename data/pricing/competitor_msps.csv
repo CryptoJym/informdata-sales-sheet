@@ -1,0 +1,23 @@
+service_id,competitor_name,analogous_service_name,msrp_currency,msrp_amount,evidence_url,observed_date,region,notes
+SOR_PLUS,Checkr,Basic+ package (includes Sex Offender Registry),USD,29.99,https://checkr.com/pricing,2025-10-30,United States,"Per-report price covering SSN trace, sex offender registry, watchlist, and national criminal search."
+MVR_STANDARD,Checkr,Motor Vehicle Record (MVR),USD,9.5,https://checkr.com/pricing,2025-10-30,United States,Standalone MVR report price per pull.
+MVR_CDLIS,Checkr,DOT MVR with CDLIS,USD,14.5,https://checkr.com/pricing,2025-10-30,United States,Commercial MVR that includes CDLIS data.
+VERIFICATIONS,Checkr,Employment Verification,USD,12.5,https://checkr.com/pricing,2025-10-30,United States,Per employer verification.
+CRIMINAL_ACTIVITY_MONITORING,Checkr,Continuous Criminal Monitoring,USD,1.7,https://checkr.com/pricing,2025-10-30,United States,Monthly fee per individual for ongoing monitoring.
+NAT_CRIMINAL,Checkr,Basic+ package (National Criminal),USD,29.99,https://checkr.com/pricing,2025-10-30,United States,Same Basic+ per-report pricing covering national criminal database.
+SSN_TRACE,Checkr,Basic+ package (SSN Trace),USD,29.99,https://checkr.com/pricing,2025-10-30,United States,Included in Basic+ package.
+MED_EX_PLUS,GoodHire,Healthcare Sanctions Search (Level 1),USD,5.99,https://www.bestreviewguide.com/en/reviews/services/best-background-check/goodhire-review/,2025-10-30,United States,Base price for GoodHire healthcare sanctions add-on; ongoing alerts available separately.
+MED_EX_PLUS_MONITORING,GoodHire,Healthcare Sanctions Search (Ongoing Alerts),USD,5.99,https://www.bestreviewguide.com/en/reviews/services/best-background-check/goodhire-review/,2025-10-30,United States,Monthly monitoring pricing not published; using published starting rate for reference.
+MED_EX_PRO,GoodHire,Healthcare Sanctions Search (Level 2),USD,5.99,https://www.bestreviewguide.com/en/reviews/services/best-background-check/goodhire-review/,2025-10-30,United States,Level-based pricing starts from same add-on rate; additional sources may incur custom fees.
+MED_EX_PRO_MONITORING,GoodHire,Healthcare Sanctions Search (Level 3 Monitoring),USD,5.99,https://www.bestreviewguide.com/en/reviews/services/best-background-check/goodhire-review/,2025-10-30,United States,Level 3 monitoring typically quoted; placeholder uses published starting price pending custom quote.
+MED_EX_COMPLETE,GoodHire,Healthcare Sanctions Search (Level 3),USD,5.99,https://www.bestreviewguide.com/en/reviews/services/best-background-check/goodhire-review/,2025-10-30,United States,Highest level includes state board and abuse registries; pricing usually custom beyond base.
+MED_EX_COMPLETE_MONITORING,GoodHire,Healthcare Sanctions Search (Level 3 + Alerts),USD,5.99,https://www.bestreviewguide.com/en/reviews/services/best-background-check/goodhire-review/,2025-10-30,United States,Ongoing alert pricing requires quote; using published starting rate for reference only.
+FEDERAL_CRIMINAL,Checkr,Federal Criminal Search,USD,10.0,https://checkr.com/pricing,2025-10-30,United States,Per search pricing.
+FEDERAL_CIVIL,Checkr,Federal Civil Search,USD,15.0,https://checkr.com/pricing,2025-10-30,United States,Per search pricing.
+COUNTY_CIVIL_UPPER,Checkr,County Civil Search (Upper/Lower),USD,40.0,https://checkr.com/pricing,2025-10-30,United States,Per county civil search; same rate for upper and lower courts.
+COUNTY_CIVIL_LOWER,Checkr,County Civil Search (Upper/Lower),USD,40.0,https://checkr.com/pricing,2025-10-30,United States,Per county civil search; same rate for upper and lower courts.
+COUNTY_CIVIL_UPPER_LOWER_COMBINED,Checkr,County Civil Search (Unlimited),USD,40.0,https://checkr.com/pricing,2025-10-30,United States,Flat rate per county search; unlimited combinations typically require package.
+INTERNATIONAL_EMPLOYMENT,Checkr,International Professional Package,USD,102.94,https://checkr.com/pricing,2025-10-30,International,Package covering one employment and one education verification internationally.
+INTERNATIONAL_EDUCATION,Checkr,International Professional Package,USD,102.94,https://checkr.com/pricing,2025-10-30,International,Same package handles education verification internationally.
+FEDERAL_CRIMINAL_MATCH_NO_MATCH,Checkr,Federal Criminal Search (result delivery),USD,10.0,https://checkr.com/pricing,2025-10-30,United States,Match/No Match status is included in the federal criminal search fee; no separate per-result charge.
+FEDERAL_CIVIL_MATCH_NO_MATCH,Checkr,Federal Civil Search (result delivery),USD,15.0,https://checkr.com/pricing,2025-10-30,United States,Match/No Match status is included in the federal civil search fee; no separate per-result charge.
