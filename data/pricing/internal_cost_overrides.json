@@ -1,0 +1,16 @@
+{
+  "defaults": {
+    "automation_spend": 0.0,
+    "platform_overhead": 0.0,
+    "pass_through_cost": 0.0,
+    "pass_through": false
+  },
+  "services": {
+    "CRIMINAL_ACTIVITY_MONITORING": {
+      "pass_through": true
+    },
+    "ESSENTIAL_CHECK": {
+      "automation_spend": 1.0
+    }
+  }
+}

@@ -1,0 +1,117 @@
+service_id,service_name,category,jurisdiction,unit,informdata_cost,cost_currency,platform_cost_default,effective_date,approval_ref,source_system
+DOMESTIC_CRIMINAL_AK,Domestic Criminal,Statewide Criminal,AK - All Counties,per_search,1.45,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_AL,Domestic Criminal,Statewide Criminal,AL - All Counties,per_search,1.45,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_AR,Domestic Criminal,Statewide Criminal,AR - All Counties,per_search,3.65,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_AZ,Domestic Criminal,Statewide Criminal,AZ - All Remaining Counties,per_search,4.5,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_AZ,Domestic Criminal,Statewide Criminal,AZ - Maricopa - Justice & District Courts,per_search,4.0,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_AZ,Domestic Criminal,Statewide Criminal,AZ - Maricopa - Justice Court Only,per_search,2.25,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_CA,Domestic Criminal,Statewide Criminal,CA - All Remaining Counties,per_search,3.0,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_CA,Domestic Criminal,Statewide Criminal,CA - Automated Counties (Full Extract Only - Excluding Los Angeles),per_search,1.45,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_CA,Domestic Criminal,Statewide Criminal,CA - Los Angeles,per_search,2.65,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_CO,Domestic Criminal,Statewide Criminal,CO - All Counties,per_search,3.35,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_CT,Domestic Criminal,Statewide Criminal,CT - All Counties,per_search,3.4,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_DC,Domestic Criminal,Statewide Criminal,DC - All Counties,per_search,3.45,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_DE,Domestic Criminal,Statewide Criminal,DE - All Counties,per_search,4.5,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_FL,Domestic Criminal,Statewide Criminal,FL - All Remaining Counties,per_search,3.5,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_FL,Domestic Criminal,Statewide Criminal,FL - Automated Counties,per_search,1.45,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_GA,Domestic Criminal,Statewide Criminal,GA - All Remaining Counties,per_search,3.95,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_GA,Domestic Criminal,Statewide Criminal,"GA - Atlanta Metro - (Cherokee, Cobb, De Kalb, Gwinnett, Fulton)",per_search,2.25,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_HI,Domestic Criminal,Statewide Criminal,HI - All Counties,per_search,1.45,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_IA,Domestic Criminal,Statewide Criminal,IA - All Counties,per_search,1.45,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_ID,Domestic Criminal,Statewide Criminal,ID - All Counties,per_search,2.95,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_IL,Domestic Criminal,Statewide Criminal,IL - All Remaining Counties,per_search,2.7,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_IL,Domestic Criminal,Statewide Criminal,IL - Automated Counties,per_search,1.45,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_IL,Domestic Criminal,Statewide Criminal,IL - Cook,per_search,3.35,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_IN,Domestic Criminal,Statewide Criminal,IN - All Remaining Counties,per_search,5.55,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_IN,Domestic Criminal,Statewide Criminal,IN - Automated Counties,per_search,1.45,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_KS,Domestic Criminal,Statewide Criminal,KS - All Counties,per_search,1.45,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_KY,Domestic Criminal,Statewide Criminal,KY - All Counties,per_search,5.25,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_LA,Domestic Criminal,Statewide Criminal,LA - All Counties,per_search,3.8,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_MA,Domestic Criminal,Statewide Criminal,MA - All Counties,per_search,4.9,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_MD,Domestic Criminal,Statewide Criminal,MD - All Counties,per_search,1.45,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_ME,Domestic Criminal,Statewide Criminal,ME - All Counties,per_search,2.3,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_MI,Domestic Criminal,Statewide Criminal,MI - All Remaining Counties,per_search,5.15,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_MI,Domestic Criminal,Statewide Criminal,MI - Wayne,per_search,2.95,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_MN,Domestic Criminal,Statewide Criminal,MN - All Counties,per_search,2.75,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_MO,Domestic Criminal,Statewide Criminal,MO - All Counties,per_search,3.3,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_MS,Domestic Criminal,Statewide Criminal,MS - All Counties,per_search,6.1,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_MT,Domestic Criminal,Statewide Criminal,MT - All Counties,per_search,4.15,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_NC,Domestic Criminal,Statewide Criminal,NC - All Counties,per_search,2.7,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_ND,Domestic Criminal,Statewide Criminal,ND - All Counties,per_search,1.45,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_NE,Domestic Criminal,Statewide Criminal,NE - All Counties,per_search,1.45,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_NH,Domestic Criminal,Statewide Criminal,NH - All Counties,per_search,4.9,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_NJ,Domestic Criminal,Statewide Criminal,NJ - All Counties,per_search,2.2,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_NM,Domestic Criminal,Statewide Criminal,NM - All Counties,per_search,1.45,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_NV,Domestic Criminal,Statewide Criminal,NV - All Remaining Counties,per_search,5.0,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_NV,Domestic Criminal,Statewide Criminal,NV - Clark - District & Vegas Justice Court,per_search,2.2,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_NV,Domestic Criminal,Statewide Criminal,NV - Clark - District Court Only,per_search,2.1,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_NY,Domestic Criminal,Statewide Criminal,NY - All Counties,per_search,5.55,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_OH,Domestic Criminal,Statewide Criminal,OH - All Remaining Counties,per_search,4.05,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_OH,Domestic Criminal,Statewide Criminal,OH - Automated Counties,per_search,1.45,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_OK,Domestic Criminal,Statewide Criminal,OK - All Counties,per_search,1.45,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_OR,Domestic Criminal,Statewide Criminal,OR - All Counties,per_search,1.45,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_PA,Domestic Criminal,Statewide Criminal,PA - All Counties,per_search,1.45,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_RI,Domestic Criminal,Statewide Criminal,RI - All Counties,per_search,1.45,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_SC,Domestic Criminal,Statewide Criminal,SC - All Counties,per_search,3.4,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_SD,Domestic Criminal,Statewide Criminal,SD - All Counties,per_search,2.6,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_TN,Domestic Criminal,Statewide Criminal,TN - All Remaining Counties,per_search,6.1,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_TN,Domestic Criminal,Statewide Criminal,"TN - Automated Counties (Davidson, Hamilton, Shelby)",per_search,1.7,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_TX,Domestic Criminal,Statewide Criminal,TX - All Remaining Counties,per_search,3.4,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_TX,Domestic Criminal,Statewide Criminal,TX - Automated Counties,per_search,1.45,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_UT,Domestic Criminal,Statewide Criminal,UT - All Counties,per_search,1.45,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_VA,Domestic Criminal,Statewide Criminal,VA - All Counties,per_search,1.75,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_VT,Domestic Criminal,Statewide Criminal,VT - All Counties,per_search,7.0,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_WA,Domestic Criminal,Statewide Criminal,WA - All Counties,per_search,2.95,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_WI,Domestic Criminal,Statewide Criminal,WI - All Counties,per_search,1.45,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_WV,Domestic Criminal,Statewide Criminal,WV - All Counties,per_search,6.0,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+DOMESTIC_CRIMINAL_WY,Domestic Criminal,Statewide Criminal,WY - All Counties,per_search,7.6,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_AK,Statewide Criminal,Statewide Criminal,"AK, Statewide",per_search,2.55,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_AL,Statewide Criminal,Statewide Criminal,"AL, Statewide",per_search,2.55,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_AR,Statewide Criminal,Statewide Criminal,"AR, Statewide",per_search,9.3,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_AZ,Statewide Criminal,Statewide Criminal,"AZ, Statewide",per_search,0.0,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_CA,Statewide Criminal,Statewide Criminal,"CA, Statewide",per_search,0.0,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_CO,Statewide Criminal,Statewide Criminal,"CO, Statewide",per_search,3.65,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_CT,Statewide Criminal,Statewide Criminal,"CT, Statewide",per_search,2.55,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_DE,Statewide Criminal,Statewide Criminal,"DE, Statewide",per_search,10.85,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_FL,Statewide Criminal,Statewide Criminal,"FL, Statewide",per_search,5.2,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_GA,Statewide Criminal,Statewide Criminal,"GA, Statewide",per_search,4.9,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_HI,Statewide Criminal,Statewide Criminal,"HI, Statewide",per_search,2.55,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_IA,Statewide Criminal,Statewide Criminal,"IA, Statewide",per_search,2.55,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_ID,Statewide Criminal,Statewide Criminal,"ID, Statewide",per_search,3.65,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_IL,Statewide Criminal,Statewide Criminal,"IL, Statewide",per_search,5.85,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_IN,Statewide Criminal,Statewide Criminal,"IN, Statewide",per_search,4.65,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_KS,Statewide Criminal,Statewide Criminal,"KS, Statewide",per_search,5.85,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_KY,Statewide Criminal,Statewide Criminal,"KY, Statewide",per_search,2.55,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_LA,Statewide Criminal,Statewide Criminal,"LA, Statewide",per_search,1.6,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_MA,Statewide Criminal,Statewide Criminal,"MA, Statewide",per_search,6.65,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_MD,Statewide Criminal,Statewide Criminal,"MD, Statewide",per_search,2.55,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_ME,Statewide Criminal,Statewide Criminal,"ME, Statewide",per_search,2.55,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_MI,Statewide Criminal,Statewide Criminal,"MI, Statewide",per_search,3.65,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_MN,Statewide Criminal,Statewide Criminal,"MN, Statewide",per_search,2.65,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_MO,Statewide Criminal,Statewide Criminal,"MO, Statewide",per_search,3.65,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_MS,Statewide Criminal,Statewide Criminal,"MS, Statewide",per_search,3.45,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_MT,Statewide Criminal,Statewide Criminal,"MT, Statewide",per_search,3.2,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_NC,Statewide Criminal,Statewide Criminal,"NC, Statewide",per_search,3.65,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_ND,Statewide Criminal,Statewide Criminal,"ND, Statewide",per_search,2.55,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_NE,Statewide Criminal,Statewide Criminal,"NE, Statewide",per_search,2.55,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_NH,Statewide Criminal,Statewide Criminal,"NH, Statewide",per_search,0.0,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_NJ,Statewide Criminal,Statewide Criminal,"NJ, Statewide",per_search,2.55,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_NM,Statewide Criminal,Statewide Criminal,"NM, Statewide",per_search,2.55,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_NV,Statewide Criminal,Statewide Criminal,"NV, Statewide",per_search,0.0,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_NY,Statewide Criminal,Statewide Criminal,"NY, Statewide",per_search,2.55,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_OH,Statewide Criminal,Statewide Criminal,"OH, Statewide",per_search,5.4,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_OK,Statewide Criminal,Statewide Criminal,"OK, Statewide",per_search,2.55,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_OR,Statewide Criminal,Statewide Criminal,"OR, Statewide",per_search,2.55,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_PA,Statewide Criminal,Statewide Criminal,"PA, Statewide",per_search,2.55,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_RI,Statewide Criminal,Statewide Criminal,"RI, Statewide",per_search,2.55,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_SC,Statewide Criminal,Statewide Criminal,"SC, Statewide",per_search,5.85,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_SD,Statewide Criminal,Statewide Criminal,"SD, Statewide",per_search,2.55,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_TN,Statewide Criminal,Statewide Criminal,"TN, Statewide",per_search,4.75,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_TX,Statewide Criminal,Statewide Criminal,"TX, Statewide",per_search,2.55,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_UT,Statewide Criminal,Statewide Criminal,"UT, Statewide",per_search,2.55,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_VA,Statewide Criminal,Statewide Criminal,"VA, Statewide",per_search,3.4,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_VT,Statewide Criminal,Statewide Criminal,"VT, Statewide",per_search,3.75,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_WA,Statewide Criminal,Statewide Criminal,"WA, Statewide",per_search,2.55,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_WI,Statewide Criminal,Statewide Criminal,"WI, Statewide",per_search,2.55,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_WV,Statewide Criminal,Statewide Criminal,"WV, Statewide",per_search,5.4,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
+STATEWIDE_CRIMINAL_WY,Statewide Criminal,Statewide Criminal,"WY, Statewide",per_search,0.0,USD,0.0,2025-07-01,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx
