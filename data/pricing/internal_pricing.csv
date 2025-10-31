@@ -1,23 +1,23 @@
 service_id,service_name,unit,cost_currency,informdata_cost,automation_spend,platform_overhead,pass_through_cost,internal_cost,total_cost,pass_through,effective_date,computation_version,approval_ref,source_system,notes
-COUNTY_CIVIL_LOWER,County Civil Lower,per_search,USD,4.25,0.0,0.0,0.0,4.25,4.25,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
-COUNTY_CIVIL_UPPER,County Civil Upper,per_search,USD,4.25,0.0,0.0,0.0,4.25,4.25,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
-COUNTY_CIVIL_UPPER_LOWER_COMBINED,County Civil Uper/Lower Combined,per_search,USD,8.5,0.0,0.0,0.0,8.5,8.5,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
+COUNTY_CIVIL_LOWER,County Civil Lower,per_search,USD,4.25,0.2,0.25,0.0,4.7,4.7,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
+COUNTY_CIVIL_UPPER,County Civil Upper,per_search,USD,4.25,0.2,0.25,0.0,4.7,4.7,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
+COUNTY_CIVIL_UPPER_LOWER_COMBINED,County Civil Uper/Lower Combined,per_search,USD,8.5,0.2,0.25,0.0,8.95,8.95,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
 CRIMINAL_ACTIVITY_MONITORING,Criminal Activity Monitoring,per_subject_month,USD,1.25,0.0,0.0,0.0,1.25,1.25,True,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,per subject per month
-FEDERAL_CIVIL,Federal Civil,per_search,USD,1.75,0.0,0.0,0.0,1.75,1.75,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
-FEDERAL_CIVIL_MATCH_NO_MATCH,Federal Civil Match/No Match,per_search,USD,0.3,0.0,0.0,0.0,0.3,0.3,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
-FEDERAL_CRIMINAL,Federal Criminal,per_search,USD,1.85,0.0,0.0,0.0,1.85,1.85,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
-FEDERAL_CRIMINAL_MATCH_NO_MATCH,Federal Criminal Match/No Match,per_search,USD,0.3,0.0,0.0,0.0,0.3,0.3,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
-INTERNATIONAL_EDUCATION,International Education,per_verification,USD,35.0,0.0,0.0,0.0,35.0,35.0,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
-INTERNATIONAL_EMPLOYMENT,International  Employment,per_verification,USD,35.0,0.0,0.0,0.0,35.0,35.0,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
-MED_EX_COMPLETE,Med Ex Complete,per_subject,USD,2.75,0.0,0.0,0.0,2.75,2.75,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
-MED_EX_COMPLETE_MONITORING,Med Ex Complete Monitoring,per_subject_month,USD,2.65,0.0,0.0,0.0,2.65,2.65,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
-MED_EX_PLUS,Med Ex Plus,per_subject,USD,1.9,0.0,0.0,0.0,1.9,1.9,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,per subject
-MED_EX_PLUS_MONITORING,Med Ex Plus Monitoring,per_subject_month,USD,2.3,0.0,0.0,0.0,2.3,2.3,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
-MED_EX_PRO,Med Ex Pro,per_subject,USD,3.15,0.0,0.0,0.0,3.15,3.15,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
-MED_EX_PRO_MONITORING,Med Ex  Pro Monitoring,per_subject_month,USD,2.55,0.0,0.0,0.0,2.55,2.55,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
-MVR_CDLIS,MVR CDLIS,per_search,USD,2.95,0.0,0.0,0.0,2.95,2.95,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
-MVR_STANDARD,MVR,per_search,USD,2.95,0.0,0.0,0.0,2.95,2.95,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
-NAT_CRIMINAL,NAT Criminal,per_subject,USD,0.85,0.0,0.0,0.0,0.85,0.85,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,per subject
-SOR_PLUS,SOR+,per_search,USD,0.8,0.0,0.0,0.0,0.8,0.8,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
-SSN_TRACE,SSN Trace,per_search,USD,0.25,0.0,0.0,0.0,0.25,0.25,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
-VERIFICATIONS,Verifications,per_subject_call,USD,6.25,0.0,0.0,0.0,6.25,6.25,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,per subject per call
+FEDERAL_CIVIL,Federal Civil,per_search,USD,1.75,0.03,0.25,0.0,2.03,2.03,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
+FEDERAL_CIVIL_MATCH_NO_MATCH,Federal Civil Match/No Match,per_search,USD,0.3,0.03,0.25,0.0,0.58,0.58,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
+FEDERAL_CRIMINAL,Federal Criminal,per_search,USD,1.85,0.03,0.25,0.0,2.13,2.13,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
+FEDERAL_CRIMINAL_MATCH_NO_MATCH,Federal Criminal Match/No Match,per_search,USD,0.3,0.03,0.25,0.0,0.58,0.58,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
+INTERNATIONAL_EDUCATION,International Education,per_verification,USD,35.0,0.03,0.25,0.0,35.28,35.28,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
+INTERNATIONAL_EMPLOYMENT,International  Employment,per_verification,USD,35.0,0.03,0.25,0.0,35.28,35.28,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
+MED_EX_COMPLETE,Med Ex Complete,per_subject,USD,2.75,0.03,0.25,0.0,3.03,3.03,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
+MED_EX_COMPLETE_MONITORING,Med Ex Complete Monitoring,per_subject_month,USD,2.65,0.03,0.25,0.0,2.93,2.93,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
+MED_EX_PLUS,Med Ex Plus,per_subject,USD,1.9,0.03,0.25,0.0,2.18,2.18,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,per subject
+MED_EX_PLUS_MONITORING,Med Ex Plus Monitoring,per_subject_month,USD,2.3,0.03,0.25,0.0,2.58,2.58,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
+MED_EX_PRO,Med Ex Pro,per_subject,USD,3.15,0.03,0.25,0.0,3.43,3.43,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
+MED_EX_PRO_MONITORING,Med Ex  Pro Monitoring,per_subject_month,USD,2.55,0.03,0.25,0.0,2.83,2.83,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
+MVR_CDLIS,MVR CDLIS,per_search,USD,2.95,0.03,0.25,0.0,3.23,3.23,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
+MVR_STANDARD,MVR,per_search,USD,2.95,0.03,0.25,0.0,3.23,3.23,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
+NAT_CRIMINAL,NAT Criminal,per_subject,USD,0.85,0.03,0.25,0.0,1.13,1.13,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,per subject
+SOR_PLUS,SOR+,per_search,USD,0.8,0.03,0.25,0.0,1.08,1.08,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
+SSN_TRACE,SSN Trace,per_search,USD,0.25,0.03,0.25,0.0,0.53,0.53,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,
+VERIFICATIONS,Verifications,per_subject_call,USD,6.25,0.03,0.25,0.0,6.53,6.53,False,2025-07-01,1.0.0,FIN-2025-07-18,Vuplicity LLC Pricing 052925.xlsx,per subject per call

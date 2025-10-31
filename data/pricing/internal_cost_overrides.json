@@ -1,16 +1,31 @@
 {
   "defaults": {
-    "automation_spend": 0.0,
-    "platform_overhead": 0.0,
+    "automation_spend": 0.03,
+    "platform_overhead": 0.25,
     "pass_through_cost": 0.0,
     "pass_through": false
   },
   "services": {
     "CRIMINAL_ACTIVITY_MONITORING": {
-      "pass_through": true
+      "pass_through": true,
+      "automation_spend": 0.0,
+      "platform_overhead": 0.0
     },
     "ESSENTIAL_CHECK": {
-      "automation_spend": 1.0
+      "automation_spend": 0.09,
+      "platform_overhead": 0.25
+    },
+    "COUNTY_CIVIL_LOWER": {
+      "automation_spend": 0.20,
+      "platform_overhead": 0.25
+    },
+    "COUNTY_CIVIL_UPPER": {
+      "automation_spend": 0.20,
+      "platform_overhead": 0.25
+    },
+    "COUNTY_CIVIL_UPPER_LOWER_COMBINED": {
+      "automation_spend": 0.20,
+      "platform_overhead": 0.25
     }
   }
 }

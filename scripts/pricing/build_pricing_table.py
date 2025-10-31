@@ -152,9 +152,11 @@ def build(cost_path: Path, internal_path: Path, competitor_path: Path, output_pa
     merged["recommended_margin"] = (merged["recommended_price"] - merged["total_cost"]).round(2)
     merged["pricing_notes"] = merged.apply(pricing_note, axis=1)
 
-    essential_vendor_cost = cost_df[cost_df["service_id"].isin(["SSN_TRACE", "SOR_PLUS", "NAT_CRIMINAL"])]["informdata_cost"].sum()
-    essential_platform_cost = 1.0
-    essential_total = round(essential_vendor_cost + essential_platform_cost, 2)
+    essential_vendor_cost = cost_df[cost_df["service_id"].isin(["SSN_TRACE", "SOR_PLUS", "NAT_CRIMINAL"])]
+    essential_vendor_cost = essential_vendor_cost["informdata_cost"].sum()
+    essential_automation_cost = 0.09  # three component checks (~$0.03 automation each)
+    essential_platform_cost = 0.25    # hosting/orchestration overhead per bundle
+    essential_total = round(essential_vendor_cost + essential_automation_cost + essential_platform_cost, 2)
     essential_competitor = competitor_df.loc[competitor_df["service_id"] == "NAT_CRIMINAL", "msrp_amount"].max()
 
     essential_row = {
@@ -163,10 +165,10 @@ def build(cost_path: Path, internal_path: Path, competitor_path: Path, output_pa
         "category": "Core Service",
         "unit": "per_applicant",
         "informdata_cost": round(essential_vendor_cost, 2),
-        "automation_spend": essential_platform_cost,
-        "platform_overhead": 0.0,
+        "automation_spend": essential_automation_cost,
+        "platform_overhead": essential_platform_cost,
         "pass_through_cost": 0.0,
-        "internal_cost": round(essential_vendor_cost + essential_platform_cost, 2),
+        "internal_cost": round(essential_vendor_cost + essential_automation_cost + essential_platform_cost, 2),
         "total_cost": essential_total,
         "pass_through": False,
         "currency": "USD",
@@ -182,9 +184,9 @@ def build(cost_path: Path, internal_path: Path, competitor_path: Path, output_pa
     }
     essential_row["recommended_price"] = recommended_price(pd.Series(essential_row))
     essential_row["recommended_margin"] = round(essential_row["recommended_price"] - essential_total, 2)
-    essential_row["pricing_notes"] = pricing_note(pd.Series(essential_row))
-    essential_row["cost_notes"] = "Includes InformData SSN trace, national criminal, and SOR costs plus $1 automation overhead."
-    essential_row["competitor_notes"] = "Benchmarked against Checkr Basic+ public MSRP."
+    essential_row["pricing_notes"] = "Bundle undercuts Checkr Basic+ while covering vendor spend and ~$0.34 Booplicity automation/hosting."
+    essential_row["cost_notes"] = "InformData SSN + NatCrim + SOR plus ~$0.34 Booplicity automation/hosting allocation."
+    essential_row["competitor_notes"] = "Benchmarked against Checkr Basic+ MSRP; retains $26+ headroom after automation/hosting."
 
     merged = pd.concat([pd.DataFrame([essential_row]), merged], ignore_index=True, sort=False)
     merged["price_delta"] = (merged["msrp_amount"] - merged["total_cost"]).round(2)
