@@ -68,4 +68,6 @@ python scripts/pricing/build_pricing_table.py   --output content/pricing/informd
 
 ## Supporting resources
 - GitHub repo: https://github.com/CryptoJym/informdata-sales-sheet
-- Pricing breakout (HTML index): https://informdata-sales-sheet-57hy8vzps-vuplicity.vercel.app
+- Pricing breakout (HTML index): https://informdata-sales-sheet-hntldjo2w-vuplicity.vercel.app
+- County & court access dashboard: https://informdata-sales-sheet-hntldjo2w-vuplicity.vercel.app/county_fee_breakdown.html
+- National scan components reference: https://informdata-sales-sheet-hntldjo2w-vuplicity.vercel.app/national_scan_components.html

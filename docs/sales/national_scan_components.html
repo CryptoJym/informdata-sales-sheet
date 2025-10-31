@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booplicity National Scan Components</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f8fc;
+      --surface: #ffffff;
+      --border: #d4dae5;
+      --text: #111827;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    }
+    body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .page { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+    h1 { margin-bottom: 0.75rem; font-size: 2.35rem; }
+    .lead { color: var(--muted); max-width: 70ch; margin-bottom: 1.5rem; }
+    .nav { margin-bottom: 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .nav a { padding: 0.45rem 0.85rem; border: 1px solid var(--border); border-radius: 0.65rem; background: var(--surface); font-size: 0.9rem; }
+    .component { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem 1.4rem; box-shadow: 0 10px 24px rgba(15, 23, 42, 0.1); margin-bottom: 1.2rem; }
+    .component h2 { margin: 0 0 0.4rem; font-size: 1.45rem; }
+    .component-desc { color: var(--muted); margin: 0 0 1rem; }
+    .component-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .component-grid h3 { margin: 0 0 0.35rem; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+    .component-grid p { margin: 0; }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>National Scan Components</h1>
+      <p class="lead">Every Essential Check leverages the components below to surface alias identities, nationwide criminal records, and mandated watchlist alerts. This breakdown shows what InformData supplies versus the incremental Booplicity automation/platform spend. Updated October 30, 2025.</p>
+      <nav class="nav">
+        <a href="index.html">Pricing breakout</a>
+        <a href="county_fee_breakdown.html">County & court access fees</a>
+      </nav>
+    </header>
+    
+    <article class="component">
+      <header>
+        <h2>SSN Trace</h2>
+        <p class="component-desc">Validates Social Security number format, flags issuance anomalies, and returns alias names/addresses used for downstream court routing.</p>
+      </header>
+      <div class="component-grid">
+        <div>
+          <h3>InformData input</h3>
+          <p>SSN Trace (vendor cost $0.25)</p>
+        </div>
+        <div>
+          <h3>Booplicity automation & platform</h3>
+          <p>~$0.03 automation (identity normalization), ~$0.25 platform orchestration</p>
+        </div>
+        <div>
+          <h3>Notes</h3>
+          <p>Used on every Essential Check; feeds alias expansion for national and county searches.</p>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="component">
+      <header>
+        <h2>National Criminal Database</h2>
+        <p class="component-desc">Aggregated arrest/conviction data from statewide repositories, incarceration records, and proprietary sources.</p>
+      </header>
+      <div class="component-grid">
+        <div>
+          <h3>InformData input</h3>
+          <p>NAT Criminal (vendor cost $0.85)</p>
+        </div>
+        <div>
+          <h3>Booplicity automation & platform</h3>
+          <p>~$0.03 automation for hit triage + matching, ~$0.25 platform</p>
+        </div>
+        <div>
+          <h3>Notes</h3>
+          <p>Pointer search—Booplicity triggers county confirmations before adjudication.</p>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="component">
+      <header>
+        <h2>Sex Offender Registry</h2>
+        <p class="component-desc">Consolidated federal and state sex offender registries covering all 50 states, D.C., territories, and tribal lands.</p>
+      </header>
+      <div class="component-grid">
+        <div>
+          <h3>InformData input</h3>
+          <p>SOR+ (vendor cost $0.80)</p>
+        </div>
+        <div>
+          <h3>Booplicity automation & platform</h3>
+          <p>~$0.03 automation, ~$0.25 platform</p>
+        </div>
+        <div>
+          <h3>Notes</h3>
+          <p>Included in Essential Check; standalone for regulated childcare, education, healthcare clients.</p>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="component">
+      <header>
+        <h2>Terrorist & Sanctions Watchlists</h2>
+        <p class="component-desc">OFAC, FBI Terrorist Screening Center, Interpol, and global watchlists integrated into the national package.</p>
+      </header>
+      <div class="component-grid">
+        <div>
+          <h3>InformData input</h3>
+          <p>Included inside NatCrim bundle</p>
+        </div>
+        <div>
+          <h3>Booplicity automation & platform</h3>
+          <p>~$0.03 automation, ~$0.25 platform</p>
+        </div>
+        <div>
+          <h3>Notes</h3>
+          <p>Flagged hits escalate to compliance for manual review before adverse action.</p>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="component">
+      <header>
+        <h2>County Court Confirmations</h2>
+        <p class="component-desc">Automated county pulls triggered when national search yields hits needing verification.</p>
+      </header>
+      <div class="component-grid">
+        <div>
+          <h3>InformData input</h3>
+          <p>County court fees (varies by jurisdiction)</p>
+        </div>
+        <div>
+          <h3>Booplicity automation & platform</h3>
+          <p>~$0.20 automation (document ingest) + ~$0.25 platform per county</p>
+        </div>
+        <div>
+          <h3>Notes</h3>
+          <p>Fee schedule detailed on the County & Court Access page.</p>
+        </div>
+      </div>
+    </article>
+    
+  </main>
+</body>
+</html>
