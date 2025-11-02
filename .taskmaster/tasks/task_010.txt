@@ -190,3 +190,69 @@ Progress update
 - Next: finalize commit with single version bump in build/collateral/tables/manifest.json and request reviewer sign-off.
 </info added on 2025-10-31T03:09:22.170Z>
 
+## 2. Publish collateral updates and new Vercel pages [done]
+### Dependencies: None
+### Description: Deploy refreshed pricing breakout plus dedicated court fee and database coverage pages, ensuring Vercel site renders each asset with Vuplicity messaging.
+### Details:
+<info added on 2025-11-02T23:14:21.914Z>
+Implementation plan and deliverables
+
+1) County fee page
+- Source data: copy latest county fee output into public/data/county_fees.json (fallback: convert CSV to JSON with scripts/tools/csv_to_json.py).
+- Page: pages/court-fees.html (static) with client-side filtering (no server code). Include:
+  - Filters: State (multi-select), County (typeahead), Court type (if present in data), Fee range, “Only show surcharges/notes” toggle.
+  - Results table with sticky header, virtualized rendering for large lists, CSV export of filtered view.
+  - Provenance banner and Vercel deployment guidance section (explain client-side JSON fetch, no serverless required, cache headers).
+  - Vuplicity messaging block and brand styles.
+- JS module: public/js/court_fees.js to handle fetch(/data/county_fees.json), filters, URL state (query params), and accessibility.
+- Build hook: add script to sync latest data to public/data on build (e.g., npm run sync-data:fees).
+
+2) Databases coverage page
+- Source: docs/downloads.md (and linked downloads) → normalize into public/data/database_coverage.json via scripts/coverage/extract_downloads.py.
+- Page: pages/database-coverage.html with:
+  - Summary cards (products covered, jurisdictions count, last refresh date).
+  - Coverage table: product, jurisdiction scope, coverage %, last updated, source URL, known limitations, provenance id.
+  - “How to interpret coverage” section for reps, with explicit data provenance, refresh cadence, and caveats.
+  - Link to data dictionary and download of the JSON/CSV snapshot.
+  - Vuplicity messaging block.
+- JS module: public/js/database_coverage.js for client-side rendering, filtering, sorting.
+
+3) Wire into site and deploy
+- Navigation: update partials/header.html and partials/footer.html to add “Court Fees” and “Database Coverage” links; ensure existing Pricing Breakout link remains visible.
+- Pricing breakout: verify pages/pricing-breakout.html reads from public/data/pricing_breakout.json (refresh data during build).
+- SEO: update public/sitemap.xml and add noindex to any internal-only staging variants if applicable.
+- Local sanity check:
+  - vercel pull
+  - vercel dev (or npm run dev) and open /court-fees and /database-coverage
+  - Validate filters, export buttons, mobile layout, and that JSON loads with 200.
+- Build and deploy:
+  - npm run build (ensures data sync tasks run)
+  - vercel build
+  - vercel deploy --prebuilt --prod
+- Post-deploy validation: open production URLs, confirm cache-control headers on JSON, check console for errors, run basic Lighthouse pass.
+
+Acceptance criteria
+- Court Fees page loads latest data from public/data/county_fees.json; filters work, export functions, and guidance/provenance text is present; styling matches Vuplicity.
+- Database Coverage page renders from public/data/database_coverage.json; includes provenance, interpretation guidance, and working filters/sorts.
+- Header/footer include links to Court Fees, Database Coverage, and Pricing Breakout; sitemap includes both new pages.
+- Local dev and production builds succeed; site deployed via Vercel CLI with no console errors; JSON assets are cacheable but bust on redeploy.
+- All content is client-rendered (no serverless functions), accessible (keyboard/tab, aria labels), and mobile-responsive.
+</info added on 2025-11-02T23:14:21.914Z>
+<info added on 2025-11-02T23:21:18.146Z>
+Progress
+- Copied the standalone Court Fee dashboard and National Scan components into the repository root for Vercel static hosting.
+- Added databases_coverage.html at the root; page renders from content/pricing/national_scan_sources.json (generated from the InformData workbook).
+- Refreshed navigation across all pages to include the new collateral links and preserve Pricing Breakout.
+- Committed (feat: expand collateral pages (task 10)) and pushed to GitHub.
+- Deployed to Vercel production (deploy id: 6gczsKVuuVzn7ZdrftTMhv7W39Cq).
+
+Follow-ups to align with plan and acceptance criteria
+- Rename databases_coverage.html to database-coverage.html (hyphen) and add to public/sitemap.xml.
+- Normalize data path: emit public/data/database_coverage.json (via a transform script) or update the JS fetch to the new source; include downloadable JSON/CSV snapshot and provenance/refresh cadence on the page.
+- Verify Court Fees page sources public/data/county_fees.json; confirm filters, CSV export, accessibility, and Vuplicity messaging are present.
+- Ensure Database Coverage page includes interpretation guidance, provenance IDs, known limitations, data dictionary link, and working filters/sorts.
+- Confirm header/footer retain the Pricing Breakout link and that pages/pricing-breakout.html reads from public/data/pricing_breakout.json.
+- Set cache-control headers on JSON and confirm cache bust on redeploy; run Lighthouse and console checks on production.
+- Add/verify build sync tasks (e.g., npm run sync-data:fees and coverage data sync) and ensure client-only rendering (no serverless).
+</info added on 2025-11-02T23:21:18.146Z>
+
