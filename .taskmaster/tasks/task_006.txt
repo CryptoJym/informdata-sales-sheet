@@ -1,0 +1,144 @@
+# Task ID: 6
+# Title: Execute competitor MSRP research and populate validated dataset with evidence
+# Status: done
+# Dependencies: 5
+# Priority: high
+# Description: Perform hands-on research to capture competitor MSRPs, archive verifiable evidence (screenshots/PDF/archive URLs), and populate the normalized CSV and provenance metadata defined in the repo. Initial competitive research for Checkr and GoodHire has been completed, documented with evidence, tied to the pricing table, and synced to docs/sales/pricing_sheet.md and the Gamma sales enablement deck.
+# Details:
+Scope and objectives
+- Execute the actual data collection for competitor MSRPs using the schema, CLI, and workflow from Task 5. Produce a complete, validated dataset with rigorous evidence and provenance for use in pricing collateral.
+- Adhere to repo conventions defined by Task 5 (which aligns to Task 1) and to the schema at schemas/pricing/competitor_msrps.schema.json.
+- Current progress: Completed competitive research for Checkr and GoodHire with documented MSRPs tied to the pricing table; outputs synced to docs/sales/pricing_sheet.md and reflected in the Gamma sales enablement deck.
+
+Deliverables
+- data/pricing/competitor_msrps.csv populated with current MSRPs for targeted competitors/products/SKUs (includes completed rows for Checkr and GoodHire).
+- data/pricing/competitor_msrps.provenance.jsonl containing one JSON object per row with evidence/provenance metadata (includes Checkr and GoodHire entries with evidence).
+- evidence/pricing/competitors/<vendor>/<YYYY-MM-DD>/ containing screenshots (PNG) and print-to-PDF captures for each source, plus an optional raw HTML snapshot if supported by the CLI.
+- docs/pricing/RESEARCH_NOTES.md summarizing scope, date range, sources used, ambiguities/exclusions, and mapping decisions.
+- docs/sales/pricing_sheet.md updated to include or reference a "Competitor MSRPs" section/table derived from data/pricing/competitor_msrps.csv; ensure alignment with pricing table terminology and SKU mapping.
+- Sales enablement Gamma deck updated to reflect the latest competitor MSRP figures and citations (slide(s) show source URLs and evidence timestamps), staying consistent with docs/sales/pricing_sheet.md.
+
+Target coverage
+- Use prd_sales_sheet.txt and any companion target list (if provided) to define the initial scope of vendors/products/SKUs. If no list exists, propose one in RESEARCH_NOTES.md and get approval before collection.
+- Checkr and GoodHire are already covered; continue with remaining approved targets.
+- Prioritize official pricing pages, authorized resellers (when official MSRP is publicly unavailable), and product datasheets. Do NOT scrape sites that disallow it; respect robots.txt and site terms.
+
+Data fields to capture (align to schema)
+- vendor, product_name, sku (or closest mapping), msrp_value (numeric), currency (ISO 4217), billing_period (e.g., monthly, annual, per-lookup), tier (if applicable), region (default US unless otherwise specified), last_verified_at (ISO8601 UTC), source_url, archive_url(s), evidence_paths (list), evidence_hashes (sha256 per file), notes (e.g., exclusions, promo caveats), collector (your initials).
+
+Research workflow
+1) Environment prep
+- Activate the project venv and install dependencies (Playwright/Chromium per Task 5). Ensure the Task 5 CLI is available (e.g., scripts/competitor_msrp.py or equivalent).
+
+2) Plan the run
+- Draft a target checklist: vendor → product/SKU → primary source URL → fallback source(s). Store in docs/pricing/RESEARCH_NOTES.md.
+- Confirm permissibility: check robots.txt and terms for each site; if disallowed, skip and document.
+
+3) Collect prices and evidence
+- For each target:
+  - Navigate to the source URL in Chromium. Ensure region/currency is US/USD when applicable.
+  - Capture both a full-page PNG screenshot and a print-to-PDF using the Task 5 CLI (or Playwright). Suggested path pattern: evidence/pricing/competitors/<vendor>/<YYYY-MM-DD>/<vendor>__<product>__<timestamp>.{png,pdf}
+  - Compute sha256 for each evidence file; store in provenance JSON.
+  - Save an archive URL (web.archive.org and/or archive.today) when permitted; record timestamp.
+  - Extract MSRP verbatim. If price is tiered, record the base MSRP and note tiers; if only range is available, record min/max and note the range.
+  - Capture billing period and any qualifiers (e.g., “per seat”, “per lookup”, minimum commitments, annual prepay). Document promo pricing as promo, not MSRP.
+
+4) Normalize and record
+- Use the Task 5 validation/ingest CLI to add or update rows in data/pricing/competitor_msrps.csv and data/pricing/competitor_msrps.provenance.jsonl.
+- Ensure currency codes are ISO and msrp_value is numeric. Do not convert currencies unless the CLI supports it; otherwise record native currency and note it.
+- De-duplicate by composite key (vendor+product+sku+billing_period+region). If multiple valid sources exist, prefer official source and keep alternates in provenance JSON as additional_sources.
+
+5) Quality checks
+- Run the CLI validator to enforce schemas and cross-check that every CSV row has corresponding evidence files and hashes.
+- Manually spot-check at least 20% of rows: open evidence and confirm the price and qualifiers match the CSV exactly.
+
+6) Documentation and commit hygiene
+- Summarize the collection window, sources, and any open questions in docs/pricing/RESEARCH_NOTES.md. Note that Checkr and GoodHire have been completed and tied to the pricing table.
+- Commit CSV, provenance JSONL, and evidence files with meaningful messages. Avoid committing large binaries unnecessarily; if LFS is configured, ensure evidence files are tracked by LFS.
+- Sync and verify alignment with docs/sales/pricing_sheet.md and the Gamma deck to ensure figures, qualifiers, and timestamps match the dataset and evidence.
+
+Edge cases and guidance
+- If MSRP is not publicly listed: record msrp_value as empty, include evidence of non-availability, and add notes with reasoning. If an authorized reseller publishes MSRP, use that with a clear note.
+- If prices vary by region: prefer US; otherwise record the region and keep each region as a separate row.
+- If dynamic pricing obscures MSRP: capture the configuration that produced the price (e.g., seats=10, term=annual) in notes and provenance.
+- Maintain auditability: every CSV row must be reproducible from provenance (URL, archive URL, evidence files, hashes, timestamp).
+
+# Test Strategy:
+Environment and tooling
+1) Activate venv and ensure Task 5 CLI is installed/available; playwright install chromium completed.
+
+Schema and structural validation
+2) Confirm files exist:
+   - data/pricing/competitor_msrps.csv
+   - data/pricing/competitor_msrps.provenance.jsonl
+   - evidence/pricing/competitors/<vendor>/<YYYY-MM-DD>/...
+3) Run the Task 5 validator (example):
+   - python scripts/competitor_msrp.py validate --csv data/pricing/competitor_msrps.csv --provenance data/pricing/competitor_msrps.provenance.jsonl
+   Expect: success exit code; no schema violations.
+
+Evidence integrity
+4) Run the evidence check (example):
+   - python scripts/competitor_msrp.py check-evidence --csv data/pricing/competitor_msrps.csv --provenance data/pricing/competitor_msrps.provenance.jsonl
+   Expect: every row references existing evidence files; computed sha256 matches stored values; archive URLs resolve (HTTP 200) for at least one archival service per row.
+
+Spot checks
+5) Randomly sample at least 20% of rows:
+   - Open PNG/PDF evidence and confirm the displayed price, currency, billing period, and qualifiers match the CSV exactly.
+   - Follow source_url and archive_url; confirm content consistency with evidence timestamp.
+
+Competitor coverage sanity
+6) Verify that data/pricing/competitor_msrps.csv contains rows for Checkr and GoodHire with correct fields populated; provenance entries exist and point to valid evidence and archives.
+
+Completeness and cross-document consistency
+7) Compare the final CSV against the approved target list in docs/pricing/RESEARCH_NOTES.md:
+   - 100% of agreed vendors/products/SKUs are present or explicitly documented as unavailable with evidence of non-availability.
+8) Open docs/sales/pricing_sheet.md:
+   - Contains a "Competitor MSRPs" section/table that matches the dataset for Checkr and GoodHire (values, currency, billing period, qualifiers, and notes) and any additional completed vendors.
+   - Cross-check that terminology/SKU mapping aligns with the pricing table.
+9) Gamma deck review:
+   - Slides referencing competitor MSRPs reflect the same figures and qualifiers as the CSV and evidence; citations include source URL and verification date.
+
+Documentation
+10) Open docs/pricing/RESEARCH_NOTES.md:
+   - Contains collection window, scope, sources used, known gaps, decisions, and approved target list; explicitly notes completion for Checkr and GoodHire.
+
+Version control hygiene
+11) Run git lfs ls-files (if LFS is used) to ensure large evidence binaries are tracked. Commit history shows a clear, auditable trail.
+
+# Subtasks:
+## 1. Finalize and validate Checkr MSRP entries with evidence and provenance [done]
+### Dependencies: None
+### Description: Add/confirm Checkr rows in data/pricing/competitor_msrps.csv with correct fields; ensure matching objects exist in data/pricing/competitor_msrps.provenance.jsonl; include PNG/PDF evidence, sha256 hashes, and archive URLs.
+### Details:
+Confirm region=US (unless otherwise noted), currency=USD, accurate billing period and qualifiers. Ensure evidence stored under evidence/pricing/competitors/Checkr/<YYYY-MM-DD>/ and linked in provenance.
+
+## 2. Finalize and validate GoodHire MSRP entries with evidence and provenance [done]
+### Dependencies: None
+### Description: Add/confirm GoodHire rows in data/pricing/competitor_msrps.csv with correct fields; ensure matching objects exist in data/pricing/competitor_msrps.provenance.jsonl; include PNG/PDF evidence, sha256 hashes, and archive URLs.
+### Details:
+Confirm region=US (unless otherwise noted), currency=USD, accurate billing period and qualifiers. Ensure evidence stored under evidence/pricing/competitors/GoodHire/<YYYY-MM-DD>/ and linked in provenance.
+
+## 3. Sync competitor MSRP dataset to docs/sales/pricing_sheet.md and Gamma deck [done]
+### Dependencies: None
+### Description: Ensure the "Competitor MSRPs" table/section in docs/sales/pricing_sheet.md and the Gamma deck reflect the dataset (values, qualifiers, timestamps, citations) and pricing table mappings.
+### Details:
+If discrepancies are found, update docs/sales/pricing_sheet.md and adjust slides to match the dataset and evidence timestamps. Record changes in commit messages.
+
+## 4. Author and commit docs/pricing/RESEARCH_NOTES.md including approved target list [pending]
+### Dependencies: None
+### Description: Summarize scope, collection window, sources used, decisions, ambiguities, and include a proposed/approved target list beyond Checkr and GoodHire.
+### Details:
+Explicitly note completion status for Checkr and GoodHire and any follow-ups required for remaining vendors. Include robots.txt considerations and exclusions.
+
+## 5. Collect, evidence, and record remaining approved competitor MSRPs [pending]
+### Dependencies: None
+### Description: Execute the research workflow for remaining vendors/products/SKUs, capturing evidence and provenance, and updating CSV/JSONL per schema.
+### Details:
+Follow the established path patterns, hashing, archival, and normalization rules. Prefer official sources; document unavailability with evidence.
+
+## 6. Run validators and ensure version control hygiene (incl. LFS) [pending]
+### Dependencies: None
+### Description: Validate schemas, evidence integrity, and ensure large binaries are tracked with Git LFS. Commit with meaningful messages and cross-references to docs updates.
+### Details:
+Use scripts/competitor_msrp.py validate and check-evidence commands. Verify archive URLs resolve and hashes match.
+

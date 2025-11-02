@@ -1,0 +1,170 @@
+# Task ID: 2
+# Title: Build InformData pricing sales collateral (content, data sources, and generation pipeline)
+# Status: done
+# Dependencies: 1
+# Priority: high
+# Description: Author the InformData pricing sales collateral from the PRD, implement data sources and templates, and establish an automated build pipeline to generate Markdown and PDF outputs. Leverage the existing consolidated dataset and the drafted sales sheet to complete the templated, automated pipeline and align all artifacts to the agreed repo structure and acceptance criteria.
+# Details:
+Scope
+- Produce a complete, publishable InformData pricing sales collateral package driven by structured data and templates, aligned to the PRD (prd_sales_sheet.txt) and the repo conventions defined in Task 1.
+- Integrate current progress: a consolidated pricing dataset and a manually authored sales sheet, migrating them into the canonical data and generation pipeline.
+
+Current progress (to integrate)
+- Consolidated dataset: content/pricing/informdata_pricing_table.csv (generated)
+- Draft sales sheet: docs/sales/pricing_sheet.md (authored)
+- Gamma deck (reference collateral): https://gamma.app/docs/zdlm8b8chaqwk0y
+
+Inputs and references
+- PRD: prd_sales_sheet.txt (authoritative requirements and messaging).
+- Task 1 acceptance criteria and repo path conventions must be honored.
+- Task 3 and Task 11 schemas/validators should be used where applicable.
+
+Repository structure and artifacts to add or align
+- Data (CSV) [canonical targets used by the generator]:
+  - data/pricing/informdata_costs.csv (columns: sku, description, unit, base_price_usd, tier, min_qty, max_qty, notes)
+  - data/pricing/competitors.csv (columns: competitor, sku_equiv, base_price_usd, notes, source_url, last_verified_at)
+  - data/pricing/discounts.csv (columns: tier, min_qty, max_qty, pct_discount)
+  - data/pricing/fees.csv (columns: fee_type, description, price_usd, applies_to, notes)
+- Preexisting source (to normalize or support as interim input):
+  - content/pricing/informdata_pricing_table.csv (consolidated pricing table)
+- Narrative/config (YAML/MD):
+  - content/sales/informdata_pricing.yml (headline, subhead, highlights[], value_props[], faqs[], contact_cta, legal_ref)
+  - content/sales/legal_disclaimer.md (standard legal text referenced by the template)
+- Templates:
+  - templates/sales/pricing_sheet.md.j2 (Jinja2): sections for hero, value props, pricing tables, add-ons/fees, competitor comparison, FAQs, CTA, legal
+- Generation script and tooling:
+  - scripts/generate_pricing_sheet.py (Python 3.11; deps: pandas, jinja2, pyyaml, markdown-it-py or use Pandoc for PDF)
+  - requirements.txt (pin versions)
+  - Makefile targets: pricing (generate MD + PDF), clean (remove build artifacts)
+- Outputs:
+  - docs/sales/informdata_pricing.md (generated)
+  - dist/sales/informdata_pricing_{YYYYMMDD}.pdf (generated via Pandoc or md-to-pdf)
+- Assets:
+  - assets/images/sales/informdata_logo.svg
+  - assets/images/sales/icons/*.svg (optional, with alt text documented in YAML)
+- CI:
+  - .github/workflows/build-sales-collateral.yml to build on PRs and main, upload PDF as artifact, lint/validate data
+- Documentation:
+  - docs/sales/README.md (how to update data, run generation, and acceptance checklist). Include a link to the Gamma deck as an additional reference resource.
+
+Implementation steps
+1) Planning and validation
+- Read prd_sales_sheet.txt and extract required sections and messaging. Confirm Task 1’s defined acceptance criteria and file paths (e.g., data/pricing/informdata_costs.csv, data/pricing/competitors.csv).
+- Define exact CSV schemas listed above; document them in docs/sales/README.md. Reuse Task 3/11 schema/validator building blocks where applicable.
+
+2) Data preparation
+- Normalize content/pricing/informdata_pricing_table.csv into the canonical CSVs under data/pricing/ (costs, competitors, discounts, fees). Maintain numeric types for price/discounts and ISO 8601 dates.
+- Add lightweight data validation within scripts/generate_pricing_sheet.py (schema check, type coercion, bounds checks). Optionally, support reading the consolidated file as an interim source until full normalization is complete, but final generator must rely on the canonical CSVs.
+
+3) Template and content
+- Author templates/sales/pricing_sheet.md.j2 with variables for headline, value props, dynamic pricing tables, fees, competitor comparison, FAQs, CTA, and legal section include.
+- Extract and migrate content from the existing docs/sales/pricing_sheet.md into content/sales/informdata_pricing.yml and the template to preserve messaging and structure per the PRD.
+- Author content/sales/legal_disclaimer.md per the PRD tone and constraints.
+
+4) Generation pipeline
+- Implement scripts/generate_pricing_sheet.py:
+  - Load YAML and canonical CSVs, compute tier pricing, apply discounts, and format currency.
+  - Render templates/sales/pricing_sheet.md.j2 to docs/sales/informdata_pricing.md, superseding the manually authored draft.
+  - Convert MD to PDF (Pandoc or md-to-pdf). Include PDF metadata (Title: "InformData Pricing", Author: "InformData").
+  - Embed version/date stamp and data checksum in a hidden comment in the MD and in the PDF footer.
+- Add Makefile targets:
+  - pricing: create venv if missing, install deps, run generator, produce Markdown and PDF under the specified paths.
+  - clean: remove dist/sales/* and any temp build directories.
+
+5) CI and quality gates
+- Add .github/workflows/build-sales-collateral.yml:
+  - Triggers: push/PR on paths data/pricing/**, templates/sales/**, scripts/generate_pricing_sheet.py, content/sales/**, content/pricing/**.
+  - Steps: setup Python, install deps, run make pricing, run link checker on MD, upload PDF as artifact, fail on validation errors.
+- Add pre-commit hooks or CI steps for markdownlint, yamllint, and CSV schema validation.
+
+6) Accessibility and compliance
+- Ensure alt text is provided in YAML for each image; verify color usage for sufficient contrast in template.
+- Include legal disclaimer pulled from content/sales/legal_disclaimer.md; ensure all external links include UTM parameters if required by PRD.
+
+7) Documentation
+- Write docs/sales/README.md: data schema, update process (including how the consolidated dataset was normalized), how to run locally, CI description, and acceptance checklist referencing explicit repo paths. Link the Gamma deck as supplemental collateral.
+
+Acceptance criteria
+- The following files exist and are used by the generator: data/pricing/informdata_costs.csv, data/pricing/competitors.csv, data/pricing/discounts.csv, data/pricing/fees.csv, templates/sales/pricing_sheet.md.j2, scripts/generate_pricing_sheet.py, content/sales/informdata_pricing.yml, content/sales/legal_disclaimer.md.
+- Running `make pricing` produces docs/sales/informdata_pricing.md and dist/sales/informdata_pricing_{YYYYMMDD}.pdf without errors.
+- Generated Markdown includes the sections: Value Proposition, Pricing Tiers, Add-ons and Fees, Competitor Comparison, FAQs, Contact/CTA, and Legal.
+- CI workflow builds on PR and uploads the PDF artifact; lints and link checks pass.
+- docs/sales/README.md documents data schemas and the generation process clearly.
+- Existing draft docs/sales/pricing_sheet.md content is reflected in the generated docs/sales/informdata_pricing.md (migrated/ported) or clearly marked as superseded with a pointer to the generated output.
+
+# Test Strategy:
+Local verification
+1) Environment setup
+- python -m venv .venv && source .venv/bin/activate (or .venv\Scripts\activate on Windows)
+- pip install -r requirements.txt
+
+2) Data validation and normalization
+- If present, validate content/pricing/informdata_pricing_table.csv loads and maps to canonical schemas.
+- Run: python scripts/generate_pricing_sheet.py --validate-only
+- Expect: success exit code; schema check reports 0 errors for CSV files at:
+  - data/pricing/informdata_costs.csv
+  - data/pricing/competitors.csv
+  - data/pricing/discounts.csv
+  - data/pricing/fees.csv
+
+3) Build outputs
+- Run: make pricing
+- Verify files exist:
+  - docs/sales/informdata_pricing.md
+  - dist/sales/informdata_pricing_YYYYMMDD.pdf (today’s date)
+- Open the Markdown and confirm presence of required headings: "Value Proposition", "Pricing Tiers", "Add-ons and Fees", "Competitor Comparison", "FAQs", "Contact", and "Legal".
+- Confirm that content from the previous draft docs/sales/pricing_sheet.md is represented in the generated MD (spot-check hero text, at least one pricing table, and FAQs), or that the draft file clearly points to the generated MD.
+- Inspect PDF metadata (Title == "InformData Pricing"). Verify size between 50 KB and 2 MB and all tables render without truncation across page boundaries.
+
+4) Lint and link checks
+- Run markdownlint on docs/sales/informdata_pricing.md (no errors).
+- Run a link checker (e.g., lychee or markdown-link-check) against docs/sales/informdata_pricing.md (no broken links). Validate that image paths under assets/images/sales/ resolve.
+
+5) Snapshot/content checks
+- Create a golden file tests/golden/informdata_pricing.md from the initial approved output.
+- Add a test that regenerates the MD and compares content while ignoring dynamic date/version lines via regex. Expect match.
+
+6) CI verification
+- Push a branch and open a PR touching data/pricing/**, content/pricing/**, and templates/sales/**.
+- Confirm .github/workflows/build-sales-collateral.yml runs, uploads the PDF artifact named informdata_pricing_YYYYMMDD.pdf, and enforces validation gates.
+
+7) PRD alignment
+- Cross-check against prd_sales_sheet.txt: verify each PRD-required section is present in the generated MD. Ensure competitor data and pricing tiers in the doc correspond to rows in data/pricing/competitors.csv and data/pricing/informdata_costs.csv.
+
+8) Reference collateral
+- Verify docs/sales/README.md includes a link to the Gamma deck for reference (no build dependency).
+
+Pass criteria
+- All validations pass locally and in CI, outputs are generated at the specified repo paths, the consolidated dataset has been normalized or correctly mapped to canonical CSVs, and the content structure matches the PRD and Task 1 acceptance criteria.
+
+# Subtasks:
+## 1. Normalize consolidated pricing dataset into canonical CSVs [pending]
+### Dependencies: None
+### Description: Read content/pricing/informdata_pricing_table.csv and produce data/pricing/informdata_costs.csv, data/pricing/competitors.csv, data/pricing/discounts.csv, and data/pricing/fees.csv per documented schemas. Preserve numeric types and ISO 8601 dates. Document mapping rules in docs/sales/README.md.
+### Details:
+Implement a small transform within scripts/generate_pricing_sheet.py or a separate script (e.g., scripts/normalize_pricing_table.py). Use Task 3/11 validators to enforce schemas. Keep the consolidated CSV as a non-authoritative input until migration is complete.
+
+## 2. Migrate draft sales sheet content into YAML and template [pending]
+### Dependencies: 2.1
+### Description: Extract content from docs/sales/pricing_sheet.md into content/sales/informdata_pricing.yml and templates/sales/pricing_sheet.md.j2 to preserve tone/structure from the draft while enabling automated generation.
+### Details:
+Map hero text, value props, FAQs, and CTA from the draft MD to YAML fields; move tables to be data-driven via Jinja using canonical CSVs.
+
+## 3. Implement generator and Makefile targets [pending]
+### Dependencies: 2.1, 2.2
+### Description: Build scripts/generate_pricing_sheet.py to load YAML and canonical CSVs, render the MD, and produce the PDF. Add Makefile targets pricing and clean.
+### Details:
+Include version/date stamp and data checksum. Ensure currency formatting and table pagination for PDF.
+
+## 4. Add CI workflow and quality gates [pending]
+### Dependencies: 2.3
+### Description: Create .github/workflows/build-sales-collateral.yml to build on PRs and main, run validations/lints, and upload PDF artifact.
+### Details:
+Include markdownlint, yamllint, CSV schema validation, and link checking. Trigger on data/pricing/**, content/pricing/**, templates/sales/**, scripts/generate_pricing_sheet.py, content/sales/**.
+
+## 5. Update docs and reference Gamma deck [pending]
+### Dependencies: 2.1, 2.2, 2.3, 2.4
+### Description: Revise docs/sales/README.md to include schemas, normalization steps from the consolidated dataset, run instructions, CI description, and link to the Gamma deck.
+### Details:
+Add acceptance checklist and clear pointers from the legacy draft MD to the generated MD.
+

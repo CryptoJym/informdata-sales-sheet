@@ -1,0 +1,166 @@
+# Task ID: 11
+# Title: Establish shared schemas, directory scaffolding, and validation utilities for sales-pricing datasets
+# Status: done
+# Dependencies: 1
+# Priority: high
+# Description: Create a reusable directory structure, JSON Schema/Pandera building blocks, and a CLI-based validator to support all sales-pricing datasets, aligning with the repo conventions and PRD. Provide templates and scaffolds that Tasks 3 and 5 will extend for dataset-specific schemas.
+# Details:
+Scope and objectives
+- Provide a standardized foundation for all pricing-related datasets (costs, competitor MSRPs, derived tables) without implementing dataset-specific schemas that are in scope of Tasks 3 and 5.
+- Deliver a shared directory layout, common JSON Schema definitions, Pandera base column types, and a CLI validator to ensure consistent validation/error reporting across datasets.
+- Align naming, paths, and conventions with Task 1 and prd_sales_sheet.txt.
+
+Repository structure and scaffolding
+- Create directories with .gitkeep where appropriate:
+  - data/pricing/
+  - schemas/pricing/
+  - schemas/pricing/defs/
+  - schemas/pricing/templates/
+  - manifests/
+  - src/pricing_validation/
+  - scripts/
+  - tests/data/pricing/
+  - tests/pricing_validation/
+- Add docs/pricing/datasets.md documenting conventions: file naming, date fields (ISO-8601), currency formatting (ISO 4217), SKU normalization, provenance expectations, and validation workflows.
+
+Shared JSON Schema assets (Draft 2020-12)
+- schemas/pricing/defs/common.json: shared $defs for:
+  - sku, vendor, product_name, region, currency (enum via ISO 4217), money, date, date_range, url, approval_status (enum: draft, proposed, approved, retired), evidence_ref.
+- schemas/pricing/_meta/dataset_manifest.schema.json: schema for a dataset manifest that describes dataset versioning, primary keys, schema path, and provenance fields.
+- schemas/pricing/templates/csv_schema.template.json: a template with placeholders (${dataset_name}, ${columns}, ${primary_key}) and guidance comments for authors of dataset-specific schemas.
+- schemas/README.md: explain modularization, $ref usage to defs/common.json, and how to extend for new datasets.
+
+Python validation utilities (shared, reusable)
+- src/pricing_validation/__init__.py
+- src/pricing_validation/cli.py (Typer-based):
+  - pricing-validate csv <csv_path> --schema <json_schema_path> [--dialect <excel|unix>] [--fail-level <error|warning>] [--format <text|json>]
+  - pricing-validate manifest <manifest_path> --schema schemas/pricing/_meta/dataset_manifest.schema.json
+  - pricing-scaffold schema --name <dataset_name> [--out schemas/pricing/] to generate a dataset schema from the template and create a stub CSV and README.
+- src/pricing_validation/jsonschema_validator.py:
+  - Load CSV via pandas with dtype hints.
+  - Validate row-wise objects against a JSON Schema using jsonschema; aggregate errors with row index, column, validator, message; exit non-zero on errors.
+- src/pricing_validation/pandera_base.py:
+  - Define Pandera base column types (e.g., SKUCol, CurrencyCol, MoneyCol, ISODateCol) and a BaseCSVValidator to apply DataFrame-level constraints (e.g., unique primary key, non-null required columns).
+- src/pricing_validation/reporting.py:
+  - Standardize error reporting structure and JSON output: {file, row, column, rule, message, context}.
+
+Developer experience and automation
+- requirements.txt: pandas, pandera, jsonschema, typer, tabulate, python-dateutil, ruamel.yaml.
+- Makefile targets:
+  - make scaffold_pricing: create directories and .gitkeep files.
+  - make validate_pricing FILE=path.csv SCHEMA=path.json: invoke CLI.
+- scripts/scaffold_pricing_repo.py: idempotent bootstrap to create directories, seed templates, and write example manifests.
+- .pre-commit-config.yaml: add a local hook to run pricing-validate on changed CSVs under data/pricing/ against a declared schema if a matching manifest exists.
+- .github/workflows/validate-pricing.yml (CI): on PRs, run pricing-validate for any changed CSVs and manifest validation.
+
+Example artifacts and fixtures
+- manifests/pricing_datasets.yaml: list of datasets with schema paths, primary keys, and data file paths (used by CI and pre-commit).
+- tests/data/pricing/example_ok.csv and example_bad.csv to exercise validators.
+- tests/pricing_validation/test_cli.py: CLI behavior, exit codes, JSON output shape.
+- tests/pricing_validation/test_pandera_base.py: primary key uniqueness, required columns, currency/ISO date checks.
+
+Collaboration with Tasks 3 and 5
+- Do not implement the final schemas for InformData costs or competitor MSRPs in this task.
+- Provide templates and shared definitions that Tasks 3 and 5 consume to author:
+  - schemas/pricing/informdata_costs.schema.json (Task 3)
+  - schemas/pricing/competitor_msrps.schema.json (Task 5)
+- Ensure the CLI supports these future schemas without changes by adhering to shared conventions.
+
+
+# Test Strategy:
+Prerequisites
+- Ensure Task 1 conventions are available (repo structure and PRD). Create and activate a virtualenv.
+- pip install -r requirements.txt
+
+Scaffolding verification
+1) Run: python scripts/scaffold_pricing_repo.py
+   - Confirm directories exist: data/pricing/, schemas/pricing/, schemas/pricing/defs/, schemas/pricing/templates/, manifests/, src/pricing_validation/, tests/.
+   - Confirm files exist with content: schemas/pricing/defs/common.json, schemas/pricing/_meta/dataset_manifest.schema.json, schemas/pricing/templates/csv_schema.template.json, docs/pricing/datasets.md.
+
+CLI availability and help
+2) Run: python -m pricing_validation.cli --help
+   - Verify commands: csv, manifest, and scaffold schema are listed.
+
+Manifest validation
+3) Open manifests/pricing_datasets.yaml and ensure it conforms to the documented fields (dataset name, schema path, data path, primary key, approvals).
+4) Run: pricing-validate manifest manifests/pricing_datasets.yaml --schema schemas/pricing/_meta/dataset_manifest.schema.json
+   - Expect exit code 0 and a success message.
+
+CSV validation (positive)
+5) Place tests/data/pricing/example_ok.csv and a corresponding tests/data/pricing/example_ok.schema.json created from the template referencing defs/common.json types.
+6) Run: pricing-validate csv tests/data/pricing/example_ok.csv --schema tests/data/pricing/example_ok.schema.json --format json
+   - Expect exit code 0 and empty errors array (or a success summary).
+
+CSV validation (negative)
+7) Run: pricing-validate csv tests/data/pricing/example_bad.csv --schema tests/data/pricing/example_ok.schema.json --format json
+   - Expect non-zero exit code.
+   - JSON output should include: file, row, column, rule, message, and a total error count > 0.
+
+Pandera base checks
+8) Add a Pandera-based schema using src/pricing_validation/pandera_base.py in a small test to enforce primary key uniqueness and ISO date format.
+   - Run pytest -q and confirm tests pass.
+
+Pre-commit hook (local)
+9) Install pre-commit and run: pre-commit run -a
+   - Verify the pricing-validate hook runs on CSVs under data/pricing/ and surfaces any schema violations.
+
+CI config presence
+10) Confirm .github/workflows/validate-pricing.yml exists and references the manifests file to validate changed CSVs on pull requests (lint-only; no network calls).
+
+Documentation
+11) Open docs/pricing/datasets.md and verify it explains:
+   - Directory layout, schema conventions, how to create a new dataset schema from the template, and how to use the CLI and Make targets.
+
+
+# Subtasks:
+## 1. Plan Task 11 execution [done]
+### Dependencies: None
+### Description: Outline schema files, directory setup, and validation tool approach before implementation.
+### Details:
+<info added on 2025-10-30T11:33:49.840Z>
+Plan for Subtask 11.1
+
+- PRD review
+  - Read ./prd_sales_sheet.txt and extract shared field requirements (names, types, required/nullable, enums, date/currency formats, uniqueness, key constraints) applicable across pricing datasets.
+  - Produce a concise summary of shared requirements in docs/data_schemas/shared_requirements.md and map them to base column types used in schemas.
+
+- Source data inventory (current and planned)
+  - Current: data/pricing/informdata_costs.csv (from Tasks 2/3).
+  - Planned/upstream: competitor MSRP inputs (Task 6, path under data/pricing/ to be finalized) and pricing computation outputs (Task 4, derived tables under data/pricing/derived/).
+  - Capture the inventory with owners, status, and expected availability in docs/data_schemas/data_inventory.md.
+
+- Target directories
+  - data/pricing/ (raw and derived CSV/JSON; include .gitkeep and samples/ for validator checks).
+  - docs/data_schemas/ (schema docs, shared requirements, inventory, and index).
+  - docs/data_schemas/schemas/ (YAML schema files).
+  - scripts/validation/ (CLI validator and helpers).
+
+- Schema format decision
+  - Use YAML for canonical schemas plus companion Markdown documentation.
+  - YAML keys: dataset_id, version, description, file_pattern, primary_key (list), required_files (optional), fields[].name, dtype, required, allow_null, enum, regex, min, max, unique, example, notes; dataset_constraints (cross-field rules).
+  - Author per-dataset YAMLs: docs/data_schemas/schemas/base_costs.schema.yaml, competitor_msrps.schema.yaml, pricing_outputs.schema.yaml.
+  - Provide a short explainer in docs/data_schemas/schema_conventions.md (naming, dtypes, constraints, extensibility to Pandera/JSON Schema).
+
+- Validator responsibilities (scripts/validation/validate_pricing_data.py)
+  - Load YAML schema, match input via file_pattern or explicit --schema path.
+  - Enforce schema: column presence/order (if specified), dtypes, required/nullability, enums/regex, uniqueness (single/composite), primary_key integrity, numeric/date bounds, and cross-field rules (e.g., price >= cost).
+  - Sample data check: verify presence of sample files under data/pricing/samples/ and ensure they pass validation with minimum row thresholds; run suitable for CI.
+  - Outputs: human-readable summary to stdout and machine-readable JSON report (--report-json path).
+  - CLI flags: --input <file/dir>, --schema <yaml>, --fail-fast, --strict, --report-json <path>, --dataset-id <name>, --sample-check.
+  - Exit codes: 0 on success, non-zero on any schema or sample check failure.
+
+- Acceptance criteria reference paths
+  - PRD: ./prd_sales_sheet.txt (authoritative requirements).
+  - Task 1 conventions: docs/conventions/ (path from Task 1; ensure alignment of naming and paths).
+  - This task acceptance mapping: docs/data_schemas/acceptance/task11.md (links to schemas, validator CLI usage, and CI sample-check).
+  - Validator usage doc: docs/data_schemas/validator.md (examples and expected outputs).
+</info added on 2025-10-30T11:33:49.840Z>
+<info added on 2025-10-30T11:40:42.392Z>
+Progress update:
+- Directory scaffolding created: data/pricing/, data/pricing/samples/, docs/data_schemas/, docs/data_schemas/schemas/, scripts/validation/.
+- Documentation authored: docs/data_schemas/shared_requirements.md, docs/data_schemas/data_inventory.md, docs/data_schemas/schema_conventions.md, docs/data_schemas/validator.md, docs/data_schemas/acceptance/task11.md.
+- YAML schemas added: docs/data_schemas/schemas/base_costs.schema.yaml, docs/data_schemas/schemas/competitor_msrps.schema.yaml, docs/data_schemas/schemas/pricing_outputs.schema.yaml.
+- Sample CSVs added under data/pricing/samples/ for each dataset.
+- Python validator implemented at scripts/validation/validate_pricing_data.py and executed against all sample datasets, producing JSON validation reports and referenced usage in the docs.
+</info added on 2025-10-30T11:40:42.392Z>
+

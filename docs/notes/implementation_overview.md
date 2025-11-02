@@ -3,7 +3,7 @@
 ## Why we built this
 - Give the sales team a repeatable, data-backed pricing sheet showing InformData costs, Vuplicity’s $1 AI+SaaS uplift, and public competitor MSRPs.
 - Automate extraction and validation so future pricing refreshes are a single command instead of a spreadsheet exercise.
-- Package everything into shareable collateral (Markdown brief + Gamma deck) that plugs straight into sales workflows.
+- Package everything into shareable collateral (Markdown brief + HTML dashboards) that plugs straight into sales workflows.
 
 ## What was delivered
 1. **Automation scripts** (`scripts/pricing/`)
@@ -15,7 +15,7 @@
    - JSON validation reports live in `docs/data_schemas/reports/` for audit trails.
 3. **Collateral**
    - Markdown pricing sheet: `docs/sales/pricing_sheet.md`
-   - Presentation: https://gamma.app/docs/zdlm8b8chaqwk0y
+   - Interactive HTML: root `index.html`, `docs/sales/county_fee_breakdown.html`, `docs/sales/national_scan_components.html`, `databases_coverage.html`
 4. **Source control**
    - GitHub repository: https://github.com/CryptoJym/informdata-sales-sheet
 
@@ -41,7 +41,7 @@ python scripts/validation/validate_pricing_data.py \
 python scripts/pricing/build_pricing_table.py \
   --output content/pricing/informdata_pricing_table.csv
 
-# 5. Regenerate collateral (update docs/sales/pricing_sheet.md, rerun Gamma deck if desired)
+# 5. Regenerate collateral (update docs/sales/pricing_sheet.md, rebuild HTML, redeploy to Vercel)
 ```
 
 ## Next recommendations

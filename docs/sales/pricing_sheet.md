@@ -4,15 +4,15 @@
 
 ## How to read this sheet
 - **InformData Cost** – direct vendor charge for the specific InformData service.
-- **Booplicity Automation (USD)** – estimated incremental AI/decisioning cost we incur to process the result (≈$0.03 for most services, ≈$0.20 for county-level court checks, ≈$0.34 for the Essential bundle).
-- **Booplicity Platform (USD)** – shared hosting/orchestration spend allocated per search (~$0.25 each run) so Sales can see the true all-in delivery cost.
-- **Total Cost to Booplicity** – sum of vendor + automation + platform inputs (plus any pass-through fees). This is our break-even, not customer-facing pricing.
+- **Vuplicity Automation (USD)** – estimated incremental AI/decisioning cost we incur to process the result (≈$0.03 for most services, ≈$0.20 for county-level court checks, ≈$0.34 for the Essential bundle).
+- **Vuplicity Platform (USD)** – shared hosting/orchestration spend allocated per search (~$0.25 each run) so Sales can see the true all-in delivery cost.
+- **Total Cost to Vuplicity** – sum of vendor + automation + platform inputs (plus any pass-through fees). This is our break-even, not customer-facing pricing.
 - **Recommended Price / Margin** – suggested sell price and contribution after the above costs based on current public MSRPs. Adjust per deal as needed.
 - **Competitor MSRP** – public pricing gathered from Checkr and GoodHire as of October 30, 2025.citeturn0search0turn1search1
 
 ## Quick callouts
-- **County civil searches** now reflect ~$0.20 AI review + $0.25 platform overhead, putting Booplicity total cost at **$4.70** versus Checkr’s $40 MSRP—ample room for margin while covering automation.
-- **MVR & CDLIS pulls** carry ~$0.28 of internal cost (automation + platform) on top of InformData’s $2.95, yielding an all-in Booplicity cost of **$3.23** against Checkr’s $9.50 / $14.50 price points.citeturn0search0
+- **County civil searches** now reflect ~$0.20 AI review + $0.25 platform overhead, putting Vuplicity total cost at **$4.70** versus Checkr’s $40 MSRP—ample room for margin while covering automation.
+- **MVR & CDLIS pulls** carry ~$0.28 of internal cost (automation + platform) on top of InformData’s $2.95, yielding an all-in Vuplicity cost of **$3.23** against Checkr’s $9.50 / $14.50 price points.citeturn0search0
 - **Essential Check bundle** totals **$2.24** (vendor + ~$0.34 internal) while Checkr Basic+ remains $29.99; we can still quote $28.49 and keep ~$26 contribution after automation/hosting.citeturn0search0
 - **Healthcare sanctions (Med Ex tiers)** land between **$2.18–$2.45** all-in, leaving ~$3+ room relative to GoodHire’s $5.99 published rate.citeturn1search1
 - **Continuous monitoring** stays pass-through at **$1.25** (no internal adder) so we can mirror competitor MSRP and position the value on unified alerting.
@@ -20,7 +20,7 @@
 ## Detailed pricing table
 ("Rec. Margin" = Recommended Price – Total Cost.)
 
-| Service | Unit | InformData Cost (USD) | Booplicity Automation (USD) | Booplicity Platform (USD) | Total Cost to Booplicity (USD) | Competitor | Competitor Product | Competitor MSRP (USD) | Recommended Price (USD) | Rec. Margin (USD) | Primary Use Cases |
+| Service | Unit | InformData Cost (USD) | Vuplicity Automation (USD) | Vuplicity Platform (USD) | Total Cost to Vuplicity (USD) | Competitor | Competitor Product | Competitor MSRP (USD) | Recommended Price (USD) | Rec. Margin (USD) | Primary Use Cases |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | County Civil Lower | per_search | 4.25 | 0.20 | 0.25 | 4.70 | Checkr | County Civil Search | 40.00 | 38.00 | 33.30 | Lower/small claims court activity for tenant, contractor, or small business risk. |
 | County Civil Upper | per_search | 4.25 | 0.20 | 0.25 | 4.70 | Checkr | County Civil Search | 40.00 | 38.00 | 33.30 | Upper court civil cases for large claim litigation risk. |

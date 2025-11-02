@@ -1,0 +1,192 @@
+# Task ID: 10
+# Title: Generate collateral-ready pricing tables from approved InformData costs and margin policy
+# Status: done
+# Dependencies: 3, 4
+# Priority: high
+# Description: Build a tool that filters approved InformData costs, applies the margin policy via the pricing engine, and emits collateral-ready pricing tables in CSV/JSON/YAML for downstream Markdown/PDF generation.
+# Details:
+Scope and objectives
+- Read validated InformData cost data and select only approved, in-force rows as of a given date.
+- Apply target margins using the pricing computation engine (Task 4) to produce SKU-level list prices and related derived fields suitable for sales collateral.
+- Emit machine-readable and human-consumable tables plus a manifest for provenance and reproducibility.
+
+Inputs and assumptions
+- Costs input: data/pricing/informdata_costs.csv (validated by Task 3). The schema must include columns such as: sku, sku_name, description, unit, cost_basis, approval_status, effective_date, end_date (nullable), currency, category, notes. approval_status should include values like approved, draft, deprecated.
+- Pricing policy/config: configs/pricing/policy.yaml (margin targets, rounding rules, currency handling) and optional configs/pricing/rounding.yaml.
+- Pricing engine: import and use the public API produced in Task 4 (e.g., pricing.engine.compute(df_costs, policy) or equivalent CLI/module), not re-implementing pricing logic.
+
+Artifacts to add
+- Module: src/pricing/collateral_tables.py (functions to load, filter, compute, and export tables).
+- CLI: scripts/build_collateral_pricing_tables.py with options: --as-of-date YYYY-MM-DD, --policy PATH, --output-dir PATH, --region, --channel, --currency, --include-skus, --exclude-skus, --rounding-profile, --strict.
+- Output tables (created on run):
+  - derived/pricing/collateral/informdata_pricing_tables.csv
+  - derived/pricing/collateral/informdata_pricing_tables.json
+  - derived/pricing/collateral/informdata_pricing_tables.yaml (Jinja-friendly context for collateral rendering)
+  - derived/pricing/collateral/manifest.json (inputs, checksums, git SHA, as_of_date, policy version, engine version)
+- Output schema: schemas/pricing/collateral_pricing_tables.schema.json defining required columns and constraints.
+
+Output columns (minimum)
+- sku, sku_name, category, unit
+- cost_basis (numeric), target_margin_pct (numeric)
+- computed_price (numeric, pre-round), list_price (numeric, post-round), currency
+- effective_date, end_date (nullable)
+- channel, region (nullable), notes (nullable)
+- source_cost_version (e.g., hash or version string), policy_version, engine_version
+
+Filtering and computation rules
+- Only include rows where approval_status == "approved" and effective_date <= as_of_date and (end_date is null or end_date >= as_of_date).
+- If multiple approved rows exist for the same SKU, choose the one with the most recent effective_date not after as_of_date; error if overlapping effective windows unless --allow-overlap is set (optional future flag).
+- Pass normalized costs to Task 4 pricing engine along with policy for margin and any AI/SaaS overheads defined therein. Do not duplicate pricing logic here; this task orchestrates and shapes collateral-ready outputs.
+- Apply rounding rules from policy/rounding profiles (e.g., 0.99 endings, currency minor units). Validate rounded values remain >= computed_price and respect minimums.
+- Support optional filters: by region/channel and SKU allow/deny lists.
+
+Implementation notes
+- Use pandas and pandera for IO/validation; typer for CLI; jsonschema for output schema; python-dateutil for dates.
+- Implement a small adapter to call the Task 4 engine. Example shape:
+  from pricing.engine import compute_prices
+  df_prices = compute_prices(df_costs=approved_df, policy=policy_cfg)
+- Build a deterministic export: stable column order, sorted by category then sku.
+- Write a manifest with SHA256 checksums of inputs (costs CSV, policy files), output files, git commit, timestamp, and as_of_date.
+- Document usage in README.md section: how to run the CLI and where outputs land.
+
+Error handling and logging
+- Fail fast if input schema invalid (reuse Task 3 validator if available).
+- Emit clear errors for missing policy keys, unknown currencies, or overlapping cost windows.
+- Log summary: #SKUs in, #SKUs approved, #SKUs priced, #errors, min/median/max margins.
+
+Acceptance criteria
+- Running the CLI with a valid as_of_date produces all outputs under derived/pricing/collateral/ matching the output schema and including only approved SKUs.
+- Prices are computed by Task 4 engine and match the engine’s outputs (modulo rounding), with policy/rounding versions stamped in manifest.json.
+- YAML output is loadable as a Jinja context for downstream collateral rendering (Task 7 will consume it).
+
+# Test Strategy:
+Prereqs
+- Ensure Task 3 and Task 4 are complete and available in the environment.
+- Create and activate a virtualenv; pip install -r requirements.txt.
+
+Data and config setup
+1) Validate costs input
+- Run the Task 3 validator against data/pricing/informdata_costs.csv and confirm success.
+
+2) Prepare policy
+- Confirm configs/pricing/policy.yaml exists with target margins and rounding profile; adjust as needed for the test.
+
+Functional test
+3) Run the CLI
+- python scripts/build_collateral_pricing_tables.py --as-of-date 2025-01-01 --policy configs/pricing/policy.yaml --output-dir derived/pricing/collateral
+- Expect exit code 0.
+
+4) File existence and structure
+- Confirm the following exist:
+  - derived/pricing/collateral/informdata_pricing_tables.csv/json/yaml
+  - derived/pricing/collateral/manifest.json
+  - schemas/pricing/collateral_pricing_tables.schema.json
+
+5) Schema validation
+- Use a jsonschema/pandera check to validate informdata_pricing_tables.json/csv against schemas/pricing/collateral_pricing_tables.schema.json.
+
+6) Content checks
+- Confirm only rows with approval_status == approved (from input) are present and effective_date windows include the as_of_date.
+- Spot-check a few SKUs: recompute through the Task 4 engine or compare against engine outputs to ensure computed_price matches pre-round values and list_price reflects rounding rules.
+- Verify currency and rounding to minor units are correct; list_price >= computed_price.
+
+7) Determinism
+- Re-run the CLI with identical inputs; diff outputs should show no changes.
+
+8) Manifest integrity
+- Open derived/pricing/collateral/manifest.json and confirm it contains: input file paths and SHA256 checksums, git SHA, as_of_date, engine version, policy version, and checksums for output files.
+
+9) Error-path tests
+- Change a row’s approval_status to draft and re-run; confirm the SKU is excluded.
+- Create an overlapping effective window for a SKU and re-run with --strict (default); expect a non-zero exit and a clear error message.
+
+10) Jinja context sanity
+- In a Python REPL: load the YAML output and access a few fields (e.g., sku, list_price) to ensure it’s a clean mapping suitable for templating.
+
+# Subtasks:
+## 1. Align collateral branding with Vuplicity [done]
+### Dependencies: None
+### Description: Replace residual Booplicity mentions in generated pricing outputs and collateral, regenerate tables, and ensure UI copy clearly distinguishes InformData vendor costs from Vuplicity automation/platform allocations.
+### Details:
+<info added on 2025-10-31T01:47:48.976Z>
+Plan and execution details
+
+1) Audit for legacy names and guidance
+- Scan code, templates, docs, and generated assets for residual Booplicity/Gamma references:
+  - rg -n "Booplicity|booplicity" --hidden --glob '!venv/**' --glob '!build/**' .
+  - rg -n "Gamma|gamma\.?com" --hidden --glob '!venv/**' --glob '!build/**' .
+- Expected allowed Gamma references: only under task_9 packaging code and docs (see Acceptance Criteria). All others must be removed or updated.
+- Update brand constants/placeholders:
+  - templates, Jinja vars, and context builders should use brand_name = "Vuplicity".
+  - Replace logo paths to assets/branding/vuplicity/* and remove assets/branding/booplicity/* if unused.
+- Touchpoints to review/update:
+  - templates/collateral/*.j2, templates/email/*.j2
+  - tools/pricing/*.py, tools/collateral/*.py
+  - docs/collateral/*, docs/deploy/*, README.md
+  - .taskmaster/tasks/*.json and task descriptions
+  - build scripts and Makefile/Taskfile if present
+
+2) Regenerate pricing CSV/HTML with Vuplicity messaging and clarified copy
+- Ensure inputs and engine are valid:
+  - python tools/pricing/validate_costs.py --input data/pricing/informdata_costs.csv
+  - python tools/pricing/compute_prices.py --costs data/pricing/informdata_costs.csv --as-of today --out build/pricing/vuplicity/
+- Emit CSV/JSON/YAML plus manifest:
+  - python tools/pricing/build_pricing_tables.py --in build/pricing/vuplicity/derived.json --formats csv json yaml --out build/collateral/tables/
+  - Confirm manifest at build/collateral/tables/manifest.json (includes source commit, schema versions, as_of date).
+- Render HTML collateral with updated copy:
+  - Update templates/collateral/pricing_vuplicity.html.j2 to include the following content model:
+    - Headline: “Vuplicity pricing for InformData-sourced searches”
+    - Columns: “InformData vendor cost (pass-through)”, “Vuplicity automation/platform add-ons”, “Total MSRP”
+    - Footnotes:
+      1) “InformData vendor cost is a direct pass-through and may change per vendor notice.”
+      2) “Vuplicity automation/platform add-ons cover orchestration, retries, monitoring, reporting, and SLA tooling; they are configurable.”
+      3) “Total MSRP = vendor cost + selected add-ons; volume tiers and contractual discounts may apply.”
+    - Badge/tagline: “Powered by Vuplicity automation and platform controls”
+  - Render:
+    - python tools/collateral/render_pricing_html.py --tables build/collateral/tables/ --template templates/collateral/pricing_vuplicity.html.j2 --out build/collateral/pricing_vuplicity.html
+
+3) Update docs and deployment notes; rerun builders to keep outputs in sync
+- Remove or rewrite stale Gamma guidance in:
+  - docs/collateral/branding.md (replace Booplicity examples with Vuplicity)
+  - docs/deploy/pricing_builders.md (current build steps; no Gamma-specific content unless referencing Task 9)
+  - docs/gamma.md (either delete if obsolete for this flow or replace with a pointer: “Gamma packaging is handled by Task 9”)
+- Restate deployment notes:
+  - Environment: python -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt
+  - Commands: run validate_costs, compute_prices, build_pricing_tables, render_pricing_html as above
+  - Outputs: build/collateral/tables/* and build/collateral/pricing_vuplicity.html are the authoritative artifacts for Sales
+- Rerun the full builder sequence and commit updated outputs with a single version bump in build/collateral/tables/manifest.json.
+
+Acceptance criteria (DoD)
+- Zero occurrences of “Booplicity” in repo and generated outputs:
+  - rg -n "Booplicity|booplicity" --hidden --glob '!venv/**' . returns no matches.
+- “Gamma” appears only in Task 9 code/docs:
+  - Allowed: task_9 source files under tools/packaging/gamma/* and docs/packaging/gamma.md (or equivalent), plus Task 9 manifest templates.
+  - All other Gamma references removed or replaced with Task 9 pointer.
+- Updated HTML collateral present at build/collateral/pricing_vuplicity.html with:
+  - Correct headline, columns, and the three footnotes above.
+- Tables emitted at build/collateral/tables/ in CSV, JSON, and YAML, with a manifest containing source commit, as_of date, and schema versions.
+- Docs updated: branding, deployment notes, and Gamma guidance reconciled; links resolve; examples show Vuplicity only.
+- Pricing recomputed from approved InformData costs (validator passes) and matches the engine outputs for the same as_of date.
+
+Notes for reviewers
+- Verify that “InformData vendor cost (pass-through)” is labeled exactly and appears in column headers and legend.
+- Confirm add-on descriptions enumerate orchestration, retries, monitoring, reporting, and SLA tooling.
+- Confirm logo and brand colors are from assets/branding/vuplicity/ and no Booplicity assets remain.
+</info added on 2025-10-31T01:47:48.976Z>
+<info added on 2025-10-31T03:09:22.170Z>
+Progress update
+
+- Regenerated internal pricing and consolidated tables with Vuplicity automation/platform assumptions; emitted CSV/JSON/YAML plus updated manifest under build/collateral/tables/ (as_of and source commit populated).
+- Published matching JSON used by HTML dashboards and wired templates to consume it during render_pricing_html.
+- Swapped branding and UI copy across pricing breakout, county fee, and national scan pages:
+  - Column headers: “InformData vendor cost (pass-through)”, “Vuplicity automation/platform add-ons”, “Total MSRP”.
+  - Footnotes (1–3) and “Powered by Vuplicity automation and platform controls” badge included.
+  - Logos/colors now sourced from assets/branding/vuplicity/.
+- Scrubbed Gamma references from docs and PRD; retained only Task 9 packaging pointers. Updated collateral instructions to reflect current builder workflow.
+- Verification:
+  - rg for “Booplicity|booplicity” returns no matches.
+  - rg for “Gamma|gamma\.?com” limited to allowed Task 9 packaging paths.
+  - HTML renders and dashboards load the new JSON; callouts explicitly distinguish InformData vs. Vuplicity costs.
+- Next: finalize commit with single version bump in build/collateral/tables/manifest.json and request reviewer sign-off.
+</info added on 2025-10-31T03:09:22.170Z>
+

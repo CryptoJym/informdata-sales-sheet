@@ -1,0 +1,85 @@
+# Task ID: 8
+# Title: Execute finance/legal review and approvals for InformData pricing collateral
+# Status: pending
+# Dependencies: 7
+# Priority: high
+# Description: Coordinate and complete formal Finance and Legal review of the pricing collateral draft, capturing approvals and gating publication via repository workflows. Produce a review packet, run checklists, record approver metadata, and finalize an approved release of the collateral.
+# Details:
+Scope and objectives
+- Run an end-to-end approval process for the InformData pricing collateral produced in Task 7, ensuring compliance with pricing policy and legal standards. Gate merges/publishing on explicit Finance and Legal approvals captured in-repo.
+
+Inputs and artifacts (expected from prior tasks)
+- Draft collateral (Markdown/PDF) and derived tables from Task 7 (e.g., docs/collateral/pricing/informdata_pricing_draft.md and a rendered PDF under build/collateral/).
+- Computed pricing outputs (CSV/JSON) and configs from Task 4 (consumed indirectly via Task 7’s draft).
+- Competitor MSRPs dataset and evidence from Task 6 (referenced by Task 7).
+- PRD: prd_sales_sheet.txt.
+
+Deliverables
+- Review packet under docs/review/packets/pricing_collateral_vX.Y/ containing:
+  - Draft Markdown + PDF of the collateral.
+  - Data extracts used in the draft (derived tables, recommended pricing CSV/JSON).
+  - Competitor MSRPs CSV and a provenance summary linking to evidence/.
+  - A review memo (docs/review/memos/pricing_collateral_review_memo.md) summarizing assumptions, margin policy, disclaimers, and change log.
+- Checklists:
+  - docs/review/checklists/finance_checklist.md (margin floors, discount guardrails, rounding, FX assumptions, effective dates, price presentation, SKU mapping).
+  - docs/review/checklists/legal_checklist.md (claims substantiation, competitive comparisons, trademarks/brand usage, licensing/IP, regulatory/region notes, required disclaimers/footnotes, evidence archiving).
+- Approval metadata file: docs/review/approvals/pricing_collateral_approval.yaml capturing: document_version, commit_sha, collateral_paths, finance_approver, legal_approver, approval_dates, notes, and links to packet.
+- Optional automation to enforce approvals:
+  - CODEOWNERS entry requiring Finance and Legal on docs/collateral/pricing/** and docs/review/**.
+  - GitHub Action (.github/workflows/review_metadata.yml) invoking scripts/review/validate_approvals.py to fail if approval YAML is missing/invalid or CODEOWNERS approvals aren’t present.
+- Final approved collateral with DRAFT watermark removed and a versioned release tag (e.g., collateral/pricing/v1.0-approved).
+
+Implementation steps
+1) Prepare review packet
+- Assemble all inputs into docs/review/packets/pricing_collateral_vX.Y/; include a README explaining contents and how to reproduce the draft.
+- Create the review memo summarizing pricing methodology, key assumptions, material risks, and deltas from prior versions.
+- Add references to specific data files and evidence folders used by the draft.
+
+2) Author and run checklists
+- Fill out finance_checklist.md and legal_checklist.md against the draft and packet contents.
+- Fix any high-priority findings in the draft or data; for substantive pricing/model changes, route updates back to Task 4/Task 7 and iterate until checklists pass.
+
+3) Capture approvals and enforce gates
+- Add/confirm CODEOWNERS entries that require Finance and Legal for changes to collateral and review folders.
+- Create docs/review/approvals/pricing_collateral_approval.yaml and populate fields with approvers’ names, titles, dates, and commit SHA.
+- Open a PR titled "Approval: InformData pricing collateral vX.Y" attaching the packet path and memo. Request reviews from Finance and Legal.
+- If using the optional Action, commit scripts/review/validate_approvals.py and .github/workflows/review_metadata.yml to validate presence and schema of the approval YAML and to check for required reviewers.
+
+4) Finalize approved collateral
+- After approvals, remove any DRAFT watermark or labels from the Markdown/PDF, update STATUS/metadata (e.g., docs/collateral/pricing/STATUS.md -> Approved), and bake required disclaimers/footnotes into the final document.
+- Tag the repo with collateral/pricing/vX.Y-approved and create a GitHub Release attaching the approved PDF and a zip of the review packet.
+- Archive the signed approval YAML and packet; ensure evidence links remain accessible.
+
+Constraints and considerations
+- Do not publish or distribute beyond the repo until both Finance and Legal approvals are recorded.
+- Maintain provenance of all claims; no unsubstantiated competitor statements.
+- Keep PRD alignment; any deviations must be documented in the review memo.
+- Minimize scope creep: editorial fixes are fine; pricing or methodology changes must loop back to the owning tasks.
+
+
+# Test Strategy:
+Prerequisites
+- Ensure Task 7 artifacts exist (draft Markdown/PDF and derived tables).
+
+Validation steps
+1) Packet assembly
+- Confirm docs/review/packets/pricing_collateral_vX.Y/ contains: draft Markdown, PDF, derived tables, pricing outputs, competitor MSRPs CSV, provenance summary, and review memo.
+- Open all links in the memo to verify evidence/provenance is reachable under evidence/pricing/.
+
+2) Checklist completion
+- Verify finance_checklist.md and legal_checklist.md are present, filled, and committed.
+- Ensure any checklist issues have corresponding commits addressing them; no unresolved high/medium severity items remain.
+
+3) Approval enforcement
+- Open a PR modifying collateral and review files and observe CODEOWNERS requests reviewers from Finance and Legal.
+- Without approvals and without a valid docs/review/approvals/pricing_collateral_approval.yaml, ensure the PR cannot be merged (branch protection + required status check if the Action is configured).
+- Add a minimally valid approval YAML with all required fields and obtain two approvals; verify the status check passes and the PR becomes mergeable.
+
+4) Finalization and release
+- After merge, confirm docs/collateral/pricing/STATUS.md indicates Approved and the PDF no longer has any DRAFT markers.
+- Verify a git tag collateral/pricing/vX.Y-approved exists and a GitHub Release includes the approved PDF and a zip of the review packet.
+- Spot-check that disclaimers/footnotes required by Legal are present in the final document.
+
+5) Auditability
+- Run scripts/review/validate_approvals.py locally against docs/review/approvals/pricing_collateral_approval.yaml; expect a success exit code.
+- Confirm the commit SHA in the approval YAML matches the approved collateral commit and that approver names/titles/dates are populated.

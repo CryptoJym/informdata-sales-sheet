@@ -1,0 +1,118 @@
+# Task ID: 1
+# Title: Create overall sales collateral task list for InformData pricing sheet
+# Status: done
+# Dependencies: None
+# Priority: high
+# Description: Define and seed a coherent Task Master work breakdown for producing the InformData pricing sales collateral, aligned to the existing repo structure and PRD. This establishes task groupings, dependencies, and acceptance criteria that the team will execute afterward.
+# Details:
+Context and alignment
+- Source PRD: `prd_sales_sheet.txt` (objective/requirements already captured).
+- Task Master is configured: `.taskmaster/config.json` (enableCodebaseAnalysis=true) and workflow documented in `AGENTS.md` (core commands, generate, dependency validation).
+- No existing tasks found under `.taskmaster/tasks/`; this task creates the initial structured backlog only (no content authoring).
+
+Plan (Due‑Process compliant)
+- Preflight: `task-master list`, then `task-master validate-dependencies` (expect no tasks yet). Do not re‑init (per AGENTS/Playbook).
+- Parse PRD to draft tasks: `task-master parse-prd prd_sales_sheet.txt --num 12 --research` to seed initial candidates.
+- Curate into a clean WBS with explicit acceptance criteria and dependencies, using only Task Master commands (no manual edits to `.taskmaster/tasks/tasks.json`).
+- Generate mirrors after edits: `task-master generate` to ensure markdown mirrors under `.taskmaster/tasks/` are created/updated.
+
+Backlog structure to create (top-level tasks with brief acceptance criteria)
+- Data sourcing (InformData costs): Define `data/pricing/informdata_costs.csv` schema (service_code, description, unit, cost_usd, source_doc, as_of_date). AC: file exists, schema validated, sources logged.
+- Price computation (+$1 AI/SaaS margin): Create a simple computation plan (spreadsheet or script path proposal) and document formula rules (cost + 1.00 USD per line item). AC: sample calculation table in `docs/sales/pricing_sheet.md` shows correct deltas.
+- Competitor MSRPs capture: Define `data/pricing/competitors.csv` (vendor, service_code, description, msrp_usd, source_url, as_of_date, notes). AC: at least 5 representative services populated with citations.
+- Sales collateral drafting: Create `docs/sales/pricing_sheet.md` skeleton (intro, pricing tables, value props, use cases, disclaimers). AC: section stubs committed, links to data files added.
+- Review and compliance checklist: Add checklist for finance/legal review within the task details. AC: checklist present and owners assigned.
+- Export-to-Gamma prep (optional): Outline export steps (manual or API) and identify any `GAMMA_API_KEY` addition to `.env.example` if API route is chosen. AC: export steps documented, not executed here.
+
+How to apply with Task Master
+- Convert seeded items into explicit tasks with titles like: “Ingest InformData cost data”, “Compute in-house pricing (+$1)”, “Capture competitor MSRPs”, “Draft pricing sheet content”, “Review & signoff”, “Prepare Gamma export”.
+- For each, attach acceptance criteria and deliverable paths as above via: `task-master update-task --id=<id> --prompt="Add AC, deliverables, owners, and repo paths"`.
+- Add minimal dependencies only where truly prerequisite:
+  - “Compute in-house pricing” depends on “Ingest InformData cost data”.
+  - “Draft pricing sheet content” depends on both “Compute in-house pricing” and “Capture competitor MSRPs”.
+  - “Review & signoff” depends on “Draft pricing sheet content”.
+  - “Prepare Gamma export” depends on “Review & signoff”.
+- After curating: `task-master validate-dependencies` then `task-master generate`.
+
+Notes and constraints
+- Never run `task-master init` (already configured). Use CLI only; do not hand-edit `.taskmaster/tasks/tasks.json`.
+- Keep tasks small and reversible; prefer plain CSV/Markdown in-repo deliverables (`docs/`, `data/`).
+- Reference files explicitly in each task’s details to anchor outputs to this repo.
+
+
+# Test Strategy:
+Verification steps
+- Run `task-master list` and confirm new top-level tasks exist with clear, action-oriented titles as outlined.
+- Pick each task and `task-master show <id>`; verify acceptance criteria mention concrete repo paths: `data/pricing/informdata_costs.csv`, `data/pricing/competitors.csv`, `docs/sales/pricing_sheet.md`.
+- Validate dependency graph: `task-master validate-dependencies` reports no cycles; spot-check that drafting depends on both computation and MSRPs, and export depends on review.
+- Generate mirrors: `task-master generate`, then confirm `.taskmaster/tasks/` contains individual task files reflecting the curated details.
+- Sanity check: ensure no instructions tell contributors to manually edit `.taskmaster/tasks/tasks.json` or run `task-master init` again.
+
+# Subtasks:
+## 1. Assemble detailed task breakdown [done]
+### Dependencies: None
+### Description: Generate structured task list covering data sourcing, pricing computations, competitor research, collateral drafting, review, and Gamma export steps.
+### Details:
+<info added on 2025-10-30T10:59:31.427Z>
+Plan of record for Subtask 1.1 (assemble detailed task breakdown)
+
+1) Repo and PRD review
+- Open prd_sales_sheet.txt and extract must-have sections (SKUs, pricing logic, competitor comparison, collateral structure, review gates, export requirements).
+- Confirm .taskmaster/config.json and AGENTS.md are present; enableCodebaseAnalysis=true.
+- Ensure directories exist or will be created: data/pricing/, scripts/, templates/, content/pricing/, docs/review/, exports/gamma/, docs/data_schemas/.
+
+2) Concrete workstreams to create
+
+Workstream: Ingest and normalize pricing data
+- Deliverables: data/pricing/informdata_costs.csv; docs/data_schemas/pricing.yml; scripts/validate_pricing_data.py
+- Acceptance criteria: CSV schema defined and committed (sku, description, unit_cost, uom, source, updated_at). Validation script exits 0 on valid data and fails on schema mismatch. Sample seeded rows present. Paths referenced in acceptance.
+- Dependencies: PRD reviewed
+
+Workstream: Margin computation and pricing tiers
+- Deliverables: scripts/compute_margins.py; data/pricing/informdata_prices.csv; tests/test_margin.py
+- Acceptance criteria: Deterministic margin calculations per PRD with unit tests covering tiering and rounding rules. Output CSV includes sku, unit_cost, margin_pct, tier, target_price. Re-runnable with same inputs produces identical outputs.
+- Dependencies: Ingest and normalize pricing data
+
+Workstream: Competitor pricing dataset
+- Deliverables: data/pricing/competitors.csv; docs/research/competitor_sources.md
+- Acceptance criteria: Competitor CSV schema defined (competitor, sku, price, notes, collected_at). Sources and collection method documented. File referenced in acceptance.
+- Dependencies: PRD reviewed
+
+Workstream: Collateral drafting (content + template)
+- Deliverables: content/pricing/informdata_pricing.md; templates/pricing_sheet.j2; assets/ (as needed)
+- Acceptance criteria: Draft covers PRD sections (value prop, SKU list, pricing tiers, competitor compare). Template binds to data/pricing/informdata_prices.csv and data/pricing/competitors.csv variables without errors.
+- Dependencies: Margin computation and pricing tiers; Competitor pricing dataset
+
+Workstream: Review and signoff
+- Deliverables: docs/review/checklist_pricing_collateral.md; .taskmaster/approvals.json
+- Acceptance criteria: Checklist completed; approvals recorded from Product, Sales, and Finance with names, dates, and version hash of collateral file.
+- Dependencies: Collateral drafting
+
+Workstream: Gamma export
+- Deliverables: scripts/export/gamma_export.py; exports/gamma/informdata_pricing_deck.json; exports/gamma/informdata_pricing.pdf
+- Acceptance criteria: One command generates both JSON for Gamma and a PDF export from the template and data. Links/IDs for Gamma doc captured in approvals.json.
+- Dependencies: Collateral drafting (final PDF gated by Review and signoff)
+
+3) Commands to create tasks (run in order, then wire dependencies)
+- task-master add-task --title "Ingest and normalize pricing data" --description "Define CSV schema, seed data, and add validation for InformData costs." --deliverables "data/pricing/informdata_costs.csv; docs/data_schemas/pricing.yml; scripts/validate_pricing_data.py" --acceptance "Schema defined and validated; sample rows committed; validation script passes/fails appropriately; acceptance references paths."
+- task-master add-task --title "Margin computation and pricing tiers" --description "Implement margin model and tiered pricing outputs with tests." --deliverables "scripts/compute_margins.py; data/pricing/informdata_prices.csv; tests/test_margin.py" --acceptance "Deterministic calculations per PRD; unit tests passing; output CSV contains required columns."
+- task-master add-task --title "Competitor pricing dataset" --description "Collect and normalize competitor prices; document sources." --deliverables "data/pricing/competitors.csv; docs/research/competitor_sources.md" --acceptance "CSV schema defined; sources documented; file paths referenced."
+- task-master add-task --title "Collateral drafting (content + template)" --description "Author pricing collateral and template bound to data files." --deliverables "content/pricing/informdata_pricing.md; templates/pricing_sheet.j2" --acceptance "Draft covers PRD sections; template renders with data/pricing/informdata_prices.csv and data/pricing/competitors.csv."
+- task-master add-task --title "Review and signoff" --description "Run checklist and capture approvals from Product, Sales, Finance." --deliverables "docs/review/checklist_pricing_collateral.md; .taskmaster/approvals.json" --acceptance "Checklist complete; approvals recorded with names/dates/version hash."
+- task-master add-task --title "Gamma export" --description "Automate export to Gamma JSON and PDF." --deliverables "scripts/export/gamma_export.py; exports/gamma/informdata_pricing_deck.json; exports/gamma/informdata_pricing.pdf" --acceptance "Single command produces both outputs; Gamma link/ID logged."
+
+4) Set dependencies and validate graph
+- After creation, capture IDs with task-master list, then:
+  - task-master set-deps <Margin_ID> <Ingest_ID>
+  - task-master set-deps <Collateral_ID> <Margin_ID> <Competitors_ID>
+  - task-master set-deps <Review_ID> <Collateral_ID>
+  - task-master set-deps <Gamma_ID> <Collateral_ID> <Review_ID>
+- Validate: task-master validate-graph
+
+5) Generate task mirrors for execution under Task 2
+- Create mirrors of Collateral drafting and Gamma export under Task 2:
+  - task-master mirror create --source <Collateral_ID> --parent 2
+  - task-master mirror create --source <Gamma_ID> --parent 2
+- Re-run task-master list and task-master validate-graph to confirm mirrors and dependencies resolve.
+</info added on 2025-10-30T10:59:31.427Z>
+

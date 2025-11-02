@@ -1,0 +1,103 @@
+# Task ID: 9
+# Title: Package approved pricing collateral for Gamma export and sales-ready artifacts
+# Status: pending
+# Dependencies: 8
+# Priority: high
+# Description: Build a packaging tool and workflow that converts the approved pricing collateral into Gamma-compatible Markdown plus PDF/PPTX one-pagers, generates a zipped import bundle, and publishes sales-ready artifacts with versioned manifests.
+# Details:
+Scope and objectives
+- Take the Finance/Legal-approved collateral from Task 8 and generate a versioned, sales-ready deliverable set: Gamma-compatible Markdown bundle, a PDF one-pager, a short slide deck (PPTX), and a manifest with approvals and checksums.
+- Preserve approver metadata from Task 8, stamp the collateral with version and approval data, and place artifacts under build/collateral/ with a stable structure for Sales enablement and releases.
+
+Inputs and expected locations (from Task 8)
+- Approved collateral Markdown/PDF and derived tables: docs/review/packets/pricing_collateral_vX.Y/ (contains the final approved Markdown and a rendered PDF from Task 8).
+- Pricing outputs and competitor MSRPs dataset referenced by Task 7/8 (e.g., data/pricing/competitor_msrps.csv, derived tables under build/collateral/derived/).
+- Approval metadata (JSON/MD) produced in Task 8: docs/review/packets/pricing_collateral_vX.Y/approvals.json (or equivalent) with approver names, roles, timestamps.
+
+Repository changes
+- Add CLI and packaging module:
+  - tools/collateral/package_gamma.py (Typer-based CLI).
+  - tools/collateral/gamma_lint.py (basic rules to check Markdown compatibility: no raw HTML blocks, max header depth H3, valid relative asset paths, no footnotes; auto-convert where possible).
+- Config and templates:
+  - configs/collateral/export.yaml (brand colors, logo path, PPTX template path, one-pager options, title/section ordering, output toggles).
+  - templates/collateral/one_pager.jinja.md (condensed one-pager view rendered from approved data).
+  - templates/pptx/brand_template.potx (placeholder brand template; allow override via config).
+- Output tree (versioned):
+  - build/collateral/gamma/vX.Y/
+    - manifest.json (version, git commit, approvals, source hashes, file list + checksums)
+    - markdown/informdata_pricing_approved.md (Gamma-friendly Markdown)
+    - images/ (exported figures/logos referenced by Markdown)
+    - tables/ (CSV/JSON tables referenced by the Markdown)
+    - pdf/ (informdata_pricing_one_pager.pdf, informdata_pricing_full.pdf)
+    - pptx/ (informdata_pricing_deck.pptx)
+    - zip/gamma_import_bundle_vX.Y.zip (bundle of markdown, images, tables, manifest)
+
+CLI behavior (package_gamma.py)
+- Commands
+  - package: Build all artifacts. Args: --version vX.Y --approvals <path> --input-md <path> --derived <dir> --outdir <dir> --config <path> --brand-logo <path> --pptx-template <path> --skip-pdf/--skip-pptx.
+  - lint: Run Gamma-compatibility checks on Markdown and assets; can auto-fix simple issues (convert footnotes, flatten link refs, convert HTML tables to Markdown tables, cap header depth, rewrite image paths).
+  - manifest: Generate manifest.json with SHA256 checksums, file sizes, git commit, approvals metadata, and source file hashes.
+- Transformations
+  - Read the approved Markdown from Task 8; run gamma_lint to enforce rules and perform safe auto-fixes. Write the cleaned Markdown to markdown/informdata_pricing_approved.md.
+  - Resolve and copy all referenced images/assets to images/ and tables/; rewrite relative links accordingly.
+  - One-pager: Render templates/collateral/one_pager.jinja.md using approved data/derived tables, then convert to PDF (pandoc/pypandoc if available; fallback to reportlab/simple PDF renderer). Place in pdf/.
+  - Full PDF: If Task 8 already produced an approved PDF, copy into pdf/; otherwise render from approved Markdown via pandoc if available.
+  - PPTX: Use python-pptx with templates/pptx/brand_template.potx to generate a concise deck (title, value prop, pricing summary/table, competitive positioning). Insert brand colors/logo from config.
+  - Bundle: Create zip/gamma_import_bundle_vX.Y.zip containing markdown/, images/, tables/, and manifest.json.
+  - Manifest: Aggregate approvals (names, roles, timestamps), version, git commit, input file hashes, outputs with SHA256 checksums, and a reproducibility section (command line, config snapshot).
+
+Implementation notes
+- Keep Gamma Markdown simple: headings ≤ H3, standard Markdown tables, no raw HTML; inline callouts with blockquotes; ensure image widths are not specified via HTML.
+- Prefer CSV tables for large data; link in Markdown with brief excerpts. Keep image files under 2 MB each where possible (Pillow to downscale/compress PNG/JPEG).
+- Brand assets (logo, colors) configurable in configs/collateral/export.yaml; fail gracefully if missing and proceed with defaults.
+- Do not modify any pricing numbers or text content beyond formatting/linting; content remains as approved in Task 8.
+- Add Makefile targets: make package-gamma VERSION=vX.Y and make clean-gamma.
+- requirements.txt additions: typer, jinja2, python-pptx, pillow, pypandoc (optional), reportlab (fallback), python-dateutil, PyYAML.
+
+Acceptance criteria
+- A versioned directory under build/collateral/gamma/vX.Y/ exists with the files listed above.
+- gamma_import_bundle_vX.Y.zip imports cleanly into Gamma via Markdown import (no broken links, images render, tables intact) and passes internal lint with zero errors.
+- PPTX and one-pager PDF are generated and branded per config (or gracefully skipped with clear logs if optional dependencies are unavailable).
+- manifest.json includes approvals metadata from Task 8 and checksums for all outputs.
+- Makefile targets run end-to-end locally and in CI, attaching artifacts to a GitHub Release when a version tag is pushed (add a minimal CI workflow if one exists).
+
+# Test Strategy:
+Prerequisites
+- Ensure Task 8 is complete and locate: docs/review/packets/pricing_collateral_vX.Y/ (approved Markdown, approved PDF if available, approvals.json) and derived tables referenced by Task 7/8.
+- python -m venv .venv && source .venv/bin/activate
+- pip install -r requirements.txt
+
+Functional verification
+1) Lint and auto-fix
+- Run: python tools/collateral/package_gamma.py lint --input-md docs/review/packets/pricing_collateral_vX.Y/informdata_pricing_approved.md --outdir build/collateral/gamma/vX.Y --config configs/collateral/export.yaml
+- Confirm output markdown/informdata_pricing_approved.md exists and lint report shows 0 errors (warnings acceptable but ≤ threshold 3).
+
+2) Package all artifacts
+- Run: python tools/collateral/package_gamma.py package --version vX.Y --approvals docs/review/packets/pricing_collateral_vX.Y/approvals.json --input-md docs/review/packets/pricing_collateral_vX.Y/informdata_pricing_approved.md --derived build/collateral/derived --outdir build/collateral/gamma/vX.Y --config configs/collateral/export.yaml --brand-logo docs/assets/brand/logo.png --pptx-template templates/pptx/brand_template.potx
+- Verify files exist:
+  - build/collateral/gamma/vX.Y/manifest.json
+  - markdown/informdata_pricing_approved.md
+  - images/ (non-empty)
+  - tables/ (matches referenced tables)
+  - zip/gamma_import_bundle_vX.Y.zip
+  - pptx/informdata_pricing_deck.pptx (or clear log explaining skip)
+  - pdf/informdata_pricing_one_pager.pdf and pdf/informdata_pricing_full.pdf (or clear log explaining skip)
+
+3) Manifest integrity
+- Open manifest.json and confirm: version vX.Y, approvals list populated, git commit present, SHA256 checksums for all output files.
+- Compute a checksum for one file (e.g., shasum -a 256 markdown/informdata_pricing_approved.md) and verify it matches manifest.
+
+4) Gamma import sanity (manual)
+- In Gamma, import the zip/gamma_import_bundle_vX.Y.zip or the Markdown file with images/tables folder.
+- Confirm: headings render correctly, all images display, tables are formatted, no raw HTML artifacts. Record pass/fail in a short QA note under docs/collateral/pricing/releases/QA_vX.Y.md.
+
+5) PPTX and PDF checks
+- Open pptx/informdata_pricing_deck.pptx and verify: title slide, pricing summary slide with table, competitive positioning slide; brand logo present if provided.
+- Open pdf/informdata_pricing_one_pager.pdf; confirm sections are present and data matches the approved Markdown (spot-check a few values).
+
+6) CI/release attachment (if CI present)
+- Tag a test release (e.g., vX.Y-rc1) and push; verify the CI job publishes build/collateral/gamma/vX.Y artifacts to the GitHub Release and that manifest.json is included.
+
+7) Idempotency
+- Re-run the package command; confirm outputs are identical (checksum match) when inputs/config unchanged.
+

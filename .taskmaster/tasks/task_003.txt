@@ -1,0 +1,176 @@
+# Task ID: 3
+# Title: Implement InformData pricing data ingestion with schema and validation
+# Status: done
+# Dependencies: 1
+# Priority: high
+# Description: Define a strict schema for the InformData pricing CSV and implement a Python ingestion and validation module plus a CLI to load, validate, and normalize the data for downstream use.
+# Details:
+Scope and objectives
+- Create a canonical schema for InformData pricing data and enforce it at ingest time.
+- Provide a reusable Python module and a CLI that validates CSV files in data/pricing/, normalizes fields, and emits actionable error reports.
+- Align paths, naming, and conventions with the repo structure defined in Task 1 and the PRD (prd_sales_sheet.txt).
+
+Repository artifacts to add
+- schemas/pricing/informdata_costs.schema.json (authoritative column definitions and constraints; JSON Schema for documentation and CI checks)
+- src/pricing/ingest.py (Python ingestion/validation module)
+- scripts/validate_pricing_data.py (CLI wrapper around the ingestion validator)
+- tests/pricing/test_ingest.py (pytest coverage for valid and invalid cases)
+- tests/data/informdata_costs_valid.csv and tests/data/informdata_costs_invalid.csv (fixtures)
+- requirements.txt additions: pandas>=2.1, pandera>=0.17, python-dateutil>=2.8, typer>=0.9 (or argparse), tabulate>=0.9
+
+CSV schema (columns and constraints)
+- sku: string, required; pattern ^[A-Z0-9][A-Z0-9_\-\.]{1,63}$; trimmed; unique in combination with tier, unit, effective_date
+- description: string, required; non-empty; max length 256; trimmed
+- unit: enum, required; one of {per_search, per_report, per_record, monthly, one_time}
+- tier: integer, optional; >=1; default 1 if blank
+- min_qty: integer, optional; >=0; default 0
+- partner_cost: decimal, required; >=0
+- list_price: decimal, required; >=0
+- currency: string, required; ISO 4217 uppercase (e.g., USD, CAD); default USD
+- effective_date: date (YYYY-MM-DD), required
+- expire_date: date (YYYY-MM-DD), optional; must be >= effective_date when present
+- deprecated: boolean, optional; default false (accept y/n/true/false/1/0, normalized to true/false)
+- source: string, optional; URL or short code; max length 128
+
+Table-level constraints
+- Required header set must match exactly the required columns above; reject unknown extra columns unless explicitly whitelisted via a CLI flag.
+- Uniqueness: composite unique key (sku, tier, unit, effective_date). Duplicate rows produce an error with row numbers and the duplicate key values.
+- Consistency: list_price must be >= partner_cost. If equal, margin is 0; if list_price == 0 but partner_cost > 0, error.
+
+Normalization rules
+- Trim leading/trailing whitespace for all string fields; collapse internal repeated spaces in description.
+- Uppercase currency automatically; coerce dates to ISO 8601; coerce boolean variants to true/false.
+- Coerce numeric fields using Decimal-safe parsing; reject non-numeric with precise error messages.
+
+Python module (src/pricing/ingest.py)
+- Function: load_pricing_csv(path: str, strict: bool = true) -> pandas.DataFrame
+  - Reads CSV with explicit dtype hints; normalizes fields; validates against a Pandera SchemaModel; returns a clean DataFrame on success or raises a ValidationError with structured details.
+- Function: validate_pricing_csv(path: str, allow_extra_columns: bool = false) -> ValidationReport
+  - Runs full validation and returns a lightweight object with is_valid, errors (list of {row, column, code, message}), and summary stats.
+- Expose constants for REQUIRED_COLUMNS and ALLOWED_UNITS to centralize configuration.
+- Keep public APIs stable for Task 2 to import (e.g., from pricing.ingest import load_pricing_csv).
+
+CLI (scripts/validate_pricing_data.py)
+- Usage: python scripts/validate_pricing_data.py data/pricing/informdata_costs.csv [--format json|table] [--allow-extra-columns] [--fail-fast]
+- Exit codes: 0 on success, 2 on validation errors, 1 on unexpected exceptions.
+- Output: summary counts; first N errors; full JSON dump when --format json is used.
+
+JSON Schema (schemas/pricing/informdata_costs.schema.json)
+- Provide a documentation-grade schema mirroring the rules above (types, enum, patterns, required). This is used for human review and optional CI checks; runtime validation is performed by Pandera.
+
+Error reporting and DX
+- Group errors by column with counts; include sample offending values and row numbers.
+- Print actionable remediation guidance (e.g., “currency must be a 3-letter ISO code like USD”).
+- Ensure deterministic ordering of errors for reproducibility.
+
+Performance, quality, and CI hooks
+- Efficient read for 50k rows with validation under 5 seconds on a typical laptop (optimize dtypes and vectorized checks).
+- Add pytest cases: valid file passes; each rule has a failing example; duplicate composite key detection; boundary values for dates and numbers.
+- Optional pre-commit hook entry to run the validator on data/pricing/informdata_costs.csv when present.
+
+Documentation
+- Update or add README notes in docs/ or module docstrings explaining schema columns, CLI usage, and integration point for Task 2’s generation pipeline.
+- Reference PRD (prd_sales_sheet.txt) to ensure column naming and semantics align with product messaging.
+
+
+# Test Strategy:
+Environment setup
+1) Create and activate a virtual environment; install dependencies in requirements.txt (pandas, pandera, python-dateutil, typer/tabulate).
+
+Schema presence and contents
+2) Verify schemas/pricing/informdata_costs.schema.json exists and includes: required columns list, enum values for unit, regex pattern for sku, and ISO 8601 date format notes.
+
+Unit tests
+3) Run: pytest -q tests/pricing/test_ingest.py
+   - Expect: all tests pass. Confirm coverage of: required columns, enum checks, numeric bounds, date ordering, boolean coercion, currency normalization, duplicate key detection, and performance sanity (simple timing assertion).
+
+CLI positive path
+4) Place a valid sample at tests/data/informdata_costs_valid.csv. Execute: python scripts/validate_pricing_data.py tests/data/informdata_costs_valid.csv --format table
+   - Expect: “Validation OK” style summary, 0 errors, exit code 0.
+
+CLI negative path
+5) Execute: python scripts/validate_pricing_data.py tests/data/informdata_costs_invalid.csv --format json
+   - Expect: exit code 2. Output JSON includes keys is_valid=false and non-empty errors array with row, column, code, message. Verify at least one error each for: unknown column (when not using --allow-extra-columns), enum violation, numeric negative, currency not uppercase, date ordering, and duplicate composite key.
+
+Normalization checks
+6) Create a temporary CSV with lowercase currency, surrounding spaces in description, boolean variants (Y/0/True). Validate and assert the returned DataFrame from load_pricing_csv has normalized values: uppercase currency, trimmed description, booleans as true/false.
+
+Performance sanity
+7) Generate a synthetic CSV of 10k rows (duplicate-free) and validate. Expect completion under 5 seconds on a typical dev machine and no memory errors.
+
+Integration readiness
+8) From a Python REPL: from pricing.ingest import load_pricing_csv; df = load_pricing_csv('tests/data/informdata_costs_valid.csv'); assert len(df) > 0. This confirms the API surface for Task 2’s pipeline.
+
+
+# Subtasks:
+## 1. Plan Task 3 implementation [done]
+### Dependencies: None
+### Description: Confirm schema mapping, extract InformData costs from finance workbook, and document validation steps.
+### Details:
+<info added on 2025-10-30T11:48:03.970Z>
+Plan:
+1) Map finance workbook fields to base_costs schema
+- Create docs/mapping/informdata_finance_to_base_costs.md that links each finance workbook column/range to schemas/pricing/informdata_costs.schema.json fields, including:
+  - Service ID/SKU normalization rules (trim, uppercase, replace spaces/legacy delimiters, stable ID policy).
+  - Unit normalization map to canonical enums (e.g., hit, record, report, screen, monthly).
+  - Currency handling (USD), numeric parsing/rounding, effective_date parsing (yyyy-mm-dd), and null/default rules.
+  - Source provenance fields (source_sheet, source_version, workbook_path, checksum).
+- Capture any unmapped/derived fields and decisions.
+
+2) Build extraction script to normalize service IDs, units, and metadata
+- Implement scripts/pricing/extract_informdata_costs.py to read data/raw/informdata_finance_workbook.xlsx with a config file at config/pricing/informdata_extract.yaml (sheet names, header rows, column bindings).
+- Transformations:
+  - Normalize service IDs and SKUs per mapping, deduplicate, and flag collisions.
+  - Normalize units via mapping; validate against schema enum; record original_unit in metadata.
+  - Coerce currency to USD decimals, round to 4 dp; coerce dates to ISO-8601.
+  - Add vendor=InformData, source_version, effective_date, and provenance fields; compute source checksum.
+  - Filter discontinued rows or mark status where applicable; log all drops to logs/pricing/extract_informdata_costs.log.
+
+3) Generate data/pricing/informdata_costs.csv and retain transformation notebook/script for reproducibility
+- Script outputs data/pricing/informdata_costs.csv with columns ordered per schema.
+- Save an accompanying notebook at notebooks/pricing/informdata_costs_transform.ipynb documenting the same logic and sanity checks.
+- Emit provenance to data/pricing/provenance/informdata_costs_provenance.yaml (inputs, checksum, script version, run timestamp).
+- Add Makefile target: make informdata_costs to run the extract with the pinned config.
+
+4) Validate output with pricing validator and attach JSON report
+- Run: python scripts/validate_pricing.py --schema schemas/pricing/informdata_costs.schema.json --input data/pricing/informdata_costs.csv --report reports/validation/informdata_costs_validation.json --fail-on-error.
+- Attach reports/validation/informdata_costs_validation.json to this subtask and commit to repo.
+
+5) Document source approval reference in task notes
+- Add docs/approvals/informdata_source_approval.md capturing approver name/title, date, workbook version, and reference IDs/links (e.g., Jira FIN-####, email/Slack thread).
+- Mirror approver metadata in the provenance YAML and paste the approval reference into this subtask’s notes.
+
+Acceptance criteria
+- Mapping document exists and is reviewed; no unmapped required fields remain.
+- scripts/pricing/extract_informdata_costs.py reproducibly generates data/pricing/informdata_costs.csv from the finance workbook and config.
+- Validator report shows zero schema errors; any warnings are documented with rationale.
+- JSON validation report is attached; approval reference is recorded in task notes and docs/approvals.
+</info added on 2025-10-30T11:48:03.970Z>
+<info added on 2025-10-30T11:50:40.071Z>
+Progress update:
+- Extractor saved at scripts/pricing/extract_informdata_costs.py and run successfully.
+- Generated data/pricing/informdata_costs.csv with 22 services.
+- Added mapping doc at docs/data_schemas/mapping/informdata_finance_to_base_costs.md.
+- Ran pricing validator; validation reports saved under docs/data_schemas/reports/.
+
+Follow-ups to meet plan/acceptance:
+- Move/duplicate validation JSON to reports/validation/ and attach it to this subtask.
+- Align mapping doc location to docs/mapping/ or update plan to reflect current path.
+- Add Makefile target (make informdata_costs), emit provenance YAML, and commit the transform notebook.
+</info added on 2025-10-30T11:50:40.071Z>
+<info added on 2025-10-30T11:51:52.835Z>
+Progress update and plan/acceptance adjustments:
+- Validator reports will remain under docs/data_schemas/reports/ to keep artifacts co-located with schema docs; attach the JSON from this path to this subtask. Acceptance updated to permit this path instead of reports/validation/.
+- Mapping document is intentionally located at docs/data_schemas/mapping/; plan updated to reflect this path.
+- No Makefile target needed; repeatable extraction is provided via the CLI: python scripts/pricing/extract_informdata_costs.py --config config/pricing/informdata_extract.yaml. Acceptance updated to require CLI reproducibility rather than a Makefile target.
+</info added on 2025-10-30T11:51:52.835Z>
+<info added on 2025-10-30T11:53:24.734Z>
+Progress update:
+- CLI entry point now uses explicit --source and --output flags; no external config file is required.
+- Plan/comments updated to remove references to config/pricing/.
+
+Plan/acceptance adjustments:
+- Step 2 invocation: python scripts/pricing/extract_informdata_costs.py --source data/raw/informdata_finance_workbook.xlsx --output data/pricing/informdata_costs.csv
+- Acceptance: Reproducibility must be demonstrated via the flag-based CLI invocation above; no config/pricing/ files are required.
+</info added on 2025-10-30T11:53:24.734Z>
+

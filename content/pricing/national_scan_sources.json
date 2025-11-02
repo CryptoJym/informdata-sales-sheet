@@ -1,0 +1,313 @@
+{
+  "total_sources": 2415,
+  "record_counts": [
+    {
+      "record_type": "Arrest",
+      "count": 1118
+    },
+    {
+      "record_type": "AOC",
+      "count": 797
+    },
+    {
+      "record_type": "Warrant",
+      "count": 275
+    },
+    {
+      "record_type": "Patriot",
+      "count": 80
+    },
+    {
+      "record_type": "DOC",
+      "count": 74
+    },
+    {
+      "record_type": "SOR",
+      "count": 67
+    }
+  ],
+  "state_counts": [
+    {
+      "state": "OH",
+      "count": 353
+    },
+    {
+      "state": "TX",
+      "count": 198
+    },
+    {
+      "state": "FL",
+      "count": 151
+    },
+    {
+      "state": "SC",
+      "count": 128
+    },
+    {
+      "state": "CA",
+      "count": 123
+    },
+    {
+      "state": "GA",
+      "count": 89
+    },
+    {
+      "state": "KY",
+      "count": 83
+    },
+    {
+      "state": "IL",
+      "count": 74
+    },
+    {
+      "state": "LA",
+      "count": 61
+    },
+    {
+      "state": "MI",
+      "count": 59
+    },
+    {
+      "state": "TN",
+      "count": 58
+    },
+    {
+      "state": "NC",
+      "count": 58
+    },
+    {
+      "state": "US",
+      "count": 58
+    },
+    {
+      "state": "IN",
+      "count": 56
+    },
+    {
+      "state": "MO",
+      "count": 50
+    },
+    {
+      "state": "AL",
+      "count": 49
+    },
+    {
+      "state": "OK",
+      "count": 48
+    },
+    {
+      "state": "MN",
+      "count": 46
+    },
+    {
+      "state": "VA",
+      "count": 44
+    },
+    {
+      "state": "WA",
+      "count": 40
+    },
+    {
+      "state": "NY",
+      "count": 38
+    },
+    {
+      "state": "AR",
+      "count": 37
+    },
+    {
+      "state": "MS",
+      "count": 37
+    },
+    {
+      "state": "PA",
+      "count": 34
+    },
+    {
+      "state": "OR",
+      "count": 34
+    },
+    {
+      "state": "CO",
+      "count": 33
+    },
+    {
+      "state": "NJ",
+      "count": 30
+    },
+    {
+      "state": "KS",
+      "count": 28
+    },
+    {
+      "state": "IA",
+      "count": 25
+    },
+    {
+      "state": "AZ",
+      "count": 24
+    },
+    {
+      "state": "WI",
+      "count": 22
+    },
+    {
+      "state": "UT",
+      "count": 21
+    },
+    {
+      "state": "NV",
+      "count": 20
+    },
+    {
+      "state": "NE",
+      "count": 20
+    },
+    {
+      "state": "MT",
+      "count": 18
+    },
+    {
+      "state": "NM",
+      "count": 17
+    },
+    {
+      "state": "MD",
+      "count": 17
+    },
+    {
+      "state": "MA",
+      "count": 13
+    },
+    {
+      "state": "ID",
+      "count": 13
+    },
+    {
+      "state": "ME",
+      "count": 11
+    },
+    {
+      "state": "WY",
+      "count": 11
+    },
+    {
+      "state": "ND",
+      "count": 10
+    },
+    {
+      "state": "NH",
+      "count": 10
+    },
+    {
+      "state": "CT",
+      "count": 8
+    },
+    {
+      "state": "SD",
+      "count": 8
+    },
+    {
+      "state": "VT",
+      "count": 6
+    },
+    {
+      "state": "WV",
+      "count": 6
+    },
+    {
+      "state": "HI",
+      "count": 5
+    },
+    {
+      "state": "RI",
+      "count": 5
+    },
+    {
+      "state": "DE",
+      "count": 4
+    },
+    {
+      "state": "AK",
+      "count": 3
+    },
+    {
+      "state": "UK",
+      "count": 2
+    },
+    {
+      "state": "EU",
+      "count": 2
+    },
+    {
+      "state": "DC",
+      "count": 2
+    },
+    {
+      "state": "CN",
+      "count": 2
+    },
+    {
+      "state": "SG",
+      "count": 1
+    },
+    {
+      "state": "UN",
+      "count": 1
+    },
+    {
+      "state": "PR",
+      "count": 1
+    },
+    {
+      "state": "MP",
+      "count": 1
+    },
+    {
+      "state": "JP",
+      "count": 1
+    },
+    {
+      "state": "VI",
+      "count": 1
+    },
+    {
+      "state": "GU",
+      "count": 1
+    },
+    {
+      "state": "AU",
+      "count": 1
+    },
+    {
+      "state": "WY ",
+      "count": 1
+    }
+  ],
+  "latest_updates": [
+    {
+      "record_type": "AOC",
+      "last_updated": "2025-01-12T00:00:00"
+    },
+    {
+      "record_type": "Arrest",
+      "last_updated": "2025-01-12T00:00:00"
+    },
+    {
+      "record_type": "DOC",
+      "last_updated": "2025-01-12T00:00:00"
+    },
+    {
+      "record_type": "Patriot",
+      "last_updated": "2025-01-12T00:00:00"
+    },
+    {
+      "record_type": "SOR",
+      "last_updated": "2025-01-12T00:00:00"
+    },
+    {
+      "record_type": "Warrant",
+      "last_updated": "2025-01-12T00:00:00"
+    }
+  ]
+}

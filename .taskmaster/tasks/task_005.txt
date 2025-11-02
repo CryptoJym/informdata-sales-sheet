@@ -1,0 +1,159 @@
+# Task ID: 5
+# Title: Research and record competitor MSRPs with verifiable evidence and provenance
+# Status: done
+# Dependencies: 1
+# Priority: high
+# Description: Collect competitor MSRP/pricing data into a normalized CSV with rigorous evidence capture (screenshots/PDF/archive URLs), provenance metadata, and validation, aligned to the repo structure and PRD. Current progress exists in a non-canonical file (data/pricing/competitor_msps.csv) with citations to Checkr and GoodHire pricing pages and a validation report at docs/data_schemas/reports/competitor_msps.json. This task will migrate that progress into the canonical schema/paths, ensure evidence/provenance are complete, and keep the workflow auditable and reproducible.
+# Details:
+Scope and objectives
+- Establish a repeatable, auditable workflow to research competitor MSRPs and persist them with evidence and provenance for inclusion in pricing collateral. Deliver a validated CSV plus evidence artifacts and a CLI to assist manual/assisted collection.
+- Integrate current progress: migrate data/pricing/competitor_msps.csv (contains Checkr and GoodHire citations) to canonical data/pricing/competitor_msrps.csv and produce matching provenance JSONL and changelog entries. Migrate/refresh the validation report to canonical path.
+- Follow repo conventions and paths defined in Task 1; do not scrape sites that disallow it. Prefer official pricing pages, product datasheets, and authorized resellers where permitted.
+
+Repository artifacts to add/maintain
+- Data and evidence
+  - data/pricing/competitor_msrps.csv (canonical dataset; migrate from existing data/pricing/competitor_msps.csv)
+  - data/pricing/competitor_msrps_provenance.jsonl (one JSON object per record with detailed capture metadata)
+  - data/evidence/competitors/<competitor>/<YYYYMMDD>/<slug>.(png|pdf|html.json) (page capture artifacts)
+  - data/pricing/competitor_msrps.changelog.md (human-readable change log)
+- Schemas and templates
+  - schemas/pricing/competitor_msrps.schema.json (authoritative JSON Schema; strict validation)
+  - templates/competitor_msrps_template.csv (empty, header-only CSV for manual entry)
+  - configs/competitors/sources.yaml (seed list of competitor pages and selectors; include Checkr and GoodHire entries with permitted flags)
+- Code
+  - scripts/collect_competitor_msrps.py (Typer CLI: fetch, add-manual, validate, verify-evidence, reconcile, import-legacy)
+  - scripts/utils/evidence.py (shared utilities for capture, hashing, archiving, robots checks)
+  - tests/test_competitor_msrps_validation.py (unit tests for schema and validation helpers)
+- Documentation
+  - docs/pricing/competitor_msrps.md (how-to, scope, compliance, assumptions, and current coverage including Checkr and GoodHire)
+  - docs/data_schemas/reports/competitor_msrps.json (canonical validation report; supersedes legacy docs/data_schemas/reports/competitor_msps.json)
+
+Data model (columns in data/pricing/competitor_msrps.csv)
+- id: stable deterministic ID (sha1(competitor|product|plan|region|price_unit|source_url|effective_date))
+- competitor: string, required (normalized brand name)
+- product: string, required (product/SKU/plan family)
+- plan_tier: string (e.g., Basic/Pro/Enterprise), nullable
+- msrp_amount: decimal as string (e.g., 19.00), required
+- currency: ISO-4217 uppercase (e.g., USD, EUR), required
+- price_unit: enum [per_search, per_user_month, per_seat_month, per_org_month, per_report, per_batch, other]
+- region: enum [US, CA, EU, UK, AU, Global, Other]
+- min_commitment: string (e.g., monthly, annual, N/A)
+- included_units: integer or null
+- overage_price: decimal string or null
+- effective_date: YYYY-MM-DD (as stated by source if present; else match captured_at date)
+- source_url: URL string, required
+- source_title: string (page title at capture time)
+- archive_url: URL to a permanent archive (e.g., Wayback SavePageNow) if available
+- evidence_png: repo-relative path to PNG screenshot
+- evidence_pdf: repo-relative path to PDF print
+- evidence_hash_sha256: SHA-256 of concatenated artifact bytes (png||pdf) or of html.json when present
+- captured_at: ISO 8601 UTC timestamp
+- capture_method: enum [manual, assisted_playwright, third_party_archive]
+- tos_permits_capture: boolean (true if robots/TOS permit capture of listed page)
+- notes: free text (disclaimers, context, selector used)
+
+JSON Schema (schemas/pricing/competitor_msrps.schema.json)
+- Define types, required fields, enum constraints, formats (uri, date, date-time), and pattern for currency [A-Z]{3}.
+- Use minimum/maximum constraints where applicable (e.g., msrp_amount >= 0). Include $defs for enums and shared patterns.
+
+CLI implementation (scripts/collect_competitor_msrps.py)
+- Typer-based commands
+  - fetch: Read configs/competitors/sources.yaml and attempt assisted capture for permitted pages.
+    - For each entry: check robots.txt and TOS hints; if disallowed, skip and log.
+    - Use Playwright (Chromium) to: navigate, wait for networkidle, capture full-page screenshot (PNG) and PDF, extract page title, serialize visible DOM text into html.json.
+    - Compute sha256 over artifacts, store to evidence paths, call Archive.org SavePageNow API when allowed, and record archive_url.
+    - Parse price using CSS/XPath selectors if provided (BeautifulSoup/lxml fallback); never rely solely on parsing—operator must review.
+    - Write row to competitor_msrps.csv (append or update by id) and provenance to JSONL.
+  - add-manual: Open templates/competitor_msrps_template.csv or accept --row JSON to append a manually verified row; require evidence files and fill provenance.
+  - validate: Run schema validation (pandera or jsonschema) against competitor_msrps.csv; ensure evidence files exist on disk and hashes match.
+  - verify-evidence: Re-hash artifacts and confirm archive_url resolves (HEAD 200), warn if mismatch.
+  - reconcile: Deduplicate by id, prefer latest captured_at, and note changes in changelog.
+  - import-legacy: Ingest data/pricing/competitor_msps.csv (if present), map/rename fields to the canonical schema, compute IDs/hashes as needed, and write to competitor_msrps.csv with matching provenance JSONL; record actions in changelog and emit a validation report to docs/data_schemas/reports/competitor_msrps.json.
+
+Evidence and provenance best practices
+- Compliance-first: respect robots.txt, rate-limit (e.g., 1 req/sec, jitter), set descriptive User-Agent, and never bypass access controls. If disallowed, perform manual capture with user-initiated browser and attach evidence.
+- Immutable snapshots: store PNG and PDF; attempt SavePageNow; include both local paths and archive URL in CSV, with hashes stored in both CSV and provenance JSONL.
+- Reproducibility: keep configs/competitors/sources.yaml under version control with fields: competitor, product, plan_tier, region, url, selectors (css/xpath), permitted: true/false, notes. Seed entries must include Checkr and GoodHire.
+- Currency normalization: persist raw amounts and currency only; do not convert FX here. Downstream tasks may handle conversions.
+- Observability: log to logs/competitors/<date>.log with INFO/ERROR; include run metadata in provenance (script version, git commit).
+
+Dependencies and alignment
+- Align file paths and naming with Task 1 conventions. Follow PRD requirements in prd_sales_sheet.txt regarding competitor context and how the data will be referenced by sales collateral.
+
+Security and maintainability
+- Pin dependencies in requirements.txt (playwright, pandas, pandera, typer, beautifulsoup4, lxml, requests, python-dateutil, pydantic, jsonschema). Add playwright install step in docs.
+- Use mypy/ruff config if present; keep functions pure and unit-testable; avoid embedding credentials. For Archive.org API, use environment variable ARCHIVE_ORG_SPN_API_KEY if applicable.
+
+
+# Test Strategy:
+Environment setup
+1) python -m venv .venv && source .venv/bin/activate
+2) pip install -r requirements.txt && python -m playwright install chromium
+
+Schema and repo artifacts
+3) Confirm the following exist with correct paths and content:
+   - schemas/pricing/competitor_msrps.schema.json (open and verify required fields and enums)
+   - templates/competitor_msrps_template.csv (headers match schema)
+   - configs/competitors/sources.yaml (seed entries include Checkr and GoodHire with permitted flags and selectors)
+   - scripts/collect_competitor_msrps.py and scripts/utils/evidence.py
+   - docs/pricing/competitor_msrps.md
+
+Import existing progress and migrate to canonical
+4) If present, run: python scripts/collect_competitor_msrps.py import-legacy --src data/pricing/competitor_msps.csv --dst data/pricing/competitor_msrps.csv --provenance data/pricing/competitor_msrps_provenance.jsonl --report docs/data_schemas/reports/competitor_msrps.json
+   - Expect: canonical CSV created/updated; provenance JSONL appended; changelog updated; legacy validation report at docs/data_schemas/reports/competitor_msps.json is referenced in import notes.
+   - Verify: Checkr and GoodHire rows exist in the canonical CSV and reference evidence artifacts.
+
+Assisted/manual capture smoke test
+5) Run: python scripts/collect_competitor_msrps.py fetch --config configs/competitors/sources.yaml --out data/pricing/competitor_msrps.csv --evidence-dir data/evidence/competitors
+   - Expect: for permitted entries, PNG and PDF files created, html.json saved, archive_url populated when allowed, and rows appended to CSV with id populated.
+   - Verify: data/evidence/competitors/<competitor>/<YYYYMMDD>/ contains artifacts; the CSV evidence paths are repo-relative.
+
+Validation and evidence verification
+6) Run: python scripts/collect_competitor_msrps.py validate --csv data/pricing/competitor_msrps.csv --schema schemas/pricing/competitor_msrps.schema.json
+   - Expect: success exit code and printed summary (row count, 0 errors). If errors, they cite row numbers and field names.
+7) Run: python scripts/collect_competitor_msrps.py verify-evidence --csv data/pricing/competitor_msrps.csv
+   - Expect: all hashes recompute to the same value; archive URLs respond with HTTP 200 (or are marked N/A when saving not permitted).
+
+Manual entry workflow
+8) Copy templates/competitor_msrps_template.csv to a working file and add at least 2 rows with real or test data; capture screenshots/PDFs manually and reference them. Use add-manual to append to the canonical CSV.
+   - Expect: rows are appended, ids computed, provenance JSONL gains entries, and validate still passes.
+
+Data quality and reproducibility
+9) Run reconcile and confirm only a single row per unique id remains; changes are described in data/pricing/competitor_msrps.changelog.md.
+10) Spot check the Checkr and GoodHire rows: open evidence PNG/PDF and confirm the price, currency, and unit match the CSV exactly and that archive_url resolves.
+
+Automation hygiene
+11) Run unit tests: pytest -q tests/test_competitor_msrps_validation.py
+   - Expect: all tests pass (schema loader, id generation, hash verification, robots checks).
+
+# Subtasks:
+## 1. Migrate legacy competitor_msps.csv to canonical competitor_msrps.csv with provenance [pending]
+### Dependencies: None
+### Description: Implement and run a one-time migration from data/pricing/competitor_msps.csv to data/pricing/competitor_msrps.csv. Map/rename fields to match the schema, compute deterministic IDs, generate/append provenance JSONL, and update data/pricing/competitor_msrps.changelog.md. Do not delete the legacy file; reference it in changelog.
+### Details:
+Use the new import-legacy CLI command. Ensure paths in evidence_* fields are repo-relative. Preserve source citations and notes. Emit docs/data_schemas/reports/competitor_msrps.json on completion.
+
+## 2. Backfill and verify evidence for Checkr and GoodHire rows [pending]
+### Dependencies: None
+### Description: Ensure PNG, PDF, and html.json artifacts exist for Checkr and GoodHire pricing pages, with sha256 hashes computed, archive_url saved (if permitted), and tos_permits_capture set correctly.
+### Details:
+Store artifacts under data/evidence/competitors/<competitor>/<YYYYMMDD>/. Update provenance and CSV evidence fields accordingly. If robots/TOS disallow, document manual capture and set capture_method to manual.
+
+## 3. Update validation report to canonical path and schema [pending]
+### Dependencies: None
+### Description: Regenerate validation output and save to docs/data_schemas/reports/competitor_msrps.json. Cross-reference the legacy docs/data_schemas/reports/competitor_msps.json in docs/pricing/competitor_msrps.md.
+### Details:
+Run CLI validate and persist a machine-readable report (row-level errors, summary). Ensure schema enums and formats are enforced.
+
+## 4. Seed configs for Checkr and GoodHire in sources.yaml [pending]
+### Dependencies: None
+### Description: Add curated entries for Checkr and GoodHire pricing pages to configs/competitors/sources.yaml with selectors and permitted flags.
+### Details:
+Include competitor, product, plan_tier (if applicable), region, url, selectors (css/xpath), permitted: true/false, and notes. Validate via fetch smoke test.
+
+## 5. Add import-legacy command to CLI [pending]
+### Dependencies: None
+### Description: Extend scripts/collect_competitor_msrps.py with an import-legacy Typer command to ingest data/pricing/competitor_msps.csv and write to canonical outputs.
+### Details:
+Parameters: --src, --dst, --provenance, --report. Validate rows against schema, compute IDs, reconcile duplicates, and write a summary to stdout and changelog.
+

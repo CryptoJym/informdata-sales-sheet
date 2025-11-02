@@ -28,7 +28,7 @@ These requirements apply across every dataset used to build the InformData prici
 - `data/pricing/`: authoritative CSV/Parquet files checked into the repo.
 - `docs/data_schemas/`: human-readable documentation and YAML schema definitions.
 - `scripts/validation/`: Python utilities for schema validation and reports.
-- `exports/`: generated pricing collateral (Markdown, Gamma payloads, PDFs).
+- `exports/`: generated pricing collateral (Markdown, HTML bundles, PDFs).
 
 ## Audit & Approvals
 - Pricing changes must reference the finance/legal ticket (URL or ID) in the dataset records.

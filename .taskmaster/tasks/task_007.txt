@@ -1,0 +1,125 @@
+# Task ID: 7
+# Title: Draft InformData pricing sales collateral using computed tables and competitor insights
+# Status: done
+# Dependencies: 1, 4, 6
+# Priority: high
+# Description: Author a draft Markdown pricing sheet that merges pricing computation outputs with competitor MSRP insights, generating derived tables and a Jinja-based template to produce a cohesive sales collateral document.
+# Details:
+Scope and objectives
+- Create a first-pass, publishable Markdown draft of the InformData pricing sales collateral that uses: (a) computed pricing outputs from Task 4 and (b) validated competitor MSRPs from Task 6.
+- Produce derived data tables (CSV/JSON) for the collateral and a Jinja template to render the final Markdown draft. Do not build the full automated pipeline (that is Task 2). This task focuses on content, derived tables, and a simple render script for previewing.
+
+Inputs
+- PRD: prd_sales_sheet.txt (messaging, required sections).
+- Computed pricing output (from Task 4): outputs/pricing/recommended_prices.csv (and/or JSON) with columns including sku, rec_price, unit_cost, ai_usage_cost, overhead, target_margin, gross_margin_pct (exact names from Task 4 output; script should be configurable).
+- Competitor dataset (from Task 6): data/pricing/competitor_msrps.csv and data/pricing/competitor_msrps.provenance.jsonl plus evidence/pricing/ files.
+
+Artifacts to add
+- templates/collateral/pricing_sheet.md.j2 (Jinja template for the sales collateral).
+- scripts/generate_collateral_tables.py (merges Task 4 outputs and competitor MSRPs; computes derived tables and context JSON).
+- scripts/render_pricing_collateral.py (renders Jinja template to Markdown using derived context).
+- artifacts/pricing/tables/ (generated):
+  - sku_price_ladder.csv (sku, description, unit_cost, ai_usage_cost, overhead, rec_price, target_margin, gross_margin_pct).
+  - competitor_comparison.csv (sku, our_rec_price, competitor, competitor_price, price_diff, savings_pct, notes, provenance_ref).
+  - value_index.csv (sku, competitor, our_rec_price, competitor_price, value_index = competitor_price/our_rec_price).
+- artifacts/pricing/context.json (aggregated context for templating: summary stats, date stamps, footnotes/citations, table paths).
+- docs/sales/informdata_pricing_sheet.md (rendered draft for review).
+- Optional helper mapping if needed: data/pricing/sku_competitor_map.csv (sku, competitor, competitor_sku) to align SKUs; only create if a direct join is not possible.
+
+Implementation details
+1) Outline and content planning
+- From prd_sales_sheet.txt, define major sections in the Jinja template: Executive summary, Offering overview, Pricing and tiers (computed tables), Competitive comparison, Price/margin rationale (unit economics), Objection handling/FAQs, Call-to-action, Disclaimers and evidence.
+- Include structured placeholders/macros for reusable blocks (e.g., pricing_disclaimer, evidence_footnotes()).
+
+2) Derived tables and context generation (scripts/generate_collateral_tables.py)
+- Read recommended prices from Task 4 outputs (path via CLI args; default: outputs/pricing/recommended_prices.csv).
+- Read competitor MSRPs from data/pricing/competitor_msrps.csv and provenance JSONL.
+- Join datasets on sku (or via data/pricing/sku_competitor_map.csv if direct join ambiguous). Document unmatched rows; include them in sku_price_ladder.csv and omit from competitor tables with a reason code.
+- Compute metrics:
+  - price_diff = our_rec_price - competitor_price
+  - savings_pct = (competitor_price - our_rec_price) / competitor_price
+  - value_index = competitor_price / our_rec_price
+- Generate artifacts/pricing/tables/*.csv and artifacts/pricing/context.json including:
+  - summary: total_skus, matched_skus, median_value_index, date_generated (UTC), data_sources (file paths and git commit if available).
+  - citations: map provenance_ref -> list of evidence items (URL, archived_url, snapshot path, captured_at).
+- Validate numeric fields (non-negative prices), ensure percentage bounds (-1.0 to 10.0 to tolerate edge cases), and round for display while preserving raw values in context.
+
+3) Template authoring (templates/collateral/pricing_sheet.md.j2)
+- Render tables using context/tables; example patterns:
+  - A formatted price ladder per SKU showing costs, target margin, and recommended price.
+  - A competitor comparison table with footnote markers [^ref] linking to evidence in the Disclaimers/Evidence section.
+- Include clear copy blocks: positioning statements, benefits, assumptions (currency, date-of-capture), and a note on dynamic pricing updates.
+- Add graceful handling for missing competitor data (show N/A and note “no verified MSRP available as of {{ date }}”).
+
+4) Simple rendering script (scripts/render_pricing_collateral.py)
+- CLI args: --template templates/collateral/pricing_sheet.md.j2 --context artifacts/pricing/context.json --out docs/sales/informdata_pricing_sheet.md
+- Load Jinja2, render with context, and write the Markdown. Ensure idempotent execution so Task 2 can later wrap it.
+
+5) Style and conventions
+- Align paths and naming with Task 1 conventions. Keep scripts documented with --help. Include docstrings and type hints.
+- Do not add a PDF generator here; markdown-only output for review. Task 2 will formalize the build.
+
+Non-goals
+- Computing pricing (Task 4) and collecting competitor data (Task 6) are inputs, not reimplemented here.
+- Establishing the full CI/automation build (Task 2) is out of scope here.
+
+
+# Test Strategy:
+Prerequisites
+- Ensure Task 4 and Task 6 are complete and their outputs exist.
+- python -m venv .venv && source .venv/bin/activate
+- pip install -r requirements.txt (include pandas, jinja2, typer/tabulate or click, python-dateutil).
+
+Validation steps
+1) Input presence and schema sanity
+- Confirm files exist:
+  - outputs/pricing/recommended_prices.csv (from Task 4)
+  - data/pricing/competitor_msrps.csv and data/pricing/competitor_msrps.provenance.jsonl (from Task 6)
+- If applicable, create data/pricing/sku_competitor_map.csv and verify required columns exist.
+
+2) Generate derived tables
+- Run: python scripts/generate_collateral_tables.py \
+    --prices outputs/pricing/recommended_prices.csv \
+    --competitors data/pricing/competitor_msrps.csv \
+    --provenance data/pricing/competitor_msrps.provenance.jsonl \
+    --out-dir artifacts/pricing/tables \
+    --context-out artifacts/pricing/context.json \
+    --fail-on-unmatched 0
+- Expect: exit code 0; files created:
+  - artifacts/pricing/tables/sku_price_ladder.csv
+  - artifacts/pricing/tables/competitor_comparison.csv
+  - artifacts/pricing/tables/value_index.csv
+  - artifacts/pricing/context.json
+- Spot check row counts: sku_price_ladder rows == number of SKUs in recommended_prices.csv; competitor_comparison matched_skus <= total_skus, never > total_skus.
+- Consistency checks:
+  - For each SKU, recompute gross_margin_pct from unit_cost/overhead/rec_price and verify it equals the value from Task 4 within 0.1pp tolerance.
+  - For each competitor row, ensure provenance_ref maps to at least one evidence item in provenance JSONL.
+
+3) Render the Markdown draft
+- Run: python scripts/render_pricing_collateral.py \
+    --template templates/collateral/pricing_sheet.md.j2 \
+    --context artifacts/pricing/context.json \
+    --out docs/sales/informdata_pricing_sheet.md
+- Expect: docs/sales/informdata_pricing_sheet.md exists and includes sections: Executive summary, Pricing and tiers, Competitive comparison, Evidence/Disclaimers.
+- Validate that all Jinja placeholders are resolved (no remaining {{ ... }} or {% ... %}).
+
+4) Content and numeric QA
+- Randomly pick 3 SKUs; verify rec_price and gross_margin_pct in the Markdown match Task 4 outputs.
+- Verify competitor comparison rows show correct calculations for price_diff and savings_pct.
+- Confirm each competitor entry with a footnote [^ref] resolves to a provenance entry listing URL or archived URL.
+
+5) Lint and idempotency
+- Re-run steps 2 and 3; confirm outputs update deterministically (no duplicated rows, stable ordering by sku asc then competitor asc).
+- Optional: run simple unit tests if provided under tests/ for table computations; all pass.
+
+
+# Subtasks:
+## 1. Document collateral outputs [done]
+### Dependencies: None
+### Description: Link Markdown pricing sheet and Gamma presentation.
+### Details:
+<info added on 2025-10-30T12:36:49.540Z>
+- Published Markdown pricing sheet: docs/sales/pricing_sheet.md
+- Generated Gamma sales deck for the sales team: https://gamma.app/docs/zdlm8b8chaqwk0y
+</info added on 2025-10-30T12:36:49.540Z>
+

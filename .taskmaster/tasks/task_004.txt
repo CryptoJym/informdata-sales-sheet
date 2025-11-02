@@ -1,0 +1,133 @@
+# Task ID: 4
+# Title: Implement AI+SaaS pricing computation engine and persist outputs
+# Status: done
+# Dependencies: 1, 3
+# Priority: high
+# Description: Build a Python module and CLI that computes recommended AI+SaaS pricing per InformData SKU from validated base costs, AI usage, overheads, and target margins, and writes normalized outputs to CSV/JSON for downstream collateral.
+# Details:
+Scope and objectives
+- Compute end-to-end unit economics and recommended prices for each InformData SKU by combining: base InformData cost, AI model usage cost, SaaS overheads, and target margin policy.
+- Persist machine-readable outputs for downstream use by the pricing collateral generator and other tools.
+- Align file paths, naming, and conventions with Task 1; consume validated inputs produced by Task 3.
+
+Inputs and configuration (add to repo)
+- Input data (from Task 3):
+  - data/pricing/informdata_costs.csv (validated via schemas/pricing/informdata_costs.schema.json)
+- New assumptions and config files to add:
+  - data/pricing/usage_assumptions.csv (columns: sku, ai_calls_per_request, avg_input_tokens, avg_output_tokens)
+  - config/pricing/ai_costs.yaml (keys: model_name, input_per_1k_tokens_usd, output_per_1k_tokens_usd, per_call_fee_usd [optional])
+  - config/pricing/overheads.yaml (keys: infra_per_request_usd, support_overhead_pct_of_base, other_overhead_usd [optional])
+  - config/pricing/margins.yaml (keys: default_target_margin_pct, per_sku_overrides: { sku: pct })
+  - config/pricing/tiers.yaml [optional] (volume_breaks: list of {min_qty, discount_pct}; psychological_pricing: {enabled: true, ending: 0.99})
+- Output schemas (to be added for validation):
+  - schemas/pricing/ai_saas_pricing.schema.json (columns and constraints for computed outputs)
+
+Output artifacts
+- data/pricing/ai_saas_pricing.csv
+- data/pricing/ai_saas_pricing.json
+- Optional: data/pricing/ai_saas_pricing.parquet (for analytics)
+
+Output schema (csv/json rows)
+- sku (string)
+- base_cost_usd (number)
+- ai_cost_usd (number)
+- overhead_usd (number)
+- total_cost_usd (number)
+- target_margin_pct (number, 0-1)
+- recommended_unit_price_usd (number)
+- margin_dollars (number)
+- margin_pct (number, 0-1)
+- model_name (string)
+- notes [optional]
+- updated_at (ISO timestamp)
+- If tiers.yaml is provided, include tiered_pricing field in JSON (array of {min_qty, unit_price_usd, discount_pct}); CSV can include flattened best_unit_price_usd_at_1k, etc., or omit if not needed.
+
+Computation model
+- base_cost_usd: from data/pricing/informdata_costs.csv per sku.
+- ai_cost_usd per request:
+  - ai_tokens_cost = (avg_input_tokens/1000)*input_per_1k_tokens_usd + (avg_output_tokens/1000)*output_per_1k_tokens_usd
+  - per_call_total = ai_tokens_cost + per_call_fee_usd (default 0)
+  - ai_cost_usd = ai_calls_per_request * per_call_total
+- overhead_usd per request:
+  - overhead_usd = infra_per_request_usd + (support_overhead_pct_of_base * base_cost_usd) + other_overhead_usd (default 0)
+- total_cost_usd = base_cost_usd + ai_cost_usd + overhead_usd
+- target_margin_pct: per_sku_overrides.get(sku, default_target_margin_pct)
+- recommended_unit_price_usd:
+  - pre_round = total_cost_usd / (1 - target_margin_pct)
+  - if psychological_pricing.enabled: round up to nearest cent and set ending to configured value when >= 1.00; otherwise, round to 0.01
+- margin_dollars = recommended_unit_price_usd - total_cost_usd
+- margin_pct = margin_dollars / recommended_unit_price_usd
+- If tiers.yaml exists, apply discount_pct to recommended_unit_price_usd for each min_qty to produce tiered offers (never price below total_cost_usd; floor at total_cost_usd + $0.01)
+
+Implementation plan
+- Module: src/pricing/compute.py
+  - Functions: load_configs(), load_inputs(), compute_row(sku, base_row, assumptions, cfg), apply_psychological_pricing(price, ending), compute_tiers(price, tiers_cfg, total_cost), validate_output(df)
+  - Use pandas for data handling; ruamel.yaml or PyYAML for YAML; pandera for schema validation of outputs (align with schemas/pricing/ai_saas_pricing.schema.json)
+  - Ensure deterministic ordering by sku and stable rounding (quantize to 0.01)
+  - Emit logs with context (sku, components, totals)
+- CLI: scripts/compute_ai_saas_pricing.py (Typer-based)
+  - Arguments: --input, --assumptions, --ai-costs, --overheads, --margins, --tiers, --out-csv, --out-json, --out-parquet, --model-name override, --validate-only, --fail-on-below-margin
+  - Behavior: in validate-only mode, load and validate inputs/configs and dry-run compute with a few rows; in normal mode, compute all, validate output schema, write files
+- Schema: schemas/pricing/ai_saas_pricing.schema.json
+  - Define column types, non-negativity constraints, 0<=margin_pct<=1, recommended_unit_price_usd >= total_cost_usd + 0.01
+- Repo integration
+  - Makefile targets: make pricing-compute, make pricing-validate
+  - Document usage in AGENTS.md addendum and README snippet
+  - Ensure outputs are consumed by Task 2’s generation pipeline by referencing data/pricing/ai_saas_pricing.csv in scripts/generate_pricing_sheet.py
+
+Data quality and edge cases
+- If a sku lacks usage_assumptions, skip with error unless --allow-missing is set; list missing in exit output
+- Guardrails to avoid negative or zero recommended prices
+- Support override of target margin per sku; log when overrides are applied
+- Timezone-aware timestamps (UTC)
+
+
+# Test Strategy:
+Environment setup
+1) Create venv and install dependencies from requirements.txt (include pandas, pandera, pyyaml or ruamel.yaml, typer, pyarrow for parquet, python-dateutil).
+
+Smoke test with sample configs
+2) Seed minimal configs and assumptions:
+   - data/pricing/informdata_costs.csv: include at least 2 skus with base costs
+   - data/pricing/usage_assumptions.csv: include ai_calls_per_request, avg_input_tokens, avg_output_tokens per sku
+   - config/pricing/ai_costs.yaml: set model_name, input_per_1k_tokens_usd, output_per_1k_tokens_usd
+   - config/pricing/overheads.yaml: set infra_per_request_usd, support_overhead_pct_of_base
+   - config/pricing/margins.yaml: set default_target_margin_pct and one per_sku_overrides entry
+   - schemas/pricing/ai_saas_pricing.schema.json: present with constraints listed in Details
+
+Validation-only run
+3) Run: python scripts/compute_ai_saas_pricing.py --input data/pricing/informdata_costs.csv --assumptions data/pricing/usage_assumptions.csv --ai-costs config/pricing/ai_costs.yaml --overheads config/pricing/overheads.yaml --margins config/pricing/margins.yaml --validate-only
+   - Expect: exit code 0 and console output indicating configs and inputs validated; no output files created.
+
+Full compute run
+4) Run: python scripts/compute_ai_saas_pricing.py --input data/pricing/informdata_costs.csv --assumptions data/pricing/usage_assumptions.csv --ai-costs config/pricing/ai_costs.yaml --overheads config/pricing/overheads.yaml --margins config/pricing/margins.yaml --out-csv data/pricing/ai_saas_pricing.csv --out-json data/pricing/ai_saas_pricing.json
+   - Expect: files created at specified paths; JSON is a list of objects with required fields; CSV headers match output schema.
+
+Schema and invariants
+5) Validate outputs programmatically (pandera or JSON Schema):
+   - Columns present and correctly typed
+   - Non-negativity: base_cost_usd, ai_cost_usd, overhead_usd, total_cost_usd >= 0
+   - recommended_unit_price_usd >= total_cost_usd + 0.01
+   - 0 <= margin_pct <= 1 and recomputed margin matches within 0.005 tolerance
+   - model_name populated and consistent with config
+
+Determinism and rounding
+6) Re-run the same command; compute hashes of output files and confirm equality (no nondeterministic variation). Spot-check prices end with .99 when psychological pricing enabled.
+
+Error handling
+7) Remove a row from data/pricing/usage_assumptions.csv and re-run; expect non-zero exit with clear message listing missing sku unless --allow-missing is provided.
+
+Integration readiness
+8) Open scripts/generate_pricing_sheet.py (Task 2 scope) and confirm it can read data/pricing/ai_saas_pricing.csv without code changes or with minor documented hook. Manually join with data/pricing/informdata_costs.csv and verify sku alignment and presence of recommended_unit_price_usd column.
+
+
+# Subtasks:
+## 1. Log deliverables [done]
+### Dependencies: None
+### Description: Documented compute script and validator reports for internal pricing.
+### Details:
+<info added on 2025-10-30T12:25:12.072Z>
+- scripts/pricing/compute_internal_pricing.py generates data/pricing/internal_pricing.csv including a margin column.
+- Output validated against docs/data_schemas/reports/internal_pricing.json; schema checks pass.
+</info added on 2025-10-30T12:25:12.072Z>
+

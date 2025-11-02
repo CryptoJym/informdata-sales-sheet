@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 from pathlib import Path
 from typing import Dict
 
@@ -184,8 +185,8 @@ def build(cost_path: Path, internal_path: Path, competitor_path: Path, output_pa
     }
     essential_row["recommended_price"] = recommended_price(pd.Series(essential_row))
     essential_row["recommended_margin"] = round(essential_row["recommended_price"] - essential_total, 2)
-    essential_row["pricing_notes"] = "Bundle undercuts Checkr Basic+ while covering vendor spend and ~$0.34 Booplicity automation/hosting."
-    essential_row["cost_notes"] = "InformData SSN + NatCrim + SOR plus ~$0.34 Booplicity automation/hosting allocation."
+    essential_row["pricing_notes"] = "Bundle undercuts Checkr Basic+ while covering vendor spend and ~$0.34 Vuplicity automation/hosting."
+    essential_row["cost_notes"] = "InformData SSN + NatCrim + SOR plus ~$0.34 Vuplicity automation/hosting allocation."
     essential_row["competitor_notes"] = "Benchmarked against Checkr Basic+ MSRP; retains $26+ headroom after automation/hosting."
 
     merged = pd.concat([pd.DataFrame([essential_row]), merged], ignore_index=True, sort=False)
@@ -225,6 +226,11 @@ def build(cost_path: Path, internal_path: Path, competitor_path: Path, output_pa
     output_path.parent.mkdir(parents=True, exist_ok=True)
     merged.to_csv(output_path, index=False)
     print(f"[INFO] wrote {len(merged)} rows to {output_path}")
+
+    records = json.loads(merged.to_json(orient="records"))
+    json_output = output_path.with_suffix(".json")
+    json_output.write_text(json.dumps(records, indent=2))
+    print(f"[INFO] wrote {len(records)} rows to {json_output}")
 
 
 def main() -> None:
