@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InformData National Source Directory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f6fb;
+      --surface: #ffffff;
+      --border: #d0d7e2;
+      --text: #111827;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --accent-soft: #e0e9ff;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .page { max-width: 1320px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+    header.hero { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+    header.hero h1 { margin: 0; font-size: 2.5rem; font-weight: 700; }
+    header.hero p { margin: 0; color: var(--muted); max-width: 75ch; }
+    nav.nav { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.75rem; }
+    nav.nav a { padding: 0.45rem 0.85rem; border-radius: 0.65rem; border: 1px solid var(--border); background: var(--surface); font-size: 0.9rem; }
+    .summary-grid { display: grid; gap: 0.9rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 2rem; }
+    .summary-card { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.1rem 1.25rem; box-shadow: 0 10px 24px rgba(15,23,42,0.08); }
+    .summary-card strong { display: block; font-size: 2rem; font-weight: 700; }
+    .summary-card span { color: var(--muted); font-size: 0.9rem; }
+    .filters { background: rgba(255,255,255,0.9); border: 1px solid var(--border); border-radius: 1rem; padding: 1.1rem 1.3rem; box-shadow: 0 8px 18px rgba(15,23,42,0.08); margin-bottom: 1.5rem; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); align-items: end; }
+    label { font-size: 0.85rem; font-weight: 600; color: var(--muted); margin-bottom: 0.3rem; display: block; }
+    select, input[type='search'] { width: 100%; padding: 0.6rem 0.75rem; border-radius: 0.6rem; border: 1px solid var(--border); background: var(--surface); font-size: 0.95rem; }
+    button.action { padding: 0.65rem 1.1rem; border-radius: 0.65rem; border: none; font-weight: 600; background: var(--accent); color: #fff; cursor: pointer; justify-self: flex-start; box-shadow: 0 8px 16px rgba(37,99,235,0.20); }
+    button.action:hover { box-shadow: 0 10px 18px rgba(37,99,235,0.25); }
+    table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: 1rem; overflow: hidden; }
+    thead th { background: var(--accent-soft); padding: 0.75rem; text-align: left; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1px solid var(--border); }
+    tbody td { padding: 0.7rem; border-bottom: 1px solid var(--border); font-size: 0.95rem; vertical-align: top; }
+    tbody tr:nth-child(even) { background: rgba(37,99,235,0.05); }
+    .table-wrapper { border: 1px solid var(--border); border-radius: 1rem; box-shadow: 0 10px 24px rgba(15,23,42,0.08); overflow: hidden; }
+    .results-bar { display: flex; justify-content: space-between; align-items: center; margin: 0 0 0.8rem; color: var(--muted); font-size: 0.95rem; }
+    .note { margin-top: 0.8rem; color: var(--muted); font-size: 0.9rem; }
+    @media (max-width: 640px) {
+      header.hero h1 { font-size: 2.1rem; }
+      .filters { grid-template-columns: 1fr; }
+      .results-bar { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <h1>InformData National Source Directory</h1>
+      <p>Browse every database and repository that feeds InformData’s national criminal search. Filter by state, record type, or keyword to answer detailed coverage questions during customer conversations.</p>
+      <nav class="nav">
+        <a href="index.html">Pricing breakout</a>
+        <a href="county_fee_breakdown.html">County & court access fees</a>
+        <a href="national_scan_components.html">National scan components</a>
+        <a href="databases_coverage.html">Coverage summary</a>
+      </nav>
+    </header>
+
+    <section class="summary-grid" aria-live="polite">
+      <article class="summary-card"><strong id="statSources">--</strong><span>Total sources</span></article>
+      <article class="summary-card"><strong id="statStates">--</strong><span>States represented</span></article>
+      <article class="summary-card"><strong id="statRecords">--</strong><span>Distinct record types</span></article>
+      <article class="summary-card"><strong id="statRecent">--</strong><span>Latest refresh</span></article>
+    </section>
+
+    <section class="filters" aria-label="Filters">
+      <div>
+        <label for="stateSelect">State</label>
+        <select id="stateSelect"></select>
+      </div>
+      <div>
+        <label for="recordSelect">Record type</label>
+        <select id="recordSelect"></select>
+      </div>
+      <div>
+        <label for="searchInput">Search sources & notes</label>
+        <input id="searchInput" type="search" placeholder="Search jurisdiction, source, or notes" />
+      </div>
+      <button id="downloadCsv" class="action" type="button">Download filtered CSV</button>
+    </section>
+
+    <div class="results-bar">
+      <span id="resultCount">Loading sources…</span>
+      <span>Updated from InformData workbook (October 1, 2025)</span>
+    </div>
+
+    <div class="table-wrapper">
+      <table aria-describedby="resultCount">
+        <thead>
+          <tr>
+            <th scope="col">State</th>
+            <th scope="col">Jurisdiction</th>
+            <th scope="col">Source name</th>
+            <th scope="col">Record type</th>
+            <th scope="col">Updated</th>
+            <th scope="col">Coverage notes</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+
+    <p class="note">Tip: pair this list with the pricing breakout to explain why national database hits still require county confirmations. Use the download button for bespoke customer documentation.</p>
+  </main>
+
+  <script>
+    const DATA_URL = 'content/pricing/informdata_natcrim_sources.json';
+    const stateSelect = document.getElementById('stateSelect');
+    const recordSelect = document.getElementById('recordSelect');
+    const searchInput = document.getElementById('searchInput');
+    const tableBody = document.getElementById('tableBody');
+    const resultCount = document.getElementById('resultCount');
+    const downloadCsv = document.getElementById('downloadCsv');
+    const statSources = document.getElementById('statSources');
+    const statStates = document.getElementById('statStates');
+    const statRecords = document.getElementById('statRecords');
+    const statRecent = document.getElementById('statRecent');
+
+    let sources = [];
+    let filtered = [];
+
+    function uniqueSorted(values) {
+      return Array.from(new Set(values.filter(Boolean))).sort((a, b) => a.localeCompare(b));
+    }
+
+    function formatDate(value) {
+      if (!value) return '—';
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return '—';
+      return date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
+    function renderTable(rows) {
+      tableBody.innerHTML = '';
+      const fragment = document.createDocumentFragment();
+      rows.forEach(row => {
+        const tr = document.createElement('tr');
+        const cells = [row.state, row.jurisdiction || '—', row.source_name, row.record_type, formatDate(row.updated_at), row.coverage_notes || '—'];
+        cells.forEach(text => {
+          const td = document.createElement('td');
+          td.textContent = text;
+          fragment.appendChild(td);
+        });
+        // Because we appended cells directly, need to assign to tr properly
+      });
+    }
+
+    function renderRows(rows) {
+      tableBody.innerHTML = '';
+      const fragment = document.createDocumentFragment();
+      rows.forEach(row => {
+        const tr = document.createElement('tr');
+        const cells = [
+          row.state,
+          row.jurisdiction || '—',
+          row.source_name,
+          row.record_type,
+          formatDate(row.updated_at),
+          row.coverage_notes || '—'
+        ];
+        cells.forEach(text => {
+          const td = document.createElement('td');
+          td.textContent = text;
+          tr.appendChild(td);
+        });
+        fragment.appendChild(tr);
+      });
+      tableBody.appendChild(fragment);
+      resultCount.textContent = `${rows.length.toLocaleString()} sources match filters`;
+    }
+
+    function applyFilters() {
+      const state = stateSelect.value;
+      const record = recordSelect.value;
+      const term = searchInput.value.trim().toLowerCase();
+      filtered = sources.filter(row => {
+        const matchesState = !state || row.state === state;
+        const matchesRecord = !record || row.record_type === record;
+        const matchesSearch = !term || [row.jurisdiction, row.source_name, row.coverage_notes]
+          .filter(Boolean)
+          .some(field => field.toLowerCase().includes(term));
+        return matchesState && matchesRecord && matchesSearch;
+      });
+      renderRows(filtered);
+    }
+
+    function populateFilters() {
+      const states = [''].concat(uniqueSorted(sources.map(row => row.state)));
+      const records = [''].concat(uniqueSorted(sources.map(row => row.record_type)));
+      stateSelect.innerHTML = states.map(value => `<option value="${value}">${value ? value : 'All states'}</option>`).join('');
+      recordSelect.innerHTML = records.map(value => `<option value="${value}">${value ? value : 'All record types'}</option>`).join('');
+    }
+
+    function updateSummaries() {
+      statSources.textContent = sources.length.toLocaleString();
+      statStates.textContent = uniqueSorted(sources.map(row => row.state)).length.toLocaleString();
+      statRecords.textContent = uniqueSorted(sources.map(row => row.record_type)).length.toLocaleString();
+      const freshest = sources
+        .map(row => row.updated_at)
+        .filter(Boolean)
+        .sort((a, b) => new Date(b) - new Date(a))[0];
+      statRecent.textContent = formatDate(freshest);
+    }
+
+    function downloadFilteredCsv() {
+      const rows = filtered.length ? filtered : sources;
+      const header = ['state', 'jurisdiction', 'source_name', 'record_type', 'updated_at', 'coverage_notes'];
+      const csv = [header.join(',')]
+        .concat(rows.map(row => header.map(key => {
+          const value = row[key] ?? '';
+          const escaped = String(value).replace(/"/g, '""');
+          return `"${escaped}"`;
+        }).join(',')))
+        .join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'informdata_natcrim_sources.csv';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    fetch(DATA_URL)
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to load source dataset');
+        return res.json();
+      })
+      .then(data => {
+        sources = data.map(row => ({
+          state: row.state,
+          jurisdiction: row.jurisdiction || '',
+          source_name: row.source_name,
+          record_type: row.record_type,
+          coverage_notes: row.coverage_notes || '',
+          updated_at: row.updated_at,
+        }));
+        populateFilters();
+        updateSummaries();
+        applyFilters();
+      })
+      .catch(err => {
+        console.error(err);
+        resultCount.textContent = 'Unable to load sources. Refresh or contact Sales Ops.';
+      });
+
+    stateSelect.addEventListener('change', applyFilters);
+    recordSelect.addEventListener('change', applyFilters);
+    searchInput.addEventListener('input', applyFilters);
+    downloadCsv.addEventListener('click', downloadFilteredCsv);
+  </script>
+</body>
+</html>

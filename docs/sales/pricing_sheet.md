@@ -11,6 +11,8 @@
 - **Competitor MSRP** – public pricing gathered from Checkr and GoodHire as of October 30, 2025.citeturn0search0turn1search1
 
 ## Quick callouts
+
+- Use the **Source directory page** (`informdata_source_list.html`) when prospects ask which databases feed the national search.
 - **County civil searches** now reflect ~$0.20 AI review + $0.25 platform overhead, putting Vuplicity total cost at **$4.70** versus Checkr’s $40 MSRP—ample room for margin while covering automation.
 - **MVR & CDLIS pulls** carry ~$0.28 of internal cost (automation + platform) on top of InformData’s $2.95, yielding an all-in Vuplicity cost of **$3.23** against Checkr’s $9.50 / $14.50 price points.citeturn0search0
 - **Essential Check bundle** totals **$2.24** (vendor + ~$0.34 internal) while Checkr Basic+ remains $29.99; we can still quote $28.49 and keep ~$26 contribution after automation/hosting.citeturn0search0

@@ -256,3 +256,75 @@ Follow-ups to align with plan and acceptance criteria
 - Add/verify build sync tasks (e.g., npm run sync-data:fees and coverage data sync) and ensure client-only rendering (no serverless).
 </info added on 2025-11-02T23:21:18.146Z>
 
+## 3. Expose full InformData source list [done]
+### Dependencies: None
+### Description: Transform the InformData National Criminal workbook into a detailed dataset and publish an interactive page for Sales to browse coverage by state, jurisdiction, and record type.
+### Details:
+<info added on 2025-11-03T00:59:50.539Z>
+Scope and deliverables
+- Normalize the InformData National Criminal workbook into a JSON dataset with fields: state, jurisdiction, source_name, record_type, coverage_notes, updated_at (ISO 8601).
+- Build an interactive HTML page for browsing/filtering/searching/exporting the dataset.
+- Wire the page into site navigation, update docs, commit, and redeploy to Vercel.
+
+Implementation plan
+1) ETL and validation
+- Input: data/sources/informdata_natcrim.xlsx
+- Script: scripts/parse_natcrim_sources.py (Typer CLI: parse, validate)
+- Output: data/coverage/informdata_natcrim.json
+- Schema: schemas/coverage/informdata_natcrim.schema.json (types, required fields, enums where applicable)
+- Parsing rules:
+  - Trim whitespace; normalize state to USPS codes; unify jurisdiction casing; coalesce merged cells; preserve multiline coverage_notes.
+  - Map workbook date fields to updated_at in UTC ISO 8601 (YYYY-MM-DD).
+  - Drop empty rows; dedupe exact duplicates (state+jurisdiction+source_name+record_type).
+- Makefile targets:
+  - make natcrim-parse (generate JSON)
+  - make natcrim-validate (run schema validation)
+- Tests: add tests/test_natcrim_parser.py with sample fixtures covering edge cases (merged cells, missing dates, multiline notes).
+
+2) Interactive page
+- Files: site/coverage/informdata_sources.html, site/coverage/informdata_sources.css, site/coverage/informdata_sources.js
+- Data load: fetch /data/coverage/informdata_natcrim.json (static asset served on Vercel)
+- UX requirements:
+  - Filters: multi-select State; text search on jurisdiction and source_name; checkboxes for record_type; free-text search across coverage_notes.
+  - Results table: sortable columns, sticky header, client-side pagination; row count badge.
+  - Export: buttons to download current filtered view as CSV and JSON; include applied filters in export filename.
+  - Shareable links: encode current filters in URL query params for deep-linking.
+  - Accessibility: keyboard navigation, ARIA labels, color-contrast compliant.
+  - Performance: initial render ≤ 200ms on 5k rows; filter interaction ≤ 100ms.
+- QA: verify empty-state and no-match messaging; confirm date rendering and sorting use updated_at.
+
+3) Navigation, docs, deploy
+- Navigation: add “InformData Sources” under Data/Coverage in the site nav; slug /coverage/informdata-sources.
+- Docs: docs/coverage/informdata_sources.md (dataset fields, source of truth, update cadence, how to regenerate, known limitations).
+- CI/build: ensure data/coverage/informdata_natcrim.json is included in build artifacts; add predeploy check to run make natcrim-validate.
+- Commit/PR: include dataset, schema, parser, page, nav, and docs; obtain review from Sales Ops.
+- Deploy: merge to main and confirm Vercel production deploy; smoke test page load, filters, exports.
+
+Acceptance criteria
+- JSON dataset generated at data/coverage/informdata_natcrim.json, passes schema validation, and includes the six specified fields for all rows.
+- Interactive page renders the full dataset, supports the listed filters/search, and exports filtered results to CSV/JSON accurately.
+- Deep links reproduce the same filtered view when shared.
+- New nav entry is present and routes to the page in production.
+- Documentation explains regeneration and field definitions; links from docs to the live page.
+- Vercel production deployment is successful and verified by Sales in a quick UAT.
+</info added on 2025-11-03T00:59:50.539Z>
+<info added on 2025-11-03T01:11:28.008Z>
+Progress
+- Implemented scripts/parse_natcrim_sources.py and generated content/pricing/informdata_natcrim_sources.json (2415 records).
+- Built site/coverage/informdata_source_list.html with State and Record Type filters plus keyword search; CSV export enabled.
+- Wired the page into site navigation and updated docs/data inventory to reference the dataset.
+
+Follow-ups to align with plan and acceptance criteria
+- Relocate and canonicalize dataset at data/coverage/informdata_natcrim.json; confirm fields state, jurisdiction, source_name, record_type, coverage_notes, updated_at (UTC ISO 8601). Update the page’s data fetch to /data/coverage/informdata_natcrim.json.
+- Add schemas/coverage/informdata_natcrim.schema.json and a validate command in scripts/parse_natcrim_sources.py; add Makefile targets natcrim-parse and natcrim-validate; wire predeploy to run make natcrim-validate.
+- Align page artifacts to site/coverage/informdata_sources.html (+ .css/.js) and adjust imports/links; set slug to /coverage/informdata-sources and nav label “InformData Sources” under Data/Coverage.
+- Implement deep-linking by encoding current filters in URL query params.
+- Add JSON export alongside CSV and include applied filters in export filenames.
+- Complete table UX: sortable columns, sticky header, client-side pagination, and a row count badge; ensure free-text search covers coverage_notes.
+- Accessibility: keyboard navigation and ARIA labels; verify color contrast compliance.
+- Performance: meet ≤200ms initial render on 5k rows and ≤100ms filter interactions.
+- Tests: add tests/test_natcrim_parser.py with fixtures for merged cells, missing dates, multiline notes; verify dedupe and updated_at mapping.
+- Docs: create docs/coverage/informdata_sources.md with field definitions, source of truth, regeneration steps, update cadence, limitations; link to the live page.
+- Deploy: include dataset in build artifacts; open PR for schema/parser/page/nav/docs; verify Vercel production deploy, smoke test deep links/exports/date sorting, and obtain Sales UAT.
+</info added on 2025-11-03T01:11:28.008Z>
+
