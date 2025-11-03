@@ -342,15 +342,17 @@ await webhooks.webhooksPost({
         </section>
 
         <section id="long-waits">
-          <h2>8. Long waits: what happens while counties work</h2>
-          <p>County clerks and manual researchers sometimes need hours or even a few days to finish a search. The API never holds your request open. Instead, it works like this:</p>
+          <h2>8. Long waits: webhooks are enough (no always-on service)</h2>
+          <p>County searches can take days, but you do <strong>not</strong> need to keep a request open or pay for a long-running container just to wait. InformData uses a simple async pattern:</p>
           <ol>
-            <li><strong>Order queued:</strong> Once you call <code>ordersPost</code>, InformData accepts the job and returns right away with the order ID.</li>
-            <li><strong>Background processing:</strong> InformData staff and bots work the county task offline. No action is needed on your side while you wait.</li>
-            <li><strong>Status pings:</strong> Each real change (In Progress → Need Info → Complete) triggers a webhook. We store every webhook in our queue so nothing is lost.</li>
-            <li><strong>Health checks:</strong> Run a daily reconciliation (for example, compare <code>ordersIdGet</code> to your stored state) and alert if an order sits in the same status longer than your SLA.</li>
+            <li><strong>Order queued:</strong> You call <code>ordersPost</code>. InformData stores the job and responds right away with <code>order.id</code>. The HTTP call is done.</li>
+            <li><strong>Background work:</strong> InformData researchers handle the slow court lookup. Nothing is happening on your server during this time.</li>
+            <li><strong>Webhook ping:</strong> When the status changes (Need Info, Complete, etc.), InformData sends an HTTPS POST to the webhook URL you gave them. You store the payload, respond with HTTP 200, and move on.</li>
+            <li><strong>Retries included:</strong> If your endpoint is down, InformData retries for about 24 hours. Because you save events with an idempotency key (<code>order.id</code> + event type + document sequence), duplicates are safe.</li>
+            <li><strong>Optional health check:</strong> Run a daily job (for example on Vercel Cron, GitHub Actions, or any scheduler) that calls <code>ordersIdGet</code> for any order still “In Progress.” Alert a human if it crosses your SLA.</li>
           </ol>
-          <p>If you need to nudge a slow order, you can send a gentle follow-up to your InformData rep or open a support ticket, but the technical side is already built to wait safely.</p>
+          <p>A static hosting platform like <strong>Vercel</strong> is enough. You can host the webhook endpoint as a serverless function (average run time &lt;1s), queue events in your datastore, and schedule the health check with Vercel Cron. There is no need for a permanent process or a service like Railway whose only purpose would be to “hold the connection.”</p>
+          <p>If a county is still slow after your alert window, follow up with your InformData support contact; the integration itself is already resilient.</p>
         </section>
 
         <section id="testing">
