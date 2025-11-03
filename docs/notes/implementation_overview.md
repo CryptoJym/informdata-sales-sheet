@@ -9,6 +9,7 @@
 
 - Developer integration playbook: `integrations/informdata_sdk_webhooks.html` (browser-ready)
 - Webhook replay demo CLI: `integrations/webhook-replay-demo/`
+- Statewide coverage explorer: `statewide_vs_county.html` (backed by `content/pricing/informdata_statewide_coverage.csv`)
 1. **Automation scripts** (`scripts/pricing/`)
    - `extract_informdata_costs.py` normalizes the finance workbook export into `data/pricing/informdata_costs.csv`.
    - `compute_internal_pricing.py` adds the $1 margin and writes `data/pricing/internal_pricing.csv`.

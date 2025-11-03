@@ -9,6 +9,7 @@
 | What you need | Where to click |
 | --- | --- |
 | Full SDK + webhook playbook | https://informdata-sales-sheet-hntldjo2w-vuplicity.vercel.app/integrations/informdata_sdk_webhooks.html |
+| Statewide vs. county coverage | https://informdata-sales-sheet-hntldjo2w-vuplicity.vercel.app/statewide_vs_county.html |
 | Source coverage directory | https://informdata-sales-sheet-hntldjo2w-vuplicity.vercel.app/informdata_source_list.html |
 | County & court fee explorer | https://informdata-sales-sheet-hntldjo2w-vuplicity.vercel.app/county_fee_breakdown.html |
 | National scan components | https://informdata-sales-sheet-hntldjo2w-vuplicity.vercel.app/national_scan_components.html |
@@ -134,7 +135,8 @@ python scripts/pricing/build_pricing_table.py \
 ## Supporting resources
 
 - GitHub repo: https://github.com/CryptoJym/informdata-sales-sheet  
-- Pricing breakout (HTML index): https://informdata-sales-sheet-hntldjo2w-vuplicity.vercel.app  
-- County & court access dashboard: https://informdata-sales-sheet-hntldjo2w-vuplicity.vercel.app/county_fee_breakdown.html  
-- National scan components reference: https://informdata-sales-sheet-hntldjo2w-vuplicity.vercel.app/national_scan_components.html  
+- Pricing breakout (HTML index): https://informdata-sales-sheet-hntldjo2w-vuplicity.vercel.app
+- County & court access dashboard: https://informdata-sales-sheet-hntldjo2w-vuplicity.vercel.app/county_fee_breakdown.html
+- National scan components reference: https://informdata-sales-sheet-hntldjo2w-vuplicity.vercel.app/national_scan_components.html
 - SDK + webhook playbook: https://informdata-sales-sheet-hntldjo2w-vuplicity.vercel.app/integrations/informdata_sdk_webhooks.html
+- Statewide vs. county coverage: https://informdata-sales-sheet-hntldjo2w-vuplicity.vercel.app/statewide_vs_county.html

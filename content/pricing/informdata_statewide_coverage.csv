@@ -1,0 +1,52 @@
+state_code,state_name,statewide_recommended,recommended_method,repository,source_cost_usd,courts_sourced,details,performed_by
+US-AL,Alabama,Yes,Use Statewide Source,Alabama State Judicial Information System,1.65,Circuit & District,All inclusive,Auto FE
+US-AK,Alaska,Yes,Use Statewide Source,Alaska Court System,0.0,Superior & District,All inclusive,Auto FE
+US-AZ,Arizona,No,Use County Court Researchers,Arizona Judicial Branch Supreme Court,0.0,Superior & Justice,All inclusive,Conventional
+US-AR,Arkansas,No,Use County Court Researchers,Arkansas Circuit Court,0.0,Circuit & District by Request,Missing cases and charges. Missing dispositions.,Conventional
+US-CA,California,No,Not Available,Not Available,,,Not Available,Not Available
+US-CO,Colorado,Yes,Use Statewide Source,Colorado Judicial Department Court Records Search,2.4,County & District,All inclusive,Auto FE
+US-CT,Connecticut,Yes,Use Statewide Source,State of Connecticut Judicial Branch,0.0,Geographical Area & District,All inclusive,Auto FE
+US-DE,Delaware,Yes,Use Statewide Source,Delaware County Courthouses Search,0.0,Common Pleas & Superior,All inclusive,Conventional
+US-DC,District of Columbia,Yes,Use Statewide Source,District of Columbia Superior Court,0.0,Superior  ,All inclusive ,Conventional
+US-FL,Florida,No,Use County Court Researchers,Florida Department of Law Enforcement (FDLE),25.0,Circuit & County,State Police. Electronic files are transmitted daily. Missing cases and charges. Arrest information only. Missing dispositions.,Conventional
+US-GA,Georgia,No,Use County Court Researchers,Georgia Crime Information Center (GCIC) Alto PD,1.0,Superior & State,State Police. Fax orders are submitted and retrieved daily. Arrest information only. Missing dispositions.,Conventional
+US-HI,Hawaii,Yes,Use Statewide Source,Hawaii State Judiciary,3.5,Circuit & District,All inclusive,Auto + + Conventional
+US-ID,Idaho,Yes,Use Statewide Source,Idaho State Judiciary Supreme Court Data Repository,2.0,District & Magistrate,All inclusive,Auto FE
+US-IL,Illinois,No,Use County Court Researchers,Illinois State Police,10.0,Circuit,State Police. All inclusive. May require fingerprints,Conventional
+US-IN,Indiana,Yes,Use Statewide Source,Statewide Repository,0.0,"Superior, Circuit, City & Town",All inclusive,Conventional
+US-IA,Iowa,Yes,Use Statewide Source,Iowa Court Information System,0.0,District,All inclusive,Auto FE
+US-KS,Kansas,No,Use County Court Researchers,Kansas Bureau of Investigation,30.0,District & Municipal,"Only shows convictions, and will only provide arrest records that are less than a year old with no final disposition",Conventional
+US-KY,Kentucky,No,Use County Court Researchers,Kentucky DOC,0.0,Circuit & District,,Auto FE
+US-LA,Louisiana,No,Not Available,Not Available,,,Not Available,Not Available
+US-ME,Maine,No,Use County Court Researchers,Maine State Police,31.0,Superior & District,State Police. Arrest information only. Missing some dispositions.,Conventional
+US-MD,Maryland,Yes,Use Statewide Source,Maryland Administrative Office of the Courts,0.0,Circuit & District,All inclusive,Auto FE
+US-MA,Massachusetts,No,Not Available,Not Available,,,Not Available,Not Available
+US-MI,Michigan,No,Use County Court Researchers,Michigan State Police,10.0,Circuit & District,State Police. ,Auto + + Conventional
+US-MN,Minnesota,No,Use County Court Researchers,Minnesota Department of Public Safety,0.0,District,All inclusive,Conventional
+US-MS,Mississippi,No,Use County Court Researchers,Mississippi Administrative Office of the Courts,10.0,Circuit & Justice,,Conventional
+US-MO,Missouri,Yes,Use Statewide Source,Missouri Administrative Office of the Courts,0.5,Circuit,,Auto FE
+US-MT,Montana,No,Use County Court Researchers,Montana Department of Justice,20.0,DOJ,Missing sentencing.,Conventional
+US-NE,Nebraska,Yes,Use Statewide Source,Nebraska Judiciary Branch,0.5,District & County,All inclusive,Auto FE
+US-NV,Nevada,No,Not Available,Not Available,,,Not Available,Not Available
+US-NH,New Hampshire,No,Not Available,Not Available,,,Not Available,Not Available
+US-NJ,New Jersey,Yes,Use Statewide Source,New Jersey Administrative Office of the Courts,5.0,Superior,All inclusive,Auto FE
+US-NM,New Mexico,Yes,Use Statewide Source,New Mexico Administrative Office of the Courts,0.0,"District, Magistrate, & Metropolitan",All inclusive,Auto FE
+US-NY,New York,Yes,Use Statewide Source,New York Administrative Office of the Courts,98.0,Supreme & County,All inclusive,Auto FE
+US-NC,North Carolina,Yes,Use Statewide Source,North Carolina Administrative Office of the Courts,2.5,Superior & District,All inclusive,Auto FE
+US-ND,North Dakota,Yes,Use Statewide Source,North Dakota Administrative Office of the Courts,0.0,District,All inclusive,Auto FE
+US-OH,Ohio,No,Use County Court Researchers,Database,0.0,Common Pleas & Municipal,Multiple Proprietary and Public Databases and court maintained websites,Conventional
+US-OK,Oklahoma,Yes,Use Statewide Source,Oklahoma State Courts Network,0.0,District,All inclusive,Auto FE
+US-OR,Oregon,Yes,Use Statewide Source,Oregon Judicial Information Network,0.0,Circuit,All inclusive,Auto FE
+US-PA,Pennsylvania,Yes,Use Statewide Source,Pennsylvania Administrative Office of the Courts,0.0,Common Pleas & Magistrate,All inclusive,Auto FE
+US-RI,Rhode Island,Yes,Use Statewide Source,Rhode Island Judiciary,0.0,Superior & District,All inclusive,Auto FE
+US-SC,South Carolina,No,Use County Court Researchers,South Carolina Law Enforcement Division,26.0,"General Sessions, Magistate, & Municipal",State Police. Arrest information only. Missing dispositions.,Conventional
+US-SD,South Dakota,Yes,Use Statewide Source,South Dakota Unified Judicial System,20.0,Circuit,All inclusive A search of Circuit (Upper) and Magistrate (Lower) Courts. Orders are submitted via email and results are returned via email.,Conventional
+US-TN,Tennessee,No,Use County Court Researchers,Tennessee Bureau of Investigation,29.0,General Sessions & Criminal,State Police. Arrest information only. Missing dispositions.,Conventional
+US-TX,Texas,No,Use County Court Researchers,Texas Department of Public Safety,3.35,District & County,Missing cases and charges. Arrest information only. Missing dispositions.,Auto FE
+US-UT,Utah,Yes,Use Statewide Source,Utah State Court Exchange System,0.2,District & Justice,All inclusive,Auto FE
+US-VT,Vermont,Yes,Use Statewide Source,Vermont Department of Public Safety,30.0,Superior,All inclusive,Conventional
+US-VA,Virginia,No,Use County Court Researchers,Virginia State Police,0.0,Circuit & General District,State Police. No Record results are returned with 24 hours. Record results are returned via mail and take up to 5 business days. Requires notarized SP-167 form. Arrest information only. Missing dispositions.,In-house
+US-WA,Washington,Yes,Use Statewide Source,Washington Administrative Office of the Courts,5.0,"Superior, District, & Municipal",All inclusive,Auto FE
+US-WV,West Virginia,No,Not Available,Not Available,,,Not Available,Not Available
+US-WI,Wisconsin,Yes,Use Statewide Source,Wisconsin Court System Circuit Court Access,0.0,Circuit,All inclusive,Auto FE
+US-WY,Wyoming,No,Not Available,Not Available,,,Not Available,Not Available

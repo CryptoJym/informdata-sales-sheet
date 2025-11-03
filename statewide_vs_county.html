@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InformData Statewide Coverage vs. County Requirements</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f6fb;
+      --surface: #ffffff;
+      --border: #d0d7e2;
+      --text: #1f2937;
+      --muted: #667085;
+      --accent: #2563eb;
+      --accent-soft: #e0e9ff;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    header.top { background: #0f172a; color: #fff; padding: 0.85rem 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
+    header.top a { color: #fff; font-weight: 600; font-size: 0.95rem; }
+    main { max-width: 1200px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; display: grid; gap: 2rem; }
+    h1 { margin: 0; font-size: 2.5rem; letter-spacing: -0.02em; }
+    p.lead { font-size: 1.05rem; color: var(--muted); max-width: 70ch; }
+    section { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.6rem 1.8rem; box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08); display: grid; gap: 1rem; }
+    .stat-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .stat-card { background: var(--accent-soft); border-radius: 0.9rem; padding: 1.1rem 1.25rem; border: 1px solid rgba(37, 99, 235, 0.18); box-shadow: inset 0 1px 0 rgba(255,255,255,0.35); }
+    .stat-card strong { display: block; font-size: 2rem; font-weight: 700; }
+    .stat-card span { font-size: 0.9rem; color: var(--muted); }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    button.chip { border: 1px solid var(--border); background: var(--surface); color: var(--muted); padding: 0.45rem 0.85rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.15s ease; }
+    button.chip.active { background: var(--accent); color: #fff; border-color: var(--accent); box-shadow: 0 10px 20px rgba(37, 99, 235, 0.22); }
+    table { width: 100%; border-collapse: collapse; border: 1px solid var(--border); border-radius: 1rem; overflow: hidden; }
+    thead th { background: var(--accent-soft); padding: 0.75rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; text-align: left; }
+    tbody td { padding: 0.7rem; border-bottom: 1px solid var(--border); vertical-align: top; font-size: 0.95rem; }
+    tbody tr:nth-child(even) { background: rgba(37, 99, 235, 0.05); }
+    .list-columns { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .callout { background: rgba(15, 23, 42, 0.06); border-left: 4px solid var(--accent); padding: 0.9rem 1.1rem; border-radius: 0.4rem; color: var(--muted); }
+    @media (max-width: 640px) {
+      main { padding: 2rem 1rem 3.5rem; }
+      h1 { font-size: 2.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <a href="index.html">Pricing Home</a>
+    <a href="docs/sales/pricing_sheet.md">Pricing Sheet (MD)</a>
+    <a href="integrations/informdata_sdk_webhooks.html">SDK &amp; Webhooks</a>
+    <a href="informdata_source_list.html">Source Directory</a>
+    <a href="county_fee_breakdown.html">County Fees</a>
+    <a href="national_scan_components.html">National Scan</a>
+  </header>
+  <main>
+    <section>
+      <h1>Where a Statewide Search Covers County Requirements</h1>
+      <p class="lead">This page summarizes InformData’s statewide criminal sources and shows which states let you run a single statewide search to satisfy a county-level background check. Data comes from the <strong>SW Sources 8.24</strong> workbook supplied by InformData.</p>
+      <div class="stat-grid" id="stats"></div>
+      <div class="callout">
+        <strong>How to read this:</strong>
+        <ul>
+          <li><em>Statewide wins</em> &mdash; run the statewide repository and you get full county coverage.</li>
+          <li><em>County researchers</em> &mdash; you still need county-level court runners or online portals.</li>
+          <li><em>Not available</em> &mdash; no statewide or county automation is available through InformData.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Quick lists</h2>
+      <div class="list-columns" id="list-statewide"></div>
+      <div class="list-columns" id="list-county"></div>
+      <div class="list-columns" id="list-na"></div>
+    </section>
+
+    <section>
+      <h2>Dive deeper</h2>
+      <div class="chip-row">
+        <button class="chip active" data-filter="all">All states</button>
+        <button class="chip" data-filter="statewide">Statewide covers counties</button>
+        <button class="chip" data-filter="county">County researchers required</button>
+        <button class="chip" data-filter="na">Not available</button>
+      </div>
+      <table id="coverage-table" aria-live="polite">
+        <thead>
+          <tr>
+            <th>State</th>
+            <th>Statewide covers county?</th>
+            <th>Recommended method</th>
+            <th>Repository</th>
+            <th>Courts sourced</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Operational notes</h2>
+      <ul>
+        <li><strong>Pricing impact:</strong> For statewide wins, sales can price county checks as state pulls (see pricing sheet). For county-required states, keep the higher court-runner rate.</li>
+        <li><strong>Automation:</strong> States flagged “Auto FE” or “Auto CCH” run through InformData’s automated footprint, reducing turnaround time.</li>
+        <li><strong>Exceptions:</strong> Indiana, Missouri, Pennsylvania, and Wisconsin appear twice in the source data. InformData explicitly recommends the statewide repository for county coverage in these states, so we treat them as statewide wins.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    async function loadCoverage() {
+      const response = await fetch('content/pricing/informdata_statewide_coverage.csv');
+      const text = await response.text();
+      const lines = text.trim().split(/\r?\n/);
+      const headers = lines.shift().split(',');
+      const records = lines.map(line => {
+        const values = [];
+        let current = '';
+        let inQuotes = false;
+        for (let i = 0; i < line.length; i++) {
+          const char = line[i];
+          if (char === '"') {
+            inQuotes = !inQuotes;
+          } else if (char === ',' && !inQuotes) {
+            values.push(current.trim());
+            current = '';
+          } else {
+            current += char;
+          }
+        }
+        values.push(current.trim());
+        const obj = {};
+        headers.forEach((key, idx) => {
+          obj[key] = values[idx] ? values[idx].replace(/^"|"$/g, '') : '';
+        });
+        return obj;
+      });
+
+      const categories = {
+        statewide: records.filter(r => r.statewide_recommended === 'Yes'),
+        county: records.filter(r => r.recommended_method === 'Use County Court Researchers'),
+        na: records.filter(r => r.recommended_method === 'Not Available')
+      };
+      const totals = {
+        statewide: categories.statewide.length,
+        county: categories.county.length,
+        na: categories.na.length,
+        all: records.length
+      };
+
+      const statsEl = document.getElementById('stats');
+      statsEl.innerHTML = `
+        <div class="stat-card"><strong>${totals.statewide}</strong><span>States where a statewide search satisfies county coverage.</span></div>
+        <div class="stat-card"><strong>${totals.county}</strong><span>States still requiring county court researchers or portals.</span></div>
+        <div class="stat-card"><strong>${totals.na}</strong><span>States InformData cannot cover (statewide or county).</span></div>
+      `;
+
+      function buildList(targetId, items, heading) {
+        if (!items.length) return;
+        const container = document.getElementById(targetId);
+        const title = document.createElement('div');
+        title.innerHTML = `<strong>${heading}</strong>`;
+        const list = document.createElement('ul');
+        list.style.margin = '0.4rem 0 0';
+        list.style.paddingLeft = '1.1rem';
+        items.forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = item.state_name;
+          list.appendChild(li);
+        });
+        container.appendChild(title);
+        container.appendChild(list);
+      }
+
+      buildList('list-statewide', categories.statewide, 'Statewide covers county requirements');
+      buildList('list-county', categories.county, 'County researchers still required');
+      buildList('list-na', categories.na, 'Not currently serviced by InformData');
+
+      const tbody = document.querySelector('#coverage-table tbody');
+      function renderTable(data) {
+        tbody.innerHTML = data.map(row => `
+          <tr>
+            <td>${row.state_name}</td>
+            <td>${row.statewide_recommended === 'Yes' ? 'Yes' : 'No'}</td>
+            <td>${row.recommended_method}</td>
+            <td>${row.repository}</td>
+            <td>${row.courts_sourced || ''}</td>
+            <td>${row.details || ''}</td>
+          </tr>
+        `).join('');
+      }
+
+      renderTable(records);
+
+      document.querySelectorAll('button.chip').forEach(button => {
+        button.addEventListener('click', () => {
+          document.querySelectorAll('button.chip').forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          const filter = button.dataset.filter;
+          if (filter === 'statewide') renderTable(categories.statewide);
+          else if (filter === 'county') renderTable(categories.county);
+          else if (filter === 'na') renderTable(categories.na);
+          else renderTable(records);
+        });
+      });
+    }
+
+    loadCoverage();
+  </script>
+</body>
+</html>
