@@ -6,6 +6,9 @@
 - Package everything into shareable collateral (Markdown brief + HTML dashboards) that plugs straight into sales workflows.
 
 ## What was delivered
+
+- Developer integration playbook: `integrations/informdata_sdk_webhooks.md`
+- Developer playbook: `docs/developer/informdata_webhooks.md`
 1. **Automation scripts** (`scripts/pricing/`)
    - `extract_informdata_costs.py` normalizes the finance workbook export into `data/pricing/informdata_costs.csv`.
    - `compute_internal_pricing.py` adds the $1 margin and writes `data/pricing/internal_pricing.csv`.
