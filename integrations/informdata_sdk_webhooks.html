@@ -141,7 +141,7 @@
         </section>
 
         <section id="environments">
-          <h2>2. Choose the right environment</h2>
+          <h2>2. API setup: choose the right environment</h2>
           <p>Use sandbox while you test. Use production for real customers. Tokens last only a short time, so refresh them often.</p>
           <table>
             <thead>
@@ -184,7 +184,7 @@
         </section>
 
         <section id="sdk">
-          <h2>3. Install the SDK</h2>
+          <h2>3. API setup: install the SDK</h2>
           <p>Run this command from your project folder:</p>
           <div class="codeblock">
             <pre><code>npm install ./typescript-sdk-prod-v0.9.2.tar</code></pre>
@@ -216,7 +216,7 @@ export function makeClients(baseUrl: string, tokenProvider: () =&gt; Promise&lt;
         </section>
 
         <section id="order">
-          <h2>4. Send your first order</h2>
+          <h2>4. API call: send your first order</h2>
           <p>Use the samples under <code>informdata-api-docs/Requests</code> to build the payload. Here is a short example:</p>
           <div class="codeblock">
             <pre><code class="language-json">{
@@ -250,7 +250,7 @@ const orderId = response.order?.id;
         </section>
 
         <section id="webhooks">
-          <h2>5. Listen to webhooks</h2>
+          <h2>5. Webhook basics: listen for events</h2>
           <p>Subscribe once per environment. Send new payloads to your queue and answer with HTTP 200 in under a second.</p>
           <div class="codeblock">
             <pre><code class="language-ts">const { webhooks } = makeClients(SANDBOX_URL, getToken);
@@ -305,7 +305,7 @@ await webhooks.webhooksPost({
         </section>
 
         <section id="flow">
-          <h2>6. Keep many orders in order</h2>
+          <h2>6. Webhook flow: keep many orders in order</h2>
           <p>Webhooks can arrive in any order. Follow these simple guard rails:</p>
           <ol>
             <li><strong>Save first, work later.</strong> Drop every payload into a durable queue and store a copy in S3 or GCS.</li>
@@ -316,7 +316,7 @@ await webhooks.webhooksPost({
         </section>
 
         <section id="need-info">
-          <h2>7. Handle Need Info and documents</h2>
+          <h2>7. Webhook actions: handle Need Info and documents</h2>
           <p>When InformData asks for something, reply with a patch. Here is a simple pattern:</p>
           <div class="codeblock">
             <pre><code class="language-ts">await orders.ordersIdPatch({
@@ -341,8 +341,20 @@ await webhooks.webhooksPost({
           <p>Recurring monitoring (MedEx, Booking, Risk Monitoring) can be stopped with <code>orders.ordersIdRecurringDelete</code>. Always log the next scheduled date so billing stays in sync.</p>
         </section>
 
+        <section id="long-waits">
+          <h2>8. Long waits: what happens while counties work</h2>
+          <p>County clerks and manual researchers sometimes need hours or even a few days to finish a search. The API never holds your request open. Instead, it works like this:</p>
+          <ol>
+            <li><strong>Order queued:</strong> Once you call <code>ordersPost</code>, InformData accepts the job and returns right away with the order ID.</li>
+            <li><strong>Background processing:</strong> InformData staff and bots work the county task offline. No action is needed on your side while you wait.</li>
+            <li><strong>Status pings:</strong> Each real change (In Progress → Need Info → Complete) triggers a webhook. We store every webhook in our queue so nothing is lost.</li>
+            <li><strong>Health checks:</strong> Run a daily reconciliation (for example, compare <code>ordersIdGet</code> to your stored state) and alert if an order sits in the same status longer than your SLA.</li>
+          </ol>
+          <p>If you need to nudge a slow order, you can send a gentle follow-up to your InformData rep or open a support ticket, but the technical side is already built to wait safely.</p>
+        </section>
+
         <section id="testing">
-          <h2>8. Test and replay</h2>
+          <h2>9. Test and replay</h2>
           <p>Use sandbox every day. Send one sample order in the morning and make sure it completes.</p>
           <p>Need to replay real events? Use the small CLI at <code>integrations/webhook-replay-demo/</code>.</p>
           <div class="codeblock">
@@ -354,7 +366,7 @@ pnpm ts-node src/replay.ts --input samples/criminal.ndjson --target http://local
         </section>
 
         <section id="errors">
-          <h2>9. If something goes wrong</h2>
+          <h2>10. If something goes wrong</h2>
           <table>
             <thead>
               <tr>
@@ -394,7 +406,7 @@ pnpm ts-node src/replay.ts --input samples/criminal.ndjson --target http://local
         </section>
 
         <section id="resources">
-          <h2>10. Helpful links</h2>
+          <h2>11. Helpful links</h2>
           <ul>
             <li>Markdown version of this guide: <code>informdata-sales-sheet/integrations/informdata_sdk_webhooks.md</code></li>
             <li>Official request and response samples: <code>informdata-api-docs/Requests</code> and <code>/Responses</code></li>
@@ -413,15 +425,16 @@ pnpm ts-node src/replay.ts --input samples/criminal.ndjson --target http://local
         <h2>On this page</h2>
         <ul>
           <li><a href="#map">1. Map of this page</a></li>
-          <li><a href="#environments">2. Choose the right environment</a></li>
-          <li><a href="#sdk">3. Install the SDK</a></li>
-          <li><a href="#order">4. Send your first order</a></li>
-          <li><a href="#webhooks">5. Listen to webhooks</a></li>
-          <li><a href="#flow">6. Keep many orders in order</a></li>
-          <li><a href="#need-info">7. Handle Need Info</a></li>
-          <li><a href="#testing">8. Test and replay</a></li>
-          <li><a href="#errors">9. If something goes wrong</a></li>
-          <li><a href="#resources">10. Helpful links</a></li>
+          <li><a href="#environments">2. API setup: environment</a></li>
+          <li><a href="#sdk">3. API setup: SDK install</a></li>
+          <li><a href="#order">4. API call: first order</a></li>
+          <li><a href="#webhooks">5. Webhook basics</a></li>
+          <li><a href="#flow">6. Webhook flow</a></li>
+          <li><a href="#need-info">7. Webhook actions</a></li>
+          <li><a href="#long-waits">8. Long waits explained</a></li>
+          <li><a href="#testing">9. Test and replay</a></li>
+          <li><a href="#errors">10. Troubleshooting</a></li>
+          <li><a href="#resources">11. Helpful links</a></li>
         </ul>
       </nav>
     </div>
