@@ -3,158 +3,177 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vuplicity National Scan Components</title>
+  <title>InformData National Criminal Repository Coverage (Oct 3, 2025)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #f7f8fc;
+      color-scheme: light;
+      --bg: #f5f6fb;
       --surface: #ffffff;
-      --border: #d4dae5;
-      --text: #111827;
-      --muted: #6b7280;
+      --border: #d0d7e2;
+      --text: #1f2937;
+      --muted: #667085;
       --accent: #2563eb;
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --accent-soft: #e0e9ff;
     }
-    body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.6; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    .page { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
-    h1 { margin-bottom: 0.75rem; font-size: 2.35rem; }
-    .lead { color: var(--muted); max-width: 70ch; margin-bottom: 1.5rem; }
-    .nav { margin-bottom: 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
-    .nav a { padding: 0.45rem 0.85rem; border: 1px solid var(--border); border-radius: 0.65rem; background: var(--surface); font-size: 0.9rem; }
-    .component { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem 1.4rem; box-shadow: 0 10px 24px rgba(15, 23, 42, 0.1); margin-bottom: 1.2rem; }
-    .component h2 { margin: 0 0 0.4rem; font-size: 1.45rem; }
-    .component-desc { color: var(--muted); margin: 0 0 1rem; }
-    .component-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-    .component-grid h3 { margin: 0 0 0.35rem; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
-    .component-grid p { margin: 0; }
+    header.top { background: #0f172a; color: #fff; padding: 0.85rem 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
+    header.top a { color: #fff; font-weight: 600; font-size: 0.95rem; }
+    main { max-width: 1200px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; display: grid; gap: 2rem; }
+    h1 { margin: 0; font-size: 2.5rem; letter-spacing: -0.02em; }
+    p.lead { font-size: 1.05rem; color: var(--muted); max-width: 70ch; }
+    section { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.6rem 1.8rem; box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08); display: grid; gap: 1rem; }
+    .stat-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .stat-card { background: var(--accent-soft); border-radius: 0.9rem; padding: 1.1rem 1.25rem; border: 1px solid rgba(37, 99, 235, 0.18); box-shadow: inset 0 1px 0 rgba(255,255,255,0.35); }
+    .stat-card strong { display: block; font-size: 2rem; font-weight: 700; }
+    .stat-card span { font-size: 0.9rem; color: var(--muted); }
+    .list-columns { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .list-card { background: rgba(15, 23, 42, 0.05); border-radius: 0.75rem; padding: 0.9rem 1rem; border: 1px solid rgba(208, 215, 226, 0.6); }
+    .list-card h3 { margin: 0 0 0.35rem; font-size: 1rem; }
+    .list-card ul { margin: 0; padding-left: 1.1rem; color: var(--muted); }
+    table { width: 100%; border-collapse: collapse; border: 1px solid var(--border); border-radius: 1rem; overflow: hidden; }
+    thead th { background: var(--accent-soft); padding: 0.75rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; text-align: left; }
+    tbody td { padding: 0.7rem; border-bottom: 1px solid var(--border); vertical-align: top; font-size: 0.95rem; }
+    tbody tr:nth-child(even) { background: rgba(37, 99, 235, 0.05); }
+    .chart-container { position: relative; height: 360px; }
+    @media (max-width: 640px) {
+      main { padding: 2rem 1rem 3.5rem; }
+      h1 { font-size: 2.1rem; }
+    }
   </style>
 </head>
 <body>
-  <main class="page">
-    <header>
-      <h1>National Scan Components</h1>
-      <p class="lead">Every Essential Check leverages the components below to surface alias identities, nationwide criminal records, and mandated watchlist alerts. This breakdown shows what InformData bills Vuplicity versus the marginal automation and platform lift we add for adjudication-ready output. Updated October 31, 2025.</p>
-      <nav class="nav">
-        <a href="index.html">Pricing breakout</a>
-        <a href="county_fee_breakdown.html">County & court access fees</a>
-        <a href="databases_coverage.html">Database coverage</a>
-        <a href="informdata_source_list.html">Source directory</a>
-      </nav>
-    </header>
-    
-    <article class="component">
-      <header>
-        <h2>SSN Trace</h2>
-        <p class="component-desc">Validates Social Security number format, flags issuance anomalies, and returns alias names/addresses used for downstream court routing.</p>
-      </header>
-      <div class="component-grid">
-        <div>
-          <h3>InformData input</h3>
-          <p>SSN Trace (vendor cost $0.25)</p>
-        </div>
-        <div>
-          <h3>Vuplicity automation & platform</h3>
-          <p>~$0.03 automation (identity normalization), ~$0.25 platform orchestration</p>
-        </div>
-        <div>
-          <h3>Notes</h3>
-          <p>Used on every Essential Check; feeds alias expansion for national and county searches.</p>
-        </div>
-      </div>
-    </article>
-    
+  <header class="top">
+    <a href="index.html">Pricing Home</a>
+    <a href="docs/sales/pricing_sheet.md">Pricing Sheet (MD)</a>
+    <a href="integrations/informdata_sdk_webhooks.html">SDK &amp; Webhooks</a>
+    <a href="statewide_vs_county.html">Statewide vs. County Coverage</a>
+    <a href="informdata_source_list.html">Source Directory</a>
+    <a href="county_fee_breakdown.html">County Fees</a>
+  </header>
+  <main>
+    <section>
+      <h1>National Criminal Repository Coverage</h1>
+      <p class="lead">Latest dataset received <strong>October 3, 2025</strong>, detailing every database included in InformData’s national criminal search (NatCrim). Use this to back up the “1B+ records” claim and to confirm state-by-state breadth.</p>
+      <div class="stat-grid" id="stats"></div>
+    </section>
 
-    <article class="component">
-      <header>
-        <h2>National Criminal Database</h2>
-        <p class="component-desc">Aggregated arrest/conviction data from statewide repositories, incarceration records, and proprietary sources.</p>
-      </header>
-      <div class="component-grid">
-        <div>
-          <h3>InformData input</h3>
-          <p>NAT Criminal (vendor cost $0.85)</p>
-        </div>
-        <div>
-          <h3>Vuplicity automation & platform</h3>
-          <p>~$0.03 automation for hit triage + matching, ~$0.25 platform</p>
-        </div>
-        <div>
-          <h3>Notes</h3>
-          <p>Pointer search—Vuplicity triggers county confirmations before adjudication.</p>
-        </div>
+    <section>
+      <h2>State totals (top performers)</h2>
+      <div class="chart-container">
+        <canvas id="stateChart" aria-label="State record totals"></canvas>
       </div>
-    </article>
-    
+    </section>
 
-    <article class="component">
-      <header>
-        <h2>Sex Offender Registry</h2>
-        <p class="component-desc">Consolidated federal and state sex offender registries covering all 50 states, D.C., territories, and tribal lands.</p>
-      </header>
-      <div class="component-grid">
-        <div>
-          <h3>InformData input</h3>
-          <p>SOR+ (vendor cost $0.80)</p>
-        </div>
-        <div>
-          <h3>Vuplicity automation & platform</h3>
-          <p>~$0.03 automation, ~$0.25 platform</p>
-        </div>
-        <div>
-          <h3>Notes</h3>
-          <p>Included in Essential Check; standalone for regulated childcare, education, healthcare clients.</p>
-        </div>
-      </div>
-    </article>
-    
-
-    <article class="component">
-      <header>
-        <h2>Terrorist & Sanctions Watchlists</h2>
-        <p class="component-desc">OFAC, FBI Terrorist Screening Center, Interpol, and global watchlists integrated into the national package.</p>
-      </header>
-      <div class="component-grid">
-        <div>
-          <h3>InformData input</h3>
-          <p>Included inside NatCrim bundle</p>
-        </div>
-        <div>
-          <h3>Vuplicity automation & platform</h3>
-          <p>~$0.03 automation, ~$0.25 platform</p>
-        </div>
-        <div>
-          <h3>Notes</h3>
-          <p>Flagged hits escalate to compliance for manual review before adverse action.</p>
-        </div>
-      </div>
-    </article>
-    
-
-    <article class="component">
-      <header>
-        <h2>County Court Confirmations</h2>
-        <p class="component-desc">Automated county pulls triggered when national search yields hits needing verification.</p>
-      </header>
-      <div class="component-grid">
-        <div>
-          <h3>InformData input</h3>
-          <p>County court fees (varies by jurisdiction)</p>
-        </div>
-        <div>
-          <h3>Vuplicity automation & platform</h3>
-          <p>~$0.20 automation (document ingest) + ~$0.25 platform per county</p>
-        </div>
-        <div>
-          <h3>Notes</h3>
-          <p>Fee schedule detailed on the County & Court Access page.</p>
-        </div>
-      </div>
-    </article>
-    
+    <section>
+      <h2>Sample sources by state</h2>
+      <p>Scroll or filter to find specific states or record types. dataset: <code>content/pricing/informdata_natcrim_sources_2025-10-03.csv</code></p>
+      <table id="source-table">
+        <thead>
+          <tr>
+            <th>State</th>
+            <th>Record type</th>
+            <th>Source name</th>
+            <th>Coverage level</th>
+            <th>Last refresh</th>
+            <th>Record count</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
   </main>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script>
+    async function loadData() {
+      const [stateTotalsResp, sourceResp] = await Promise.all([
+        fetch('content/pricing/informdata_natcrim_state_totals_2025-10-03.csv'),
+        fetch('content/pricing/informdata_natcrim_sources_2025-10-03.csv')
+      ]);
+      const stateTotalsText = await stateTotalsResp.text();
+      const sourceText = await sourceResp.text();
+
+      function parseCSV(text) {
+        const lines = text.trim().split(/\r?\n/);
+        const headers = lines.shift().split(',');
+        return lines.map(line => {
+          const values = [];
+          let current = '';
+          let inQuotes = false;
+          for (let i = 0; i < line.length; i++) {
+            const char = line[i];
+            if (char === '"') {
+              inQuotes = !inQuotes;
+            } else if (char === ',' && !inQuotes) {
+              values.push(current.trim());
+              current = '';
+            } else {
+              current += char;
+            }
+          }
+          values.push(current.trim());
+          const obj = {};
+          headers.forEach((key, idx) => {
+            obj[key] = values[idx] ? values[idx].replace(/^"|"$/g, '') : '';
+          });
+          return obj;
+        });
+      }
+
+      const stateTotals = parseCSV(stateTotalsText).filter(row => row.State);
+      const sources = parseCSV(sourceText).filter(row => row.State);
+
+      const overallRecords = sources.reduce((sum, row) => sum + (Number(row['Record Count']) || 0), 0);
+      const totalSources = sources.length;
+      const statesCovered = new Set(sources.map(row => row.State)).size;
+
+      const statsEl = document.getElementById('stats');
+      statsEl.innerHTML = `
+        <div class="stat-card"><strong>${(overallRecords / 1_000_000_000).toFixed(2)}B</strong><span>Total records indexed in the NatCrim repository.</span></div>
+        <div class="stat-card"><strong>${totalSources.toLocaleString()}</strong><span>Individual databases feeding the repository.</span></div>
+        <div class="stat-card"><strong>${statesCovered}</strong><span>States and territories represented in the feed.</span></div>
+      `;
+
+      stateTotals.sort((a, b) => Number(b['Total Records']) - Number(a['Total Records']));
+      const topStates = stateTotals.slice(0, 15);
+      const ctx = document.getElementById('stateChart');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: topStates.map(row => row.State),
+          datasets: [{
+            label: 'Total Records',
+            data: topStates.map(row => Number(row['Total Records'])),
+            backgroundColor: 'rgba(37, 99, 235, 0.65)'
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: { beginAtZero: true, ticks: { callback: value => value.toLocaleString() } }
+          }
+        }
+      });
+
+      const tbody = document.querySelector('#source-table tbody');
+      tbody.innerHTML = sources.slice(0, 500).map(row => `
+        <tr>
+          <td>${row.State}</td>
+          <td>${row['Record Type']}</td>
+          <td>${row['Source Name']}</td>
+          <td>${row['Coverage Level']}</td>
+          <td>${row['Last Refresh']}</td>
+          <td>${Number(row['Record Count']).toLocaleString()}</td>
+        </tr>
+      `).join('');
+    }
+
+    loadData();
+  </script>
 </body>
 </html>
