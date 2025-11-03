@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InformData Connect SDK &amp; Webhook Playbook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f7fb;
+      --surface: #ffffff;
+      --surface-alt: #eef1f8;
+      --border: #d7deeb;
+      --border-strong: #b7c2d8;
+      --text: #1f2937;
+      --muted: #667085;
+      --accent: #2563eb;
+      --accent-soft: #e0e9ff;
+      --warning: #b45309;
+      --success: #047857;
+      --danger: #b91c1c;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.65; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code, pre { font-family: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 0.95rem; }
+    .page { max-width: 1280px; margin: 0 auto; padding: 2.75rem 1.5rem 4rem; display: grid; gap: 2.5rem; }
+    header.hero { display: flex; flex-direction: column; gap: 1.25rem; }
+    header.hero h1 { margin: 0; font-size: 2.9rem; font-weight: 700; letter-spacing: -0.02em; }
+    header.hero p.lead { margin: 0; color: var(--muted); max-width: 75ch; font-size: 1.1rem; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .btn { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.65rem 1.1rem; border-radius: 0.75rem; border: 1px solid transparent; font-weight: 600; cursor: pointer; transition: transform 0.15s ease, box-shadow 0.2s ease; }
+    .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 10px 24px rgba(37, 99, 235, 0.22); }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 26px rgba(37, 99, 235, 0.28); }
+    .btn-outline { background: var(--surface); color: var(--accent); border: 1px solid var(--border); }
+    .btn-outline:hover { background: var(--accent-soft); }
+    .callout { background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(37, 99, 235, 0.02)); border: 1px solid rgba(37, 99, 235, 0.18); border-radius: 1.1rem; padding: 1.15rem 1.35rem; max-width: 88ch; color: var(--muted); }
+    .callout strong { color: var(--text); }
+    .layout { display: grid; gap: 2rem; grid-template-columns: minmax(0, 1fr) minmax(0, 300px); align-items: start; }
+    nav.toc { position: sticky; top: 1.25rem; background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.2rem 1.4rem; box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08); }
+    nav.toc h2 { margin: 0 0 0.75rem; font-size: 1rem; letter-spacing: 0.04em; color: var(--muted); text-transform: uppercase; }
+    nav.toc ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.45rem; }
+    nav.toc a { color: var(--text); font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 0.4rem; }
+    nav.toc a span { color: var(--muted); font-size: 0.83rem; font-weight: 500; }
+    section { background: var(--surface); border-radius: 1.15rem; border: 1px solid var(--border); padding: 1.55rem 1.8rem 1.75rem; box-shadow: 0 12px 26px rgba(15, 23, 42, 0.08); display: grid; gap: 1.1rem; }
+    section h2 { margin: 0; font-size: 1.8rem; font-weight: 700; letter-spacing: -0.01em; }
+    section p { margin: 0; }
+    section ul, section ol { margin: 0.35rem 0 0.35rem 1.25rem; }
+    .grid { display: grid; gap: 1rem; }
+    .grid.two { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .grid.three { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .stat-card, .card { border: 1px solid var(--border); border-radius: 1rem; padding: 1.1rem 1.2rem; background: var(--surface-alt); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6); }
+    .stat-card strong { display: block; font-size: 1.65rem; font-weight: 700; }
+    .badge { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.25rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+    .badge-accent { background: rgba(37, 99, 235, 0.12); color: var(--accent); }
+    .badge-success { background: rgba(4, 120, 87, 0.12); color: var(--success); }
+    .badge-warning { background: rgba(180, 83, 9, 0.12); color: var(--warning); }
+    .badge-danger { background: rgba(185, 28, 28, 0.12); color: var(--danger); }
+    .codeblock { background: #111827; color: #e5e7eb; border-radius: 0.9rem; padding: 1rem 1.1rem; overflow-x: auto; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05); }
+    .codeblock pre { margin: 0; }
+    .timeline { display: grid; gap: 1rem; }
+    .timeline-step { background: var(--surface-alt); border: 1px solid var(--border); border-radius: 0.9rem; padding: 1rem 1.1rem; display: grid; gap: 0.4rem; position: relative; }
+    .timeline-step::before { content: attr(data-step); position: absolute; top: -0.8rem; left: 1rem; background: var(--accent); color: #fff; border-radius: 999px; padding: 0.25rem 0.65rem; font-weight: 600; font-size: 0.8rem; letter-spacing: 0.05em; box-shadow: 0 6px 14px rgba(37, 99, 235, 0.28); }
+    table { width: 100%; border-collapse: collapse; background: var(--surface-alt); border-radius: 0.85rem; overflow: hidden; box-shadow: inset 0 1px 0 rgba(255,255,255,0.6); }
+    thead th { background: rgba(37, 99, 235, 0.12); color: var(--text); text-align: left; padding: 0.65rem 0.9rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--border); }
+    tbody td { padding: 0.6rem 0.9rem; border-bottom: 1px solid var(--border); font-size: 0.95rem; vertical-align: top; }
+    tbody tr:last-child td { border-bottom: none; }
+    .pill-list { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.4rem 0 0; }
+    .pill { background: rgba(15, 23, 42, 0.08); color: var(--text); padding: 0.25rem 0.55rem; border-radius: 999px; font-size: 0.78rem; font-weight: 600; }
+    .note { background: rgba(244, 114, 182, 0.12); border: 1px solid rgba(236, 72, 153, 0.18); border-radius: 0.9rem; padding: 0.85rem 1rem; color: #9d174d; font-weight: 500; }
+    footer { color: var(--muted); font-size: 0.9rem; }
+    @media (max-width: 1024px) {
+      .layout { grid-template-columns: 1fr; }
+      nav.toc { position: static; }
+    }
+    @media (max-width: 640px) {
+      .page { padding: 2.2rem 1rem 3.5rem; }
+      header.hero h1 { font-size: 2.2rem; }
+      .btn { width: 100%; justify-content: center; }
+      section { padding: 1.3rem 1.2rem 1.4rem; }
+      .timeline-step::before { left: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="badge badge-accent">InformData Connect</div>
+      <h1>SDK + Webhook Playbook for Multi-Order Fulfillment</h1>
+      <p class="lead">Everything engineering needs to deploy the TypeScript SDK (v0.9.2), authenticate with InformData’s Connect API, and orchestrate the multi-webhook workflow that powers order fulfillment, document uploads, and recurring monitoring at production scale.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="../index.html">← Back to pricing command center</a>
+        <a class="btn btn-outline" href="../docs/notes/implementation_overview.md">Implementation overview (Markdown)</a>
+        <a class="btn btn-outline" href="informdata_sdk_webhooks.md">Original Markdown (reference)</a>
+      </div>
+      <div class="callout">
+        <strong>This playbook covers:</strong>
+        <ul>
+          <li>Environment + JWT setup, SDK bootstrap, and retry strategy.</li>
+          <li>End-to-end multi-order orchestration with FIFO partitioning and Need Info gating.</li>
+          <li>Webhook catalogue, payload schema, and replay tooling for verification.</li>
+          <li>Operational guardrails: validation, monitoring, and error remediation.</li>
+        </ul>
+        <p>Use it to brief new engineers, wire up end-to-end tests, or answer Sales/RevOps integration questions in seconds.</p>
+      </div>
+    </header>
+
+    <div class="layout">
+      <div class="content">
+        <section id="overview">
+          <h2>Quick architecture snapshot</h2>
+          <p>The InformData integration is intentionally asynchronous. Orders queue on InformData’s side, and the authoritative state flows back through webhooks. Our system must accept multi-event bursts (order status, Need Info, call logs, jurisdiction requirement changes) while preserving order-level sequencing. The diagram below is the reference implementation we deployed.</p>
+          <div class="grid three">
+            <div class="stat-card">
+              <strong>3</strong>
+              <span>days to bootstrap a new environment with the SDK + webhooks.</span>
+            </div>
+            <div class="stat-card">
+              <strong>5</strong>
+              <span>core webhook event types that drive fulfillment.</span>
+            </div>
+            <div class="stat-card">
+              <strong>&lt; 200ms</strong>
+              <span>target acknowledgement latency for each webhook delivery.</span>
+            </div>
+          </div>
+          <div class="timeline">
+            <div class="timeline-step" data-step="1">
+              <strong>Ingress &amp; Auth</strong>
+              <p>JWT provider issues per-environment tokens. The SDK is bootstrapped with `createConfiguration`, and outbound orders are posted via `OrdersApi.ordersPost`.</p>
+            </div>
+            <div class="timeline-step" data-step="2">
+              <strong>Queue &amp; Partition</strong>
+              <p>Every webhook delivery writes to a durable queue (SQS or Pub/Sub) with the payload persisted in cold storage (S3/GCS). Workers partition by <code>order.id</code> to keep events ordered.</p>
+            </div>
+            <div class="timeline-step" data-step="3">
+              <strong>State Machine</strong>
+              <p>A state engine tracks status/substatus transitions, Need Info locks, document sequence numbers, and recurring monitoring enrolments. Commands (patches, document uploads, cancels) emit through the same SDK instance.</p>
+            </div>
+            <div class="timeline-step" data-step="4">
+              <strong>Observers &amp; SLAs</strong>
+              <p>Verification jobs reconcile webhook events with the source of truth (`ordersIdGet`), raise alerts for stalled orders (&gt;24h without progress), and produce customer-facing transcripts.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="environments">
+          <h2>Environments &amp; authentication</h2>
+          <p>InformData issues JWTs per customer and environment. Tokens are short-lived (typically 15&nbsp;minutes) and must be refreshed via your credential vault or the InformData OAuth partner portal. All endpoints live under HTTPS.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Environment</th>
+                <th>Base URL</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Sandbox</strong></td>
+                <td><code>https://sandbox.api.sjvassoc.com/clients/</code></td>
+                <td>Rate limited to ~5k requests / 5&nbsp;min per IP. Use for replay demos and regression tests.</td>
+              </tr>
+              <tr>
+                <td><strong>Production</strong></td>
+                <td><code>https://api.sjvassoc.com/clients/</code></td>
+                <td>All customer traffic. Keep webhook endpoints on dedicated subdomains with WAF/allowlists.</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="grid two">
+            <div class="card">
+              <div class="badge badge-success">Prerequisites</div>
+              <ul>
+                <li>Installed SDK tarball (`typescript-sdk-prod-v0.9.2.tar`) or published npm package.</li>
+                <li>Token broker (AWS Secrets Manager, Doppler, or Vault) to surface fresh JWTs.</li>
+                <li>Queue + storage layer (SQS/SNS + DynamoDB, Pub/Sub + BigQuery, etc.).</li>
+              </ul>
+            </div>
+            <div class="card">
+              <div class="badge badge-warning">Security callouts</div>
+              <ul>
+                <li>Webhook origin is not signed — enforce IP allowlists or an additional shared-secret header.</li>
+                <li>Rotate JWT fetch secrets quarterly and alert on <code>401</code>/<code>403</code> bursts.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="sdk-bootstrap">
+          <h2>Bootstrap the TypeScript SDK</h2>
+          <p>Wrap SDK creation in a module that injects the current token. The snippet below is the production starter we deploy in both sandbox and production.</p>
+          <div class="codeblock">
+            <pre><code class="language-ts">import {
+  createConfiguration,
+  configureAuthMethods,
+  OrdersApi,
+  WebhooksApi,
+  MonitoringApi,
+} from '@informdata/connect-client';
+
+export interface InformDataClients {
+  orders: OrdersApi;
+  webhooks: WebhooksApi;
+  monitoring: MonitoringApi;
+}
+
+export function getInformDataClients(baseUrl: string, tokenProvider: () =&gt; Promise&lt;string&gt;): InformDataClients {
+  const configuration = createConfiguration({
+    baseServer: { url: baseUrl, description: 'InformData Connect' },
+    authMethods: configureAuthMethods({
+      'JWT-Authentication': { tokenProvider },
+    }),
+  });
+
+  return {
+    orders: new OrdersApi(configuration),
+    webhooks: new WebhooksApi(configuration),
+    monitoring: new MonitoringApi(configuration),
+  };
+}
+</code></pre>
+          </div>
+          <p>Add a circuit breaker around every SDK call:</p>
+          <ul>
+            <li>Retry <code>5xx</code> and <code>429</code> with capped exponential backoff (1s → 2s → 4s → 8s, max five attempts).</li>
+            <li>Surface <code>400</code> validation errors directly in the queue dead-letter topic for triage.</li>
+            <li>Wrap <code>ordersIdGet</code> with caching to avoid hammering the API when reconciling documents.</li>
+          </ul>
+        </section>
+
+        <section id="ordering-flow">
+          <h2>Order submission &amp; multi-order flow</h2>
+          <p>An order can change states multiple times and generate additional documents long after submission. Persist every state change so downstream systems (billing, customer notifications) stay in sync.</p>
+          <div class="grid two">
+            <div class="card">
+              <strong>Order POST contract</strong>
+              <p>Use the JSON templates under <code>/informdata-api-docs/Requests</code> as the authoritative schema. They already include jurisdiction, product, and subject permutations.</p>
+              <div class="codeblock">
+                <pre><code class="language-ts">const { orders } = getInformDataClients(SANDBOX_URL, fetchToken);
+const request = buildCriminalOrder(payload); // map UI/request form -&gt; SDK
+
+const response = await retry(async () =&gt; orders.ordersPost({
+  orderRequest: request,
+}));
+
+await orderRepository.recordSubmission({
+  id: response.order?.id!,
+  clientOrderId: request.order?.clientOrderId!,
+  submittedAt: new Date(),
+});</code></pre>
+              </div>
+            </div>
+            <div class="card">
+              <strong>Multi-order orchestration</strong>
+              <ol>
+                <li>When webhooks arrive, enqueue them with a composite key (`order.id` + `eventType`).</li>
+                <li>FIFO worker dequeues events for a single order, normalises timestamps, and updates the state chart.</li>
+                <li>Downstream processors (billing, customer email, dashboards) subscribe to the enriched state stream.</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <section id="webhooks">
+          <h2>Webhook catalogue &amp; payload anatomy</h2>
+          <p>InformData currently emits four core webhook event types (plus sandbox-only diagnostics). Event bodies mirror <code>ordersIdGet</code> responses.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Event</th>
+                <th>When it fires</th>
+                <th>Primary fields</th>
+                <th>Multi-order implications</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>ORDER_STATUS_CHANGE</code></td>
+                <td>Status/substatus transitions (e.g., <code>PENDING/IN_PROGRESS → COMPLETE/RECORD</code>).</td>
+                <td><code>order.status</code>, <code>order.substatus</code>, <code>order.activity[]</code>, <code>order.cases[]</code>.</td>
+                <td>Advance the fulfillment state machine and notify customers when completed.</td>
+              </tr>
+              <tr>
+                <td><code>NEED_INFO</code></td>
+                <td>InformData pauses the order pending clarification, documents, or authorisation.</td>
+                <td><code>order.activity</code> (reason), <code>order.documents[]</code> (requested forms).</td>
+                <td>Suspend automation for the order. Create a CSR task and resume only after patching.</td>
+              </tr>
+              <tr>
+                <td><code>CALL_LOG_ADDED</code></td>
+                <td>A manual note or researcher log is attached to the order.</td>
+                <td><code>order.activity[*].note</code>, <code>addedDate</code>, optional <code>userName</code>.</td>
+                <td>Fetch latest order to capture attachments referenced in the log. No state change.</td>
+              </tr>
+              <tr>
+                <td><code>JX_REQUIREMENT_CHANGE</code></td>
+                <td>Jurisdiction requirements (fees, forms) changed mid-search.</td>
+                <td><code>order.jurisdiction</code>, <code>order.pricing</code>, <code>order.activity</code>.</td>
+                <td>Evaluate whether existing orders need manual intervention or new pricing approval.</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="note">
+            InformData currently retries webhooks with exponential backoff for up to 24 hours. If your endpoint returns a non-2xx status, expect duplicates. Always dedupe using <code>order.id</code> and event metadata.
+          </div>
+        </section>
+
+        <section id="queue-design">
+          <h2>Scaling the multi-order queue</h2>
+          <p>When dozens of webhooks arrive in parallel, we partition by order and sequence by activity timestamp to maintain state consistency.</p>
+          <div class="grid two">
+            <div class="card">
+              <strong>Queue design checklist</strong>
+              <ul>
+                <li><strong>Ingress topic:</strong> SNS/SQS FIFO or Pub/Sub with ordering key.</li>
+                <li><strong>Partition key:</strong> <code>order.id</code>.</li>
+                <li><strong>Idempotency:</strong> Hash of <code>order.id</code> + <code>eventType</code> + <code>documents[].sequenceNumber</code>.</li>
+                <li><strong>Dead-letter:</strong> 10 failed attempts → send to DLQ with payload snapshot.</li>
+                <li><strong>Storage:</strong> archive every payload in S3/GCS for 30 days.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <strong>Sequencing algorithm</strong>
+              <ol>
+                <li>Sort <code>order.activity</code> by <code>addedDate</code> (ISO string) ascending.</li>
+                <li>Within identical timestamps, prefer arrival order.</li>
+                <li>When documents have <code>sequenceNumber</code>, ensure they are appended in order and deduped.</li>
+                <li>Emit deterministic change events (<code>OrderProgressed</code>, <code>NeedInfoRaised</code>, <code>DocumentReceived</code>).</li>
+              </ol>
+            </div>
+          </div>
+          <div class="codeblock">
+            <pre><code class="language-ts">for await (const event of orderQueue.consume({ groupId: payload.order.id })) {
+  const snapshot = await orderRepository.getOrCreate(payload.order.id);
+  const applied = applyWebhook(snapshot, payload);
+
+  await orderRepository.upsert(applied);
+  await projections.emitOrderTimeline(applied);
+}</code></pre>
+          </div>
+        </section>
+
+        <section id="actions">
+          <h2>Resolving Need Info, documents, and recurring monitors</h2>
+          <p>Follow the flows below to unblock orders and manage long-running monitoring products.</p>
+          <div class="grid two">
+            <div class="card">
+              <strong>Need Info resolution</strong>
+              <div class="codeblock">
+                <pre><code class="language-ts">await orders.ordersIdPatch({
+  id: orderId,
+  orderPatchRequest: {
+    note: 'Uploaded driver authorisation',
+    supplementalDocuments: [
+      {
+        documentName: 'DriverAuthorisation.pdf',
+        documentType: 'LETTER_OF_AUTHORIZATION',
+        contentBase64: await encodeFile('loa.pdf'),
+      },
+    ],
+  },
+});</code></pre>
+              </div>
+              <p>After the patch, expect an <code>ORDER_STATUS_CHANGE</code> webhook confirming the order resumed.</p>
+            </div>
+            <div class="card">
+              <strong>Document uploads</strong>
+              <div class="codeblock">
+                <pre><code class="language-ts">await orders.ordersIdDocumentsPost({
+  id: orderId,
+  documentUploadRequest: {
+    sequenceNumber: 2,
+    documentName: 'Disposition.pdf',
+    documentType: 'COURT_RECORD',
+    contentBase64: await encodeFile('Disposition.pdf'),
+  },
+});</code></pre>
+              </div>
+              <p>Uploads trigger a subsequent webhook that references the <code>sequenceNumber</code>. Use it to detect duplicates.</p>
+            </div>
+          </div>
+          <div class="grid two">
+            <div class="card">
+              <strong>Recurring monitoring (MedEx / Booking / Risk Monitoring)</strong>
+              <ul>
+                <li>Use <code>orders.ordersIdRecurringDelete</code> to cancel an enrolment.</li>
+                <li>Webhook payloads include <code>order.monitoringDetails</code> with the next check date.</li>
+                <li>Persist the schedule to align billing and SLA commitments.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <strong>Webhook replay demo project</strong>
+              <p>A minimal TypeScript CLI for replaying archived payloads lives at <code>integrations/webhook-replay-demo/</code>. It accepts a newline-delimited JSON file and replays events against a local endpoint.</p>
+              <ol>
+                <li><code>pnpm install</code></li>
+                <li><code>pnpm ts-node src/replay.ts --input samples/criminal.ndjson --target http://localhost:8787/hook</code></li>
+                <li>Use it to load-test ordering logic or to regenerate UI timelines.</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <section id="verification">
+          <h2>Verification &amp; monitoring</h2>
+          <p>Use the following checks during rollout and ongoing operations.</p>
+          <div class="grid three">
+            <div class="card">
+              <div class="badge badge-success">Smoke tests</div>
+              <ul>
+                <li>Run <code>pnpm test:replay</code> inside the webhook replay demo to ensure state transitions apply cleanly.</li>
+                <li>Submit a sandbox order daily and assert end-to-end completion within 6 hours.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <div class="badge badge-warning">Data integrity</div>
+              <ul>
+                <li>Nightly reconcile <code>ordersIdGet</code> against stored state to catch missed webhooks.</li>
+                <li>Alert if an order remains in <code>PENDING/IN_PROGRESS</code> &gt; 72 hours or <code>NEED_INFO</code> &gt; 24 hours.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <div class="badge badge-danger">Security</div>
+              <ul>
+                <li>Log every failed webhook auth (unexpected IP or missing shared secret) and alert.</li>
+                <li>Rotate JWT credentials whenever InformData rotates signing keys.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="errors">
+          <h2>Error handling cheat sheet</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Status / webhook symptom</th>
+                <th>Meaning</th>
+                <th>Playbook action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>400</code> from SDK</td>
+                <td>Payload failed InformData validation.</td>
+                <td>Stop retries, capture the validation message, surface to intake UI for correction.</td>
+              </tr>
+              <tr>
+                <td><code>401 / 403</code></td>
+                <td>Token expired or IP not on allowlist.</td>
+                <td>Refresh JWT, confirm environment, audit IP restrictions.</td>
+              </tr>
+              <tr>
+                <td><code>409</code></td>
+                <td>Order already locked or processed.</td>
+                <td>Wait for the next webhook; do not retry immediately.</td>
+              </tr>
+              <tr>
+                <td><code>5xx / 429</code></td>
+                <td>Temporary InformData outage or throttling.</td>
+                <td>Retry with exponential backoff, widen jitter, alert if >15 minutes of consecutive failures.</td>
+              </tr>
+              <tr>
+                <td>Webhook duplicates</td>
+                <td>Endpoint returned non-2xx or delivery retried.</td>
+                <td>Rely on idempotency key, log duplicates, instrument delivered vs. applied metrics.</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="resources">
+          <h2>Reference materials &amp; next steps</h2>
+          <div class="grid two">
+            <div class="card">
+              <strong>Resource index</strong>
+              <ul>
+                <li><code>informdata-sales-sheet/integrations/informdata_sdk_webhooks.md</code> — Markdown source for quick edits.</li>
+                <li><code>informdata-api-docs/Requests</code> &amp; <code>/Responses</code> — official request/response samples shipped by InformData.</li>
+                <li><code>informdata-sales-sheet/integrations/webhook-replay-demo/</code> — replay CLI for QA and load testing.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <strong>Next engineering moves</strong>
+              <ol>
+                <li>Wire navigation from pricing dashboards to this playbook (done on this page).</li>
+                <li>Automate webhook replay in CI to guard the state engine.</li>
+                <li>Align schema validation with the latest internal-pricing columns (CLI validator fix).</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <footer>
+          Last updated: <strong>November 3, 2025</strong> &nbsp;•&nbsp; Maintainer: Platform Integrations Guild
+        </footer>
+      </div>
+
+      <nav class="toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ul>
+          <li><a href="#overview">Overview <span>architecture, metrics</span></a></li>
+          <li><a href="#environments">Environments &amp; auth <span>JWT, security</span></a></li>
+          <li><a href="#sdk-bootstrap">SDK bootstrap <span>code sample</span></a></li>
+          <li><a href="#ordering-flow">Order flow <span>multi-order steps</span></a></li>
+          <li><a href="#webhooks">Webhook catalogue <span>events</span></a></li>
+          <li><a href="#queue-design">Queue design <span>partitioning</span></a></li>
+          <li><a href="#actions">Operational actions <span>Need Info &amp; replay</span></a></li>
+          <li><a href="#verification">Verification <span>tests &amp; monitoring</span></a></li>
+          <li><a href="#errors">Error handling <span>response matrix</span></a></li>
+          <li><a href="#resources">Resources <span>links</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </main>
+</body>
+</html>

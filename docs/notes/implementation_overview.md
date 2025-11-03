@@ -7,8 +7,8 @@
 
 ## What was delivered
 
-- Developer integration playbook: `integrations/informdata_sdk_webhooks.md`
-- Developer playbook: `docs/developer/informdata_webhooks.md`
+- Developer integration playbook: `integrations/informdata_sdk_webhooks.html` (browser-ready)
+- Webhook replay demo CLI: `integrations/webhook-replay-demo/`
 1. **Automation scripts** (`scripts/pricing/`)
    - `extract_informdata_costs.py` normalizes the finance workbook export into `data/pricing/informdata_costs.csv`.
    - `compute_internal_pricing.py` adds the $1 margin and writes `data/pricing/internal_pricing.csv`.
@@ -19,7 +19,7 @@
    - JSON validation reports live in `docs/data_schemas/reports/` for audit trails.
 3. **Collateral**
    - Markdown pricing sheet: `docs/sales/pricing_sheet.md`
-   - Interactive HTML: root `index.html`, `docs/sales/county_fee_breakdown.html`, `docs/sales/national_scan_components.html`, `databases_coverage.html`, `informdata_source_list.html`
+  - Interactive HTML: root `index.html`, `docs/sales/county_fee_breakdown.html`, `docs/sales/national_scan_components.html`, `databases_coverage.html`, `informdata_source_list.html`, `integrations/informdata_sdk_webhooks.html`
 4. **Source control**
    - GitHub repository: https://github.com/CryptoJym/informdata-sales-sheet
 
