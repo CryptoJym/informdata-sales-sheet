@@ -46,8 +46,8 @@
     </header>
 
     <section class="summary-grid" aria-live="polite">
-      <article class="summary-card"><strong id="statUnique">--</strong><span>Distinct databases (unique sources)</span></article>
       <article class="summary-card"><strong id="statListings">--</strong><span>Dataset listings (incl. county rows)</span></article>
+      <article class="summary-card"><strong id="statUnique">--</strong><span>Distinct databases (unique sources)</span></article>
       <article class="summary-card"><strong id="statStates">--</strong><span>States & territories</span></article>
       <article class="summary-card"><strong id="statRecords">--</strong><span>Distinct record types</span></article>
     </section>
@@ -223,11 +223,13 @@
           updated_at: r.refresh_date,
         }));
         // Summary counts
-        const uniqueDatabases = new Set(sources.map(r => r.source_name)).size;
-        document.getElementById('statUnique').textContent = uniqueDatabases.toLocaleString();
+        const uniqueDatabases = new Set(sources.map(r => r.source_name).filter(Boolean)).size;
+        const statesCount = new Set(sources.map(r => r.state).filter(Boolean)).size;
+        const recordTypesCount = new Set(sources.map(r => r.record_type).filter(Boolean)).size;
         document.getElementById('statListings').textContent = sources.length.toLocaleString();
-        document.getElementById('statStates').textContent = uniqueSorted(sources.map(row => row.state)).length.toLocaleString();
-        document.getElementById('statRecords').textContent = uniqueSorted(sources.map(row => row.record_type)).length.toLocaleString();
+        document.getElementById('statUnique').textContent = uniqueDatabases.toLocaleString();
+        document.getElementById('statStates').textContent = statesCount.toLocaleString();
+        document.getElementById('statRecords').textContent = recordTypesCount.toLocaleString();
         populateFilters();
         applyFilters();
       })
