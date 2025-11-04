@@ -32,6 +32,9 @@
     .stat-card { background: var(--accent-soft); border-radius: 0.9rem; padding: 1.1rem 1.25rem; border: 1px solid rgba(37, 99, 235, 0.18); box-shadow: inset 0 1px 0 rgba(255,255,255,0.35); }
     .stat-card strong { display: block; font-size: 2rem; font-weight: 700; }
     .stat-card span { font-size: 0.9rem; color: var(--muted); }
+    .download-links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem; }
+    .download-links a { display: inline-flex; align-items: center; gap: 0.4rem; background: #0f172a; color: #fff; padding: 0.5rem 0.9rem; border-radius: 999px; font-size: 0.9rem; font-weight: 600; }
+    .download-links a span { font-size: 0.85rem; opacity: 0.8; font-weight: 500; }
     .list-columns { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
     .list-card { background: rgba(15, 23, 42, 0.05); border-radius: 0.75rem; padding: 0.9rem 1rem; border: 1px solid rgba(208, 215, 226, 0.6); }
     .list-card h3 { margin: 0 0 0.35rem; font-size: 1rem; }
@@ -41,6 +44,12 @@
     tbody td { padding: 0.7rem; border-bottom: 1px solid var(--border); vertical-align: top; font-size: 0.95rem; }
     tbody tr:nth-child(even) { background: rgba(37, 99, 235, 0.05); }
     .chart-container { position: relative; height: 360px; }
+    .chart-container.small { height: auto; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.5rem 0 0.75rem; }
+    .chip { border: 1px solid var(--border); border-radius: 999px; padding: 0.3rem 0.9rem; font-size: 0.85rem; cursor: pointer; color: var(--muted); background: #fff; transition: all 0.2s ease; }
+    .chip:hover { border-color: var(--accent); color: var(--accent); }
+    .chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .table-note { font-size: 0.85rem; color: var(--muted); margin-top: -0.5rem; }
     @media (max-width: 640px) {
       main { padding: 2rem 1rem 3.5rem; }
       h1 { font-size: 2.1rem; }
@@ -61,6 +70,11 @@
       <h1>National Criminal Repository Coverage</h1>
       <p class="lead">Latest dataset received <strong>October 3, 2025</strong>, detailing every database included in InformData’s national criminal search (NatCrim). Use this to back up the “1B+ records” claim and to confirm state-by-state breadth.</p>
       <div class="stat-grid" id="stats"></div>
+      <div class="download-links">
+        <a href="content/pricing/natcrim_sources_2025-10-03.csv" download>NatCrim sources CSV <span>(canonical schema)</span></a>
+        <a href="content/pricing/natcrim_sources_2025-10-03.parquet" download>NatCrim sources Parquet <span>(analytics ready)</span></a>
+        <a href="reports/natcrim_coverage_gaps_2025-10-03.md" download>QA report <span>(gaps &amp; stale checks)</span></a>
+      </div>
     </section>
 
     <section>
@@ -71,15 +85,36 @@
     </section>
 
     <section>
+      <h2>Coverage domains</h2>
+      <p class="table-note">Domains normalize source scope (statewide, DOC, warrant, etc.). Click a bucket to see leading states by record volume. Full rollup lives in <code>content/pricing/natcrim_scope_summary_2025-10-03.csv</code>.</p>
+      <div class="filters" id="domainFilters"></div>
+      <div class="stat-grid" id="domainStats"></div>
+      <div class="chart-container small">
+        <table id="domain-table">
+          <thead>
+            <tr>
+              <th>State</th>
+              <th>Sources</th>
+              <th>Total records</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
       <h2>Sample sources by state</h2>
-      <p>Scroll or filter to find specific states or record types. dataset: <code>content/pricing/informdata_natcrim_sources_2025-10-03.csv</code></p>
+      <p>Scroll or filter to find specific states or record types. dataset: <code>content/pricing/natcrim_sources_2025-10-03.csv</code></p>
+      <div class="filters" id="recordFilters"></div>
       <table id="source-table">
         <thead>
           <tr>
             <th>State</th>
             <th>Record type</th>
             <th>Source name</th>
-            <th>Coverage level</th>
+            <th>Coverage scope</th>
+            <th>Court level</th>
             <th>Last refresh</th>
             <th>Record count</th>
           </tr>
@@ -90,87 +125,215 @@
   </main>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
   <script>
-    async function loadData() {
-      const [stateTotalsResp, sourceResp] = await Promise.all([
-        fetch('content/pricing/informdata_natcrim_state_totals_2025-10-03.csv'),
-        fetch('content/pricing/informdata_natcrim_sources_2025-10-03.csv')
-      ]);
-      const stateTotalsText = await stateTotalsResp.text();
-      const sourceText = await sourceResp.text();
-
-      function parseCSV(text) {
-        const lines = text.trim().split(/\r?\n/);
-        const headers = lines.shift().split(',');
-        return lines.map(line => {
-          const values = [];
-          let current = '';
-          let inQuotes = false;
-          for (let i = 0; i < line.length; i++) {
-            const char = line[i];
-            if (char === '"') {
-              inQuotes = !inQuotes;
-            } else if (char === ',' && !inQuotes) {
-              values.push(current.trim());
-              current = '';
-            } else {
-              current += char;
-            }
+    function parseCSV(text) {
+      if (!text) return [];
+      const lines = text.trim().split(/\r?\n/);
+      if (!lines.length) return [];
+      const headers = lines.shift().split(',').map(h => h.trim());
+      return lines.map(line => {
+        const values = [];
+        let current = '';
+        let inQuotes = false;
+        for (let i = 0; i < line.length; i++) {
+          const char = line[i];
+          if (char === '"') {
+            inQuotes = !inQuotes;
+          } else if (char === ',' && !inQuotes) {
+            values.push(current.trim());
+            current = '';
+          } else {
+            current += char;
           }
-          values.push(current.trim());
-          const obj = {};
-          headers.forEach((key, idx) => {
-            obj[key] = values[idx] ? values[idx].replace(/^"|"$/g, '') : '';
-          });
-          return obj;
+        }
+        values.push(current.trim());
+        const obj = {};
+        headers.forEach((key, idx) => {
+          const raw = values[idx] ?? '';
+          obj[key] = raw.replace(/^"|"$/g, '');
         });
-      }
+        return obj;
+      });
+    }
 
-      const stateTotals = parseCSV(stateTotalsText).filter(row => row.State);
-      const sources = parseCSV(sourceText).filter(row => row.State);
+    function formatNumber(value) {
+      return Number(value || 0).toLocaleString();
+    }
 
-      const overallRecords = sources.reduce((sum, row) => sum + (Number(row['Record Count']) || 0), 0);
+    async function loadData() {
+      const [stateTotalsResp, sourceResp, scopeResp] = await Promise.all([
+        fetch('content/pricing/natcrim_state_totals_2025-10-03.csv'),
+        fetch('content/pricing/natcrim_sources_2025-10-03.csv'),
+        fetch('content/pricing/natcrim_scope_summary_2025-10-03.csv')
+      ]);
+
+      const stateTotalsRaw = parseCSV(await stateTotalsResp.text());
+      const sourcesRaw = parseCSV(await sourceResp.text());
+      const scopeSummaryRaw = parseCSV(await scopeResp.text());
+
+      const stateTotals = stateTotalsRaw
+        .filter(row => row.standardized_state)
+        .map(row => ({
+          code: row.standardized_state,
+          stateName: row.state_name,
+          records: Number(row.record_count || 0)
+        }));
+
+      const sources = sourcesRaw
+        .filter(row => row.standardized_state)
+        .map(row => ({
+          code: row.standardized_state,
+          stateName: row.state_name,
+          recordType: row.record_type,
+          sourceName: row.source_name,
+          coverageScope: row.coverage_scope,
+          courtLevel: row.court_level,
+          refreshDate: row.refresh_date,
+          recordCount: Number(row.record_count || 0)
+        }));
+
+      const scopeSummary = scopeSummaryRaw
+        .filter(row => row.coverage_domain)
+        .map(row => ({
+          code: row.standardized_state,
+          stateName: row.state_name,
+          domain: row.coverage_domain,
+          sourceCount: Number(row.source_count || 0),
+          totalRecords: Number(row.total_records || 0)
+        }));
+
+      const overallRecords = stateTotals.reduce((sum, row) => sum + row.records, 0);
       const totalSources = sources.length;
-      const statesCovered = new Set(sources.map(row => row.State)).size;
+      const statesCovered = new Set(sources.map(row => row.code)).size;
 
       const statsEl = document.getElementById('stats');
       statsEl.innerHTML = `
         <div class="stat-card"><strong>${(overallRecords / 1_000_000_000).toFixed(2)}B</strong><span>Total records indexed in the NatCrim repository.</span></div>
-        <div class="stat-card"><strong>${totalSources.toLocaleString()}</strong><span>Individual databases feeding the repository.</span></div>
-        <div class="stat-card"><strong>${statesCovered}</strong><span>States and territories represented in the feed.</span></div>
+        <div class="stat-card"><strong>${formatNumber(totalSources)}</strong><span>Individual databases feeding the repository.</span></div>
+        <div class="stat-card"><strong>${statesCovered}</strong><span>States &amp; territories represented.</span></div>
       `;
 
-      stateTotals.sort((a, b) => Number(b['Total Records']) - Number(a['Total Records']));
-      const topStates = stateTotals.slice(0, 15);
+      // State totals chart
+      const topStates = [...stateTotals].sort((a, b) => b.records - a.records).slice(0, 15);
       const ctx = document.getElementById('stateChart');
       new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: topStates.map(row => row.State),
+          labels: topStates.map(row => `${row.code}`),
           datasets: [{
             label: 'Total Records',
-            data: topStates.map(row => Number(row['Total Records'])),
+            data: topStates.map(row => row.records),
             backgroundColor: 'rgba(37, 99, 235, 0.65)'
           }]
         },
         options: {
           responsive: true,
+          plugins: { legend: { display: false } },
           scales: {
-            y: { beginAtZero: true, ticks: { callback: value => value.toLocaleString() } }
+            y: { beginAtZero: true, ticks: { callback: value => formatNumber(value) } }
           }
         }
       });
 
-      const tbody = document.querySelector('#source-table tbody');
-      tbody.innerHTML = sources.slice(0, 500).map(row => `
-        <tr>
-          <td>${row.State}</td>
-          <td>${row['Record Type']}</td>
-          <td>${row['Source Name']}</td>
-          <td>${row['Coverage Level']}</td>
-          <td>${row['Last Refresh']}</td>
-          <td>${Number(row['Record Count']).toLocaleString()}</td>
-        </tr>
-      `).join('');
+      // Coverage domains summary
+      const domainTotalsMap = new Map();
+      scopeSummary.forEach(row => {
+        const key = row.domain;
+        if (!domainTotalsMap.has(key)) {
+          domainTotalsMap.set(key, { domain: key, sources: 0, records: 0 });
+        }
+        const entry = domainTotalsMap.get(key);
+        entry.sources += row.sourceCount;
+        entry.records += row.totalRecords;
+      });
+      const domainTotals = Array.from(domainTotalsMap.values()).sort((a, b) => b.records - a.records);
+
+      const domainFiltersEl = document.getElementById('domainFilters');
+      const domainStatsEl = document.getElementById('domainStats');
+      const domainTableBody = document.querySelector('#domain-table tbody');
+
+      function renderDomainStats() {
+        domainStatsEl.innerHTML = domainTotals.map(item => `
+          <div class="stat-card">
+            <strong>${formatNumber(item.records)}</strong>
+            <span>${item.domain.replace(/_/g, ' ')} records</span>
+            <span style="display:block;margin-top:0.35rem;font-size:0.8rem;opacity:0.8;">${formatNumber(item.sources)} sources</span>
+          </div>
+        `).join('');
+      }
+
+      let activeDomain = domainTotals.length ? domainTotals[0].domain : null;
+
+      function renderDomainFilters() {
+        const domains = domainTotals.map(item => item.domain);
+        domainFiltersEl.innerHTML = domains.map(domain => `
+          <button type="button" class="chip ${domain === activeDomain ? 'active' : ''}" data-domain="${domain}">
+            ${domain.replace(/_/g, ' ')}
+          </button>
+        `).join('');
+        domainFiltersEl.querySelectorAll('button').forEach(btn => {
+          btn.addEventListener('click', () => {
+            activeDomain = btn.dataset.domain;
+            renderDomainFilters();
+            renderDomainTable();
+          });
+        });
+      }
+
+      function renderDomainTable() {
+        const rows = scopeSummary
+          .filter(row => !activeDomain || row.domain === activeDomain)
+          .sort((a, b) => b.totalRecords - a.totalRecords)
+          .slice(0, 20);
+        domainTableBody.innerHTML = rows.map(row => `
+          <tr>
+            <td>${row.code} (${row.stateName})</td>
+            <td>${formatNumber(row.sourceCount)}</td>
+            <td>${formatNumber(row.totalRecords)}</td>
+          </tr>
+        `).join('');
+      }
+
+      renderDomainStats();
+      renderDomainFilters();
+      renderDomainTable();
+
+      // Record type filters for source table
+      const recordFiltersEl = document.getElementById('recordFilters');
+      const sourceTableBody = document.querySelector('#source-table tbody');
+      const recordTypes = ['ALL', ...Array.from(new Set(sources.map(row => row.recordType))).sort()];
+      let activeRecordType = 'ALL';
+
+      function renderRecordFilters() {
+        recordFiltersEl.innerHTML = recordTypes.map(type => `
+          <button type="button" class="chip ${type === activeRecordType ? 'active' : ''}" data-type="${type}">${type.replace(/_/g, ' ')}</button>
+        `).join('');
+        recordFiltersEl.querySelectorAll('button').forEach(btn => {
+          btn.addEventListener('click', () => {
+            activeRecordType = btn.dataset.type;
+            renderRecordFilters();
+            renderSourceTable();
+          });
+        });
+      }
+
+      function renderSourceTable() {
+        const filtered = sources.filter(row => activeRecordType === 'ALL' || row.recordType === activeRecordType);
+        const rows = filtered.slice(0, 500);
+        sourceTableBody.innerHTML = rows.map(row => `
+          <tr>
+            <td>${row.code}</td>
+            <td>${row.recordType}</td>
+            <td>${row.sourceName}</td>
+            <td>${row.coverageScope}</td>
+            <td>${row.courtLevel}</td>
+            <td>${row.refreshDate}</td>
+            <td>${formatNumber(row.recordCount)}</td>
+          </tr>
+        `).join('');
+      }
+
+      renderRecordFilters();
+      renderSourceTable();
     }
 
     loadData();

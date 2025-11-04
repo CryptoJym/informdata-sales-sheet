@@ -14,7 +14,7 @@
    - `extract_informdata_costs.py` normalizes the finance workbook export into `data/pricing/informdata_costs.csv`.
    - `compute_internal_pricing.py` adds the $1 margin and writes `data/pricing/internal_pricing.csv`.
    - `build_pricing_table.py` fuses internal + competitor data into `content/pricing/informdata_pricing_table.csv`.
-   - `parse_natcrim_sources.py` normalizes the InformData NatCrim workbook into `content/pricing/informdata_natcrim_sources.json`.
+   - `refresh_natcrim_data.py` (new) stages, normalizes, and exports the NatCrim coverage package from the raw workbook snapshot.
 2. **Validation tooling** (`scripts/validation/validate_pricing_data.py`)
    - YAML schemas under `docs/data_schemas/schemas/` keep datasets consistent.
    - JSON validation reports live in `docs/data_schemas/reports/` for audit trails.
@@ -47,6 +47,30 @@ python scripts/pricing/build_pricing_table.py \
   --output content/pricing/informdata_pricing_table.csv
 
 # 5. Regenerate collateral (update docs/sales/pricing_sheet.md, rebuild HTML, redeploy to Vercel)
+```
+
+## NatCrim data pipeline
+
+```bash
+# 1. Stage the SecureShare workbook locally, then copy into the repo snapshot directory
+cp "~/Downloads/InformData NatCrim Source List as of 10.3.25.xlsx" \
+   data/pricing/informdata_natcrim_raw_2025-10-03.xlsx
+
+# 2. Normalize sources, rollups, and QA outputs
+python scripts/pricing/refresh_natcrim_data.py \
+  --source data/pricing/informdata_natcrim_raw_2025-10-03.xlsx \
+  --snapshot-date 2025-10-03 \
+  --log-missing reports/natcrim_missing_counts_2025-10-03.csv
+
+# Artifacts written by the script:
+#   content/pricing/natcrim_sources_2025-10-03.{csv,parquet}
+#   content/pricing/natcrim_state_totals_2025-10-03.csv
+#   content/pricing/natcrim_record_type_totals_2025-10-03.csv
+#   content/pricing/natcrim_scope_summary_2025-10-03.csv
+#   reports/natcrim_coverage_gaps_2025-10-03.md
+#   reports/natcrim_stale_sources_2025-10-03.csv
+
+# 3. Verify dashboards (national_scan_components.html) and redeploy to Vercel
 ```
 
 ## Next recommendations

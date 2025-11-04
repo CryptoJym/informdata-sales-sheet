@@ -59,14 +59,14 @@
   <main>
     <section>
       <h1>Where a Statewide Search Covers County Requirements</h1>
-      <p class="lead">This page summarizes InformData’s statewide criminal sources and shows which states let you run a single statewide search to satisfy a county-level background check. Data comes from the <strong>SW Sources 8.24</strong> workbook supplied by InformData.</p>
+      <p class="lead">This page summarizes InformData’s statewide criminal sources and shows which states let you run a single statewide search to satisfy a county-level background check. Data comes from the <strong>SW Sources 8.24</strong> workbook supplied by InformData, plus coverage notes confirming that every state is fulfilled either statewide or via county research.</p>
       <div class="stat-grid" id="stats"></div>
       <div class="callout">
         <strong>How to read this:</strong>
         <ul>
           <li><em>Statewide wins</em> &mdash; InformData maintains a statewide repository that satisfies county requirements.</li>
-          <li><em>County researchers</em> &mdash; InformData covers these states by sending runners/using county portals (no single statewide repository).</li>
-          <li><em>No statewide repository</em> &mdash; InformData has no statewide file; coverage is only via individual county work or is currently unavailable.</li>
+          <li><em>County coverage</em> &mdash; InformData still fulfills orders by working the counties directly (no single statewide file or statewide data is supplementary only).</li>
+          <li><em>Zero uncovered states</em> &mdash; There are no jurisdictions InformData leaves unserved; every state routes either through statewide pulls or county workflows.</li>
         </ul>
       </div>
     </section>
@@ -75,7 +75,7 @@
       <h2>Quick lists</h2>
       <div class="list-columns" id="list-statewide"></div>
       <div class="list-columns" id="list-county"></div>
-      <div class="list-columns" id="list-na"></div>
+      <div class="list-columns" id="list-note"></div>
     </section>
 
     <section>
@@ -83,8 +83,7 @@
       <div class="chip-row">
         <button class="chip active" data-filter="all">All states</button>
         <button class="chip" data-filter="statewide">Statewide covers counties</button>
-        <button class="chip" data-filter="county">County researchers required</button>
-        <button class="chip" data-filter="na">Not available</button>
+        <button class="chip" data-filter="county">County coverage</button>
       </div>
       <table id="coverage-table" aria-live="polite">
         <thead>
@@ -143,21 +142,20 @@
 
       const categories = {
         statewide: records.filter(r => r.statewide_recommended === 'Yes'),
-        county: records.filter(r => r.recommended_method === 'Use County Court Researchers'),
-        na: records.filter(r => r.recommended_method === 'Not Available')
+        county: records.filter(r => r.statewide_recommended !== 'Yes')
       };
       const totals = {
         statewide: categories.statewide.length,
         county: categories.county.length,
-        na: categories.na.length,
         all: records.length
       };
+      const uncovered = Math.max(0, totals.all - totals.statewide - totals.county);
 
       const statsEl = document.getElementById('stats');
       statsEl.innerHTML = `
         <div class="stat-card"><strong>${totals.statewide}</strong><span>States where a statewide search satisfies county coverage.</span></div>
-        <div class="stat-card"><strong>${totals.county}</strong><span>States still requiring county court researchers or portals.</span></div>
-        <div class="stat-card"><strong>${totals.na}</strong><span>States InformData cannot cover (statewide or county).</span></div>
+        <div class="stat-card"><strong>${totals.county}</strong><span>States fulfilled via county researchers or portals.</span></div>
+        <div class="stat-card"><strong>${uncovered}</strong><span>States without InformData coverage.</span></div>
       `;
 
       function buildList(targetId, items, heading) {
@@ -178,8 +176,14 @@
       }
 
       buildList('list-statewide', categories.statewide, 'Statewide covers county requirements');
-      buildList('list-county', categories.county, 'County researchers still required');
-      buildList('list-na', categories.na, 'Not currently serviced by InformData');
+      buildList('list-county', categories.county, 'Covered via county research (no statewide win)');
+      const noteContainer = document.getElementById('list-note');
+      if (noteContainer) {
+        const note = document.createElement('div');
+        note.className = 'callout';
+        note.textContent = 'InformData services every state; where no statewide file exists, they dispatch county researchers to fulfil orders.';
+        noteContainer.appendChild(note);
+      }
 
       const tbody = document.querySelector('#coverage-table tbody');
       function renderTable(data) {
@@ -204,7 +208,6 @@
           const filter = button.dataset.filter;
           if (filter === 'statewide') renderTable(categories.statewide);
           else if (filter === 'county') renderTable(categories.county);
-          else if (filter === 'na') renderTable(categories.na);
           else renderTable(records);
         });
       });

@@ -1,0 +1,608 @@
+standardized_state,state_name,record_type,source_name,coverage_scope,court_level,refresh_date,record_count,coverage_domain,duplicate_key
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Aleutians East Borough,COUNTY,2024-11-14,2339,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Aleutians East Borough
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Aleutians East Borough,COUNTY,2025-07-16,25,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Aleutians East Borough
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Aleutians West Borough,COUNTY,2024-11-14,15094,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Aleutians West Borough
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Aleutians West Borough,COUNTY,2025-07-16,87,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Aleutians West Borough
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Anchorage Municipality,COUNTY,2024-11-14,1022386,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Anchorage Municipality
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Anchorage Municipality,COUNTY,2025-07-16,17200,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Anchorage Municipality
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Bethel Census Area,COUNTY,2024-11-14,48387,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Bethel Census Area
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Bethel Census Area,COUNTY,2025-07-16,559,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Bethel Census Area
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Chugach Census Area,COUNTY,2024-11-14,8410,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Chugach Census Area
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Chugach Census Area,COUNTY,2025-07-16,53,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Chugach Census Area
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Fairbanks North Star Borough,COUNTY,2024-11-14,328308,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Fairbanks North Star Borough
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Fairbanks North Star Borough,COUNTY,2025-07-16,4811,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Fairbanks North Star Borough
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Haines Borough,COUNTY,2024-11-14,6112,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Haines Borough
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Haines Borough,COUNTY,2025-07-16,64,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Haines Borough
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Kusilvak Census Area,COUNTY,2024-11-14,13808,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Kusilvak Census Area
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Kusilvak Census Area,COUNTY,2025-07-16,134,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Kusilvak Census Area
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Nome Census Area,COUNTY,2024-11-14,29817,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Nome Census Area
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Nome Census Area,COUNTY,2025-07-16,236,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Nome Census Area
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Petersburg Census Area,COUNTY,2024-11-14,7918,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Petersburg Census Area
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Petersburg Census Area,COUNTY,2025-07-16,90,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Petersburg Census Area
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,STATEWIDE,STATEWIDE,2024-11-14,34276,STATEWIDE,AK|COURT|Alaska Administrative Office Of The Courts|STATEWIDE
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,STATEWIDE,STATEWIDE,2024-11-14,20023,STATEWIDE,AK|COURT|Alaska Administrative Office Of The Courts|STATEWIDE
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,STATEWIDE,STATEWIDE,2025-07-16,9410,STATEWIDE,AK|COURT|Alaska Administrative Office Of The Courts|STATEWIDE
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Skagway Municipality,COUNTY,2024-11-14,1177,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Skagway Municipality
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Skagway Municipality,COUNTY,2025-07-16,14,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Skagway Municipality
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Southeast Fairbanks Census Area,COUNTY,2024-11-14,39528,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Southeast Fairbanks Census Area
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Southeast Fairbanks Census Area,COUNTY,2025-07-16,962,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Southeast Fairbanks Census Area
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Yukon-Koyukuk Census Area,COUNTY,2024-11-14,46250,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Yukon-Koyukuk Census Area
+AK,Alaska,COURT,Alaska Administrative Office Of The Courts,Yukon-Koyukuk Census Area,COUNTY,2025-07-16,2373,COUNTY,AK|COURT|Alaska Administrative Office Of The Courts|Yukon-Koyukuk Census Area
+AK,Alaska,SOR,Alaska Sex Offender Registry,Matanuska-Susitna Borough,,2024-05-02,215,SEX_OFFENDER,AK|SOR|Alaska Sex Offender Registry|Matanuska-Susitna Borough
+AK,Alaska,SOR,Alaska Sex Offender Registry,Matanuska-Susitna Borough,,2024-05-02,2,SEX_OFFENDER,AK|SOR|Alaska Sex Offender Registry|Matanuska-Susitna Borough
+AK,Alaska,SOR,Alaska Sex Offender Registry,STATEWIDE,,2024-05-02,10,SEX_OFFENDER,AK|SOR|Alaska Sex Offender Registry|STATEWIDE
+AK,Alaska,SOR,Alaska Sex Offender Registry,STATEWIDE,,2024-05-02,355,SEX_OFFENDER,AK|SOR|Alaska Sex Offender Registry|STATEWIDE
+AK,Alaska,SOR,Alaska Sex Offender Registry,STATEWIDE,,2024-05-02,2,SEX_OFFENDER,AK|SOR|Alaska Sex Offender Registry|STATEWIDE
+AK,Alaska,SOR,Alaska Sex Offender Registry,STATEWIDE,,2025-08-03,3760,SEX_OFFENDER,AK|SOR|Alaska Sex Offender Registry|STATEWIDE
+AL,Alabama,ARREST,Etowah County,Etowah,,2024-05-02,3503,ARREST,AL|ARREST|Etowah County|Etowah
+AL,Alabama,ARREST,Etowah County,Etowah,,2025-07-07,169002,ARREST,AL|ARREST|Etowah County|Etowah
+AL,Alabama,ARREST,Jefferson County,Jefferson,,2024-05-02,5895,ARREST,AL|ARREST|Jefferson County|Jefferson
+AL,Alabama,ARREST,Jefferson County,Jefferson,,2025-07-07,204671,ARREST,AL|ARREST|Jefferson County|Jefferson
+AL,Alabama,DOC,Alabama Department Of Corrections,STATEWIDE,,2024-11-13,59254,DOC,AL|DOC|Alabama Department Of Corrections|STATEWIDE
+AL,Alabama,DOC,Alabama Department Of Corrections,STATEWIDE,,2025-03-01,31631,DOC,AL|DOC|Alabama Department Of Corrections|STATEWIDE
+AL,Alabama,SOR,Alabama Sex Offender Registry,STATEWIDE,,2024-05-02,11488,SEX_OFFENDER,AL|SOR|Alabama Sex Offender Registry|STATEWIDE
+AL,Alabama,SOR,Alabama Sex Offender Registry,STATEWIDE,,2024-05-02,27,SEX_OFFENDER,AL|SOR|Alabama Sex Offender Registry|STATEWIDE
+AL,Alabama,SOR,Alabama Sex Offender Registry,STATEWIDE,,2025-03-02,12275,SEX_OFFENDER,AL|SOR|Alabama Sex Offender Registry|STATEWIDE
+AL,Alabama,SOR,Alabama Sex Offender Registry,STATEWIDE,,2025-07-28,13159,SEX_OFFENDER,AL|SOR|Alabama Sex Offender Registry|STATEWIDE
+AR,Arkansas,ARREST,Garland County,Garland,,2025-02-04,104872,ARREST,AR|ARREST|Garland County|Garland
+AR,Arkansas,ARREST,Garland County,Garland,,2025-07-07,2609,ARREST,AR|ARREST|Garland County|Garland
+AR,Arkansas,ARREST,Pulaski County,Pulaski,,2024-05-02,6211,ARREST,AR|ARREST|Pulaski County|Pulaski
+AR,Arkansas,ARREST,Pulaski County,Pulaski,,2025-07-07,460637,ARREST,AR|ARREST|Pulaski County|Pulaski
+AR,Arkansas,COURT,Arkansas Administrative Office Of The Courts,Dallas,COUNTY,2024-05-02,2155,COUNTY,AR|COURT|Arkansas Administrative Office Of The Courts|Dallas
+AR,Arkansas,COURT,Arkansas Administrative Office Of The Courts,Dallas,COUNTY,2024-06-28,939,COUNTY,AR|COURT|Arkansas Administrative Office Of The Courts|Dallas
+AR,Arkansas,DOC,Arkansas Department Of Corrections,STATEWIDE,,2024-11-13,216041,DOC,AR|DOC|Arkansas Department Of Corrections|STATEWIDE
+AR,Arkansas,DOC,Arkansas Department Of Corrections,STATEWIDE,,2025-03-02,23436,DOC,AR|DOC|Arkansas Department Of Corrections|STATEWIDE
+AR,Arkansas,SOR,Arkansas Sex Offender Registry,STATEWIDE,,2024-05-02,10597,SEX_OFFENDER,AR|SOR|Arkansas Sex Offender Registry|STATEWIDE
+AR,Arkansas,SOR,Arkansas Sex Offender Registry,STATEWIDE,,2024-05-02,11,SEX_OFFENDER,AR|SOR|Arkansas Sex Offender Registry|STATEWIDE
+AR,Arkansas,SOR,Arkansas Sex Offender Registry,STATEWIDE,,2025-07-31,11104,SEX_OFFENDER,AR|SOR|Arkansas Sex Offender Registry|STATEWIDE
+AZ,Arizona,ARREST,Cochise County,Cochise,,2024-05-02,31,ARREST,AZ|ARREST|Cochise County|Cochise
+AZ,Arizona,ARREST,Cochise County,Cochise,,2025-03-09,11065,ARREST,AZ|ARREST|Cochise County|Cochise
+AZ,Arizona,COURT,Arizona Administrative Office Of Courts,Navajo,COUNTY,2025-01-14,711190,COUNTY,AZ|COURT|Arizona Administrative Office Of Courts|Navajo
+AZ,Arizona,COURT,Arizona Administrative Office Of Courts,Navajo,COUNTY,2025-01-14,779,COUNTY,AZ|COURT|Arizona Administrative Office Of Courts|Navajo
+AZ,Arizona,COURT,Maricopa County Clerk Of Courts,Maricopa,COUNTY,2025-07-16,4568027,COUNTY,AZ|COURT|Maricopa County Clerk Of Courts|Maricopa
+AZ,Arizona,COURT,Maricopa County Clerk Of Courts,Maricopa,COUNTY,2025-07-16,175822,COUNTY,AZ|COURT|Maricopa County Clerk Of Courts|Maricopa
+AZ,Arizona,DOC,Arizona Department Of Corrections,STATEWIDE,,2024-05-02,786154,DOC,AZ|DOC|Arizona Department Of Corrections|STATEWIDE
+AZ,Arizona,DOC,Arizona Department Of Corrections,STATEWIDE,,2025-03-02,329907,DOC,AZ|DOC|Arizona Department Of Corrections|STATEWIDE
+AZ,Arizona,SOR,Arizona Sex Offender Registry,STATEWIDE,,2024-05-02,31007,SEX_OFFENDER,AZ|SOR|Arizona Sex Offender Registry|STATEWIDE
+AZ,Arizona,SOR,Arizona Sex Offender Registry,STATEWIDE,,2025-03-02,12028,SEX_OFFENDER,AZ|SOR|Arizona Sex Offender Registry|STATEWIDE
+AZ,Arizona,SOR,Arizona Sex Offender Registry,STATEWIDE,,2025-07-28,13680,SEX_OFFENDER,AZ|SOR|Arizona Sex Offender Registry|STATEWIDE
+CA,California,ARREST,Belmont Police Department,San Mateo,,2025-02-14,2166,ARREST,CA|ARREST|Belmont Police Department|San Mateo
+CA,California,ARREST,Belmont Police Department,San Mateo,,2025-04-11,46,ARREST,CA|ARREST|Belmont Police Department|San Mateo
+CA,California,ARREST,Brentwood Police Department,Contra Costa,,2025-02-14,2148,ARREST,CA|ARREST|Brentwood Police Department|Contra Costa
+CA,California,ARREST,Brentwood Police Department,Contra Costa,,2025-05-16,186,ARREST,CA|ARREST|Brentwood Police Department|Contra Costa
+CA,California,ARREST,Brisbane Police Department,San Mateo,,2025-02-14,801,ARREST,CA|ARREST|Brisbane Police Department|San Mateo
+CA,California,ARREST,Brisbane Police Department,San Mateo,,2025-07-16,28,ARREST,CA|ARREST|Brisbane Police Department|San Mateo
+CA,California,ARREST,Burlingame Police Department,San Mateo,,2025-02-14,2690,ARREST,CA|ARREST|Burlingame Police Department|San Mateo
+CA,California,ARREST,Burlingame Police Department,San Mateo,,2025-07-16,181,ARREST,CA|ARREST|Burlingame Police Department|San Mateo
+CA,California,ARREST,Del Norte County,Del Norte,,2025-02-04,12876,ARREST,CA|ARREST|Del Norte County|Del Norte
+CA,California,ARREST,Del Norte County,Del Norte,,2025-07-07,755,ARREST,CA|ARREST|Del Norte County|Del Norte
+CA,California,ARREST,El Dorado County,El Dorado,,2025-02-04,47432,ARREST,CA|ARREST|El Dorado County|El Dorado
+CA,California,ARREST,El Dorado County,El Dorado,,2025-07-07,2479,ARREST,CA|ARREST|El Dorado County|El Dorado
+CA,California,ARREST,Fairfield Police Department,Solano,,2025-02-14,17794,ARREST,CA|ARREST|Fairfield Police Department|Solano
+CA,California,ARREST,Fairfield Police Department,Solano,,2025-07-16,1262,ARREST,CA|ARREST|Fairfield Police Department|Solano
+CA,California,ARREST,Fresno County,Fresno,,2025-07-07,794790,ARREST,CA|ARREST|Fresno County|Fresno
+CA,California,ARREST,Fresno County,Fresno,,2025-07-16,9388,ARREST,CA|ARREST|Fresno County|Fresno
+CA,California,ARREST,Los Banos Police Department,Merced,,2025-02-14,2004,ARREST,CA|ARREST|Los Banos Police Department|Merced
+CA,California,ARREST,Los Banos Police Department,Merced,,2025-07-16,287,ARREST,CA|ARREST|Los Banos Police Department|Merced
+CA,California,ARREST,Marin County,Marin,,2025-07-07,76581,ARREST,CA|ARREST|Marin County|Marin
+CA,California,ARREST,Marin County,Marin,,2025-07-16,4647,ARREST,CA|ARREST|Marin County|Marin
+CA,California,ARREST,Mendocino County,Mendocino,,2025-02-14,106333,ARREST,CA|ARREST|Mendocino County|Mendocino
+CA,California,ARREST,Mendocino County,Mendocino,,2025-07-07,2010,ARREST,CA|ARREST|Mendocino County|Mendocino
+CA,California,ARREST,Merced County,Merced,,2025-02-14,179047,ARREST,CA|ARREST|Merced County|Merced
+CA,California,ARREST,Merced County,Merced,,2025-07-07,4025,ARREST,CA|ARREST|Merced County|Merced
+CA,California,ARREST,Pleasant Hill Police Department,Contra Costa,,2025-01-14,1497,ARREST,CA|ARREST|Pleasant Hill Police Department|Contra Costa
+CA,California,ARREST,Pleasant Hill Police Department,Contra Costa,,2025-07-16,319,ARREST,CA|ARREST|Pleasant Hill Police Department|Contra Costa
+CA,California,ARREST,San Bruno Police Department,San Mateo,,2025-02-14,2642,ARREST,CA|ARREST|San Bruno Police Department|San Mateo
+CA,California,ARREST,San Bruno Police Department,San Mateo,,2025-07-16,372,ARREST,CA|ARREST|San Bruno Police Department|San Mateo
+CA,California,ARREST,San Mateo County Sheriffs Office,San Mateo,,2025-01-14,4468,ARREST,CA|ARREST|San Mateo County Sheriffs Office|San Mateo
+CA,California,ARREST,San Mateo County Sheriffs Office,San Mateo,,2025-03-13,113,ARREST,CA|ARREST|San Mateo County Sheriffs Office|San Mateo
+CA,California,ARREST,San Mateo County,San Mateo,,2025-02-04,53202,ARREST,CA|ARREST|San Mateo County|San Mateo
+CA,California,ARREST,San Mateo County,San Mateo,,2025-07-07,2690,ARREST,CA|ARREST|San Mateo County|San Mateo
+CA,California,ARREST,San Rafael Police Department,Marin,,2025-07-16,7909,ARREST,CA|ARREST|San Rafael Police Department|Marin
+CA,California,ARREST,San Rafael Police Department,Marin,,2025-07-16,871,ARREST,CA|ARREST|San Rafael Police Department|Marin
+CA,California,ARREST,Santa Cruz County,Santa Cruz,,2025-07-16,104782,ARREST,CA|ARREST|Santa Cruz County|Santa Cruz
+CA,California,ARREST,Santa Cruz County,Santa Cruz,,2025-07-16,2920,ARREST,CA|ARREST|Santa Cruz County|Santa Cruz
+CA,California,ARREST,Scotts Valley Police Department,Santa Cruz,,2025-02-14,2526,ARREST,CA|ARREST|Scotts Valley Police Department|Santa Cruz
+CA,California,ARREST,Scotts Valley Police Department,Santa Cruz,,2025-07-16,146,ARREST,CA|ARREST|Scotts Valley Police Department|Santa Cruz
+CA,California,ARREST,Shafter Police Department,Kern,,2025-02-14,2446,ARREST,CA|ARREST|Shafter Police Department|Kern
+CA,California,ARREST,Shafter Police Department,Kern,,2025-07-16,440,ARREST,CA|ARREST|Shafter Police Department|Kern
+CA,California,ARREST,Solano County Sheriffs Office,Solano,,2025-07-16,4510,ARREST,CA|ARREST|Solano County Sheriffs Office|Solano
+CA,California,ARREST,Solano County Sheriffs Office,Solano,,2025-07-16,35097,ARREST,CA|ARREST|Solano County Sheriffs Office|Solano
+CA,California,ARREST,Solano County,Solano,,2025-02-04,12357,ARREST,CA|ARREST|Solano County|Solano
+CA,California,ARREST,Solano County,Solano,,2025-07-07,1749,ARREST,CA|ARREST|Solano County|Solano
+CA,California,ARREST,Sonora Police Department,Tuolumne,,2025-02-14,2937,ARREST,CA|ARREST|Sonora Police Department|Tuolumne
+CA,California,ARREST,Sonora Police Department,Tuolumne,,2025-03-13,15,ARREST,CA|ARREST|Sonora Police Department|Tuolumne
+CA,California,ARREST,Sutter County,Sutter,,2024-05-02,20180,ARREST,CA|ARREST|Sutter County|Sutter
+CA,California,ARREST,Sutter County,Sutter,,2025-07-07,40187,ARREST,CA|ARREST|Sutter County|Sutter
+CA,California,COURT,Sacramento Superior Court,Sacramento,COUNTY,2025-02-14,2181986,COUNTY,CA|COURT|Sacramento Superior Court|Sacramento
+CA,California,COURT,Sacramento Superior Court,Sacramento,COUNTY,2025-07-16,39682,COUNTY,CA|COURT|Sacramento Superior Court|Sacramento
+CA,California,COURT,San Benito Superior Court,San Benito,COUNTY,2025-02-14,17529,COUNTY,CA|COURT|San Benito Superior Court|San Benito
+CA,California,COURT,San Benito Superior Court,San Benito,COUNTY,2025-07-16,3254,COUNTY,CA|COURT|San Benito Superior Court|San Benito
+CA,California,COURT,San Diego Superior Court,San Diego,COUNTY,2025-02-14,593891,COUNTY,CA|COURT|San Diego Superior Court|San Diego
+CA,California,COURT,San Diego Superior Court,San Diego,COUNTY,2025-07-16,13203,COUNTY,CA|COURT|San Diego Superior Court|San Diego
+CA,California,COURT,San Mateo County Superior Court,San Mateo,COUNTY,2025-02-14,604532,COUNTY,CA|COURT|San Mateo County Superior Court|San Mateo
+CA,California,COURT,San Mateo County Superior Court,San Mateo,COUNTY,2025-07-16,3943,COUNTY,CA|COURT|San Mateo County Superior Court|San Mateo
+CA,California,DOC,California Department Of Corrections,STATEWIDE,,2024-05-02,932254,DOC,CA|DOC|California Department Of Corrections|STATEWIDE
+CA,California,DOC,California Department Of Corrections,STATEWIDE,,2025-03-01,105828,DOC,CA|DOC|California Department Of Corrections|STATEWIDE
+CA,California,SOR,California Sex Offender Registry,STATEWIDE,,2024-05-02,131394,SEX_OFFENDER,CA|SOR|California Sex Offender Registry|STATEWIDE
+CA,California,SOR,California Sex Offender Registry,STATEWIDE,,2025-03-02,315,SEX_OFFENDER,CA|SOR|California Sex Offender Registry|STATEWIDE
+CA,California,SOR,California Sex Offender Registry,STATEWIDE,,2025-08-06,81869,SEX_OFFENDER,CA|SOR|California Sex Offender Registry|STATEWIDE
+CO,Colorado,COURT,Colorado Judicial System (Aoc),El Paso,COUNTY,2025-02-14,50823,COUNTY,CO|COURT|Colorado Judicial System (Aoc)|El Paso
+CO,Colorado,COURT,Colorado Judicial System (Aoc),El Paso,COUNTY,2025-07-16,33960,COUNTY,CO|COURT|Colorado Judicial System (Aoc)|El Paso
+CO,Colorado,COURT,Colorado Judicial System (Aoc),Huerfano,COUNTY,2025-02-14,898,COUNTY,CO|COURT|Colorado Judicial System (Aoc)|Huerfano
+CO,Colorado,COURT,Colorado Judicial System (Aoc),Huerfano,COUNTY,2025-07-16,319,COUNTY,CO|COURT|Colorado Judicial System (Aoc)|Huerfano
+CO,Colorado,COURT,Colorado Judicial System (Aoc),La Plata,COUNTY,2025-02-14,3357,COUNTY,CO|COURT|Colorado Judicial System (Aoc)|La Plata
+CO,Colorado,COURT,Colorado Judicial System (Aoc),La Plata,COUNTY,2025-07-16,2401,COUNTY,CO|COURT|Colorado Judicial System (Aoc)|La Plata
+CO,Colorado,COURT,Colorado Judicial System (Aoc),Las Animas,COUNTY,2025-02-14,1392,COUNTY,CO|COURT|Colorado Judicial System (Aoc)|Las Animas
+CO,Colorado,COURT,Colorado Judicial System (Aoc),Las Animas,COUNTY,2025-07-16,770,COUNTY,CO|COURT|Colorado Judicial System (Aoc)|Las Animas
+CO,Colorado,COURT,Colorado Judicial System (Aoc),Logan,COUNTY,2025-02-14,1803,COUNTY,CO|COURT|Colorado Judicial System (Aoc)|Logan
+CO,Colorado,COURT,Colorado Judicial System (Aoc),Logan,COUNTY,2025-07-16,1025,COUNTY,CO|COURT|Colorado Judicial System (Aoc)|Logan
+CO,Colorado,COURT,Colorado Judicial System (Aoc),Pueblo,COUNTY,2025-02-14,9905,COUNTY,CO|COURT|Colorado Judicial System (Aoc)|Pueblo
+CO,Colorado,COURT,Colorado Judicial System (Aoc),Pueblo,COUNTY,2025-07-16,7407,COUNTY,CO|COURT|Colorado Judicial System (Aoc)|Pueblo
+CO,Colorado,COURT,Denver County Court,Denver,COUNTY,2024-05-02,45956,COUNTY,CO|COURT|Denver County Court|Denver
+CO,Colorado,COURT,Denver County Court,Denver,COUNTY,2025-07-16,807283,COUNTY,CO|COURT|Denver County Court|Denver
+CO,Colorado,DOC,Colorado Department Of Corrections,STATEWIDE,,2024-05-02,70362,DOC,CO|DOC|Colorado Department Of Corrections|STATEWIDE
+CO,Colorado,DOC,Colorado Department Of Corrections,STATEWIDE,,2025-03-02,29043,DOC,CO|DOC|Colorado Department Of Corrections|STATEWIDE
+CO,Colorado,SOR,Colorado Sex Offender Registry,STATEWIDE,,2024-05-02,28228,SEX_OFFENDER,CO|SOR|Colorado Sex Offender Registry|STATEWIDE
+CO,Colorado,SOR,Colorado Sex Offender Registry,STATEWIDE,,2025-08-06,17513,SEX_OFFENDER,CO|SOR|Colorado Sex Offender Registry|STATEWIDE
+CT,Connecticut,ARREST,Connecticut Arrest,STATEWIDE,,2024-05-02,152,ARREST,CT|ARREST|Connecticut Arrest|STATEWIDE
+CT,Connecticut,ARREST,Connecticut Arrest,STATEWIDE,,2025-04-29,930,ARREST,CT|ARREST|Connecticut Arrest|STATEWIDE
+CT,Connecticut,COURT,Connecticut Administrative Office Of The Courts,Hartford,COUNTY,2025-02-14,805043,COUNTY,CT|COURT|Connecticut Administrative Office Of The Courts|Hartford
+CT,Connecticut,COURT,Connecticut Administrative Office Of The Courts,Hartford,COUNTY,2025-07-16,28855,COUNTY,CT|COURT|Connecticut Administrative Office Of The Courts|Hartford
+CT,Connecticut,COURT,Connecticut Administrative Office Of The Courts,New Haven,COUNTY,2024-05-02,228,COUNTY,CT|COURT|Connecticut Administrative Office Of The Courts|New Haven
+CT,Connecticut,COURT,Connecticut Administrative Office Of The Courts,New Haven,COUNTY,2025-02-14,841100,COUNTY,CT|COURT|Connecticut Administrative Office Of The Courts|New Haven
+CT,Connecticut,COURT,Connecticut Administrative Office Of The Courts,New Haven,COUNTY,2025-07-16,25243,COUNTY,CT|COURT|Connecticut Administrative Office Of The Courts|New Haven
+CT,Connecticut,COURT,Connecticut Administrative Office Of The Courts,New London,COUNTY,2025-07-16,216,COUNTY,CT|COURT|Connecticut Administrative Office Of The Courts|New London
+CT,Connecticut,COURT,Connecticut Administrative Office Of The Courts,New London,COUNTY,2025-07-16,289391,COUNTY,CT|COURT|Connecticut Administrative Office Of The Courts|New London
+CT,Connecticut,COURT,State Of Connecticut Judicial Branch,Hartford,COUNTY,2025-02-14,120989,COUNTY,CT|COURT|State Of Connecticut Judicial Branch|Hartford
+CT,Connecticut,COURT,State Of Connecticut Judicial Branch,Hartford,COUNTY,2025-04-11,8794,COUNTY,CT|COURT|State Of Connecticut Judicial Branch|Hartford
+CT,Connecticut,COURT,State Of Connecticut Judicial Branch,New Haven,COUNTY,2025-02-14,139424,COUNTY,CT|COURT|State Of Connecticut Judicial Branch|New Haven
+CT,Connecticut,COURT,State Of Connecticut Judicial Branch,New Haven,COUNTY,2025-04-11,9049,COUNTY,CT|COURT|State Of Connecticut Judicial Branch|New Haven
+CT,Connecticut,COURT,State Of Connecticut Judicial Branch,New London,COUNTY,2025-02-14,47355,COUNTY,CT|COURT|State Of Connecticut Judicial Branch|New London
+CT,Connecticut,COURT,State Of Connecticut Judicial Branch,New London,COUNTY,2025-04-11,2773,COUNTY,CT|COURT|State Of Connecticut Judicial Branch|New London
+CT,Connecticut,COURT,State Of Connecticut Judicial Branch,Tolland,COUNTY,2025-04-11,1886,COUNTY,CT|COURT|State Of Connecticut Judicial Branch|Tolland
+CT,Connecticut,COURT,State Of Connecticut Judicial Branch,Tolland,COUNTY,2025-04-11,26493,COUNTY,CT|COURT|State Of Connecticut Judicial Branch|Tolland
+CT,Connecticut,COURT,State Of Connecticut Judicial Branch,Windham,COUNTY,2025-02-14,18647,COUNTY,CT|COURT|State Of Connecticut Judicial Branch|Windham
+CT,Connecticut,COURT,State Of Connecticut Judicial Branch,Windham,COUNTY,2025-04-11,869,COUNTY,CT|COURT|State Of Connecticut Judicial Branch|Windham
+CT,Connecticut,DOC,Connecticut Department Of Corrections,STATEWIDE,,2024-11-13,248485,DOC,CT|DOC|Connecticut Department Of Corrections|STATEWIDE
+CT,Connecticut,DOC,Connecticut Department Of Corrections,STATEWIDE,,2025-03-01,21250,DOC,CT|DOC|Connecticut Department Of Corrections|STATEWIDE
+CT,Connecticut,SOR,Connecticut Sex Offender Registry,STATEWIDE,,2024-05-02,15957,SEX_OFFENDER,CT|SOR|Connecticut Sex Offender Registry|STATEWIDE
+CT,Connecticut,SOR,Connecticut Sex Offender Registry,STATEWIDE,,2025-03-02,5891,SEX_OFFENDER,CT|SOR|Connecticut Sex Offender Registry|STATEWIDE
+CT,Connecticut,SOR,Connecticut Sex Offender Registry,STATEWIDE,,2025-07-28,6215,SEX_OFFENDER,CT|SOR|Connecticut Sex Offender Registry|STATEWIDE
+DC,District of Columbia,DOC,Dc Dept Of Corrections,STATEWIDE,,2024-05-02,1,DOC,DC|DOC|Dc Dept Of Corrections|STATEWIDE
+DC,District of Columbia,DOC,Dc Dept Of Corrections,STATEWIDE,,2024-05-02,65487,DOC,DC|DOC|Dc Dept Of Corrections|STATEWIDE
+DC,District of Columbia,SOR,Washington Dc Sex Offender Registry,STATEWIDE,,2024-05-02,1167,SEX_OFFENDER,DC|SOR|Washington Dc Sex Offender Registry|STATEWIDE
+DC,District of Columbia,SOR,Washington Dc Sex Offender Registry,STATEWIDE,,2024-05-02,1,SEX_OFFENDER,DC|SOR|Washington Dc Sex Offender Registry|STATEWIDE
+DE,Delaware,SOR,Delaware Sex Offender Registry,STATEWIDE,,2024-05-02,13868,SEX_OFFENDER,DE|SOR|Delaware Sex Offender Registry|STATEWIDE
+DE,Delaware,SOR,Delaware Sex Offender Registry,STATEWIDE,,2025-07-19,4203,SEX_OFFENDER,DE|SOR|Delaware Sex Offender Registry|STATEWIDE
+FL,Florida,ARREST,Alachua County,Alachua,,2025-02-04,167409,ARREST,FL|ARREST|Alachua County|Alachua
+FL,Florida,ARREST,Alachua County,Alachua,,2025-07-07,4030,ARREST,FL|ARREST|Alachua County|Alachua
+FL,Florida,ARREST,Columbia County,Columbia,,2025-02-04,69934,ARREST,FL|ARREST|Columbia County|Columbia
+FL,Florida,ARREST,Columbia County,Columbia,,2025-07-07,603,ARREST,FL|ARREST|Columbia County|Columbia
+FL,Florida,ARREST,St Lucie County,St. Lucie,,2024-05-02,104193,ARREST,FL|ARREST|St Lucie County|St. Lucie
+FL,Florida,ARREST,St Lucie County,St. Lucie,,2025-02-04,104403,ARREST,FL|ARREST|St Lucie County|St. Lucie
+FL,Florida,ARREST,St Lucie County,St. Lucie,,2025-07-07,4990,ARREST,FL|ARREST|St Lucie County|St. Lucie
+FL,Florida,COURT,Alachua Clerk Of Courts,Alachua,COUNTY,2025-02-14,3949,COUNTY,FL|COURT|Alachua Clerk Of Courts|Alachua
+FL,Florida,COURT,Alachua Clerk Of Courts,Alachua,COUNTY,2025-07-16,754,COUNTY,FL|COURT|Alachua Clerk Of Courts|Alachua
+FL,Florida,COURT,Clay County Clerk Of Courts,Clay,COUNTY,2024-05-02,53590,COUNTY,FL|COURT|Clay County Clerk Of Courts|Clay
+FL,Florida,COURT,Clay County Clerk Of Courts,Clay,COUNTY,2025-07-16,210216,COUNTY,FL|COURT|Clay County Clerk Of Courts|Clay
+FL,Florida,COURT,Columbia County Clerk Of Courts,Columbia,COUNTY,2024-05-02,100942,COUNTY,FL|COURT|Columbia County Clerk Of Courts|Columbia
+FL,Florida,COURT,Columbia County Clerk Of Courts,Columbia,COUNTY,2024-05-02,12221,COUNTY,FL|COURT|Columbia County Clerk Of Courts|Columbia
+FL,Florida,DOC,Florida Department Of Corrections,STATEWIDE,,2024-11-13,2117336,DOC,FL|DOC|Florida Department Of Corrections|STATEWIDE
+FL,Florida,DOC,Florida Department Of Corrections,STATEWIDE,,2025-08-03,670432,DOC,FL|DOC|Florida Department Of Corrections|STATEWIDE
+FL,Florida,SOR,Florida Sex Offender Registry,STATEWIDE,,2024-05-02,204224,SEX_OFFENDER,FL|SOR|Florida Sex Offender Registry|STATEWIDE
+FL,Florida,SOR,Florida Sex Offender Registry,STATEWIDE,,2024-05-02,190,SEX_OFFENDER,FL|SOR|Florida Sex Offender Registry|STATEWIDE
+FL,Florida,SOR,Florida Sex Offender Registry,STATEWIDE,,2025-08-06,40082,SEX_OFFENDER,FL|SOR|Florida Sex Offender Registry|STATEWIDE
+GA,Georgia,ARREST,Pickens County,Pickens,,2024-05-02,391,ARREST,GA|ARREST|Pickens County|Pickens
+GA,Georgia,ARREST,Pickens County,Pickens,,2025-07-07,11193,ARREST,GA|ARREST|Pickens County|Pickens
+GA,Georgia,ARREST,Upson County,Upson,,2024-05-02,1834,ARREST,GA|ARREST|Upson County|Upson
+GA,Georgia,ARREST,Upson County,Upson,,2025-07-07,18381,ARREST,GA|ARREST|Upson County|Upson
+GA,Georgia,ARREST,White County,White,,2025-02-04,43384,ARREST,GA|ARREST|White County|White
+GA,Georgia,ARREST,White County,White,,2025-07-07,580,ARREST,GA|ARREST|White County|White
+GA,Georgia,COURT,Harris County Clerk Of Courts,Harris,COUNTY,2025-02-14,5004,COUNTY,GA|COURT|Harris County Clerk Of Courts|Harris
+GA,Georgia,COURT,Harris County Clerk Of Courts,Harris,COUNTY,2025-07-16,98,COUNTY,GA|COURT|Harris County Clerk Of Courts|Harris
+GA,Georgia,COURT,Houston County Clerk Of Courts,Houston,COUNTY,2025-04-11,192145,COUNTY,GA|COURT|Houston County Clerk Of Courts|Houston
+GA,Georgia,COURT,Houston County Clerk Of Courts,Houston,COUNTY,2025-04-11,11819,COUNTY,GA|COURT|Houston County Clerk Of Courts|Houston
+GA,Georgia,DOC,Georgia Department Of Corrections,Bryan,,2024-05-02,759,DOC,GA|DOC|Georgia Department Of Corrections|Bryan
+GA,Georgia,DOC,Georgia Department Of Corrections,Bryan,,2024-05-02,644,DOC,GA|DOC|Georgia Department Of Corrections|Bryan
+GA,Georgia,DOC,Georgia Department Of Corrections,STATEWIDE,,2024-05-02,475880,DOC,GA|DOC|Georgia Department Of Corrections|STATEWIDE
+GA,Georgia,DOC,Georgia Department Of Corrections,STATEWIDE,,2025-02-28,315699,DOC,GA|DOC|Georgia Department Of Corrections|STATEWIDE
+GA,Georgia,SOR,Georgia Sex Offender Registry,STATEWIDE,,2024-05-02,153435,SEX_OFFENDER,GA|SOR|Georgia Sex Offender Registry|STATEWIDE
+GA,Georgia,SOR,Georgia Sex Offender Registry,STATEWIDE,,2025-08-04,40241,SEX_OFFENDER,GA|SOR|Georgia Sex Offender Registry|STATEWIDE
+GU,Guam,SOR,Guam Sex Offender Registry,STATEWIDE,,2024-05-02,3201,SEX_OFFENDER,GU|SOR|Guam Sex Offender Registry|STATEWIDE
+GU,Guam,SOR,Guam Sex Offender Registry,STATEWIDE,,2025-08-06,876,SEX_OFFENDER,GU|SOR|Guam Sex Offender Registry|STATEWIDE
+HI,Hawaii,SOR,Hawaii Sex Offender Registry,STATEWIDE,,2024-05-02,14223,SEX_OFFENDER,HI|SOR|Hawaii Sex Offender Registry|STATEWIDE
+HI,Hawaii,SOR,Hawaii Sex Offender Registry,STATEWIDE,,2025-08-05,2746,SEX_OFFENDER,HI|SOR|Hawaii Sex Offender Registry|STATEWIDE
+IA,Iowa,COURT,Iowa Administrative Office Of The Courts,Adams,COUNTY,2024-05-02,4600,COUNTY,IA|COURT|Iowa Administrative Office Of The Courts|Adams
+IA,Iowa,COURT,Iowa Administrative Office Of The Courts,Adams,COUNTY,2024-05-02,3312,COUNTY,IA|COURT|Iowa Administrative Office Of The Courts|Adams
+IA,Iowa,COURT,Iowa Administrative Office Of The Courts,Clayton,COUNTY,2024-05-02,12809,COUNTY,IA|COURT|Iowa Administrative Office Of The Courts|Clayton
+IA,Iowa,COURT,Iowa Administrative Office Of The Courts,Clayton,COUNTY,2024-05-02,12373,COUNTY,IA|COURT|Iowa Administrative Office Of The Courts|Clayton
+IA,Iowa,COURT,Iowa Administrative Office Of The Courts,Franklin,COUNTY,2024-05-02,10500,COUNTY,IA|COURT|Iowa Administrative Office Of The Courts|Franklin
+IA,Iowa,COURT,Iowa Administrative Office Of The Courts,Franklin,COUNTY,2024-05-02,10561,COUNTY,IA|COURT|Iowa Administrative Office Of The Courts|Franklin
+IA,Iowa,DOC,Iowa Department Of Corrections,STATEWIDE,,2024-05-02,332441,DOC,IA|DOC|Iowa Department Of Corrections|STATEWIDE
+IA,Iowa,DOC,Iowa Department Of Corrections,STATEWIDE,,2025-03-03,349512,DOC,IA|DOC|Iowa Department Of Corrections|STATEWIDE
+IA,Iowa,SOR,Iowa Sex Offender Registry,STATEWIDE,,2024-05-02,7177,SEX_OFFENDER,IA|SOR|Iowa Sex Offender Registry|STATEWIDE
+IA,Iowa,SOR,Iowa Sex Offender Registry,STATEWIDE,,2024-05-02,49,SEX_OFFENDER,IA|SOR|Iowa Sex Offender Registry|STATEWIDE
+IA,Iowa,SOR,Iowa Sex Offender Registry,STATEWIDE,,2025-08-04,8130,SEX_OFFENDER,IA|SOR|Iowa Sex Offender Registry|STATEWIDE
+ID,Idaho,COURT,Idaho Courts,Nez Perce,COUNTY,2025-01-14,18348,COUNTY,ID|COURT|Idaho Courts|Nez Perce
+ID,Idaho,COURT,Idaho Courts,Nez Perce,COUNTY,2025-07-16,614,COUNTY,ID|COURT|Idaho Courts|Nez Perce
+ID,Idaho,SOR,Idaho Sex Offender Registry,STATEWIDE,,2024-05-02,5425,SEX_OFFENDER,ID|SOR|Idaho Sex Offender Registry|STATEWIDE
+ID,Idaho,SOR,Idaho Sex Offender Registry,STATEWIDE,,2024-05-02,3,SEX_OFFENDER,ID|SOR|Idaho Sex Offender Registry|STATEWIDE
+IL,Illinois,ARREST,White County,White,,2025-02-04,3076,ARREST,IL|ARREST|White County|White
+IL,Illinois,ARREST,White County,White,,2025-07-07,217,ARREST,IL|ARREST|White County|White
+IL,Illinois,COURT,White County Clerk Of Courts,White,COUNTY,2025-01-14,38000,COUNTY,IL|COURT|White County Clerk Of Courts|White
+IL,Illinois,COURT,White County Clerk Of Courts,White,COUNTY,2025-07-16,1002,COUNTY,IL|COURT|White County Clerk Of Courts|White
+IL,Illinois,DOC,Illinois Department Of Corrections,STATEWIDE,,2024-05-02,7686388,DOC,IL|DOC|Illinois Department Of Corrections|STATEWIDE
+IL,Illinois,DOC,Illinois Department Of Corrections,STATEWIDE,,2025-08-01,262982,DOC,IL|DOC|Illinois Department Of Corrections|STATEWIDE
+IN,Indiana,ARREST,Hamilton County,Hamilton,,2024-05-02,7907,ARREST,IN|ARREST|Hamilton County|Hamilton
+IN,Indiana,ARREST,Hamilton County,Hamilton,,2025-07-07,62001,ARREST,IN|ARREST|Hamilton County|Hamilton
+IN,Indiana,ARREST,Hendricks County,Hendricks,,2024-05-02,1218,ARREST,IN|ARREST|Hendricks County|Hendricks
+IN,Indiana,ARREST,Hendricks County,Hendricks,,2025-07-07,62228,ARREST,IN|ARREST|Hendricks County|Hendricks
+IN,Indiana,ARREST,Howard County,Howard,,2024-05-02,1373,ARREST,IN|ARREST|Howard County|Howard
+IN,Indiana,ARREST,Howard County,Howard,,2025-07-07,194962,ARREST,IN|ARREST|Howard County|Howard
+IN,Indiana,ARREST,Laporte County,Laporte,,2024-05-02,1450,ARREST,IN|ARREST|Laporte County|Laporte
+IN,Indiana,ARREST,Laporte County,Laporte,,2025-03-09,240664,ARREST,IN|ARREST|Laporte County|Laporte
+IN,Indiana,ARREST,Madison County,Madison,,2024-05-02,2293,ARREST,IN|ARREST|Madison County|Madison
+IN,Indiana,ARREST,Madison County,Madison,,2025-07-07,140870,ARREST,IN|ARREST|Madison County|Madison
+IN,Indiana,ARREST,Marion County,Marion,,2024-05-02,16976,ARREST,IN|ARREST|Marion County|Marion
+IN,Indiana,ARREST,Marion County,Marion,,2025-07-07,266738,ARREST,IN|ARREST|Marion County|Marion
+IN,Indiana,ARREST,St. Joseph County,St. Joseph,,2024-05-02,3232,ARREST,IN|ARREST|St. Joseph County|St. Joseph
+IN,Indiana,ARREST,St. Joseph County,St. Joseph,,2025-03-09,96792,ARREST,IN|ARREST|St. Joseph County|St. Joseph
+IN,Indiana,ARREST,Tippecanoe County,Tippecanoe,,2024-05-02,2219,ARREST,IN|ARREST|Tippecanoe County|Tippecanoe
+IN,Indiana,ARREST,Tippecanoe County,Tippecanoe,,2025-07-07,30240,ARREST,IN|ARREST|Tippecanoe County|Tippecanoe
+IN,Indiana,ARREST,Vigo County,Vigo,,2024-05-02,3716,ARREST,IN|ARREST|Vigo County|Vigo
+IN,Indiana,ARREST,Vigo County,Vigo,,2025-07-07,164396,ARREST,IN|ARREST|Vigo County|Vigo
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Allen,COUNTY,2024-05-02,209302,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Allen
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Allen,COUNTY,2025-01-14,135491,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Allen
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Bartholomew,COUNTY,2024-05-02,5833,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Bartholomew
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Bartholomew,COUNTY,2025-07-16,75604,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Bartholomew
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Clark,COUNTY,2025-07-16,31554,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Clark
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Clark,COUNTY,2025-07-16,173610,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Clark
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Clinton,COUNTY,2024-05-02,2928,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Clinton
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Clinton,COUNTY,2025-07-16,4043,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Clinton
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Delaware,COUNTY,2024-05-02,6562,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Delaware
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Delaware,COUNTY,2025-07-16,108974,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Delaware
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Elkhart,COUNTY,2025-01-14,37589,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Elkhart
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Elkhart,COUNTY,2025-02-14,16811,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Elkhart
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Elkhart,COUNTY,2025-07-16,94,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Elkhart
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Floyd,COUNTY,2024-05-02,98086,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Floyd
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Floyd,COUNTY,2025-01-14,75593,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Floyd
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Hamilton,COUNTY,2024-05-02,85466,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Hamilton
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Hamilton,COUNTY,2025-07-16,133562,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Hamilton
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Harrison,COUNTY,2024-05-02,18294,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Harrison
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Harrison,COUNTY,2024-05-02,6196,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Harrison
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Hendricks,COUNTY,2024-05-02,5569,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Hendricks
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Hendricks,COUNTY,2025-01-14,9069,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Hendricks
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Henry,COUNTY,2024-05-02,5765,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Henry
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Henry,COUNTY,2025-07-16,51020,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Henry
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Howard,COUNTY,2024-05-02,6354,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Howard
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Howard,COUNTY,2025-07-16,9841,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Howard
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Huntington,COUNTY,2024-05-02,36791,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Huntington
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Huntington,COUNTY,2025-01-14,11961,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Huntington
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Jasper,COUNTY,2024-05-02,6416,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Jasper
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Jasper,COUNTY,2025-01-14,3888,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Jasper
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Johnson,COUNTY,2024-05-02,16858,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Johnson
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Johnson,COUNTY,2025-07-16,116308,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Johnson
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Kosciusko,COUNTY,2024-05-02,6063,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Kosciusko
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Kosciusko,COUNTY,2025-07-16,5152,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Kosciusko
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Lake,COUNTY,2025-01-14,103096,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Lake
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Lake,COUNTY,2025-07-16,44337,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Lake
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Laporte,COUNTY,2024-05-02,11521,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Laporte
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Laporte,COUNTY,2025-07-16,148694,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Laporte
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Madison,COUNTY,2024-05-02,4671,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Madison
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Madison,COUNTY,2025-07-16,19660,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Madison
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Marion,COUNTY,2024-10-14,112437,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Marion
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Marion,COUNTY,2025-07-16,69760,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Marion
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Marshall,COUNTY,2024-05-02,5315,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Marshall
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Marshall,COUNTY,2025-07-16,65199,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Marshall
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Miami,COUNTY,2024-05-02,7924,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Miami
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Miami,COUNTY,2025-07-16,10226,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Miami
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Monroe,COUNTY,2024-05-02,35678,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Monroe
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Monroe,COUNTY,2025-01-14,110698,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Monroe
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Morgan,COUNTY,2024-05-02,18165,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Morgan
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Morgan,COUNTY,2025-07-16,3560,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Morgan
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Owen,COUNTY,2024-05-02,4343,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Owen
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Owen,COUNTY,2024-05-02,10226,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Owen
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Porter,COUNTY,2024-05-02,120657,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Porter
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Porter,COUNTY,2025-01-14,32864,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Porter
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Scott,COUNTY,2024-05-02,15921,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Scott
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Scott,COUNTY,2025-01-14,6228,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Scott
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,St. Joseph,COUNTY,2024-05-02,16831,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|St. Joseph
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,St. Joseph,COUNTY,2025-01-14,222236,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|St. Joseph
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Tippecanoe,COUNTY,2025-01-14,179990,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Tippecanoe
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Tippecanoe,COUNTY,2025-02-14,5613,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Tippecanoe
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Tippecanoe,COUNTY,2025-07-16,391,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Tippecanoe
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Tipton,COUNTY,2024-05-02,11214,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Tipton
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Tipton,COUNTY,2024-05-02,4853,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Tipton
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Vanderburgh,COUNTY,2024-05-02,18538,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Vanderburgh
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Vanderburgh,COUNTY,2025-07-16,243211,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Vanderburgh
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Vigo,COUNTY,2024-05-02,12222,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Vigo
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Vigo,COUNTY,2025-07-16,138547,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Vigo
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Warren,COUNTY,2024-05-02,20460,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Warren
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,Warren,COUNTY,2024-05-02,287370,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|Warren
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,White,COUNTY,2025-02-14,5967,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|White
+IN,Indiana,COURT,Indiana Administrative Office Of The Courts,White,COUNTY,2025-07-16,268,COUNTY,IN|COURT|Indiana Administrative Office Of The Courts|White
+IN,Indiana,DOC,Indiana Department Of Corrections,STATEWIDE,,2024-05-02,461960,DOC,IN|DOC|Indiana Department Of Corrections|STATEWIDE
+IN,Indiana,DOC,Indiana Department Of Corrections,STATEWIDE,,2025-08-02,241588,DOC,IN|DOC|Indiana Department Of Corrections|STATEWIDE
+IN,Indiana,SOR,Indiana Sex Offender Registry,STATEWIDE,,2024-05-02,30261,SEX_OFFENDER,IN|SOR|Indiana Sex Offender Registry|STATEWIDE
+IN,Indiana,SOR,Indiana Sex Offender Registry,STATEWIDE,,2025-03-02,14074,SEX_OFFENDER,IN|SOR|Indiana Sex Offender Registry|STATEWIDE
+IN,Indiana,SOR,Indiana Sex Offender Registry,STATEWIDE,,2025-07-28,15606,SEX_OFFENDER,IN|SOR|Indiana Sex Offender Registry|STATEWIDE
+KS,Kansas,DOC,Kansas Department Of Corrections,STATEWIDE,,2024-05-02,434931,DOC,KS|DOC|Kansas Department Of Corrections|STATEWIDE
+KS,Kansas,DOC,Kansas Department Of Corrections,STATEWIDE,,2025-07-20,201209,DOC,KS|DOC|Kansas Department Of Corrections|STATEWIDE
+KS,Kansas,SOR,Kansas Sex Offender Registry,STATEWIDE,,2024-05-02,24139,SEX_OFFENDER,KS|SOR|Kansas Sex Offender Registry|STATEWIDE
+KS,Kansas,SOR,Kansas Sex Offender Registry,STATEWIDE,,2025-06-04,11540,SEX_OFFENDER,KS|SOR|Kansas Sex Offender Registry|STATEWIDE
+KY,Kentucky,DOC,Kentucky Department Of Corrections,STATEWIDE,,2024-05-02,369433,DOC,KY|DOC|Kentucky Department Of Corrections|STATEWIDE
+KY,Kentucky,DOC,Kentucky Department Of Corrections,STATEWIDE,,2025-02-28,80001,DOC,KY|DOC|Kentucky Department Of Corrections|STATEWIDE
+KY,Kentucky,SOR,Kentucky Sex Offender Registry,STATEWIDE,,2024-05-02,10395,SEX_OFFENDER,KY|SOR|Kentucky Sex Offender Registry|STATEWIDE
+KY,Kentucky,SOR,Kentucky Sex Offender Registry,STATEWIDE,,2024-05-02,3,SEX_OFFENDER,KY|SOR|Kentucky Sex Offender Registry|STATEWIDE
+KY,Kentucky,SOR,Kentucky Sex Offender Registry,STATEWIDE,,2025-08-06,10356,SEX_OFFENDER,KY|SOR|Kentucky Sex Offender Registry|STATEWIDE
+LA,Louisiana,ARREST,Acadia Parish,Acadia,,2025-02-04,28427,ARREST,LA|ARREST|Acadia Parish|Acadia
+LA,Louisiana,ARREST,Acadia Parish,Acadia,,2025-07-07,1014,ARREST,LA|ARREST|Acadia Parish|Acadia
+LA,Louisiana,ARREST,Ascension Parish,Ascension,,2025-02-04,74740,ARREST,LA|ARREST|Ascension Parish|Ascension
+LA,Louisiana,ARREST,Ascension Parish,Ascension,,2025-07-07,2397,ARREST,LA|ARREST|Ascension Parish|Ascension
+LA,Louisiana,ARREST,Bienville Parish,Bienville,,2025-02-04,2611,ARREST,LA|ARREST|Bienville Parish|Bienville
+LA,Louisiana,ARREST,Bienville Parish,Bienville,,2025-07-07,124,ARREST,LA|ARREST|Bienville Parish|Bienville
+LA,Louisiana,ARREST,Bossier Parish,Bossier,,2025-02-04,118866,ARREST,LA|ARREST|Bossier Parish|Bossier
+LA,Louisiana,ARREST,Bossier Parish,Bossier,,2025-07-07,3271,ARREST,LA|ARREST|Bossier Parish|Bossier
+LA,Louisiana,ARREST,Catahoula Parish,Catahoula,,2025-02-04,3935,ARREST,LA|ARREST|Catahoula Parish|Catahoula
+LA,Louisiana,ARREST,Catahoula Parish,Catahoula,,2025-07-07,236,ARREST,LA|ARREST|Catahoula Parish|Catahoula
+LA,Louisiana,ARREST,Concordia Parish,Concordia,,2025-02-04,7194,ARREST,LA|ARREST|Concordia Parish|Concordia
+LA,Louisiana,ARREST,Concordia Parish,Concordia,,2025-07-07,1744,ARREST,LA|ARREST|Concordia Parish|Concordia
+LA,Louisiana,ARREST,East Feliciana Parish,East Feliciana,,2025-02-04,5740,ARREST,LA|ARREST|East Feliciana Parish|East Feliciana
+LA,Louisiana,ARREST,East Feliciana Parish,East Feliciana,,2025-07-07,265,ARREST,LA|ARREST|East Feliciana Parish|East Feliciana
+LA,Louisiana,ARREST,Livingston Parish,Livingston,,2025-02-04,52043,ARREST,LA|ARREST|Livingston Parish|Livingston
+LA,Louisiana,ARREST,Livingston Parish,Livingston,,2025-07-07,3356,ARREST,LA|ARREST|Livingston Parish|Livingston
+LA,Louisiana,ARREST,Ouachita Parish County,Ouachita,,2025-01-14,7062,ARREST,LA|ARREST|Ouachita Parish County|Ouachita
+LA,Louisiana,ARREST,Ouachita Parish County,Ouachita,,2025-03-09,259,ARREST,LA|ARREST|Ouachita Parish County|Ouachita
+LA,Louisiana,ARREST,Red River Parish,Red River,,2025-02-04,1647,ARREST,LA|ARREST|Red River Parish|Red River
+LA,Louisiana,ARREST,Red River Parish,Red River,,2025-07-07,92,ARREST,LA|ARREST|Red River Parish|Red River
+LA,Louisiana,ARREST,Richland Parish,Richland,,2025-02-04,16738,ARREST,LA|ARREST|Richland Parish|Richland
+LA,Louisiana,ARREST,Richland Parish,Richland,,2025-07-07,210,ARREST,LA|ARREST|Richland Parish|Richland
+LA,Louisiana,ARREST,St. Charles Par County,St. Charles,,2025-01-14,3292,ARREST,LA|ARREST|St. Charles Par County|St. Charles
+LA,Louisiana,ARREST,St. Charles Par County,St. Charles,,2025-03-09,146,ARREST,LA|ARREST|St. Charles Par County|St. Charles
+LA,Louisiana,ARREST,St. James Parish County,St. James,,2025-01-14,929,ARREST,LA|ARREST|St. James Parish County|St. James
+LA,Louisiana,ARREST,St. James Parish County,St. James,,2025-03-09,47,ARREST,LA|ARREST|St. James Parish County|St. James
+LA,Louisiana,ARREST,St. John The Baptist County,St. John The Baptist,,2025-01-14,2190,ARREST,LA|ARREST|St. John The Baptist County|St. John The Baptist
+LA,Louisiana,ARREST,St. John The Baptist County,St. John The Baptist,,2025-03-09,79,ARREST,LA|ARREST|St. John The Baptist County|St. John The Baptist
+LA,Louisiana,ARREST,Tangipahoa Parish,Tangipahoa,,2025-02-04,31031,ARREST,LA|ARREST|Tangipahoa Parish|Tangipahoa
+LA,Louisiana,ARREST,Tangipahoa Parish,Tangipahoa,,2025-07-07,2374,ARREST,LA|ARREST|Tangipahoa Parish|Tangipahoa
+LA,Louisiana,ARREST,Terrebonne Paris County,Terrebonne,,2025-01-14,4454,ARREST,LA|ARREST|Terrebonne Paris County|Terrebonne
+LA,Louisiana,ARREST,Terrebonne Paris County,Terrebonne,,2025-03-09,152,ARREST,LA|ARREST|Terrebonne Paris County|Terrebonne
+LA,Louisiana,ARREST,West Baton Rouge Parish,West Baton Rough,,2025-02-04,13322,ARREST,LA|ARREST|West Baton Rouge Parish|West Baton Rough
+LA,Louisiana,ARREST,West Baton Rouge Parish,West Baton Rough,,2025-07-07,434,ARREST,LA|ARREST|West Baton Rouge Parish|West Baton Rough
+LA,Louisiana,SOR,Louisiana Sex Offender Registry,STATEWIDE,,2024-05-02,13656,SEX_OFFENDER,LA|SOR|Louisiana Sex Offender Registry|STATEWIDE
+LA,Louisiana,SOR,Louisiana Sex Offender Registry,STATEWIDE,,2024-05-02,11,SEX_OFFENDER,LA|SOR|Louisiana Sex Offender Registry|STATEWIDE
+LA,Louisiana,SOR,Louisiana Sex Offender Registry,STATEWIDE,,2025-03-02,13344,SEX_OFFENDER,LA|SOR|Louisiana Sex Offender Registry|STATEWIDE
+LA,Louisiana,SOR,Louisiana Sex Offender Registry,STATEWIDE,,2025-07-28,14202,SEX_OFFENDER,LA|SOR|Louisiana Sex Offender Registry|STATEWIDE
+MA,Massachusetts,SOR,Massachusetts Sex Offender Registry,STATEWIDE,,2024-05-02,13119,SEX_OFFENDER,MA|SOR|Massachusetts Sex Offender Registry|STATEWIDE
+MA,Massachusetts,SOR,Massachusetts Sex Offender Registry,STATEWIDE,,2025-08-06,8661,SEX_OFFENDER,MA|SOR|Massachusetts Sex Offender Registry|STATEWIDE
+MD,Maryland,COURT,Maryland Administrative Office Of Courts,Prince Georges,COUNTY,2024-05-02,28273,COUNTY,MD|COURT|Maryland Administrative Office Of Courts|Prince Georges
+MD,Maryland,COURT,Maryland Administrative Office Of Courts,Prince Georges,COUNTY,2025-05-16,1145353,COUNTY,MD|COURT|Maryland Administrative Office Of Courts|Prince Georges
+MD,Maryland,DOC,Maryland Department Of Corrections,STATEWIDE,,2024-05-02,78987,DOC,MD|DOC|Maryland Department Of Corrections|STATEWIDE
+MD,Maryland,DOC,Maryland Department Of Corrections,STATEWIDE,,2025-08-04,127184,DOC,MD|DOC|Maryland Department Of Corrections|STATEWIDE
+MD,Maryland,SOR,Maryland Sex Offender Registry,STATEWIDE,,2024-05-02,15290,SEX_OFFENDER,MD|SOR|Maryland Sex Offender Registry|STATEWIDE
+MD,Maryland,SOR,Maryland Sex Offender Registry,STATEWIDE,,2025-03-02,7169,SEX_OFFENDER,MD|SOR|Maryland Sex Offender Registry|STATEWIDE
+MD,Maryland,SOR,Maryland Sex Offender Registry,STATEWIDE,,2025-07-28,7931,SEX_OFFENDER,MD|SOR|Maryland Sex Offender Registry|STATEWIDE
+ME,Maine,DOC,Maine Department Of Corrections,STATEWIDE,,2024-05-02,19401,DOC,ME|DOC|Maine Department Of Corrections|STATEWIDE
+ME,Maine,DOC,Maine Department Of Corrections,STATEWIDE,,2025-03-02,9195,DOC,ME|DOC|Maine Department Of Corrections|STATEWIDE
+ME,Maine,SOR,Maine Sex Offender Registry,STATEWIDE,,2024-05-02,4336,SEX_OFFENDER,ME|SOR|Maine Sex Offender Registry|STATEWIDE
+ME,Maine,SOR,Maine Sex Offender Registry,STATEWIDE,,2025-08-06,3038,SEX_OFFENDER,ME|SOR|Maine Sex Offender Registry|STATEWIDE
+MI,Michigan,DOC,Michigan Department Of Corrections,STATEWIDE,,2024-05-02,1558274,DOC,MI|DOC|Michigan Department Of Corrections|STATEWIDE
+MI,Michigan,DOC,Michigan Department Of Corrections,STATEWIDE,,2025-08-04,59125,DOC,MI|DOC|Michigan Department Of Corrections|STATEWIDE
+MI,Michigan,SOR,Michigan Sex Offender Registry,STATEWIDE,,2024-05-02,28018,SEX_OFFENDER,MI|SOR|Michigan Sex Offender Registry|STATEWIDE
+MI,Michigan,SOR,Michigan Sex Offender Registry,STATEWIDE,,2024-05-02,43,SEX_OFFENDER,MI|SOR|Michigan Sex Offender Registry|STATEWIDE
+MI,Michigan,SOR,Michigan Sex Offender Registry,STATEWIDE,,2025-08-05,42225,SEX_OFFENDER,MI|SOR|Michigan Sex Offender Registry|STATEWIDE
+MN,Minnesota,ARREST,Crow Wing County,Crow Wing,,2025-02-04,93709,ARREST,MN|ARREST|Crow Wing County|Crow Wing
+MN,Minnesota,ARREST,Crow Wing County,Crow Wing,,2025-07-07,1747,ARREST,MN|ARREST|Crow Wing County|Crow Wing
+MN,Minnesota,DOC,Minnesota Department Of Corrections,STATEWIDE,,2024-05-02,42063,DOC,MN|DOC|Minnesota Department Of Corrections|STATEWIDE
+MN,Minnesota,DOC,Minnesota Department Of Corrections,STATEWIDE,,2025-03-02,8141,DOC,MN|DOC|Minnesota Department Of Corrections|STATEWIDE
+MN,Minnesota,SOR,Minnesota Sex Offender Registry,STATEWIDE,,2024-05-02,495,SEX_OFFENDER,MN|SOR|Minnesota Sex Offender Registry|STATEWIDE
+MN,Minnesota,SOR,Minnesota Sex Offender Registry,STATEWIDE,,2025-03-22,1015,SEX_OFFENDER,MN|SOR|Minnesota Sex Offender Registry|STATEWIDE
+MN,Minnesota,SOR,Minnesota Sex Offender Registry,STATEWIDE,,2025-08-04,22041,SEX_OFFENDER,MN|SOR|Minnesota Sex Offender Registry|STATEWIDE
+MO,Missouri,ARREST,Boone County,Boone,,2025-01-14,35792,ARREST,MO|ARREST|Boone County|Boone
+MO,Missouri,ARREST,Boone County,Boone,,2025-03-09,245,ARREST,MO|ARREST|Boone County|Boone
+MO,Missouri,ARREST,Missouri Arrest,Barry County,,2025-07-24,142,ARREST,MO|ARREST|Missouri Arrest|Barry County
+MO,Missouri,ARREST,Missouri Arrest,Barry County,,2025-08-04,41,ARREST,MO|ARREST|Missouri Arrest|Barry County
+MO,Missouri,ARREST,Missouri Arrest,Bates County,,2025-07-24,79,ARREST,MO|ARREST|Missouri Arrest|Bates County
+MO,Missouri,ARREST,Missouri Arrest,Bates County,,2025-08-04,9,ARREST,MO|ARREST|Missouri Arrest|Bates County
+MO,Missouri,ARREST,Missouri Arrest,Bollinger County,,2025-07-24,41,ARREST,MO|ARREST|Missouri Arrest|Bollinger County
+MO,Missouri,ARREST,Missouri Arrest,Bollinger County,,2025-08-04,3,ARREST,MO|ARREST|Missouri Arrest|Bollinger County
+MO,Missouri,ARREST,Missouri Arrest,Buchanan County,,2025-07-24,308,ARREST,MO|ARREST|Missouri Arrest|Buchanan County
+MO,Missouri,ARREST,Missouri Arrest,Buchanan County,,2025-08-04,71,ARREST,MO|ARREST|Missouri Arrest|Buchanan County
+MO,Missouri,ARREST,Missouri Arrest,Callaway County,,2025-07-24,562,ARREST,MO|ARREST|Missouri Arrest|Callaway County
+MO,Missouri,ARREST,Missouri Arrest,Callaway County,,2025-08-04,49,ARREST,MO|ARREST|Missouri Arrest|Callaway County
+MO,Missouri,ARREST,Missouri Arrest,Cedar County,,2025-07-24,70,ARREST,MO|ARREST|Missouri Arrest|Cedar County
+MO,Missouri,ARREST,Missouri Arrest,Cedar County,,2025-08-04,15,ARREST,MO|ARREST|Missouri Arrest|Cedar County
+MO,Missouri,ARREST,Missouri Arrest,Cooper County,,2025-07-24,148,ARREST,MO|ARREST|Missouri Arrest|Cooper County
+MO,Missouri,ARREST,Missouri Arrest,Cooper County,,2025-08-04,26,ARREST,MO|ARREST|Missouri Arrest|Cooper County
+MO,Missouri,ARREST,Missouri Arrest,Dekalb County,,2025-07-24,129,ARREST,MO|ARREST|Missouri Arrest|Dekalb County
+MO,Missouri,ARREST,Missouri Arrest,Dekalb County,,2025-08-04,21,ARREST,MO|ARREST|Missouri Arrest|Dekalb County
+MO,Missouri,ARREST,Missouri Arrest,Greene County,,2025-07-24,2861,ARREST,MO|ARREST|Missouri Arrest|Greene County
+MO,Missouri,ARREST,Missouri Arrest,Greene County,,2025-08-04,387,ARREST,MO|ARREST|Missouri Arrest|Greene County
+MO,Missouri,ARREST,Missouri Arrest,Henry County,,2025-07-24,230,ARREST,MO|ARREST|Missouri Arrest|Henry County
+MO,Missouri,ARREST,Missouri Arrest,Henry County,,2025-08-04,29,ARREST,MO|ARREST|Missouri Arrest|Henry County
+MO,Missouri,ARREST,Missouri Arrest,Howard County,,2025-07-24,55,ARREST,MO|ARREST|Missouri Arrest|Howard County
+MO,Missouri,ARREST,Missouri Arrest,Howard County,,2025-08-04,8,ARREST,MO|ARREST|Missouri Arrest|Howard County
+MO,Missouri,ARREST,Missouri Arrest,Johnson County,,2025-07-24,795,ARREST,MO|ARREST|Missouri Arrest|Johnson County
+MO,Missouri,ARREST,Missouri Arrest,Johnson County,,2025-08-04,83,ARREST,MO|ARREST|Missouri Arrest|Johnson County
+MO,Missouri,ARREST,Missouri Arrest,Lawrence County,,2025-07-24,184,ARREST,MO|ARREST|Missouri Arrest|Lawrence County
+MO,Missouri,ARREST,Missouri Arrest,Lawrence County,,2025-08-04,28,ARREST,MO|ARREST|Missouri Arrest|Lawrence County
+MO,Missouri,ARREST,Missouri Arrest,Lincoln County,,2025-07-24,262,ARREST,MO|ARREST|Missouri Arrest|Lincoln County
+MO,Missouri,ARREST,Missouri Arrest,Lincoln County,,2025-08-04,51,ARREST,MO|ARREST|Missouri Arrest|Lincoln County
+MO,Missouri,ARREST,Missouri Arrest,Livingston County,,2025-07-24,112,ARREST,MO|ARREST|Missouri Arrest|Livingston County
+MO,Missouri,ARREST,Missouri Arrest,Livingston County,,2025-08-04,10,ARREST,MO|ARREST|Missouri Arrest|Livingston County
+MO,Missouri,ARREST,Missouri Arrest,Mcdonald County,,2025-07-24,111,ARREST,MO|ARREST|Missouri Arrest|Mcdonald County
+MO,Missouri,ARREST,Missouri Arrest,Mcdonald County,,2025-08-04,29,ARREST,MO|ARREST|Missouri Arrest|Mcdonald County
+MO,Missouri,ARREST,Missouri Arrest,Morgan County,,2025-07-24,156,ARREST,MO|ARREST|Missouri Arrest|Morgan County
+MO,Missouri,ARREST,Missouri Arrest,Morgan County,,2025-08-04,25,ARREST,MO|ARREST|Missouri Arrest|Morgan County
+MO,Missouri,ARREST,Missouri Arrest,Perry County,,2025-07-24,52,ARREST,MO|ARREST|Missouri Arrest|Perry County
+MO,Missouri,ARREST,Missouri Arrest,Perry County,,2025-08-04,8,ARREST,MO|ARREST|Missouri Arrest|Perry County
+MO,Missouri,ARREST,Missouri Arrest,Platte County,,2025-07-24,531,ARREST,MO|ARREST|Missouri Arrest|Platte County
+MO,Missouri,ARREST,Missouri Arrest,Platte County,,2025-08-04,77,ARREST,MO|ARREST|Missouri Arrest|Platte County
+MO,Missouri,ARREST,Missouri Arrest,Polk County,,2025-07-24,109,ARREST,MO|ARREST|Missouri Arrest|Polk County
+MO,Missouri,ARREST,Missouri Arrest,Polk County,,2025-08-04,13,ARREST,MO|ARREST|Missouri Arrest|Polk County
+MO,Missouri,ARREST,Missouri Arrest,Randolph County,,2025-07-24,283,ARREST,MO|ARREST|Missouri Arrest|Randolph County
+MO,Missouri,ARREST,Missouri Arrest,Randolph County,,2025-08-04,44,ARREST,MO|ARREST|Missouri Arrest|Randolph County
+MO,Missouri,ARREST,Missouri Arrest,Saline County,,2025-07-24,178,ARREST,MO|ARREST|Missouri Arrest|Saline County
+MO,Missouri,ARREST,Missouri Arrest,Saline County,,2025-08-04,12,ARREST,MO|ARREST|Missouri Arrest|Saline County
+MO,Missouri,ARREST,Missouri Arrest,Scott County,,2025-07-24,254,ARREST,MO|ARREST|Missouri Arrest|Scott County
+MO,Missouri,ARREST,Missouri Arrest,Scott County,,2025-08-04,38,ARREST,MO|ARREST|Missouri Arrest|Scott County
+MO,Missouri,ARREST,Missouri Arrest,Stone County,,2025-07-24,318,ARREST,MO|ARREST|Missouri Arrest|Stone County
+MO,Missouri,ARREST,Missouri Arrest,Stone County,,2025-08-04,42,ARREST,MO|ARREST|Missouri Arrest|Stone County
+MO,Missouri,ARREST,Saline County,Saline,,2025-02-04,5098,ARREST,MO|ARREST|Saline County|Saline
+MO,Missouri,ARREST,Saline County,Saline,,2025-07-07,498,ARREST,MO|ARREST|Saline County|Saline
+MO,Missouri,DOC,Missouri Department Of Corrections,STATEWIDE,,2024-05-02,1447038,DOC,MO|DOC|Missouri Department Of Corrections|STATEWIDE
+MO,Missouri,DOC,Missouri Department Of Corrections,STATEWIDE,,2025-08-04,73029,DOC,MO|DOC|Missouri Department Of Corrections|STATEWIDE
+MO,Missouri,SOR,Missouri Sex Offender Registry,STATEWIDE,,2024-05-02,81987,SEX_OFFENDER,MO|SOR|Missouri Sex Offender Registry|STATEWIDE
+MO,Missouri,SOR,Missouri Sex Offender Registry,STATEWIDE,,2025-04-05,21157,SEX_OFFENDER,MO|SOR|Missouri Sex Offender Registry|STATEWIDE
+MO,Missouri,SOR,Missouri Sex Offender Registry,STATEWIDE,,2025-08-04,22017,SEX_OFFENDER,MO|SOR|Missouri Sex Offender Registry|STATEWIDE
+MP,Northern Mariana Islands,SOR,Mariana Islands Sex Offender Registry,STATEWIDE,,2025-04-05,100,SEX_OFFENDER,MP|SOR|Mariana Islands Sex Offender Registry|STATEWIDE
+MP,Northern Mariana Islands,SOR,Mariana Islands Sex Offender Registry,STATEWIDE,,2025-04-11,200,SEX_OFFENDER,MP|SOR|Mariana Islands Sex Offender Registry|STATEWIDE
+MS,Mississippi,DOC,Mississippi Department Of Corrections,STATEWIDE,,2024-05-02,182906,DOC,MS|DOC|Mississippi Department Of Corrections|STATEWIDE
+MS,Mississippi,DOC,Mississippi Department Of Corrections,STATEWIDE,,2025-08-02,25253,DOC,MS|DOC|Mississippi Department Of Corrections|STATEWIDE
+MS,Mississippi,SOR,Mississippi Sex Offender Registry,STATEWIDE,,2024-05-02,21376,SEX_OFFENDER,MS|SOR|Mississippi Sex Offender Registry|STATEWIDE
+MS,Mississippi,SOR,Mississippi Sex Offender Registry,STATEWIDE,,2025-08-03,13613,SEX_OFFENDER,MS|SOR|Mississippi Sex Offender Registry|STATEWIDE
+MT,Montana,ARREST,Missoula County,Missoula,,2024-05-02,597,ARREST,MT|ARREST|Missoula County|Missoula
+MT,Montana,ARREST,Missoula County,Missoula,,2025-07-07,157596,ARREST,MT|ARREST|Missoula County|Missoula
+MT,Montana,ARREST,Ravalli County,Ravalli,,2024-05-02,345,ARREST,MT|ARREST|Ravalli County|Ravalli
+MT,Montana,ARREST,Ravalli County,Ravalli,,2025-07-07,22536,ARREST,MT|ARREST|Ravalli County|Ravalli
+MT,Montana,ARREST,Yellowstone County,Yellowstone,,2024-05-02,16193,ARREST,MT|ARREST|Yellowstone County|Yellowstone
+MT,Montana,ARREST,Yellowstone County,Yellowstone,,2025-07-07,9575,ARREST,MT|ARREST|Yellowstone County|Yellowstone
+MT,Montana,DOC,Mt Dept Of Corrections,Golden Valley,,2024-05-02,107,DOC,MT|DOC|Mt Dept Of Corrections|Golden Valley
+MT,Montana,DOC,Mt Dept Of Corrections,Golden Valley,,2024-05-02,985,DOC,MT|DOC|Mt Dept Of Corrections|Golden Valley
+MT,Montana,DOC,Mt Dept Of Corrections,Missoula,,2024-05-02,28349,DOC,MT|DOC|Mt Dept Of Corrections|Missoula
+MT,Montana,DOC,Mt Dept Of Corrections,Missoula,,2024-05-02,87,DOC,MT|DOC|Mt Dept Of Corrections|Missoula
+MT,Montana,SOR,Montana Sex Offender Registry,STATEWIDE,,2024-05-02,1517,SEX_OFFENDER,MT|SOR|Montana Sex Offender Registry|STATEWIDE
+MT,Montana,SOR,Montana Sex Offender Registry,STATEWIDE,,2024-05-02,11,SEX_OFFENDER,MT|SOR|Montana Sex Offender Registry|STATEWIDE
+MT,Montana,SOR,Montana Sex Offender Registry,STATEWIDE,,2025-08-05,7578,SEX_OFFENDER,MT|SOR|Montana Sex Offender Registry|STATEWIDE
+NC,North Carolina,COURT,Nc Administrative Office Of The Courts,Davidson,COUNTY,2024-05-02,21571,COUNTY,NC|COURT|Nc Administrative Office Of The Courts|Davidson
+NC,North Carolina,COURT,Nc Administrative Office Of The Courts,Davidson,COUNTY,2025-01-14,1299410,COUNTY,NC|COURT|Nc Administrative Office Of The Courts|Davidson
+NC,North Carolina,COURT,Nc Administrative Office Of The Courts,Harnett,COUNTY,2024-05-02,15105,COUNTY,NC|COURT|Nc Administrative Office Of The Courts|Harnett
+NC,North Carolina,COURT,Nc Administrative Office Of The Courts,Harnett,COUNTY,2025-01-14,890576,COUNTY,NC|COURT|Nc Administrative Office Of The Courts|Harnett
+NC,North Carolina,COURT,Nc Administrative Office Of The Courts,Madison,COUNTY,2024-05-02,1193,COUNTY,NC|COURT|Nc Administrative Office Of The Courts|Madison
+NC,North Carolina,COURT,Nc Administrative Office Of The Courts,Madison,COUNTY,2025-01-14,180484,COUNTY,NC|COURT|Nc Administrative Office Of The Courts|Madison
+NC,North Carolina,DOC,North Carolina Department Of Corrections,STATEWIDE,,2024-05-02,2298590,DOC,NC|DOC|North Carolina Department Of Corrections|STATEWIDE
+NC,North Carolina,DOC,North Carolina Department Of Corrections,STATEWIDE,,2025-08-03,1281483,DOC,NC|DOC|North Carolina Department Of Corrections|STATEWIDE
+NC,North Carolina,SOR,North Carolina Sex Offender Registry,STATEWIDE,,2024-05-02,25000,SEX_OFFENDER,NC|SOR|North Carolina Sex Offender Registry|STATEWIDE
+NC,North Carolina,SOR,North Carolina Sex Offender Registry,STATEWIDE,,2024-05-02,3852,SEX_OFFENDER,NC|SOR|North Carolina Sex Offender Registry|STATEWIDE
+ND,North Dakota,DOC,North Dakota Department Of Corrections,STATEWIDE,,2024-05-02,448647,DOC,ND|DOC|North Dakota Department Of Corrections|STATEWIDE
+ND,North Dakota,DOC,North Dakota Department Of Corrections,STATEWIDE,,2025-03-01,2771,DOC,ND|DOC|North Dakota Department Of Corrections|STATEWIDE
+ND,North Dakota,SOR,North Dakota Sex Offender Registry,STATEWIDE,,2024-05-02,5934,SEX_OFFENDER,ND|SOR|North Dakota Sex Offender Registry|STATEWIDE
+ND,North Dakota,SOR,North Dakota Sex Offender Registry,STATEWIDE,,2025-08-06,2546,SEX_OFFENDER,ND|SOR|North Dakota Sex Offender Registry|STATEWIDE
+NE,Nebraska,DOC,Nebraska Department Of Corrections,STATEWIDE,,2024-05-02,88072,DOC,NE|DOC|Nebraska Department Of Corrections|STATEWIDE
+NE,Nebraska,DOC,Nebraska Department Of Corrections,STATEWIDE,,2025-08-01,82446,DOC,NE|DOC|Nebraska Department Of Corrections|STATEWIDE
+NE,Nebraska,SOR,Nebraska Sex Offender Registry,STATEWIDE,,2024-05-02,18096,SEX_OFFENDER,NE|SOR|Nebraska Sex Offender Registry|STATEWIDE
+NE,Nebraska,SOR,Nebraska Sex Offender Registry,STATEWIDE,,2024-05-02,168,SEX_OFFENDER,NE|SOR|Nebraska Sex Offender Registry|STATEWIDE
+NE,Nebraska,SOR,Sor/Us/Ne/Statewide,STATEWIDE,,2024-10-06,94,SEX_OFFENDER,NE|SOR|Sor/Us/Ne/Statewide|STATEWIDE
+NE,Nebraska,SOR,Sor/Us/Ne/Statewide,STATEWIDE,,2025-07-26,7393,SEX_OFFENDER,NE|SOR|Sor/Us/Ne/Statewide|STATEWIDE
+NH,New Hampshire,SOR,New Hampshire Sex Offender Registry,STATEWIDE,,2024-05-02,7684,SEX_OFFENDER,NH|SOR|New Hampshire Sex Offender Registry|STATEWIDE
+NH,New Hampshire,SOR,New Hampshire Sex Offender Registry,STATEWIDE,,2025-08-02,2874,SEX_OFFENDER,NH|SOR|New Hampshire Sex Offender Registry|STATEWIDE
+NJ,New Jersey,SOR,New Jersey Sex Offender Registry,STATEWIDE,,2024-05-02,4595,SEX_OFFENDER,NJ|SOR|New Jersey Sex Offender Registry|STATEWIDE
+NJ,New Jersey,SOR,New Jersey Sex Offender Registry,STATEWIDE,,2024-05-02,69,SEX_OFFENDER,NJ|SOR|New Jersey Sex Offender Registry|STATEWIDE
+NJ,New Jersey,SOR,New Jersey Sex Offender Registry,STATEWIDE,,2025-03-02,4513,SEX_OFFENDER,NJ|SOR|New Jersey Sex Offender Registry|STATEWIDE
+NJ,New Jersey,SOR,New Jersey Sex Offender Registry,STATEWIDE,,2025-07-28,4849,SEX_OFFENDER,NJ|SOR|New Jersey Sex Offender Registry|STATEWIDE
+NM,New Mexico,DOC,New Mexico Department Of Corrections,STATEWIDE,,2024-05-02,130727,DOC,NM|DOC|New Mexico Department Of Corrections|STATEWIDE
+NM,New Mexico,DOC,New Mexico Department Of Corrections,STATEWIDE,,2025-07-23,155883,DOC,NM|DOC|New Mexico Department Of Corrections|STATEWIDE
+NM,New Mexico,SOR,New Mexico Sex Offender Registry,STATEWIDE,,2024-05-02,2758,SEX_OFFENDER,NM|SOR|New Mexico Sex Offender Registry|STATEWIDE
+NM,New Mexico,SOR,New Mexico Sex Offender Registry,STATEWIDE,,2024-05-02,4,SEX_OFFENDER,NM|SOR|New Mexico Sex Offender Registry|STATEWIDE
+NM,New Mexico,SOR,New Mexico Sex Offender Registry,STATEWIDE,,2025-03-02,2781,SEX_OFFENDER,NM|SOR|New Mexico Sex Offender Registry|STATEWIDE
+NM,New Mexico,SOR,New Mexico Sex Offender Registry,STATEWIDE,,2025-07-28,3079,SEX_OFFENDER,NM|SOR|New Mexico Sex Offender Registry|STATEWIDE
+NV,Nevada,DOC,Nevada Department Of Corrections,STATEWIDE,,2024-05-02,249868,DOC,NV|DOC|Nevada Department Of Corrections|STATEWIDE
+NV,Nevada,DOC,Nevada Department Of Corrections,STATEWIDE,,2025-08-01,122622,DOC,NV|DOC|Nevada Department Of Corrections|STATEWIDE
+NV,Nevada,SOR,Nevada Sex Offender Registry,STATEWIDE,,2024-05-02,41830,SEX_OFFENDER,NV|SOR|Nevada Sex Offender Registry|STATEWIDE
+NV,Nevada,SOR,Nevada Sex Offender Registry,STATEWIDE,,2024-05-02,700,SEX_OFFENDER,NV|SOR|Nevada Sex Offender Registry|STATEWIDE
+NV,Nevada,SOR,Nevada Sex Offender Registry,STATEWIDE,,2025-08-06,11028,SEX_OFFENDER,NV|SOR|Nevada Sex Offender Registry|STATEWIDE
+NY,New York,DOC,New York Department Of Corrections,STATEWIDE,,2024-05-02,665447,DOC,NY|DOC|New York Department Of Corrections|STATEWIDE
+NY,New York,DOC,New York Department Of Corrections,STATEWIDE,,2025-03-02,90858,DOC,NY|DOC|New York Department Of Corrections|STATEWIDE
+NY,New York,SOR,New York Sex Offender Registry,STATEWIDE,,2024-05-02,26927,SEX_OFFENDER,NY|SOR|New York Sex Offender Registry|STATEWIDE
+NY,New York,SOR,New York Sex Offender Registry,STATEWIDE,,2024-05-02,5,SEX_OFFENDER,NY|SOR|New York Sex Offender Registry|STATEWIDE
+NY,New York,SOR,New York Sex Offender Registry,STATEWIDE,,2024-10-09,128,SEX_OFFENDER,NY|SOR|New York Sex Offender Registry|STATEWIDE
+NY,New York,SOR,New York Sex Offender Registry,STATEWIDE,,2025-08-04,27640,SEX_OFFENDER,NY|SOR|New York Sex Offender Registry|STATEWIDE
+OH,Ohio,ARREST,Adams County,STATEWIDE,,2024-05-02,1,ARREST,OH|ARREST|Adams County|STATEWIDE
+OH,Ohio,ARREST,Adams County,STATEWIDE,,2024-05-02,408,ARREST,OH|ARREST|Adams County|STATEWIDE
+OH,Ohio,DOC,Ohio Department Of Corrections,STATEWIDE,,2024-05-02,424332,DOC,OH|DOC|Ohio Department Of Corrections|STATEWIDE
+OH,Ohio,DOC,Ohio Department Of Corrections,STATEWIDE,,2025-03-03,87737,DOC,OH|DOC|Ohio Department Of Corrections|STATEWIDE
+OH,Ohio,SOR,Ohio Sex Offender Registry,STATEWIDE,,2024-05-02,19815,SEX_OFFENDER,OH|SOR|Ohio Sex Offender Registry|STATEWIDE
+OH,Ohio,SOR,Ohio Sex Offender Registry,STATEWIDE,,2024-05-02,266,SEX_OFFENDER,OH|SOR|Ohio Sex Offender Registry|STATEWIDE
+OH,Ohio,SOR,Ohio Sex Offender Registry,STATEWIDE,,2025-03-02,21016,SEX_OFFENDER,OH|SOR|Ohio Sex Offender Registry|STATEWIDE
+OH,Ohio,SOR,Ohio Sex Offender Registry,STATEWIDE,,2025-07-28,23444,SEX_OFFENDER,OH|SOR|Ohio Sex Offender Registry|STATEWIDE
+OK,Oklahoma,SOR,Oklahoma Sex Offender Registry,STATEWIDE,,2024-05-02,22102,SEX_OFFENDER,OK|SOR|Oklahoma Sex Offender Registry|STATEWIDE
+OK,Oklahoma,SOR,Oklahoma Sex Offender Registry,STATEWIDE,,2024-05-02,1,SEX_OFFENDER,OK|SOR|Oklahoma Sex Offender Registry|STATEWIDE
+OK,Oklahoma,SOR,Oklahoma Sex Offender Registry,STATEWIDE,,2025-08-04,16206,SEX_OFFENDER,OK|SOR|Oklahoma Sex Offender Registry|STATEWIDE
+OR,Oregon,DOC,Oregon Department Of Corrections,STATEWIDE,,2024-05-02,45867,DOC,OR|DOC|Oregon Department Of Corrections|STATEWIDE
+OR,Oregon,DOC,Oregon Department Of Corrections,STATEWIDE,,2025-08-04,13116,DOC,OR|DOC|Oregon Department Of Corrections|STATEWIDE
+OR,Oregon,SOR,Oregon Sex Offender Registry,STATEWIDE,,2024-05-02,5465,SEX_OFFENDER,OR|SOR|Oregon Sex Offender Registry|STATEWIDE
+OR,Oregon,SOR,Oregon Sex Offender Registry,STATEWIDE,,2024-10-03,117,SEX_OFFENDER,OR|SOR|Oregon Sex Offender Registry|STATEWIDE
+OR,Oregon,SOR,Oregon Sex Offender Registry,STATEWIDE,,2025-08-04,3522,SEX_OFFENDER,OR|SOR|Oregon Sex Offender Registry|STATEWIDE
+PA,Pennsylvania,DOC,Pennsylvania Department Of Corrections,STATEWIDE,,2024-05-02,145371,DOC,PA|DOC|Pennsylvania Department Of Corrections|STATEWIDE
+PA,Pennsylvania,DOC,Pennsylvania Department Of Corrections,STATEWIDE,,2025-07-29,82309,DOC,PA|DOC|Pennsylvania Department Of Corrections|STATEWIDE
+PA,Pennsylvania,SOR,Pennsylvania Sex Offender Registry,STATEWIDE,,2024-05-02,133515,SEX_OFFENDER,PA|SOR|Pennsylvania Sex Offender Registry|STATEWIDE
+PA,Pennsylvania,SOR,Pennsylvania Sex Offender Registry,STATEWIDE,,2024-08-02,45,SEX_OFFENDER,PA|SOR|Pennsylvania Sex Offender Registry|STATEWIDE
+PA,Pennsylvania,SOR,Pennsylvania Sex Offender Registry,STATEWIDE,,2025-08-03,25687,SEX_OFFENDER,PA|SOR|Pennsylvania Sex Offender Registry|STATEWIDE
+PR,Puerto Rico,SOR,Puerto Rico Sex Offender Registry,STATEWIDE,,2024-05-02,6979,SEX_OFFENDER,PR|SOR|Puerto Rico Sex Offender Registry|STATEWIDE
+PR,Puerto Rico,SOR,Puerto Rico Sex Offender Registry,STATEWIDE,,2024-05-02,18,SEX_OFFENDER,PR|SOR|Puerto Rico Sex Offender Registry|STATEWIDE
+PR,Puerto Rico,SOR,Puerto Rico Sex Offender Registry,STATEWIDE,,2025-08-03,7409,SEX_OFFENDER,PR|SOR|Puerto Rico Sex Offender Registry|STATEWIDE
+RI,Rhode Island,DOC,Rhode Island Department Of Corrections,STATEWIDE,,2024-05-02,95659,DOC,RI|DOC|Rhode Island Department Of Corrections|STATEWIDE
+RI,Rhode Island,DOC,Rhode Island Department Of Corrections,STATEWIDE,,2025-08-02,5224,DOC,RI|DOC|Rhode Island Department Of Corrections|STATEWIDE
+RI,Rhode Island,SOR,Rhode Island Sex Offender Registry,STATEWIDE,,2024-05-02,1732,SEX_OFFENDER,RI|SOR|Rhode Island Sex Offender Registry|STATEWIDE
+RI,Rhode Island,SOR,Rhode Island Sex Offender Registry,STATEWIDE,,2025-03-28,1484,SEX_OFFENDER,RI|SOR|Rhode Island Sex Offender Registry|STATEWIDE
+RI,Rhode Island,SOR,Rhode Island Sex Offender Registry,STATEWIDE,,2025-07-13,1518,SEX_OFFENDER,RI|SOR|Rhode Island Sex Offender Registry|STATEWIDE
+SC,South Carolina,SOR,South Carolina Sex Offender Registry,STATEWIDE,,2024-05-02,42150,SEX_OFFENDER,SC|SOR|South Carolina Sex Offender Registry|STATEWIDE
+SC,South Carolina,SOR,South Carolina Sex Offender Registry,STATEWIDE,,2025-08-04,18301,SEX_OFFENDER,SC|SOR|South Carolina Sex Offender Registry|STATEWIDE
+SD,South Dakota,COURT,Sd Criminal,STATEWIDE,STATEWIDE,2024-05-02,440,STATEWIDE,SD|COURT|Sd Criminal|STATEWIDE
+SD,South Dakota,COURT,Sd Criminal,STATEWIDE,STATEWIDE,2025-02-14,13835,STATEWIDE,SD|COURT|Sd Criminal|STATEWIDE
+SD,South Dakota,DOC,South Dakota Department Of Corrections,STATEWIDE,,2024-05-02,69685,DOC,SD|DOC|South Dakota Department Of Corrections|STATEWIDE
+SD,South Dakota,DOC,South Dakota Department Of Corrections,STATEWIDE,,2025-08-01,38239,DOC,SD|DOC|South Dakota Department Of Corrections|STATEWIDE
+TN,Tennessee,SOR,Tennessee Sex Offender Registry,STATEWIDE,,2024-05-02,27220,SEX_OFFENDER,TN|SOR|Tennessee Sex Offender Registry|STATEWIDE
+TN,Tennessee,SOR,Tennessee Sex Offender Registry,STATEWIDE,,2024-05-02,24,SEX_OFFENDER,TN|SOR|Tennessee Sex Offender Registry|STATEWIDE
+TN,Tennessee,SOR,Tennessee Sex Offender Registry,STATEWIDE,,2024-10-03,280,SEX_OFFENDER,TN|SOR|Tennessee Sex Offender Registry|STATEWIDE
+TN,Tennessee,SOR,Tennessee Sex Offender Registry,STATEWIDE,,2025-08-05,28217,SEX_OFFENDER,TN|SOR|Tennessee Sex Offender Registry|STATEWIDE
+TX,Texas,ARREST,Fort Bend County,Fort Bend,,2024-05-02,3791,ARREST,TX|ARREST|Fort Bend County|Fort Bend
+TX,Texas,ARREST,Fort Bend County,Fort Bend,,2025-05-07,61233,ARREST,TX|ARREST|Fort Bend County|Fort Bend
+TX,Texas,COURT,Tarrant County Clerk Of Courts,Tarrant,COUNTY,2025-05-16,624,COUNTY,TX|COURT|Tarrant County Clerk Of Courts|Tarrant
+TX,Texas,COURT,Tarrant County Clerk Of Courts,Tarrant,COUNTY,2025-07-16,272160,COUNTY,TX|COURT|Tarrant County Clerk Of Courts|Tarrant
+TX,Texas,SOR,Texas Sex Offender Registry,STATEWIDE,,2024-05-02,24999,SEX_OFFENDER,TX|SOR|Texas Sex Offender Registry|STATEWIDE
+TX,Texas,SOR,Texas Sex Offender Registry,STATEWIDE,,2024-05-02,178096,SEX_OFFENDER,TX|SOR|Texas Sex Offender Registry|STATEWIDE
+TX,Texas,SOR,Texas Sex Offender Registry,STATEWIDE,,2025-08-04,116052,SEX_OFFENDER,TX|SOR|Texas Sex Offender Registry|STATEWIDE
+UT,Utah,SOR,Utah Sex Offender Registry,STATEWIDE,,2024-05-02,22584,SEX_OFFENDER,UT|SOR|Utah Sex Offender Registry|STATEWIDE
+UT,Utah,SOR,Utah Sex Offender Registry,STATEWIDE,,2025-03-02,11387,SEX_OFFENDER,UT|SOR|Utah Sex Offender Registry|STATEWIDE
+UT,Utah,SOR,Utah Sex Offender Registry,STATEWIDE,,2025-07-28,11889,SEX_OFFENDER,UT|SOR|Utah Sex Offender Registry|STATEWIDE
+VA,Virginia,ARREST,Richmond County,Richmond,,2025-02-04,17583,ARREST,VA|ARREST|Richmond County|Richmond
+VA,Virginia,ARREST,Richmond County,Richmond,,2025-07-07,2861,ARREST,VA|ARREST|Richmond County|Richmond
+VA,Virginia,COURT,Virginia Administrative Office Of The Courts,Bristol City,COUNTY,2025-01-15,191189,COUNTY,VA|COURT|Virginia Administrative Office Of The Courts|Bristol City
+VA,Virginia,COURT,Virginia Administrative Office Of The Courts,Bristol City,COUNTY,2025-04-11,730,COUNTY,VA|COURT|Virginia Administrative Office Of The Courts|Bristol City
+VA,Virginia,COURT,Virginia Administrative Office Of The Courts,Richmond,COUNTY,2025-04-11,519,COUNTY,VA|COURT|Virginia Administrative Office Of The Courts|Richmond
+VA,Virginia,COURT,Virginia Administrative Office Of The Courts,Richmond,COUNTY,2025-04-11,66648,COUNTY,VA|COURT|Virginia Administrative Office Of The Courts|Richmond
+VA,Virginia,SOR,Virginia Sex Offender Registry,STATEWIDE,,2024-05-02,43026,SEX_OFFENDER,VA|SOR|Virginia Sex Offender Registry|STATEWIDE
+VA,Virginia,SOR,Virginia Sex Offender Registry,STATEWIDE,,2024-05-02,225,SEX_OFFENDER,VA|SOR|Virginia Sex Offender Registry|STATEWIDE
+VA,Virginia,SOR,Virginia Sex Offender Registry,STATEWIDE,,2025-03-02,34171,SEX_OFFENDER,VA|SOR|Virginia Sex Offender Registry|STATEWIDE
+VA,Virginia,SOR,Virginia Sex Offender Registry,STATEWIDE,,2025-08-04,110317,SEX_OFFENDER,VA|SOR|Virginia Sex Offender Registry|STATEWIDE
+VI,U.S. Virgin Islands,SOR,Virgin Islands Sex Offender Registry,STATEWIDE,,2024-05-02,438,SEX_OFFENDER,VI|SOR|Virgin Islands Sex Offender Registry|STATEWIDE
+VI,U.S. Virgin Islands,SOR,Virgin Islands Sex Offender Registry,STATEWIDE,,2025-06-04,131,SEX_OFFENDER,VI|SOR|Virgin Islands Sex Offender Registry|STATEWIDE
+VT,Vermont,SOR,Vermont Sex Offender Registry,STATEWIDE,,2024-05-02,1364,SEX_OFFENDER,VT|SOR|Vermont Sex Offender Registry|STATEWIDE
+VT,Vermont,SOR,Vermont Sex Offender Registry,STATEWIDE,,2024-05-02,4,SEX_OFFENDER,VT|SOR|Vermont Sex Offender Registry|STATEWIDE
+VT,Vermont,SOR,Vermont Sex Offender Registry,STATEWIDE,,2025-03-02,1305,SEX_OFFENDER,VT|SOR|Vermont Sex Offender Registry|STATEWIDE
+VT,Vermont,SOR,Vermont Sex Offender Registry,STATEWIDE,,2025-07-28,1444,SEX_OFFENDER,VT|SOR|Vermont Sex Offender Registry|STATEWIDE
+WA,Washington,COURT,Washington Administrative Office Of The Courts,STATEWIDE,STATEWIDE,2025-07-01,860866,STATEWIDE,WA|COURT|Washington Administrative Office Of The Courts|STATEWIDE
+WA,Washington,COURT,Washington Administrative Office Of The Courts,STATEWIDE,STATEWIDE,2025-07-16,123667,STATEWIDE,WA|COURT|Washington Administrative Office Of The Courts|STATEWIDE
+WA,Washington,DOC,Washington Department Of Corrections,STATEWIDE,,2024-05-02,13325,DOC,WA|DOC|Washington Department Of Corrections|STATEWIDE
+WA,Washington,DOC,Washington Department Of Corrections,STATEWIDE,,2025-07-26,14818,DOC,WA|DOC|Washington Department Of Corrections|STATEWIDE
+WA,Washington,SOR,Washington Sex Offender Registry,STATEWIDE,,2024-05-02,7577,SEX_OFFENDER,WA|SOR|Washington Sex Offender Registry|STATEWIDE
+WA,Washington,SOR,Washington Sex Offender Registry,STATEWIDE,,2024-05-02,48,SEX_OFFENDER,WA|SOR|Washington Sex Offender Registry|STATEWIDE
+WA,Washington,SOR,Washington Sex Offender Registry,STATEWIDE,,2025-03-02,6308,SEX_OFFENDER,WA|SOR|Washington Sex Offender Registry|STATEWIDE
+WA,Washington,SOR,Washington Sex Offender Registry,STATEWIDE,,2025-07-28,7404,SEX_OFFENDER,WA|SOR|Washington Sex Offender Registry|STATEWIDE
+WI,Wisconsin,ARREST,Lincoln County,Lincoln,,2025-02-04,2687,ARREST,WI|ARREST|Lincoln County|Lincoln
+WI,Wisconsin,ARREST,Lincoln County,Lincoln,,2025-07-07,281,ARREST,WI|ARREST|Lincoln County|Lincoln
+WI,Wisconsin,DOC,Wisconsin Department Of Corrections,STATEWIDE,,2024-05-02,464708,DOC,WI|DOC|Wisconsin Department Of Corrections|STATEWIDE
+WI,Wisconsin,DOC,Wisconsin Department Of Corrections,STATEWIDE,,2025-08-04,643687,DOC,WI|DOC|Wisconsin Department Of Corrections|STATEWIDE
+WI,Wisconsin,SOR,Wisconsin Sex Offender Registry,STATEWIDE,,2024-05-02,30105,SEX_OFFENDER,WI|SOR|Wisconsin Sex Offender Registry|STATEWIDE
+WI,Wisconsin,SOR,Wisconsin Sex Offender Registry,STATEWIDE,,2024-05-02,14,SEX_OFFENDER,WI|SOR|Wisconsin Sex Offender Registry|STATEWIDE
+WI,Wisconsin,SOR,Wisconsin Sex Offender Registry,STATEWIDE,,2025-08-04,27697,SEX_OFFENDER,WI|SOR|Wisconsin Sex Offender Registry|STATEWIDE
+WV,West Virginia,SOR,West Virginia Sex Offender Registry,STATEWIDE,,2024-05-02,10555,SEX_OFFENDER,WV|SOR|West Virginia Sex Offender Registry|STATEWIDE
+WV,West Virginia,SOR,West Virginia Sex Offender Registry,STATEWIDE,,2025-08-06,5890,SEX_OFFENDER,WV|SOR|West Virginia Sex Offender Registry|STATEWIDE
+WY,Wyoming,DOC,Wyoming Department Of Corrections,STATEWIDE,,2024-05-02,13206,DOC,WY|DOC|Wyoming Department Of Corrections|STATEWIDE
+WY,Wyoming,DOC,Wyoming Department Of Corrections,STATEWIDE,,2025-08-04,7124,DOC,WY|DOC|Wyoming Department Of Corrections|STATEWIDE
+WY,Wyoming,SOR,Wyoming Sex Offender Registry,STATEWIDE,,2024-05-02,2639,SEX_OFFENDER,WY|SOR|Wyoming Sex Offender Registry|STATEWIDE
+WY,Wyoming,SOR,Wyoming Sex Offender Registry,STATEWIDE,,2024-05-02,7,SEX_OFFENDER,WY|SOR|Wyoming Sex Offender Registry|STATEWIDE
+WY,Wyoming,SOR,Wyoming Sex Offender Registry,STATEWIDE,,2025-04-05,2562,SEX_OFFENDER,WY|SOR|Wyoming Sex Offender Registry|STATEWIDE
+WY,Wyoming,SOR,Wyoming Sex Offender Registry,STATEWIDE,,2025-07-28,2778,SEX_OFFENDER,WY|SOR|Wyoming Sex Offender Registry|STATEWIDE
