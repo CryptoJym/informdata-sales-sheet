@@ -135,15 +135,25 @@
     </section>
 
     <footer>
-      <p>Data source: InformData National Criminal repository extract (updated October 1, 2025). File path: <code>content/pricing/national_scan_sources.json</code>. For questions, contact Sales Ops or Compliance.</p>
+      <p>Data source: InformData National Criminal repository snapshot (2025‑10‑03). Canonical files:
+        <code>content/pricing/natcrim_sources_2025-10-03.csv</code>,
+        <code>content/pricing/natcrim_record_type_totals_2025-10-03.csv</code>,
+        <code>content/pricing/natcrim_state_totals_2025-10-03.csv</code>.
+      </p>
     </footer>
   </main>
 
   <script>
-    async function loadSources() {
-      const res = await fetch('content/pricing/national_scan_sources.json');
-      if (!res.ok) throw new Error('Failed to load coverage data');
-      return res.json();
+    async function fetchText(url){ const r = await fetch(url); if(!r.ok) throw new Error('Failed '+url); return r.text(); }
+    function parseCSV(text){
+      const lines = text.trim().split(/\r?\n/); if(!lines.length) return [];
+      const headers = lines.shift().split(',');
+      return lines.map(line=>{
+        const out={}, vals=[]; let cur='', q=false; for(const ch of line){ if(ch==='"'){ q=!q;} else if(ch===',' && !q){ vals.push(cur); cur=''; } else { cur+=ch; } }
+        vals.push(cur);
+        headers.forEach((h,i)=> out[h]= (vals[i]??'').replace(/^"|"$/g,''));
+        return out;
+      });
     }
 
     function formatNumber(value) {
@@ -156,64 +166,48 @@
       return dt.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
     }
 
-    loadSources().then(data => {
-      const total = data.total_sources || 0;
-      document.getElementById('statTotal').textContent = formatNumber(total);
+    Promise.all([
+      fetchText('content/pricing/natcrim_record_type_totals_2025-10-03.csv'),
+      fetchText('content/pricing/natcrim_state_totals_2025-10-03.csv'),
+      fetchText('content/pricing/natcrim_sources_2025-10-03.csv')
+    ]).then(([typesCsv, statesCsv, sourcesCsv]) => {
+      const recordTypeTotals = parseCSV(typesCsv).map(r=>({type:r.record_type, count:+r.record_count||0}));
+      const stateTotals = parseCSV(statesCsv).map(r=>({state:r.state_name, code:r.standardized_state, count:+r.record_count||0}));
+      const sources = parseCSV(sourcesCsv);
 
-      const topCategory = data.record_counts?.[0];
-      if (topCategory) {
-        document.getElementById('statTopCategory').textContent = `${topCategory.record_type} (${formatNumber(topCategory.count)})`;
-      }
-
-      const topState = data.state_counts?.[0];
-      if (topState) {
-        document.getElementById('statTopState').textContent = `${topState.state} (${formatNumber(topState.count)})`;
-      }
-
-      const freshest = data.latest_updates?.sort((a,b) => new Date(b.last_updated || 0) - new Date(a.last_updated || 0))[0];
-      if (freshest) {
-        document.getElementById('statFresh').textContent = `${freshest.record_type} (${formatDate(freshest.last_updated)})`;
-      }
+      document.getElementById('statTotal').textContent = (sources.length).toLocaleString();
+      const topCategory = [...recordTypeTotals].sort((a,b)=>b.count-a.count)[0];
+      if (topCategory) document.getElementById('statTopCategory').textContent = `${topCategory.type} (${formatNumber(topCategory.count)})`;
+      const topState = [...stateTotals].sort((a,b)=>b.count-a.count)[0];
+      if (topState) document.getElementById('statTopState').textContent = `${topState.code} (${formatNumber(topState.count)})`;
+      const freshest = [...sources]
+        .map(r=>r.refresh_date)
+        .filter(Boolean)
+        .sort((a,b)=> new Date(b)-new Date(a))[0];
+      document.getElementById('statFresh').textContent = freshest ? formatDate(freshest) : '—';
 
       const categoryList = document.getElementById('categoryList');
-      data.record_counts.slice(0, 8).forEach(item => {
-        const card = document.createElement('article');
-        card.className = 'list-item';
-        const title = document.createElement('h3');
-        title.textContent = item.record_type || 'Other';
-        const span = document.createElement('span');
-        span.textContent = `${formatNumber(item.count)} sources`;
-        card.appendChild(title);
-        card.appendChild(span);
+      recordTypeTotals.slice(0,8).forEach(item=>{
+        const card=document.createElement('article'); card.className='list-item';
+        card.innerHTML = `<h3>${item.type||'Other'}</h3><span>${formatNumber(item.count)} records</span>`;
         categoryList.appendChild(card);
       });
 
       const stateTable = document.getElementById('stateTable');
-      data.state_counts.slice(0, 15).forEach(item => {
-        const row = document.createElement('tr');
-        const stateCell = document.createElement('td');
-        stateCell.textContent = item.state;
-        const countCell = document.createElement('td');
-        countCell.textContent = formatNumber(item.count);
-        row.appendChild(stateCell);
-        row.appendChild(countCell);
-        stateTable.appendChild(row);
+      [...stateTotals].sort((a,b)=>b.count-a.count).slice(0,15).forEach(item=>{
+        const tr=document.createElement('tr');
+        tr.innerHTML = `<td>${item.state}</td><td>${formatNumber(item.count)}</td>`;
+        stateTable.appendChild(tr);
       });
 
       const freshnessTable = document.getElementById('freshnessTable');
-      data.latest_updates
-        .sort((a,b) => new Date(b.last_updated || 0) - new Date(a.last_updated || 0))
-        .slice(0, 10)
-        .forEach(item => {
-          const row = document.createElement('tr');
-          const cat = document.createElement('td');
-          cat.textContent = item.record_type;
-          const date = document.createElement('td');
-          date.textContent = formatDate(item.last_updated);
-          row.appendChild(cat);
-          row.appendChild(date);
-          freshnessTable.appendChild(row);
-        });
+      const freshestByType = new Map();
+      sources.forEach(r=>{
+        const t=r.record_type; const d=r.refresh_date; if(!t||!d) return; if(!freshestByType.has(t) || new Date(d)>new Date(freshestByType.get(t))) freshestByType.set(t,d);
+      });
+      Array.from(freshestByType.entries()).sort((a,b)=> new Date(b[1])-new Date(a[1])).slice(0,10).forEach(([t,d])=>{
+        const tr=document.createElement('tr'); tr.innerHTML=`<td>${t}</td><td>${formatDate(d)}</td>`; freshnessTable.appendChild(tr);
+      });
     }).catch(err => {
       console.error(err);
       document.getElementById('summaryGrid').insertAdjacentHTML('afterend', `<p style="color:#b91c1c;">Unable to load coverage details right now. Please refresh or contact Sales Ops.</p>`);

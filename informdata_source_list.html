@@ -113,7 +113,16 @@
   </main>
 
   <script>
-    const DATA_URL = 'content/pricing/informdata_natcrim_sources.json';
+    const DATA_URL = 'content/pricing/natcrim_sources_2025-10-03.csv';
+    function parseCSV(text){
+      const lines=text.trim().split(/\r?\n/); if(!lines.length) return [];
+      const headers = lines.shift().split(',');
+      return lines.map(line=>{
+        const out={}, vals=[]; let cur='', q=false; for(const ch of line){ if(ch==='"'){q=!q;} else if(ch===',' && !q){ vals.push(cur); cur=''; } else { cur+=ch; } } vals.push(cur);
+        headers.forEach((h,i)=> out[h]= (vals[i]??'').replace(/^"|"$/g,''));
+        return out;
+      });
+    }
     const stateSelect = document.getElementById('stateSelect');
     const recordSelect = document.getElementById('recordSelect');
     const searchInput = document.getElementById('searchInput');
@@ -231,18 +240,16 @@
     }
 
     fetch(DATA_URL)
-      .then(res => {
-        if (!res.ok) throw new Error('Failed to load source dataset');
-        return res.json();
-      })
-      .then(data => {
-        sources = data.map(row => ({
-          state: row.state,
-          jurisdiction: row.jurisdiction || '',
-          source_name: row.source_name,
-          record_type: row.record_type,
-          coverage_notes: row.coverage_notes || '',
-          updated_at: row.updated_at,
+      .then(res => { if(!res.ok) throw new Error('Failed to load source dataset'); return res.text(); })
+      .then(text => {
+        const rows = parseCSV(text);
+        sources = rows.map(r => ({
+          state: r.standardized_state,
+          jurisdiction: r.coverage_scope || '',
+          source_name: r.source_name,
+          record_type: r.record_type,
+          coverage_notes: r.court_level || '',
+          updated_at: r.refresh_date,
         }));
         populateFilters();
         updateSummaries();

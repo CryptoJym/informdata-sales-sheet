@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NatCrim Overview — Coverage + Sources</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { color-scheme: light; --bg:#f5f6fb; --surface:#fff; --border:#d0d7e2; --text:#1f2937; --muted:#667085; --accent:#2563eb; --accent-soft:#e0e9ff; }
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--text)}
+    header.top{background:#0f172a;color:#fff;padding:.85rem 1.2rem;display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
+    header.top a{color:#fff;text-decoration:none;font-weight:600}
+    main{max-width:1240px;margin:0 auto;padding:2rem 1rem 4rem;display:grid;gap:1.5rem}
+    section{background:var(--surface);border:1px solid var(--border);border-radius:1rem;padding:1.2rem 1.3rem;box-shadow:0 10px 24px rgba(15,23,42,.08);display:grid;gap:1rem}
+    h1{margin:0;font-size:2.2rem} .lead{color:var(--muted)}
+    .stat-grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .stat-card{background:var(--accent-soft);border:1px solid rgba(37,99,235,.18);border-radius:.9rem;padding:1rem}
+    .stat-card strong{display:block;font-size:1.6rem}
+    .filters{display:flex;flex-wrap:wrap;gap:.5rem}
+    .chip{border:1px solid var(--border);border-radius:999px;padding:.3rem .9rem;background:#fff;color:var(--muted);cursor:pointer}
+    .chip.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+    table{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:1rem;overflow:hidden}
+    thead th{background:var(--accent-soft);padding:.65rem;font-size:.85rem;text-transform:uppercase;letter-spacing:.04em;text-align:left}
+    tbody td{padding:.6rem;border-bottom:1px solid var(--border);font-size:.95rem}
+  </style>
+  </head>
+  <body>
+    <header class="top">
+      <a href="index.html">Pricing Home</a>
+      <a href="national_scan_components.html">NatCrim Dashboard</a>
+      <a href="statewide_vs_county.html">Fulfillment methods</a>
+      <a href="informdata_source_list.html">Source directory</a>
+    </header>
+    <main>
+      <section>
+        <h1>NatCrim Overview</h1>
+        <p class="lead">Single view of the national scan: totals, domain breakdown, fulfillment method, and a searchable source directory — all powered by the same canonical CSVs.</p>
+        <div class="stat-grid" id="stats"></div>
+      </section>
+
+      <section>
+        <h2>Coverage domains</h2>
+        <div class="filters" id="domainFilters"></div>
+        <table>
+          <thead><tr><th>State</th><th>Domain</th><th>Sources</th><th>Total records</th></tr></thead>
+          <tbody id="domainTable"></tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Fulfillment method</h2>
+        <p class="lead">Every state is fulfilled by InformData — either a statewide repository covers county requirements, or county workflows do.</p>
+        <div class="stat-grid" id="fulfillment"></div>
+      </section>
+
+      <section>
+        <h2>Source directory</h2>
+        <div class="filters" id="recordFilters"></div>
+        <table>
+          <thead><tr><th>State</th><th>Record type</th><th>Source</th><th>Scope</th><th>Level</th><th>Last refresh</th><th>Records</th></tr></thead>
+          <tbody id="sourceTable"></tbody>
+        </table>
+      </section>
+    </main>
+
+    <script>
+      function parseCSV(text){
+        const lines = text.trim().split(/\r?\n/); if(!lines.length) return [];
+        const headers = lines.shift().split(',');
+        return lines.map(line=>{
+          const vals=[], out={}; let cur='',q=false; for(const ch of line){ if(ch==='"'){ q=!q;} else if(ch===',' && !q){ vals.push(cur); cur=''; } else { cur+=ch; } } vals.push(cur);
+          headers.forEach((h,i)=> out[h] = (vals[i]??'').replace(/^"|"$/g,''));
+          return out;
+        });
+      }
+      const fmt = n => Number(n||0).toLocaleString();
+      const asDate = d => d ? new Date(d) : null;
+
+      async function loadAll(){
+        const [sourcesText, stateTotalsText, scopeText, statewideText] = await Promise.all([
+          fetch('content/pricing/natcrim_sources_2025-10-03.csv').then(r=>r.text()),
+          fetch('content/pricing/natcrim_state_totals_2025-10-03.csv').then(r=>r.text()),
+          fetch('content/pricing/natcrim_scope_summary_2025-10-03.csv').then(r=>r.text()),
+          fetch('content/pricing/informdata_statewide_coverage.csv').then(r=>r.text()),
+        ]);
+        const sources = parseCSV(sourcesText).map(r=>({
+          code:r.standardized_state, state:r.state_name, type:r.record_type, name:r.source_name,
+          scope:r.coverage_scope, level:r.court_level, date:r.refresh_date, count:+r.record_count||0
+        }));
+        const stateTotals = parseCSV(stateTotalsText).map(r=>({code:r.standardized_state, state:r.state_name, count:+r.record_count||0}));
+        const scope = parseCSV(scopeText);
+        const statewide = parseCSV(statewideText);
+
+        // Stats
+        const overall = stateTotals.reduce((s,r)=>s+r.count,0);
+        const statsEl = document.getElementById('stats');
+        statsEl.innerHTML = `
+          <div class="stat-card"><strong>${(overall/1_000_000_000).toFixed(2)}B</strong><span>Total records indexed</span></div>
+          <div class="stat-card"><strong>${fmt(sources.length)}</strong><span>Individual databases</span></div>
+          <div class="stat-card"><strong>${new Set(sources.map(r=>r.code)).size}</strong><span>States & territories</span></div>`;
+
+        // Domains
+        const domainFilters = document.getElementById('domainFilters');
+        const domainTable = document.getElementById('domainTable');
+        const domains = Array.from(new Set(scope.map(r=>r.coverage_domain))).sort();
+        let active = domains[0]||null;
+        function renderDomainFilters(){
+          domainFilters.innerHTML = domains.map(d=>`<button class="chip ${d===active?'active':''}" data-d="${d}">${d.replace(/_/g,' ')}</button>`).join('');
+          domainFilters.querySelectorAll('button').forEach(b=>b.onclick=()=>{ active=b.dataset.d; renderDomainFilters(); renderDomainTable(); });
+        }
+        function renderDomainTable(){
+          const rows = scope.filter(r=>!active||r.coverage_domain===active).sort((a,b)=> (+b.total_records||0) - (+a.total_records||0)).slice(0,20);
+          domainTable.innerHTML = rows.map(r=> `<tr><td>${r.state_name}</td><td>${r.coverage_domain.replace(/_/g,' ')}</td><td>${fmt(r.source_count)}</td><td>${fmt(r.total_records)}</td></tr>`).join('');
+        }
+        renderDomainFilters(); renderDomainTable();
+
+        // Fulfillment card
+        const wins = statewide.filter(r=>r.statewide_recommended==='Yes').length;
+        const county = statewide.length - wins;
+        document.getElementById('fulfillment').innerHTML = `
+          <div class="stat-card"><strong>${wins}</strong><span>Statewide wins</span></div>
+          <div class="stat-card"><strong>${county}</strong><span>Covered via county workflows</span></div>
+          <div class="stat-card"><strong>0</strong><span>Uncovered states</span></div>`;
+
+        // Source directory table
+        const recordFilters = document.getElementById('recordFilters');
+        const sourceTable = document.getElementById('sourceTable');
+        const types = ['ALL', ...Array.from(new Set(sources.map(r=>r.type))).sort()];
+        let tActive = 'ALL';
+        function renderTypeFilters(){
+          recordFilters.innerHTML = types.map(t=>`<button class="chip ${t===tActive?'active':''}" data-t="${t}">${t}</button>`).join('');
+          recordFilters.querySelectorAll('button').forEach(b=> b.onclick=()=>{ tActive=b.dataset.t; renderTable(); renderTypeFilters(); });
+        }
+        function renderTable(){
+          const rows = sources.filter(r=> tActive==='ALL' || r.type===tActive).slice(0,500);
+          sourceTable.innerHTML = rows.map(r=> `<tr><td>${r.code}</td><td>${r.type}</td><td>${r.name}</td><td>${r.scope}</td><td>${r.level}</td><td>${r.date||''}</td><td>${fmt(r.count)}</td></tr>`).join('');
+        }
+        renderTypeFilters(); renderTable();
+      }
+      loadAll();
+    </script>
+  </body>
+  </html>
