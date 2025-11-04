@@ -202,14 +202,16 @@
         }));
 
       const overallRecords = stateTotals.reduce((sum, row) => sum + row.records, 0);
-      const totalSources = sources.length;
+      const totalListings = sources.length; // statewide + county rows
+      const uniqueDatabases = new Set(sources.map(r => r.sourceName)).size; // distinct source names
       const statesCovered = new Set(sources.map(row => row.code)).size;
 
       const statsEl = document.getElementById('stats');
       statsEl.innerHTML = `
-        <div class="stat-card"><strong>${(overallRecords / 1_000_000_000).toFixed(2)}B</strong><span>Total records indexed in the NatCrim repository.</span></div>
-        <div class="stat-card"><strong>${formatNumber(totalSources)}</strong><span>Individual databases feeding the repository.</span></div>
-        <div class="stat-card"><strong>${statesCovered}</strong><span>States &amp; territories represented.</span></div>
+        <div class="stat-card"><strong>${(overallRecords / 1_000_000_000).toFixed(2)}B</strong><span>Total records indexed</span></div>
+        <div class="stat-card"><strong>${formatNumber(uniqueDatabases)}</strong><span>Distinct databases (unique sources)</span></div>
+        <div class="stat-card"><strong>${formatNumber(totalListings)}</strong><span>Dataset listings (incl. county rows)</span></div>
+        <div class="stat-card"><strong>${statesCovered}</strong><span>States &amp; territories</span></div>
       `;
 
       // State totals chart

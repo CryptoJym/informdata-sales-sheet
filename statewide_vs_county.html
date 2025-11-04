@@ -73,9 +73,14 @@
 
     <section>
       <h2>Quick lists</h2>
-      <div class="list-columns" id="list-statewide"></div>
-      <div class="list-columns" id="list-county"></div>
-      <div class="list-columns" id="list-note"></div>
+      <style>
+        .pill-grid{display:grid;gap:.6rem;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+        .pill{display:inline-block;padding:.45rem .75rem;border:1px solid var(--border);border-radius:999px;background:#fff;color:#111827;font-weight:600;text-align:center}
+        .group-title{font-weight:700;margin:.25rem 0}
+      </style>
+      <div class="pill-grid" id="list-statewide"></div>
+      <div class="pill-grid" id="list-county"></div>
+      <div id="list-note"></div>
     </section>
 
     <section>
@@ -162,17 +167,17 @@
         if (!items.length) return;
         const container = document.getElementById(targetId);
         const title = document.createElement('div');
-        title.innerHTML = `<strong>${heading}</strong>`;
-        const list = document.createElement('ul');
-        list.style.margin = '0.4rem 0 0';
-        list.style.paddingLeft = '1.1rem';
-        items.forEach(item => {
-          const li = document.createElement('li');
-          li.textContent = item.state_name;
-          list.appendChild(li);
-        });
+        title.className='group-title';
+        title.textContent = heading;
         container.appendChild(title);
-        container.appendChild(list);
+        items
+          .sort((a,b)=> a.state_name.localeCompare(b.state_name))
+          .forEach(item => {
+            const pill = document.createElement('span');
+            pill.className='pill';
+            pill.textContent=item.state_name;
+            container.appendChild(pill);
+          });
       }
 
       buildList('list-statewide', categories.statewide, 'Statewide covers county requirements');

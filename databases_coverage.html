@@ -69,8 +69,8 @@
 
     <section class="summary-grid" id="summaryGrid" aria-live="polite">
       <article class="summary-card">
-        <strong id="statTotal">--</strong>
-        <span>Total data sources</span>
+        <strong id="statUnique">--</strong>
+        <span>Distinct databases (unique sources)</span>
       </article>
       <article class="summary-card">
         <strong id="statTopCategory">--</strong>
@@ -81,8 +81,8 @@
         <span>Deepest state coverage</span>
       </article>
       <article class="summary-card">
-        <strong id="statFresh">--</strong>
-        <span>Most recent refresh</span>
+        <strong id="statListings">--</strong>
+        <span>Dataset listings (incl. county rows)</span>
       </article>
     </section>
 
@@ -173,18 +173,21 @@
     ]).then(([typesCsv, statesCsv, sourcesCsv]) => {
       const recordTypeTotals = parseCSV(typesCsv).map(r=>({type:r.record_type, count:+r.record_count||0}));
       const stateTotals = parseCSV(statesCsv).map(r=>({state:r.state_name, code:r.standardized_state, count:+r.record_count||0}));
-      const sources = parseCSV(sourcesCsv);
+      const sources = parseCSV(sourcesCsv).map(r=>({
+        sourceName: r.source_name,
+        recordType: r.record_type,
+        state: r.state_name,
+        date: r.refresh_date
+      }));
 
-      document.getElementById('statTotal').textContent = (sources.length).toLocaleString();
+      const uniqueDatabases = new Set(sources.map(r=>r.sourceName)).size;
+      document.getElementById('statUnique').textContent = uniqueDatabases.toLocaleString();
+      document.getElementById('statListings').textContent = sources.length.toLocaleString();
       const topCategory = [...recordTypeTotals].sort((a,b)=>b.count-a.count)[0];
       if (topCategory) document.getElementById('statTopCategory').textContent = `${topCategory.type} (${formatNumber(topCategory.count)})`;
       const topState = [...stateTotals].sort((a,b)=>b.count-a.count)[0];
       if (topState) document.getElementById('statTopState').textContent = `${topState.code} (${formatNumber(topState.count)})`;
-      const freshest = [...sources]
-        .map(r=>r.refresh_date)
-        .filter(Boolean)
-        .sort((a,b)=> new Date(b)-new Date(a))[0];
-      document.getElementById('statFresh').textContent = freshest ? formatDate(freshest) : '—';
+      // Drop explicit freshness tile in favor of listings count for clarity
 
       const categoryList = document.getElementById('categoryList');
       recordTypeTotals.slice(0,8).forEach(item=>{
