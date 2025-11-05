@@ -271,6 +271,75 @@ pre code { background: transparent; padding: 0; }
 ul.tight { margin: 0.25rem 0 0.25rem 1.2rem; }
 .badge { display: inline-block; padding: 0.15rem 0.5rem; border: 1px solid var(--border); border-radius: var(--radius-pill); font-size: var(--fs-xs); color: var(--muted); background: var(--surface); }
 
+/* Footer */
+.site-footer {
+  background: var(--header-bg);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 3rem 2rem 1.5rem;
+  margin-top: 4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.footer-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+.footer-section h3 {
+  color: #ffffff;
+  font-size: 1.25rem;
+  margin: 0 0 0.75rem;
+}
+.footer-section h4 {
+  color: #ffffff;
+  font-size: 1rem;
+  margin: 0 0 0.75rem;
+  font-weight: 600;
+}
+.footer-section p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+}
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-section ul li {
+  margin-bottom: 0.5rem;
+}
+.footer-section a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: var(--transition-fast);
+}
+.footer-section a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+.footer-bottom {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+.footer-bottom a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+}
+.footer-bottom a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
 /* Utilities */
 .mt-0 { margin-top: 0; }
 .mb-0 { margin-bottom: 0; }
@@ -295,6 +364,8 @@ ul.tight { margin: 0.25rem 0 0.25rem 1.2rem; }
   .site-header a { font-size: 0.85rem; padding: 0.35rem 0.6rem; }
   .sticky-controls { margin: 0 -1rem 1rem; padding: 1rem; }
   .results-bar { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+  .footer-content { grid-template-columns: 1fr; gap: 1.5rem; }
+  .site-footer { padding: 2rem 1rem 1rem; margin-top: 2rem; }
 }
 
 /* Tablet improvements */
