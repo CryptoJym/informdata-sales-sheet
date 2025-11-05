@@ -1,6 +1,6 @@
 # Task ID: 10
 # Title: Generate collateral-ready pricing tables from approved InformData costs and margin policy
-# Status: done
+# Status: in-progress
 # Dependencies: 3, 4
 # Priority: high
 # Description: Build a tool that filters approved InformData costs, applies the margin policy via the pricing engine, and emits collateral-ready pricing tables in CSV/JSON/YAML for downstream Markdown/PDF generation.
@@ -327,4 +327,87 @@ Follow-ups to align with plan and acceptance criteria
 - Docs: create docs/coverage/informdata_sources.md with field definitions, source of truth, regeneration steps, update cadence, limitations; link to the live page.
 - Deploy: include dataset in build artifacts; open PR for schema/parser/page/nav/docs; verify Vercel production deploy, smoke test deep links/exports/date sorting, and obtain Sales UAT.
 </info added on 2025-11-03T01:11:28.008Z>
+<info added on 2025-11-03T01:13:21.443Z>
+- Verified repo contains commit "feat: publish InformData source directory (task 10.3)".
+- Verified Vercel production deployment is live at https://informdata-sales-sheet-5y3bvr933-vuplicity.vercel.app; /informdata_source_list.html loads and functions (State/Record Type filters, keyword search, CSV export).
+- Nav entry present; page reachable via site navigation and direct URL; no console errors observed in smoke test.
+</info added on 2025-11-03T01:13:21.443Z>
+
+## 4. Document InformData webhook/SDK integration [in-progress]
+### Dependencies: None
+### Description: Author developer-facing docs covering the TypeScript SDK (v0.9.2), async webhook sequencing, and ordering guidance using latest API material.
+### Details:
+<info added on 2025-11-03T01:26:57.628Z>
+Plan and deliverables
+
+Objectives
+- Extract authoritative webhook behaviors and ordering guidance from the TypeScript SDK v0.9.2 and the latest InformData API docs.
+- Author a developer-facing Markdown guide that standardizes async orchestration, sequencing rules, and SDK usage patterns.
+- Publish the guide in-repo, link it from the sales collateral README, and trigger docs redeploy if required.
+
+Work steps
+1) Inspect SDK tarball and API docs
+- Acquire the TypeScript SDK v0.9.2 tarball (npm pack or internal registry) and extract it locally.
+- Review SDK README, type definitions, and examples to enumerate:
+  - Supported webhook event types and payload schemas.
+  - Signature verification scheme (headers, algorithm, clock skew tolerance).
+  - Retry semantics, delivery guarantees, and deduplication signals (event id, sequence, idempotency).
+  - Ordering/placement guidance and any sequencing metadata exposed by the SDK.
+- Cross-check against the latest InformData API docs; note any discrepancies and capture canonical field names and headers.
+- Record references (SDK version, doc URLs/commit hashes) in a sources section for traceability.
+
+2) Draft developer doc (Markdown)
+- File: docs/developers/informdata_webhooks_and_sdk.md
+- Required sections:
+  - Overview and versioning: scope, SDK v0.9.2, API docs snapshot date.
+  - Architecture: async webhooks, eventual consistency model, idempotency strategy.
+  - Event model: list of event categories, payload envelope, metadata fields used for ordering and dedupe.
+  - Signature verification: header names, algorithm, replay window, failure handling.
+  - Sequencing rules: handling out-of-order and duplicate deliveries; exactly-once processing goals; persistence of last-seen sequence; reconciliation job pattern.
+  - Ordering guidance: when to place combined vs. split orders; dependencies across sources; retries/backoff; cancellation/update flows.
+  - SDK usage patterns (TypeScript):
+    - Initializing the client securely.
+    - Placing an order with idempotency keys.
+    - Verifying webhook signatures (Express middleware example).
+    - Deduping and sequencing with a lightweight store (e.g., Redis/SQL).
+    - Reconciling state via polling endpoints as a safety net.
+  - Local development and testing: ngrok/tunneling, sample curl payloads, replaying events, fixture management.
+  - Observability and failures: logging, metrics, alerting, poison-queue pattern.
+  - Security and compliance: secret management, payload validation, PII handling.
+  - Appendix: glossary, example schemas, error codes, rate limits.
+- Include at least one end-to-end code path (place order → receive events → finalize) with TypeScript snippets aligned to v0.9.2 types.
+
+3) Publish and link
+- Commit docs/developers/informdata_webhooks_and_sdk.md.
+- Add a pointer from docs/sales-collateral/README.md under “Technical references” to the new guide.
+- If a docs site exists, update its navigation and run the docs build/deploy workflow.
+- Add minimal runnable example:
+  - examples/typescript/informdata-webhook-demo/ (Express webhook handler, signature verification, sequence/dedupe stub).
+  - .env.example with required vars (no secrets).
+
+Acceptance criteria
+- docs/developers/informdata_webhooks_and_sdk.md exists, references SDK v0.9.2 explicitly, and cites the API docs source.
+- The guide documents webhook verification, retry/dedupe, and sequencing rules without contradicting the latest API docs.
+- Includes TypeScript examples for client init, order placement with idempotency, webhook verification, and reconciliation.
+- A link to the guide is present in docs/sales-collateral/README.md.
+- Example app compiles and can receive and validate a sample webhook locally.
+- CI link checks and Markdown linting pass; docs build (if applicable) completes successfully.
+</info added on 2025-11-03T01:26:57.628Z>
+<info added on 2025-11-03T02:19:22.320Z>
+Progress update:
+- Extracted SDK/Webhook details from typescript-sdk-prod-v0.9.2.tar and InformData API request/response samples.
+- Drafted integrations/informdata_sdk_webhooks.md covering auth, event types, sequencing guidance, and error handling.
+- Added reference link from docs/notes/implementation_overview.md.
+
+Follow-ups to meet acceptance criteria:
+- Move/rename the guide to docs/developers/informdata_webhooks_and_sdk.md and add an Overview/versioning section plus a Sources section citing SDK v0.9.2 and the API docs snapshot date/URLs.
+- Expand required sections: architecture; signature verification (header names, algorithm, replay window, failure handling); ordering guidance (combined vs split orders, dependencies, retries/backoff, cancellation/update flows); idempotency/dedupe and sequencing rules; reconciliation job pattern.
+- Add TypeScript examples: client initialization, order placement with idempotency keys, Express middleware for webhook signature verification, dedupe/sequence store usage (Redis/SQL), reconciliation via polling, and a full end-to-end flow.
+- Create examples/typescript/informdata-webhook-demo/ with .env.example and a webhook replay script; ensure it compiles and validates a sample event locally.
+- Link the guide from docs/sales-collateral/README.md under “Technical references”; update docs site navigation and run docs build/deploy if applicable.
+- Run CI link checks and Markdown linting.
+
+Notes:
+- During expansion, log and reconcile any SDK/API discrepancies; standardize on canonical field names and headers.
+</info added on 2025-11-03T02:19:22.320Z>
 

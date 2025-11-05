@@ -1,6 +1,6 @@
 # Task ID: 9
 # Title: Package approved pricing collateral for Gamma export and sales-ready artifacts
-# Status: pending
+# Status: done
 # Dependencies: 8
 # Priority: high
 # Description: Build a packaging tool and workflow that converts the approved pricing collateral into Gamma-compatible Markdown plus PDF/PPTX one-pagers, generates a zipped import bundle, and publishes sales-ready artifacts with versioned manifests.
@@ -100,4 +100,18 @@ Functional verification
 
 7) Idempotency
 - Re-run the package command; confirm outputs are identical (checksum match) when inputs/config unchanged.
+
+
+# Subtasks:
+## 1. Unify NatCrim UI + counts + tokens + header partials [done]
+### Dependencies: None
+### Description: Clean up and unify the language and structure across NatCrim pages; clarify database numbers (distinct databases vs dataset listings), remove confusing metrics, and improve quick lists UX with pill pills; integrate InformData marketing copy where appropriate.
+### Details:
+Deliverables
+- styles/tokens.css with color, type, spacing tokens; import in 4 pages.
+- components/header.html partial and lightweight include script; cross-links: Overview, Components, Coverage, Fulfillment, Directory.
+- Refactors in national_scan_components.html, databases_coverage.html, statewide_vs_county.html, informdata_source_list.html to use tokens and shared header; align counts and labels.
+- Copy updates: "Fulfillment methods" naming, remove "0 states without coverage", clarify "Statewide covers county requirements" vs "Covered via county research only"; simple info alert block.
+- Accessibility: focus outline and color contrast tokens.
+- Documentation: docs/notes/design_system.md capturing tokens and screenshots (placeholder).
 

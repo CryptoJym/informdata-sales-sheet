@@ -136,6 +136,8 @@
 
       const stateTotalsRaw = parseCSV(await stateTotalsResp.text());
       const sourcesRaw = parseCSV(await sourceResp.text());
+      // Exclude known non-jurisdictional aggregation row that inflates listings by 1
+      const filteredRaw = sourcesRaw.filter(r => (r.source_name||'').toLowerCase() !== 'every politician');
       const scopeSummaryRaw = parseCSV(await scopeResp.text());
 
       const stateTotals = stateTotalsRaw
@@ -146,7 +148,7 @@
           records: Number(row.record_count || 0)
         }));
 
-      const sources = sourcesRaw
+      const sources = filteredRaw
         .filter(row => row.standardized_state)
         .map(row => ({
           code: row.standardized_state,
@@ -170,7 +172,7 @@
         }));
 
       const overallRecords = stateTotals.reduce((sum, row) => sum + row.records, 0);
-      const totalListings = sources.length; // statewide + county rows
+      const totalListings = sources.length; // statewide + county rows (filtered)
       const uniqueDatabases = new Set(sources.map(r => r.sourceName)).size; // distinct source names
       const statesCovered = new Set(sources.map(row => row.code)).size;
 

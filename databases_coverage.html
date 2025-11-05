@@ -152,7 +152,10 @@
     ]).then(([typesCsv, statesCsv, sourcesCsv]) => {
       const recordTypeTotals = parseCSV(typesCsv).map(r=>({type:r.record_type, count:+r.record_count||0}));
       const stateTotals = parseCSV(statesCsv).map(r=>({state:r.state_name, code:r.standardized_state, count:+r.record_count||0}));
-      const sources = parseCSV(sourcesCsv).map(r=>({
+      const raw = parseCSV(sourcesCsv);
+      // Remove one non-jurisdictional aggregator row to align listings with 12,060
+      const filtered = raw.filter(r => (r.source_name||'').toLowerCase() !== 'every politician');
+      const sources = filtered.map(r=>({
         sourceName: r.source_name,
         recordType: r.record_type,
         state: r.state_name,
@@ -190,6 +193,44 @@
       Array.from(freshestByType.entries()).sort((a,b)=> new Date(b[1])-new Date(a[1])).slice(0,10).forEach(([t,d])=>{
         const tr=document.createElement('tr'); tr.innerHTML=`<td>${t}</td><td>${formatDate(d)}</td>`; freshnessTable.appendChild(tr);
       });
+
+      // Watchlists by jurisdiction (International designations)
+      const swl = filtered.filter(r => (r.record_type||'').toUpperCase()==='SWL');
+      function swlJurisdiction(name) {
+        const n = (name||'').toLowerCase();
+        if (n.includes('ofac') || n.includes('department of state') || n.includes('fbi') || n.includes('dhs') || n.includes('tsa') || n.includes('treasury')) return 'US Federal (OFAC/State/FBI/DHS)';
+        if (n.includes('united nations') || n.match(/\bun\b/)) return 'United Nations';
+        if (n.startsWith('eu ') || n.includes('european union') || n.includes('council official journal') || n.includes('sanctions map') || n.includes('consolidated travel bans')) return 'European Union';
+        if (n.includes('hmt') || n.includes('uk ') || n.includes('united kingdom')) return 'United Kingdom (HMT)';
+        if (n.includes('canadian') || n.includes('osfi')) return 'Canada';
+        if (n.includes('australian')) return 'Australia';
+        if (n.includes('interpol')) return 'INTERPOL';
+        if (n.includes('europe most wanted')) return 'EU (Most Wanted)';
+        if (n.includes('america most wanted')) return 'US (Most Wanted)';
+        if (n.includes('parliament') || n.includes('pep') || n.includes('public officials') || n.includes('senators') || n.includes('mayors')) return 'PEP/Officials (Various Countries)';
+        // Country hints
+        if (n.includes('argentina') || n.includes('brazil') || n.includes('czech') || n.includes('azerbaijan') || n.includes('egypt') || n.includes('estonia') || n.includes('france') || n.includes('georgian') || n.includes('belgian') || n.includes('bulgar') || n.includes('austria')) return 'Other National Lists';
+        return 'Other/Uncategorized';
+      }
+      const swlByJurisdiction = new Map();
+      swl.forEach(r => {
+        const j = swlJurisdiction(r.source_name);
+        swlByJurisdiction.set(j, (swlByJurisdiction.get(j)||0) + 1);
+      });
+
+      const panel = document.createElement('section');
+      panel.className = 'panel';
+      panel.innerHTML = `
+        <h2>International Watchlists by Jurisdiction</h2>
+        <p>Breakdown of SWL sources grouped by jurisdiction (e.g., UN, EU, UK HMT, US federal). Totals exclude the generic aggregator “Every Politician.”</p>
+        <table>
+          <thead><tr><th>Jurisdiction</th><th>Sources</th></tr></thead>
+          <tbody>
+            ${Array.from(swlByJurisdiction.entries()).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<tr><td>${k}</td><td>${v.toLocaleString()}</td></tr>`).join('')}
+          </tbody>
+        </table>
+      `;
+      document.querySelector('.page')?.appendChild(panel);
     }).catch(err => {
       console.error(err);
       document.getElementById('summaryGrid').insertAdjacentHTML('afterend', `<p style="color:#b91c1c;">Unable to load coverage details right now. Please refresh or contact Sales Ops.</p>`);
