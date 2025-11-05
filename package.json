@@ -1,0 +1,12 @@
+{
+  "name": "informdata-sales-sheet",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:embeddings": "node scripts/ingest/build-embeddings.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "openai": "^4.56.0"
+  }
+}
