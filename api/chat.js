@@ -18,9 +18,10 @@ if (!envValidated) {
   envValidated = true;
 }
 
+// Vercel config must use static values (cannot reference imported constants)
 export const config = {
   runtime: 'nodejs',
-  maxDuration: CHAT_CONFIG.VERCEL_MAX_DURATION
+  maxDuration: 30 // seconds - must match CHAT_CONFIG.VERCEL_MAX_DURATION
 };
 
 // Simple in-memory rate limiting (for single-instance; use Redis/KV for production)
