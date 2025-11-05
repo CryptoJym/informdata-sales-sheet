@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/tokens.css" />
   <style>
     :root { color-scheme: light; --bg:#f5f6fb; --surface:#fff; --border:#d0d7e2; --text:#1f2937; --muted:#667085; --accent:#2563eb; --accent-soft:#e0e9ff; }
     *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--text)}
@@ -27,12 +28,7 @@
   </style>
   </head>
   <body>
-    <header class="top">
-      <a href="index.html">Pricing Home</a>
-      <a href="national_scan_components.html">NatCrim Dashboard</a>
-      <a href="statewide_vs_county.html">Fulfillment methods</a>
-      <a href="informdata_source_list.html">Source directory</a>
-    </header>
+    <div data-include="components/header.html"></div>
     <main>
       <section>
         <h1>NatCrim Overview</h1>
@@ -141,5 +137,6 @@
       }
       loadAll();
     </script>
+    <script src="components/include.js" defer></script>
   </body>
   </html>

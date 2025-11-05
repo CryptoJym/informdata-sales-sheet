@@ -1,0 +1,17 @@
+# Dependencies
+node_modules
+package-lock.json
+
+# Build output
+dist
+build
+.vercel
+
+# Data files
+data/embeddings.json
+
+# Documentation downloads
+integrations/client_api/**/*.zip
+
+# Git
+.git

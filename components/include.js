@@ -23,6 +23,14 @@
   // Attach chat widget after include
   function attachChat() {
     if (document.getElementById('vup-chat-widget')) return;
+
+    // HTML escaping utility to prevent XSS
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
     const btn = document.createElement('button');
     btn.id = 'vup-chat-widget';
     btn.textContent = 'Chat';
@@ -36,16 +44,93 @@
     const log = panel.querySelector('#vup-chat-log');
     const input = panel.querySelector('#vup-chat-input');
     const send = panel.querySelector('#vup-chat-send');
+    let isLoading = false;
+
     async function ask(){
-      const q = input.value.trim(); if(!q) return; input.value='';
-      const add = (role, text)=>{ const div=document.createElement('div'); div.style.margin='6px 0'; div.innerHTML = `<b>${role}:</b> ${text}`; log.appendChild(div); log.scrollTop = log.scrollHeight; };
+      const q = input.value.trim();
+      if(!q || isLoading) return;
+
+      // Disable input during request
+      isLoading = true;
+      input.disabled = true;
+      send.disabled = true;
+      send.textContent = '...';
+      input.value = '';
+
+      const add = (role, text, isHtml = false)=>{
+        const div = document.createElement('div');
+        div.style.margin = '6px 0';
+        const roleSpan = document.createElement('b');
+        roleSpan.textContent = role + ': ';
+        div.appendChild(roleSpan);
+        if (isHtml) {
+          // For bot responses with escaped HTML
+          const contentSpan = document.createElement('span');
+          contentSpan.innerHTML = text;
+          div.appendChild(contentSpan);
+        } else {
+          // For user input - safe text node
+          div.appendChild(document.createTextNode(text));
+        }
+        log.appendChild(div);
+        log.scrollTop = log.scrollHeight;
+      };
+
       add('You', q);
+
+      // Add loading indicator
+      const loadingDiv = document.createElement('div');
+      loadingDiv.style.margin = '6px 0';
+      loadingDiv.style.fontStyle = 'italic';
+      loadingDiv.style.color = '#666';
+      loadingDiv.textContent = 'Bot is thinking...';
+      log.appendChild(loadingDiv);
+      log.scrollTop = log.scrollHeight;
+
       try{
-        const r = await fetch('/api/chat', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ query: q })});
-        const j = await r.json();
-        if(j.answer) add('Bot', j.answer.replace(/\n/g,'<br/>'));
-        else add('Bot', j.error||'No answer');
-      }catch(e){ add('Bot', 'Failed to query.'); }
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 30000); // 30s client timeout
+
+        const r = await fetch('/api/chat', {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ query: q }),
+          signal: controller.signal
+        });
+
+        clearTimeout(timeoutId);
+
+        // Remove loading indicator
+        loadingDiv.remove();
+
+        if (!r.ok) {
+          const errorData = await r.json().catch(() => ({}));
+          const errorMsg = errorData.error || `Server error (${r.status})`;
+          add('Bot', errorMsg + (errorData.fallback ? `\n\n${errorData.fallback}` : ''));
+        } else {
+          const j = await r.json();
+          if(j.answer) {
+            // Escape HTML then replace newlines with <br/>
+            const escaped = escapeHtml(j.answer);
+            add('Bot', escaped.replace(/\n/g,'<br/>'), true);
+          }
+          else add('Bot', j.error || j.fallback || 'No answer');
+        }
+      }catch(e){
+        loadingDiv.remove();
+        if (e.name === 'AbortError') {
+          add('Bot', 'Request timed out. Please try again with a simpler question.');
+        } else {
+          add('Bot', 'Failed to reach server. Please check your connection and try again.');
+        }
+      } finally {
+        // Re-enable input
+        isLoading = false;
+        input.disabled = false;
+        send.disabled = false;
+        send.textContent = 'Send';
+        input.focus();
+      }
     }
     send.addEventListener('click', ask);
     input.addEventListener('keydown', (e)=>{ if(e.key==='Enter') ask(); });
