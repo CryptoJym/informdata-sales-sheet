@@ -8,23 +8,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles/tokens.css" />
-  <style>
-    main { max-width: 1200px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; display: grid; gap: 1.5rem; }
-    h1 { margin: 0; font-size: var(--fs-xxl); letter-spacing: -0.02em; }
-    h2 { font-size: var(--fs-lg); margin: 0.25rem 0; }
-    h3 { margin: .25rem 0; }
-    p.lead { font-size: 1.05rem; color: var(--muted); max-width: 80ch; }
-    section.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); padding: 1.4rem 1.6rem; display: grid; gap: 0.8rem; }
-    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-    pre { background: #0f172a0d; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.9rem 1rem; overflow: auto; }
-    .grid-2 { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
-    .links a { display:inline-block; margin:.2rem .4rem .2rem 0; padding:.2rem .6rem; border:1px solid var(--border); border-radius: var(--radius-pill); font-size: var(--fs-xs); }
-    .note { color: var(--muted); font-size: var(--fs-sm); }
-  </style>
 </head>
 <body>
   <div data-include="components/header.html"></div>
-  <main id="main-content">
+  <main class="page" id="main-content">
     <section class="card">
       <h1>General API – Requests & Responses</h1>
       <p class="lead">Organized reference of request/response JSON samples by product family. Use these as payload guides alongside tenant‑specific endpoint paths. For MVR details and end‑to‑end flow, see the <a href="mvr_api.html">MVR API page</a>.</p>

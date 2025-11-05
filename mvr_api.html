@@ -8,25 +8,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles/tokens.css" />
-  <style>
-    main { max-width: 1200px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; display: grid; gap: 1.5rem; }
-    h1 { margin: 0; font-size: var(--fs-xxl); letter-spacing: -0.02em; }
-    h2 { font-size: var(--fs-lg); margin: 0.25rem 0; }
-    p.lead { font-size: 1.05rem; color: var(--muted); max-width: 72ch; }
-    section.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); padding: 1.4rem 1.6rem; display: grid; gap: 0.8rem; }
-    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-    pre { background: #0f172a0d; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.9rem 1rem; overflow: auto; }
-    .grid-2 { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-    .kv { display: grid; grid-template-columns: 220px 1fr; gap: .5rem 1rem; }
-    .kv b { color: var(--text); }
-    ul.tight { margin: 0.25rem 0 0.25rem 1.2rem; }
-    .note { color: var(--muted); font-size: var(--fs-sm); }
-    .badge { display:inline-block; padding:.15rem .5rem; border:1px solid var(--border); border-radius: var(--radius-pill); font-size: var(--fs-xs); color: var(--muted); background:#fff; }
-  </style>
 </head>
 <body>
   <div data-include="components/header.html"></div>
-  <main id="main-content">
+  <main class="page" id="main-content">
     <section class="card">
       <h1>MVR API – Build Guide</h1>
       <p class="lead">Everything engineering, customer success, sales, and compliance need to request, track, and deliver Motor Vehicle Records (MVRs) via InformData Risk/Sentinel. Test access has been provisioned – see credentials flow below.</p>
