@@ -82,21 +82,84 @@ export function extractChunksFromHtml(cheerio, urlPath, maxChunkLen = 1000) {
 }
 
 /**
- * TF-IDF stopwords set
+ * Enhanced TF-IDF stopwords set (common English words with little semantic value)
+ * Includes: articles, conjunctions, prepositions, pronouns, common verbs
  */
 export const STOPWORDS = new Set(
-  'a an the and or if then else with to for of in on at by from is are was were be been being about as that this these those not no into out over under your you we us our theirs their his her its it they them he she i'.split(/\s+/)
+  `a about above after again against all am an and any are aren't as at
+   be because been before being below between both but by can't cannot could
+   couldn't did didn't do does doesn't doing don't down during each few for
+   from further had hadn't has hasn't have haven't having he he'd he'll he's
+   her here here's hers herself him himself his how how's i i'd i'll i'm i've
+   if in into is isn't it it's its itself let's me more most mustn't my myself
+   no nor not of off on once only or other ought our ours ourselves out over
+   own same shan't she she'd she'll she's should shouldn't so some such than
+   that that's the their theirs them themselves then there there's these they
+   they'd they'll they're they've this those through to too under until up
+   very was wasn't we we'd we'll we're we've were weren't what what's when
+   when's where where's which while who who's whom why why's with won't would
+   wouldn't you you'd you'll you're you've your yours yourself yourselves`.split(/\s+/)
 );
 
 /**
- * Tokenize text for TF-IDF
- * @param {string} str - Text to tokenize
- * @returns {string[]} Array of tokens
+ * Simple Porter-like stemmer for common English suffixes
+ * Removes common endings to improve matching (e.g., "running" -> "run")
+ * @param {string} word - Word to stem
+ * @returns {string} Stemmed word
  */
-export function tokenize(str) {
-  return str
+function simpleStem(word) {
+  // Don't stem very short words
+  if (word.length <= 3) return word;
+
+  // Common suffixes (order matters - try longer suffixes first)
+  const suffixes = [
+    { pattern: /ational$/, replace: 'ate' },    // relational -> relate
+    { pattern: /iveness$/, replace: 'ive' },    // effectiveness -> effective
+    { pattern: /fulness$/, replace: 'ful' },    // usefulness -> useful
+    { pattern: /ousness$/, replace: 'ous' },    // callousness -> callous
+    { pattern: /ization$/, replace: 'ize' },    // authorization -> authorize
+    { pattern: /ational$/, replace: 'ate' },    // conditional -> condition
+    { pattern: /alism$/, replace: 'al' },       // realism -> real
+    { pattern: /ement$/, replace: '' },         // replacement -> replac
+    { pattern: /ments$/, replace: 'ment' },     // agreements -> agreement
+    { pattern: /ness$/, replace: '' },          // happiness -> happi
+    { pattern: /ing$/, replace: '' },           // running -> runn
+    { pattern: /ies$/, replace: 'y' },          // cities -> city
+    { pattern: /ied$/, replace: 'y' },          // tried -> try
+    { pattern: /ism$/, replace: '' },           // capitalism -> capital
+    { pattern: /ist$/, replace: '' },           // capitalist -> capital
+    { pattern: /ers$/, replace: 'er' },         // workers -> worker
+    { pattern: /ed$/, replace: '' },            // walked -> walk
+    { pattern: /es$/, replace: 'e' },           // boxes -> boxe
+    { pattern: /s$/, replace: '' },             // cats -> cat
+    { pattern: /ly$/, replace: '' },            // quickly -> quick
+  ];
+
+  for (const { pattern, replace } of suffixes) {
+    if (pattern.test(word)) {
+      const stemmed = word.replace(pattern, replace);
+      // Don't return stems that are too short
+      if (stemmed.length >= 3) {
+        return stemmed;
+      }
+    }
+  }
+
+  return word;
+}
+
+/**
+ * Tokenize text for TF-IDF with stemming
+ * @param {string} str - Text to tokenize
+ * @param {boolean} [useStemming=true] - Whether to apply stemming
+ * @returns {string[]} Array of stemmed tokens
+ */
+export function tokenize(str, useStemming = true) {
+  const tokens = str
     .toLowerCase()
     .replace(/[^a-z0-9\s]/g, ' ')
     .split(/\s+/)
-    .filter(word => word && !STOPWORDS.has(word));
+    .filter(word => word && word.length >= 2 && !STOPWORDS.has(word));
+
+  return useStemming ? tokens.map(simpleStem) : tokens;
 }

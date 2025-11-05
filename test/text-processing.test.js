@@ -39,19 +39,38 @@ test('chunkText: handles text with no punctuation', () => {
 });
 
 test('tokenize: lowercases and removes punctuation', () => {
-  const tokens = tokenize('Hello, World! How are YOU?');
+  const tokens = tokenize('Hello, World! How are YOU?', false); // no stemming for this test
 
   assert.ok(tokens.every(t => t === t.toLowerCase()), 'Should lowercase all tokens');
   assert.ok(!tokens.some(t => /[^a-z0-9]/.test(t)), 'Should remove punctuation');
 });
 
 test('tokenize: removes stopwords', () => {
-  const tokens = tokenize('the cat and the dog');
+  const tokens = tokenize('the cat and the dog', false); // no stemming for this test
 
   assert.ok(!tokens.includes('the'), 'Should remove "the"');
   assert.ok(!tokens.includes('and'), 'Should remove "and"');
   assert.ok(tokens.includes('cat'), 'Should keep "cat"');
   assert.ok(tokens.includes('dog'), 'Should keep "dog"');
+});
+
+test('tokenize: applies stemming by default', () => {
+  const tokens = tokenize('running cats databases walked');
+
+  // With stemming enabled (default)
+  assert.ok(tokens.includes('runn'), 'Should stem "running" to "runn"');
+  assert.ok(tokens.includes('cat'), 'Should stem "cats" to "cat"');
+  assert.ok(tokens.includes('database'), 'Should stem "databases" to "database"');
+  assert.ok(tokens.includes('walk'), 'Should stem "walked" to "walk"');
+});
+
+test('tokenize: can disable stemming', () => {
+  const tokens = tokenize('running cats databases', false);
+
+  // Without stemming
+  assert.ok(tokens.includes('running'), 'Should keep "running" unchanged');
+  assert.ok(tokens.includes('cats'), 'Should keep "cats" unchanged');
+  assert.ok(tokens.includes('databases'), 'Should keep "databases" unchanged');
 });
 
 test('tokenize: handles empty string', () => {
@@ -63,5 +82,9 @@ test('STOPWORDS: contains common words', () => {
   assert.ok(STOPWORDS.has('the'), 'Should have "the"');
   assert.ok(STOPWORDS.has('and'), 'Should have "and"');
   assert.ok(STOPWORDS.has('or'), 'Should have "or"');
+  assert.ok(STOPWORDS.has('about'), 'Should have "about"');
+  assert.ok(STOPWORDS.has('because'), 'Should have "because"');
+  assert.ok(STOPWORDS.has('doing'), 'Should have "doing"');
   assert.ok(!STOPWORDS.has('cat'), 'Should not have "cat"');
+  assert.ok(!STOPWORDS.has('database'), 'Should not have "database"');
 });
