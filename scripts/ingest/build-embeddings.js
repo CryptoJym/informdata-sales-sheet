@@ -19,18 +19,39 @@ const PAGES = [
   'informdata_source_list.html',
 ];
 
-function chunkText(text, maxLen = 1200) {
+// Note: This uses a local copy of text processing utilities
+// TODO: Migrate to ES modules to use shared utils/text-processing.js
+function chunkText(text, maxLen = 1200, minChunkLen = 200) {
   const chunks = [];
   let start = 0;
+
   while (start < text.length) {
     let end = Math.min(text.length, start + maxLen);
-    // try to break on sentence boundary
-    const dot = text.lastIndexOf('.', end);
-    if (dot > start + 200) end = dot + 1;
-    chunks.push(text.slice(start, end).trim());
+
+    // Try to break on sentence boundary (., !, ?)
+    if (end < text.length) {
+      const sentenceEnd = /[.!?]\s/g;
+      const searchText = text.slice(start, end);
+      let lastMatch = null;
+      let match;
+
+      sentenceEnd.lastIndex = 0;
+      while ((match = sentenceEnd.exec(searchText)) !== null) {
+        lastMatch = match;
+      }
+
+      // Use sentence boundary if found after minimum chunk length
+      if (lastMatch && (start + lastMatch.index) > start + minChunkLen) {
+        end = start + lastMatch.index + 1;
+      }
+    }
+
+    const chunk = text.slice(start, end).trim();
+    if (chunk) chunks.push(chunk);
     start = end;
   }
-  return chunks.filter(Boolean);
+
+  return chunks;
 }
 
 async function embedAll(chunks) {
