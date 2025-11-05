@@ -3,7 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:embeddings": "node scripts/ingest/build-embeddings.js"
+    "build:embeddings": "node scripts/ingest/build-embeddings.js",
+    "test": "node --test test/**/*.test.js",
+    "test:watch": "node --test --watch test/**/*.test.js"
   },
   "dependencies": {
     "cheerio": "^1.0.0",

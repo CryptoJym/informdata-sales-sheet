@@ -1,7 +1,12 @@
 /**
  * Configuration constants for chat/RAG system
+ * @typedef {Object} ChatConfig
  */
 
+/**
+ * Centralized configuration for chat API
+ * @type {ChatConfig}
+ */
 export const CHAT_CONFIG = {
   // Rate limiting
   RATE_LIMIT_WINDOW_MS: 60000, // 1 minute
