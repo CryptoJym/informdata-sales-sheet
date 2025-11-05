@@ -220,7 +220,7 @@ pre code { background: transparent; padding: 0; }
 
 /* Index page-specific components */
 .cta-row { display: flex; flex-wrap: wrap; gap: var(--space-3); }
-.sticky-controls { position: sticky; top: 0; z-index: 50; padding: 1.25rem 1.5rem; background: rgba(246,247,251,0.9); backdrop-filter: blur(12px); margin: 0 -1.5rem 1.5rem; border-bottom: 1px solid rgba(208,215,226,0.6); }
+.sticky-controls { position: sticky; top: 0; z-index: 50; padding: 1.25rem 1.5rem; background: var(--bg); opacity: 0.95; backdrop-filter: blur(12px); margin: 0 -1.5rem 1.5rem; border-bottom: 1px solid var(--border); }
 .summary-bar { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); margin-bottom: 1.5rem; }
 .summary-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1rem 1.1rem; box-shadow: var(--shadow-md); position: relative; }
 .summary-card strong { display: block; font-size: 1.65rem; font-weight: 700; }

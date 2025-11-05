@@ -88,8 +88,9 @@
 
     <section id="cards" class="cards" aria-live="polite"></section>
     <div id="emptyState" class="empty-state" hidden>
-      <h2>No services match those filters yet</h2>
-      <p>Try clearing filters or adjusting your search terms to see more pricing options.</p>
+      <h2>No services match your filters</h2>
+      <p>Try adjusting your search terms or clearing filters to see more results.</p>
+      <button class="btn btn-primary" type="button" onclick="document.getElementById('searchInput').value=''; document.getElementById('passFilter').value='all'; document.querySelectorAll('.chip.active').forEach(c => c.classList.remove('active')); state.search=''; state.passThrough='all'; state.categories.clear(); renderChips(); applyFilters();">Clear all filters</button>
     </div>
   </main>
   <button id="scrollTop" type="button" aria-label="Scroll to top">↑</button>
@@ -154,7 +155,7 @@
   },
   {
     "service_id": "COUNTY_CIVIL_UPPER_LOWER_COMBINED",
-    "service_name": "County Civil Uper/Lower Combined",
+    "service_name": "County Civil Upper/Lower Combined",
     "category": "Core Service",
     "unit": "per_search",
     "informdata_cost": 8.5,
@@ -970,27 +971,47 @@
       });
       elements.download.addEventListener('click', () => {
         const filtered = applyFilters(false);
-        if (!filtered.length) return;
-        const header = CSV_COLUMNS.join(',');
-        const rows = filtered.map(service => CSV_COLUMNS.map(col => {
-          const val = service[col];
-          if (val === null || val === undefined) return '';
-          if (typeof val === 'string') {
-            const escaped = val.replace(/"/g, '""');
-            return val.includes(',') ? `"${escaped}"` : escaped;
-          }
-          return val;
-        }).join(','));
-        const csvContent = [header, ...rows].join('\n');
-        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = `informdata_pricing_filtered_${Date.now()}.csv`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url);
+        if (!filtered.length) {
+          alert('No services match your current filters. Adjust filters to download data.');
+          return;
+        }
+
+        // Add loading state
+        const originalText = elements.download.textContent;
+        elements.download.classList.add('loading');
+        elements.download.disabled = true;
+
+        // Small delay to show loading state
+        setTimeout(() => {
+          const header = CSV_COLUMNS.join(',');
+          const rows = filtered.map(service => CSV_COLUMNS.map(col => {
+            const val = service[col];
+            if (val === null || val === undefined) return '';
+            if (typeof val === 'string') {
+              const escaped = val.replace(/"/g, '""');
+              return val.includes(',') ? `"${escaped}"` : escaped;
+            }
+            return val;
+          }).join(','));
+          const csvContent = [header, ...rows].join('\n');
+          const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = `informdata_pricing_filtered_${Date.now()}.csv`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+
+          // Show success feedback
+          elements.download.classList.remove('loading');
+          elements.download.textContent = '✓ Downloaded!';
+          setTimeout(() => {
+            elements.download.textContent = originalText;
+            elements.download.disabled = false;
+          }, 2000);
+        }, 100);
       });
       window.addEventListener('scroll', () => {
         if (window.scrollY > 600) {
