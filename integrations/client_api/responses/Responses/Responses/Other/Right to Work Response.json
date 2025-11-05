@@ -1,0 +1,54 @@
+{
+    "order": {
+        "id": "441bd121-5166-4262-8d19-0184a117582a",
+        "orderDate": "2022-11-22T15:46:12.503",
+        "clientOrderId": "TEST",
+        "status": "COMPLETE",
+        "substatus": "COMPLETE",
+        "subject": {
+            "firstName": "CASEY",
+            "lastName": "TEST",
+            "birthdate": "2000-08-11T00:00:00",
+            "aliases": [],
+            "addresses": [],
+            "additionalIdentifiers": {},
+            "pastNames": [
+                {
+                    "firstName": "Casey",
+                    "middleName": "",
+                    "lastName": "Test",
+                    "suffix": ""
+                }
+            ]
+        },
+        "pricing": {
+            "cost": 0.0000,
+            "courtFeeCost": 0.0000,
+            "dataFeeCost": 0.0000
+        },
+        "product": {
+            "category": "RIGHT_TO_WORK"
+        },
+        "jurisdiction": {
+            "county": "Cobb",
+            "state": "GA",
+            "country": "United States"
+        },
+        "activity": [
+            {
+                "note": "Search Added",
+                "addedDate": "2022-11-22T15:46:16.29"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [],
+        "courtCopies": [],
+        "otherResults": "TEST RESULTS",
+        "isInNeed": false,
+        "ssnTrace": []
+    }
+}

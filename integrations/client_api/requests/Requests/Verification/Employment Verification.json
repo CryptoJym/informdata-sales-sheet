@@ -1,0 +1,28 @@
+{
+    "order": {
+        "clientOrderId": "123456789",
+        "subject": {
+            "FirstName": "ROBERT",
+            "LastName": "DUMMYDATA",
+            "Birthdate": "2000-01-01"
+        },
+        "product": {
+            "category": "EMPLOYMENT_VERIFICATION"
+        },
+        "jurisdiction": {
+            "county": "Statewide",
+            "state": "GA",
+            "country": "United States"
+        },
+        "employmentVerification": {
+            "employer": "NOT REAL COMPANY",
+            "address1": "123 FAKE ST",
+            "city": "ATLANTA",
+            "country": "string",
+            "title": "REAL JOB TITLE",
+            "employedFrom": "2023-01-01",
+            "employedTo": "2023-12-31",
+            "state": "GA"
+        }
+    }
+}

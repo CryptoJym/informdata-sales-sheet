@@ -1,0 +1,142 @@
+{
+    "order": {
+        "id": "123456789",
+        "orderDate": "2022-10-20T12:04:22.18",
+        "dueDate": "2022-10-27T00:00:00",
+        "comments": "",
+        "clientOrderId": "987654321",
+        "status": "COMPLETE",
+        "substatus": "RECORD",
+        "subject": {
+            "firstName": "ROBERT",
+            "middleName": "M",
+            "lastName": "DUMMYDATA",
+            "birthdate": "1980-01-01T00:00:00",
+            "aliases": [],
+            "addresses": [],
+            "additionalIdentifiers": {},
+            "pastNames": [
+                {
+                    "firstName": "ROBERT",
+                    "middleName": "M",
+                    "lastName": "DUMMYDATA",
+                    "suffix": ""
+                }
+            ]
+        },
+        "product": {
+            "category": "CRIMINAL_RECHECK"
+        },
+        "jurisdiction": {
+            "county": "Dade",
+            "state": "FL",
+            "country": "United States"
+        },
+        "activity": [
+            {
+                "note": "Additional Research Required. Estimated Completion Date Reset: 10/24/2022",
+                "addedDate": "2022-10-21T16:20:11.377"
+            },
+            {
+                "note": "Assigned to Researcher",
+                "addedDate": "2022-10-20T12:06:08.517"
+            },
+            {
+                "note": "Criminal record reporting out of Dade, FL returned with the State Case Number rather than the Court Case Number. Would it be possible to have all records coming from Dade, FL return with the court case number as the default rather than the state case number?  |;",
+                "addedDate": "2022-10-20T12:04:22.647"
+            },
+            {
+                "note": "Good morning, the original search was in a raw format and returned with the information for the cases as is available via the primary index.  Please contact your representative for further review, thanks!",
+                "addedDate": "2022-10-27T07:46:11.94"
+            },
+            {
+                "note": "Records Indicated - Under Review",
+                "addedDate": "2022-10-25T09:40:40.287"
+            },
+            {
+                "note": "Search Added",
+                "addedDate": "2022-10-20T12:04:22.647"
+            }
+        ],
+        "documents": [
+            {
+                "name": "Court Record ",
+                "category": "OTHER",
+                "sequenceNumber": 0,
+                "accessUrl": "https://s3.amazonaws.com/sjvassoc.subjectcountydocs/2022/10/20/638018208000000000/202210201602332201462SHEBA%20LAKICHE%20SHULER_%20F19010422.pdf?AWSAccessKeyId=AKIAJ3C4UI2Q4YH6QWTQ&Expires=1981901063&Signature=7CCiII0PPdEGsaNL%2BBxMXSWg7F4%3D"
+            }
+        ],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [
+            {
+                "id": "c0b5ebe5-5ff2-4265-a6b7-012107e09fda",
+                "caseNumber": "F19010420",
+                "isCaseNumberUnavailable": false,
+                "courtFiledIn": "CIRCUIT COURT",
+                "countyFiledIn": "DADE",
+                "chargeDate": "2019-05-29T00:00:00",
+                "isChargeDateUnavailable": false,
+                "isNextCourtDateUnavailable": false,
+                "dispositionDate": "2020-09-17T00:00:00",
+                "cannotComplete": false,
+                "caseIdentifiers": {
+                    "name": "DUMMYDATA, ROBERT",
+                    "isNameMatch": true,
+                    "firstName": "ROBERT",
+                    "isFirstNameMatch": true,
+                    "middleName": "M",
+                    "isMiddleNameMatch": true,
+                    "lastName": "DUMMYDATA",
+                    "isLastNameMatch": true,
+                    "birthdate": "1980-01-01T00:00:00",
+                    "isBirthdateMatch": true,
+                    "isSSNMatch": false,
+                    "isDriverLicenseMatch": false,
+                    "isAddressMatch": false,
+                    "isAliasMatch": false,
+                    "other": "",
+                    "isOtherMatch": false,
+                    "additionalIdentifiersUnavailability": "NO_ADDITIONAL_ON_PRIMARY_INDEX"
+                },
+                "charges": [
+                    {
+                        "id": "c5c4b0ee-91ca-489a-bfac-d419198dadfa",
+                        "count": 2,
+                        "chargeDescription": "G TFT 3D/BEF10/1/19",
+                        "isChargeDescriptionUnavailable": false,
+                        "chargeType": "FELONY",
+                        "isChargeTypeUnavailable": false,
+                        "disposition": "NOLLE PROSSE",
+                        "isDispositionUnavailable": false,
+                        "comments": "",
+                        "sentence": {
+                            "hasProbation": false,
+                            "hasJail": false,
+                            "hasJailSuspended": false,
+                            "hasPrison": false,
+                            "hasPrisonSuspended": false,
+                            "hasCommunityService": false,
+                            "hasDriverLicenseSuspension": false,
+                            "hasCreditForTimeServed": false,
+                            "isFineWaived": false,
+                            "isFineUnspecified": false,
+                            "isCostWaived": false,
+                            "isCostUnspecified": false,
+                            "isRestitutionWaived": false,
+                            "isRestitutionUnspecified": false,
+                            "isFeeWaived": false,
+                            "isFeeUnspecified": false,
+                            "isSentenceNotReported": false
+                        }
+                    }
+                ]
+            }
+        ],
+        "courtCopies": [],
+        "isInNeed": false,
+        "ssnTrace": []
+    }
+}

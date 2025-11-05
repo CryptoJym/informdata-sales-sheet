@@ -1,0 +1,91 @@
+{
+    "order": {
+        "id": "123456789",
+        "orderDate": "2022-06-21T12:45:05.863",
+        "dueDate": "2022-06-23T00:00:00",
+        "clientOrderId": "987654321",
+        "status": "COMPLETE",
+        "substatus": "RECORD",
+        "subject": {
+            "firstName": "ROBERT",
+            "lastName": "DUMMYDATA",
+            "birthdate": "1980-01-01T00:00:00",
+            "aliases": [],
+            "addresses": [],
+            "additionalIdentifiers": {},
+            "pastNames": [
+                {
+                    "firstName": "ROBERT",
+                    "middleName": "",
+                    "lastName": "DUMMYDATA",
+                    "suffix": ""
+                }
+            ]
+        },
+        "product": {
+            "category": "SSN_TRACE"
+        },
+        "jurisdiction": {
+            "county": "Social Security Trace",
+            "state": "USA",
+            "country": "United States"
+        },
+        "activity": [
+            {
+                "note": "Records Indicated - Under Review",
+                "addedDate": "2022-06-21T08:45:07.43"
+            },
+            {
+                "note": "Records Indicated - Under Review",
+                "addedDate": "2022-06-21T08:46:07.793"
+            },
+            {
+                "note": "Search Added",
+                "addedDate": "2022-06-21T12:45:05.863"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [],
+        "courtCopies": [],
+        "isInNeed": false,
+        "ssnTrace": [
+            {
+                "dateOfBirths": [
+                    {
+                        "dob": "1980-01-01T00:00:00",
+                        "isAlias": false
+                    },
+                    {
+                        "dob": "1983-01-25T00:00:00",
+                        "isAlias": false
+                    }
+                ],
+                "addresses": [
+                    {
+                        "street1": "123 Main St",
+                        "city": "Riverside",
+                        "state": "NJ",
+                        "postalCode": "080753201",
+                        "country": "US",
+                        "isCurrent": false,
+                        "isAlias": false
+                    }
+             	],
+                "names": [
+                    {
+                        "prefix": "",
+                        "firstName": "ROBERT",
+                        "middleName": "",
+                        "lastName": "DUMMYDATA",
+                        "suffix": "",
+                        "isAlias": true
+                    }
+                ]
+            }
+        ]
+    }
+}

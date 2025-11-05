@@ -1,0 +1,30 @@
+{
+    "order": {
+        "clientOrderId": "string",
+        "subject": {
+            "FirstName": "string",
+            "LastName": "string",
+            "Birthdate": "2000-08-11",
+	    "ssn": "999-99-9999"
+        },
+        "product": {
+            "category": "CRIMINAL_RECHECK",
+            "felonyYears": 7,
+            "felonyScope": "STRICT_SCOPE",
+            "misdemeanorYears": 7,
+            "misdemeanorScope": "STRICT_SCOPE",
+            "trafficYears": 7,
+            "trafficScope": "STRICT_SCOPE",
+            "trafficLevel": "NO_TRAFFIC",
+            "nonConvictionsYears": 7,
+            "nonConvictionsScope": "STRICT_SCOPE",
+            "violationsYears": 7,
+            "violationsScope": "STRICT_SCOPE"
+        },
+        "jurisdiction": {
+            "county": "Cobb",
+            "state": "GA",
+            "country": "United States"
+        }
+    }
+}

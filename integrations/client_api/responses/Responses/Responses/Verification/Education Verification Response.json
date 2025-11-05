@@ -1,0 +1,156 @@
+{
+    "order": {
+        "id": "123456789abcdefghe",
+        "orderDate": "2022-10-11T23:09:05.387",
+        "dueDate": "2022-10-14T23:09:05",
+        "comments": "string",
+        "clientOrderId": "123456abcdef",
+        "clientSubjectId": "123456abcdef",
+        "status": "COMPLETE",
+        "substatus": "UNVERIFIED_CLOSED",
+        "subject": {
+            "firstName": "Fname",
+            "lastName": "Lname",
+            "birthdate": "1980-01-01T00:00:00",
+            "aliases": [],
+            "addresses": [
+                {
+                    "street1": "",
+                    "street2": "",
+                    "city": "",
+                    "state": "",
+                    "postalCode": "",
+                    "country": "United States",
+                    "isCurrent": false
+                }
+            ],
+            "pastNames": []
+        },
+        "pricing": {
+            "cost": 0.0000,
+            "courtFeeCost": 0.0000,
+            "dataFeeCost": 0.0000
+        },
+        "product": {
+            "category": "EDUCATION_VERIFICATION"
+        },
+        "jurisdiction": {
+            "county": "Local",
+            "state": "United States",
+            "country": "United States"
+        },
+        "activity": [
+            {
+                "note": "Assigned to Researcher",
+                "addedDate": "2022-10-11T23:12:07.763"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [],
+        "courtCopies": [],
+        "educationVerification": {
+            "institution": "Westwood College",
+            "institutionVerified": true,
+            "institutionDiscovered": "Westwood College",
+            "address1": "",
+            "address1Verified": true,
+            "address1Discovered": "",
+            "address2": "",
+            "city": "Chicago",
+            "cityVerified": true,
+            "cityDiscovered": "Chicago",
+            "country": "United States",
+            "countryVerified": true,
+            "countryDiscovered": "United States",
+            "degree": "BS",
+            "degreeVerified": false,
+            "degreeDiscovered": "",
+            "major": "Criminal Justice",
+            "majorVerified": false,
+            "majorDiscovered": "",
+            "gradeResults": "",
+            "gradeResultsVerified": false,
+            "gradeResultsDiscovered": "",
+            "completionDate": "",
+            "completionDateVerified": false,
+            "completionDateDiscovered": "",
+            "attendedFrom": "",
+            "attendedFromVerified": false,
+            "attendedFromDiscovered": "",
+            "attendedTo": "",
+            "attendedToVerified": false,
+            "attendedToDiscovered": "",
+            "phone": "",
+            "state": "IL",
+            "postalCode": "",
+            "campusName": "",
+            "studentId": "",
+            "rollNumber": "",
+            "institutionType": "",
+            "honorsVerified": false,
+            "honorsDiscovered": "",
+            "minor": "",
+            "minorVerified": false,
+            "minorDiscovered": "",
+            "examDate": "",
+            "examDateVerified": false,
+            "examDateDiscovered": "",
+            "degreeEarnedDate": "",
+            "degreeEarnedDateVerified": false,
+            "degreeEarnedDateDiscovered": "",
+            "currentlyAttending": "",
+            "currentlyAttendingVerified": false,
+            "currentlyAttendingDiscovered": "",
+            "completedSuccessfully": "",
+            "completedSuccessfullyVerified": false,
+            "completedSuccessfullyDiscovered": "",
+            "agentName": "TN",
+            "resultsDetails": "This order closed because additional information is required: To Complete this verification we require: Graduation Date",
+            "verifiedDate": "2022-10-12T14:10:31",
+            "verifiedById": "Test Name",
+            "verifiedBySource": "Other Automated System",
+            "verifiedByName": "",
+            "verifiedByTitle": "",
+            "verifiedByCallNumber": "Unknown"
+        },
+        "verificationCustomFields": [
+            {
+                "key": "Source Name",
+                "provided": "",
+                "isMatching": false,
+                "discovered": ""
+            }
+        ],
+        "verificationQuestions": [],
+        "verificationCalls": [
+            {
+                "callDate": "2022-10-12T11:12:44-04:00",
+                "callOutcome": "Verifies Via Automated System",
+                "callNumber": "Unknown",
+                "callBy": "Terani Collins",
+                "callsRemaining": 3,
+                "callsAttempted": 1,
+                "note": "The Source uses an automated system to complete verification.  We have sent this work to our team that handles this method.",
+                "isCallAttempt": false,
+                "isEndUserFacing": false
+            },
+            {
+                "callDate": "2022-10-12T13:10:33-04:00",
+                "callOutcome": "Missing Information",
+                "callNumber": "Unknown",
+                "callBy": "Jamie Stone",
+                "callsRemaining": 2,
+                "callsAttempted": 2,
+                "note": "To complete this order, we need some missing information: To Complete this verification we require: Graduation Date.  Information must be received for search/calls to continue.",
+                "isCallAttempt": false,
+                "isEndUserFacing": false
+            }
+        ],
+        "isInNeed": false,
+        "ssnTrace": []
+    }
+}

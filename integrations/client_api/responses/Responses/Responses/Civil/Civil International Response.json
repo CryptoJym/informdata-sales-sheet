@@ -1,0 +1,64 @@
+{
+    "order": {
+        "id": "123456789",
+        "orderDate": "2022-10-19T17:55:13.373",
+        "dueDate": "2022-11-03T08:15:15.48",
+        "comments": "",
+        "clientSubjectId": "987654321",
+        "clientExternalOrderId": "",
+        "status": "COMPLETE",
+        "substatus": "CLEAR",
+        "subject": {
+            "firstName": "ROBERT",
+            "middleName": "M",
+            "lastName": "DUMMYDATA",
+            "birthdate": "1980-01-01T00:00:00",
+            "aliases": [],
+            "addresses": [],
+            "additionalIdentifiers": {},
+            "pastNames": [
+                {
+                    "firstName": "ROBERT",
+                    "middleName": "M",
+                    "lastName": "DUMMYDATA"
+                }
+            ]
+        },
+        "product": {
+            "category": "CIVIL_INTERNATIONAL",
+            "civilUpperYears": 7,
+            "civilLowerYears": 7
+        },
+        "jurisdiction": {
+            "county": "Saint Thomas",
+            "state": "U.S. Virgin Islands",
+            "country": "U.S. Virgin Islands"
+        },
+        "activity": [
+            {
+                "note": "Assigned to Researcher",
+                "addedDate": "2022-10-19T18:02:34.637"
+            },
+            {
+                "note": "Document Uploaded",
+                "addedDate": "2022-10-26T08:37:21.327"
+            },
+            {
+                "note": "Please provide the following: Signed Consent Form with applicant's signature within last 90 days",
+                "addedDate": "2022-10-20T08:24:57.443"
+            },
+            {
+                "note": "Requested the following: Signed Consent Form with applicant's signature within last 90 days has been added",
+                "addedDate": "2022-10-20T10:52:17.683"
+            }
+        ],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [],
+        "courtCopies": [],
+        "isInNeed": true,
+        "ssnTrace": []
+    }
+}

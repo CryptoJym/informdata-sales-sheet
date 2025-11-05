@@ -1,0 +1,60 @@
+{
+    "order": {
+        "id": "a3e6ac5a-c6d4-4a15-9931-0184a122ac6f",
+        "orderDate": "2022-11-22T15:58:34.99",
+        "clientOrderId": "TEST",
+        "status": "COMPLETE",
+        "substatus": "COMPLETE",
+        "subject": {
+            "firstName": "CASEY",
+            "lastName": "TEST",
+            "birthdate": "2000-08-11T00:00:00",
+            "aliases": [],
+            "addresses": [],
+            "additionalIdentifiers": {},
+            "pastNames": [
+                {
+                    "firstName": "Casey",
+                    "middleName": "",
+                    "lastName": "Test",
+                    "suffix": ""
+                }
+            ]
+        },
+        "pricing": {
+            "cost": 0.0000,
+            "courtFeeCost": 0.0000,
+            "dataFeeCost": 0.0000
+        },
+        "product": {
+            "category": "WATCH_LIST_ONLY"
+        },
+        "jurisdiction": {
+            "county": "Cobb",
+            "state": "GA",
+            "country": "United States"
+        },
+        "activity": [
+            {
+                "note": "Search Added",
+                "addedDate": "2022-11-22T15:58:35.127"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [
+            {
+                "groupId": "4ede7c4f-d562-4a89-a566-a2398153efb5",
+                "fieldKey": "TEST",
+                "fieldValue": "TEST",
+                "sort": 1
+            }
+        ],
+        "subscribers": [],
+        "cases": [],
+        "courtCopies": [],
+        "isInNeed": false,
+        "ssnTrace": []
+    }
+}

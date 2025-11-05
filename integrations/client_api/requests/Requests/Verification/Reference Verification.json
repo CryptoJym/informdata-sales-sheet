@@ -1,0 +1,41 @@
+{
+    "order": {
+        "clientOrderId": "string",
+        "subject": {
+            "FirstName": "string",
+            "LastName": "string",
+            "Birthdate": "2000-08-11"
+        },
+        "product": {
+            "category": "REFERENCE_VERIFICATION"
+        },
+        "jurisdiction": {
+            "county": "Statewide",
+            "state": "GA",
+            "country": "United States"
+        },
+        "referenceVerification": {
+            "contactName": "string",
+            "phone": "string",
+            "email": "string",
+            "address1": "string",
+            "address2": "string",
+            "city": "string",
+            "state": "string",
+            "country": "string",
+            "postalCode": "string",
+            "referenceType": "string",
+            "relationship": "string",
+            "forceCloseDate": "2019-08-24T14:15:22Z",
+            "alternateOutcome": "string",
+            "agentName": "string",
+            "resultsDetails": "string",
+            "verifiedDate": "2019-08-24T14:15:22Z",
+            "verifiedById": "string",
+            "verifiedBySource": "string",
+            "verifiedByName": "string",
+            "verifiedByTitle": "string",
+            "verifiedByCallNumber": "string"
+        }
+    }
+}

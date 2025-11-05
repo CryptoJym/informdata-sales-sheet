@@ -1,0 +1,54 @@
+{
+    "order": {
+        "id": "123456789",
+        "orderDate": "2021-02-03T15:59:51.693",
+        "clientOrderId": "samplereport",
+        "status": "COMPLETE",
+        "substatus": "COMPLETE",
+        "subject": {
+            "firstName": "SAMPLE",
+            "lastName": "SAMPLE",
+            "birthdate": "1990-01-01T00:00:00",
+            "nationalId": "sampleid",
+            "aliases": [],
+            "addresses": [],
+            "additionalIdentifiers": {},
+            "pastNames": [
+                {
+                    "firstName": "sample",
+                    "middleName": "",
+                    "lastName": "sample",
+                    "suffix": ""
+                }
+            ]
+        },
+        "product": {
+            "category": "ADVERSE_FINANCIAL"
+        },
+        "jurisdiction": {
+            "county": "Global",
+            "state": "Algeria",
+            "country": "Algeria"
+        },
+        "activity": [
+            {
+                "note": "Assigned to Researcher",
+                "addedDate": "2021-02-03T16:03:08.37"
+            },
+            {
+                "note": "Search Added",
+                "addedDate": "2021-02-03T15:59:51.693"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [],
+        "courtCopies": [],
+        "otherResults": "COUNTRY: ALGERIA\r\nRESULT: RECORDS FOUND\r\n\r\nADVERSE FINANCE RECORDS:\r\nPENDING TAX DEBTS IN FEDERAL TAX SERVICE:\r\nPROPERTY - 12.26 (0.17) AND 356 RUB ($5.03) VEHICLES \r\n-1439.08 ($20.37) AND 18336 RUB ( $259.54)\r\n\r\nIDENTIFIERS: FULL NAME, DATE OF BIRTH, ADDRESS, AND TAX ID NUMBER (INN)\r\n\r\nSOURCE: ALGERIA STANDARD BANK",
+        "isInNeed": false,
+        "ssnTrace": []
+    }
+}

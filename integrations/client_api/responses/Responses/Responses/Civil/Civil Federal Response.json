@@ -1,0 +1,260 @@
+{
+    "order": {
+        "id": "123456789",
+        "orderDate": "2020-11-17T15:25:39.487",
+        "dueDate": "2020-11-23T22:32:51",
+        "comments": "",
+        "clientOrderId": "978654321",
+        "status": "COMPLETE",
+        "substatus": "RECORD",
+        "subject": {
+            "firstName": "ROBERT",
+            "middleName": "M",
+            "lastName": "DUMMYDATA",
+            "birthdate": "1980-01-01T00:00:00",
+            "aliases": [],
+            "addresses": [],
+            "additionalIdentifiers": {},
+            "pastNames": [
+                {
+                    "firstName": "ROBERT",
+                    "middleName": "M",
+                    "lastName": "DUMMYDATA",
+                    "suffix": "          "
+                }
+            ]
+        },
+        "product": {
+            "category": "CIVIL_FEDERAL",
+            "civilUpperYears": 7,
+            "civilLowerYears": 7
+        },
+        "jurisdiction": {
+            "county": "Federal Civil District",
+            "state": "USA",
+            "country": "United States"
+        },
+        "activity": [
+            {
+                "note": "Assigned to Researcher",
+                "addedDate": "2020-11-17T15:31:31.92"
+            },
+            {
+                "note": "Estimated Completion Date: 11/23/2020",
+                "addedDate": "2020-11-17T15:31:39.07"
+            },
+            {
+                "note": "Records Indicated - Under Review",
+                "addedDate": "2020-11-17T15:34:35.963"
+            },
+            {
+                "note": "Search Added",
+                "addedDate": "2020-11-17T15:25:39.487"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [
+            {
+                "id": "00ea95fe-840e-4208-b4da-d11a0a4aaa77",
+                "caseNumber": "1:2020CV02529",
+                "isCaseNumberUnavailable": false,
+                "courtFiledIn": "UNITED STATES DISTRICT COURT",
+                "countyFiledIn": "NORTHERN DISTRICT OF GEORGIA (ATLANTA)",
+                "chargeDate": "2020-06-16T00:00:00",
+                "isChargeDateUnavailable": false,
+                "isNextCourtDateUnavailable": false,
+                "dispositionDate": "2020-10-19T00:00:00",
+                "plaintiff": "TESTNAME, LINDA",
+                "defendant": "DUMMYDATA, ROBERT",
+                "cannotComplete": false,
+                "caseIdentifiers": {
+                    "name": "DUMMYDATA, ROBERT",
+                    "isNameMatch": true,
+                    "firstName": "ROBERT",
+                    "isFirstNameMatch": false,
+                    "middleName": "",
+                    "isMiddleNameMatch": false,
+                    "lastName": "DUMMYDATA",
+                    "isLastNameMatch": false,
+                    "isBirthdateMatch": false,
+                    "isSSNMatch": false,
+                    "isDriverLicenseMatch": false,
+                    "isAddressMatch": false,
+                    "isAliasMatch": false,
+                    "other": "",
+                    "isOtherMatch": false,
+                    "additionalIdentifiersUnavailability": "NO_ADDITIONAL_ON_PRIMARY_INDEX"
+                },
+                "charges": [
+                    {
+                        "id": "f1f07627-106a-4175-a9e4-a0fe226688bd",
+                        "count": 1,
+                        "chargeDescription": "  PETITION FOR WRIT OF HABEAS CORPUS ",
+                        "isChargeDescriptionUnavailable": false,
+                        "chargeType": "CIVIL",
+                        "isChargeTypeUnavailable": false,
+                        "disposition": "DISMISSED WITHOUT PREJUDICE",
+                        "isDispositionUnavailable": false,
+                        "comments": "Open appeal; Appeal Date: 10/22/2020; ",
+                        "sentence": {
+                            "hasProbation": false,
+                            "hasJail": false,
+                            "hasJailSuspended": false,
+                            "hasPrison": false,
+                            "hasPrisonSuspended": false,
+                            "hasCommunityService": false,
+                            "hasDriverLicenseSuspension": false,
+                            "hasCreditForTimeServed": false,
+                            "isFineWaived": false,
+                            "isFineUnspecified": false,
+                            "isCostWaived": false,
+                            "isCostUnspecified": false,
+                            "isRestitutionWaived": false,
+                            "isRestitutionUnspecified": false,
+                            "isFeeWaived": false,
+                            "isFeeUnspecified": false,
+                            "isSentenceNotReported": true
+                        },
+                        "isWarrantActive": false
+                    }
+                ]
+            },
+            {
+                "id": "9dcc8c47-58d1-48af-b0b5-02ad0793f8cc",
+                "caseNumber": "4:2019CV00338",
+                "isCaseNumberUnavailable": false,
+                "courtFiledIn": "UNITED STATES DISTRICT COURT",
+                "countyFiledIn": "SOUTHERN DISTRICT OF GEORGIA (SAVANNAH)",
+                "chargeDate": "2019-12-16T00:00:00",
+                "isChargeDateUnavailable": false,
+                "isNextCourtDateUnavailable": true,
+                "plaintiff": "TESTNAME, LINDA",
+                "defendant": "DUMMYDATA, ROBERT",
+                "cannotComplete": false,
+                "caseIdentifiers": {
+                    "name": "DUMMYDATA, ROBERT",
+                    "isNameMatch": true,
+                    "firstName": "ROBERT",
+                    "isFirstNameMatch": false,
+                    "middleName": "",
+                    "isMiddleNameMatch": false,
+                    "lastName": "DUMMYDATA",
+                    "isLastNameMatch": false,
+                    "isBirthdateMatch": false,
+                    "isSSNMatch": false,
+                    "isDriverLicenseMatch": false,
+                    "isAddressMatch": false,
+                    "isAliasMatch": false,
+                    "other": "",
+                    "isOtherMatch": false,
+                    "additionalIdentifiersUnavailability": "NO_ADDITIONAL_ON_PRIMARY_INDEX"
+                },
+                "charges": [
+                    {
+                        "id": "40d69f7b-09c2-409d-bf77-6524b0f3b355",
+                        "count": 1,
+                        "chargeDescription": " PRISONER CIVIL RIGHTS",
+                        "isChargeDescriptionUnavailable": false,
+                        "chargeType": "CIVIL",
+                        "isChargeTypeUnavailable": false,
+                        "disposition": "PENDING",
+                        "isDispositionUnavailable": false,
+                        "comments": "NO NEXT COURT DATE IS LISTED ON PUBLIC ACCESS;; ",
+                        "sentence": {
+                            "hasProbation": false,
+                            "hasJail": false,
+                            "hasJailSuspended": false,
+                            "hasPrison": false,
+                            "hasPrisonSuspended": false,
+                            "hasCommunityService": false,
+                            "hasDriverLicenseSuspension": false,
+                            "hasCreditForTimeServed": false,
+                            "isFineWaived": false,
+                            "isFineUnspecified": false,
+                            "isCostWaived": false,
+                            "isCostUnspecified": false,
+                            "isRestitutionWaived": false,
+                            "isRestitutionUnspecified": false,
+                            "isFeeWaived": false,
+                            "isFeeUnspecified": false,
+                            "isSentenceNotReported": true
+                        },
+                        "isWarrantActive": false
+                    }
+                ]
+            },
+            {
+                "id": "ca427787-b02f-4fe6-b260-7d03ebe3b8e2",
+                "caseNumber": "1:2019CV03044",
+                "isCaseNumberUnavailable": false,
+                "courtFiledIn": "UNITED STATES DISTRICT COURT",
+                "countyFiledIn": "NORTHERN DISTRICT OF GEORGIA (ATLANTA)",
+                "chargeDate": "2019-07-01T00:00:00",
+                "isChargeDateUnavailable": false,
+                "isNextCourtDateUnavailable": false,
+                "dispositionDate": "2019-09-11T00:00:00",
+                "plaintiff": "TESTNAME, LINDA",
+                "defendant": "DUMMYDATA, ROBERT",
+                "cannotComplete": false,
+                "caseIdentifiers": {
+                    "name": "DUMMYDATA, ROBERT",
+                    "isNameMatch": true,
+                    "firstName": "ROBERT",
+                    "isFirstNameMatch": false,
+                    "middleName": "",
+                    "isMiddleNameMatch": false,
+                    "lastName": "DUMMYDATA",
+                    "isLastNameMatch": false,
+                    "isBirthdateMatch": false,
+                    "isSSNMatch": false,
+                    "isDriverLicenseMatch": false,
+                    "isAddressMatch": false,
+                    "isAliasMatch": false,
+                    "other": "",
+                    "isOtherMatch": false,
+                    "additionalIdentifiersUnavailability": "NO_ADDITIONAL_ON_PRIMARY_INDEX"
+                },
+                "charges": [
+                    {
+                        "id": "5d9aac66-fa5c-40d0-b3ce-6fdc5190f75e",
+                        "count": 1,
+                        "chargeDescription": "  PETITION FOR WRIT OF HABEAS CORPUS ",
+                        "isChargeDescriptionUnavailable": false,
+                        "chargeType": "CIVIL",
+                        "isChargeTypeUnavailable": false,
+                        "disposition": "DISMISSED",
+                        "isDispositionUnavailable": false,
+                        "comments": "",
+                        "sentence": {
+                            "hasProbation": false,
+                            "hasJail": false,
+                            "hasJailSuspended": false,
+                            "hasPrison": false,
+                            "hasPrisonSuspended": false,
+                            "hasCommunityService": false,
+                            "hasDriverLicenseSuspension": false,
+                            "hasCreditForTimeServed": false,
+                            "isFineWaived": false,
+                            "isFineUnspecified": false,
+                            "isCostWaived": false,
+                            "isCostUnspecified": false,
+                            "isRestitutionWaived": false,
+                            "isRestitutionUnspecified": false,
+                            "isFeeWaived": false,
+                            "isFeeUnspecified": false,
+                            "isSentenceNotReported": true
+                        },
+                        "isWarrantActive": false
+                    }
+                ]
+            }
+        ],
+        "courtCopies": [],
+        "isInNeed": false,
+        "ssnTrace": []
+    }
+}

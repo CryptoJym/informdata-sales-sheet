@@ -1,0 +1,45 @@
+{
+    "order": {
+        "clientOrderId": "string",
+        "subject": {
+            "FirstName": "string",
+            "LastName": "string",
+            "Birthdate": "2000-08-11"
+        },
+        "product": {
+            "category": "EDUCATION_VERIFICATION"
+        },
+        "jurisdiction": {
+            "county": "Statewide",
+            "state": "GA",
+            "country": "United States"
+        },
+        "educationVerification": {
+            "institution": "string",
+            "address1": "string",
+            "address2": "string",
+            "city": "string",
+            "country": "string",
+            "degree": "string",
+            "major": "string",
+            "gradeResults": "string",
+            "completionDate": "string",
+            "attendedFrom": "string",
+            "attendedTo": "string",
+            "phone": "string",
+            "state": "string",
+            "postalCode": "string",
+            "campusName": "string",
+            "studentId": "string",
+            "rollNumber": "string",
+            "institutionType": "string",
+            "honors": "string",
+            "minor": "string",
+            "examDate": "string",
+            "degreeEarnedDate": "string",
+            "currentlyAttending": "string",
+            "completedSuccessfully": "string",
+            "email": "string"
+        }
+    }
+}

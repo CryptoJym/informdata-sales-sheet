@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InformData General API – Requests & Responses</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/tokens.css" />
+  <style>
+    main { max-width: 1200px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; display: grid; gap: 1.5rem; }
+    h1 { margin: 0; font-size: var(--fs-xxl); letter-spacing: -0.02em; }
+    h2 { font-size: var(--fs-lg); margin: 0.25rem 0; }
+    h3 { margin: .25rem 0; }
+    p.lead { font-size: 1.05rem; color: var(--muted); max-width: 80ch; }
+    section.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); padding: 1.4rem 1.6rem; display: grid; gap: 0.8rem; }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    pre { background: #0f172a0d; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.9rem 1rem; overflow: auto; }
+    .grid-2 { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+    .links a { display:inline-block; margin:.2rem .4rem .2rem 0; padding:.2rem .6rem; border:1px solid var(--border); border-radius: var(--radius-pill); font-size: var(--fs-xs); }
+    .note { color: var(--muted); font-size: var(--fs-sm); }
+  </style>
+</head>
+<body>
+  <div data-include="components/header.html"></div>
+  <main>
+    <section class="card">
+      <h1>General API – Requests & Responses</h1>
+      <p class="lead">Organized reference of request/response JSON samples by product family. Use these as payload guides alongside tenant‑specific endpoint paths. For MVR details and end‑to‑end flow, see the <a href="mvr_api.html">MVR API page</a>.</p>
+    </section>
+
+    <section class="card">
+      <h2>How to Use These Samples</h2>
+      <ul>
+        <li>Endpoints are tenant‑specific (e.g., <code>POST /api/orders</code>); confirm with InformData which path and auth your account uses.</li>
+        <li>Requests share a common structure: <code>order → subject, product, jurisdiction</code>.</li>
+        <li>Responses include <code>order.id</code>, <code>status</code>, pricing, and result sections (e.g., cases, otherResults).</li>
+      </ul>
+      <p class="note">Raw JSON files are included under <code>integrations/client_api/</code> in this repo and served by the site for download.</p>
+    </section>
+
+    <section class="card">
+      <h2>Download the Collections</h2>
+      <div class="links">
+        <a href="integrations/client_api/API Documentation/Requests.zip" download>Requests.zip</a>
+        <a href="integrations/client_api/API Documentation/Responses.zip" download>Responses.zip</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Product Families</h2>
+      <div class="grid-2">
+        <div>
+          <h3>Criminal</h3>
+          <div class="links">
+            <a href="integrations/client_api/requests/Requests/Criminal/Criminal.json">Request</a>
+            <a href="integrations/client_api/responses/Responses/Responses/Criminal/Criminal Response.json">Response</a>
+          </div>
+        </div>
+        <div>
+          <h3>NatCrim</h3>
+          <div class="links">
+            <a href="integrations/client_api/requests/Requests/NatCrim/NatCrim.json">Request</a>
+            <a href="integrations/client_api/responses/Responses/Responses/NatCrim/NatCrim Response.json">Response</a>
+          </div>
+        </div>
+        <div>
+          <h3>NSOR</h3>
+          <div class="links">
+            <a href="integrations/client_api/requests/Requests/NSOR/NSOR.json">Request</a>
+            <a href="integrations/client_api/responses/Responses/Responses/NSOR/NSOR Response.json">Response</a>
+          </div>
+        </div>
+        <div>
+          <h3>Civil</h3>
+          <div class="links">
+            <a href="integrations/client_api/requests/Requests/Civil/Civil.json">Request</a>
+            <a href="integrations/client_api/responses/Responses/Responses/Civil/Civil Response.json">Response</a>
+          </div>
+        </div>
+        <div>
+          <h3>MedEx</h3>
+          <div class="links">
+            <a href="integrations/client_api/requests/Requests/MedEx/MedEx.json">Request</a>
+            <a href="integrations/client_api/responses/Responses/Responses/MedEx/MedEx Response.json">Response</a>
+          </div>
+        </div>
+        <div>
+          <h3>Verifications</h3>
+          <div class="links">
+            <a href="integrations/client_api/requests/Requests/Verification/Employment Verification.json">Employment – Req</a>
+            <a href="integrations/client_api/responses/Responses/Responses/Verification/Employment Verification Response.json">Employment – Resp</a>
+          </div>
+        </div>
+        <div>
+          <h3>Other (incl. MVR)</h3>
+          <div class="links">
+            <a href="integrations/client_api/requests/Requests/Other/Motor Vehicle Report.json">MVR – Request</a>
+            <a href="integrations/client_api/responses/Responses/Responses/Other/Motor Vehicle Report Response.json">MVR – Response</a>
+            <a href="integrations/client_api/requests/Requests/Other/International Sanctions.json">Sanctions – Req</a>
+            <a href="integrations/client_api/responses/Responses/Responses/Other/International Sanctions Response.json">Sanctions – Resp</a>
+          </div>
+          <p class="note">See dedicated <a href="mvr_api.html">MVR API</a> for workflow, state setup, and sample code.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Example: MVR Request/Response</h2>
+      <div class="grid-2">
+        <div>
+<pre><code>{
+    "order": {
+        "clientOrderId": "string",
+        "subject": {
+            "FirstName": "string",
+            "LastName": "string",
+            "Birthdate": "2000-08-11"
+        },
+        "product": { "category": "MOTOR_VEHICLE_REPORT" },
+        "jurisdiction": { "county": "string", "state": "string", "country": "string" }
+    }
+}</code></pre>
+        </div>
+        <div>
+<pre><code>{
+  "order": {
+    "id": "0db450a0-1afb-4434-8305-0184a1122904",
+    "orderDate": "2022-11-22T15:40:32.77",
+    "clientOrderId": "TEST",
+    "status": "COMPLETE",
+    "substatus": "COMPLETE",
+    "subject": { "firstName": "CASEY", "lastName": "TEST", "birthdate": "2000-08-11T00:00:00" },
+    "pricing": { "cost": 0, "courtFeeCost": 0, "dataFeeCost": 0 },
+    "product": { "category": "MOTOR_VEHICLE_REPORT" },
+    "jurisdiction": { "county": "Cobb", "state": "GA", "country": "United States" },
+    "activity": [{ "note": "Search Added", "addedDate": "2022-11-22T15:41:33.197" }],
+    "documents": [],
+    "otherResults": "TEST RESULTS"
+  }
+}</code></pre>
+        </div>
+      </div>
+      <p class="note">Raw samples are linked above. Replace identifiers and add state‑specific consents as needed.</p>
+    </section>
+
+    <section class="card">
+      <h2>Endpoint Conventions (Placeholder)</h2>
+      <ul>
+        <li><code>POST /api/orders</code> – create order for a given product category.</li>
+        <li><code>GET /api/orders/{orderId}</code> – check status.</li>
+        <li><code>GET /api/reports/{reportId}</code> – fetch normalized report + documents.</li>
+        <li><code>POST /api/webhooks/mvr</code> – (your endpoint) receive signed notifications.</li>
+      </ul>
+      <p class="note">Confirm your tenant’s exact routes and auth with InformData (Basic vs Bearer token).</p>
+    </section>
+
+    <section class="card">
+      <h2>Chatbot: Docs Q&A (Plan)</h2>
+      <ol>
+        <li><b>Index content</b>: crawl this site (HTML pages + JSON samples), chunk sections, create embeddings (e.g., OpenAI text‑embedding‑3‑large).</li>
+        <li><b>Store vectors</b>: Vercel KV/Supabase/Postgres (small: KV; larger: Supabase/Postgres).</li>
+        <li><b>Serverless API</b>: add <code>/api/chat</code> on Vercel to run RAG (retrieve top‑k chunks → answer with citations).</li>
+        <li><b>UI widget</b>: lightweight JS chat launcher on all pages; streams answers with links to sections.</li>
+        <li><b>Guardrails</b>: scope to informational guidance; no PII handling; rate‑limit; add “not legal advice” banner.</li>
+      </ol>
+      <p class="note">I can scaffold <code>/api/chat</code> and a small crawler/ingester in a follow‑up PR. You’ll add API keys to Vercel env and deploy.</p>
+    </section>
+  </main>
+  <script src="components/include.js" defer></script>
+</body>
+</html>

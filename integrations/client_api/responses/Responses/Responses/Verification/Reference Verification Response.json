@@ -1,0 +1,179 @@
+{
+    "order": {
+        "id": "123456789abcdefghe",
+        "orderDate": "2022-10-12T15:55:20.35",
+        "dueDate": "2022-10-17T15:55:20",
+        "clientOrderId": "123456",
+        "status": "COMPLETE",
+        "substatus": "VERIFIED_SUCCESS",
+        "subject": {
+            "firstName": "FNAME",
+            "lastName": "LNAME",
+            "birthdate": "1980-01-01T00:00:00",
+            "aliases": [],
+            "addresses": [],
+            "additionalIdentifiers": {},
+            "pastNames": [
+                {
+                    "firstName": "Fname",
+                    "middleName": "",
+                    "lastName": "Lname",
+                    "suffix": ""
+                }
+            ]
+        },
+        "pricing": {
+            "cost": 0.0000,
+            "courtFeeCost": 0.0000,
+            "dataFeeCost": 0.0000
+        },
+        "product": {
+            "category": "REFERENCE_VERIFICATION"
+        },
+        "jurisdiction": {
+            "county": "Statewide",
+            "state": "PA",
+            "country": "United States"
+        },
+        "activity": [
+            {
+                "note": "Assigned to Researcher",
+                "addedDate": "2022-10-12T16:02:25.16"
+            },
+            {
+                "note": "Search Added",
+                "addedDate": "2022-10-12T15:55:21.067"
+            },
+            {
+                "note": "Estimated Completion Date: 10/17/2022",
+                "addedDate": "2022-10-12T16:02:26.367"
+            }
+        ],
+        "documents": [
+            {
+                "name": "Signed_Rental_Application_Padmanabha Vandana_Sarma",
+                "category": "OTHER",
+                "sequenceNumber": 0,
+                "accessUrl":
+            }
+        ],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [],
+        "courtCopies": [],
+        "referenceVerification": {
+            "contactName": "Westgate Village",
+            "phone": "5555555555",
+            "address1": "Lancaster Ave",
+            "city": "Malvern",
+            "state": "PA",
+            "postalCode": "55555",
+            "referenceType": "LANDLORD",
+            "relationship": "LANDLORD",
+            "agentName": "Test Name",
+            "resultsDetails": "",
+            "verifiedDate": "2022-10-12T16:25:03",
+            "verifiedById": "Test Name",
+            "verifiedBySource": "Phone",
+            "verifiedByName": "Westgate Village ",
+            "verifiedByTitle": "",
+            "verifiedByCallNumber": "5555555555"
+        },
+        "verificationCustomFields": [],
+        "verificationQuestions": [
+            {
+                "sort": 1,
+                "question": "Is the above person a responsible party on the lease? (If no, please explain)",
+                "response": "Not Available"
+            },
+            {
+                "sort": 2,
+                "question": "Are there any problems or complaints on file? (If yes, please explain)",
+                "response": "No"
+            },
+            {
+                "sort": 3,
+                "question": "Are there any pets? (If yes, what type?)",
+                "response": "Not Available"
+            },
+            {
+                "sort": 4,
+                "question": "Is there any property damage? (If yes, please explain)",
+                "response": "Not Available"
+            },
+            {
+                "sort": 5,
+                "question": "Move in Date:",
+                "response": "04/25/2021"
+            },
+            {
+                "sort": 6,
+                "question": "Move Out Date:",
+                "response": "10/21/2022"
+            },
+            {
+                "sort": 7,
+                "question": "Lease Expiration Date:",
+                "response": "04/24/2023"
+            },
+            {
+                "sort": 8,
+                "question": "Proper Notice:",
+                "response": "Yes"
+            },
+            {
+                "sort": 9,
+                "question": "Monthly Rental Amount:",
+                "response": "1,775.00"
+            },
+            {
+                "sort": 10,
+                "question": "Late Payments:",
+                "response": "No"
+            },
+            {
+                "sort": 11,
+                "question": "NSF Checks:",
+                "response": "Not Available"
+            },
+            {
+                "sort": 12,
+                "question": "Balance Owed:",
+                "response": "Not Available"
+            },
+            {
+                "sort": 13,
+                "question": "Legal Notice:",
+                "response": "No"
+            }
+        ],
+        "verificationCalls": [
+            {
+                "callDate": "2022-10-12T16:10:14-04:00",
+                "callOutcome": "",
+                "callNumber": "5555555555",
+                "callBy": "Automated System",
+                "callsRemaining": 1,
+                "callsAttempted": 0,
+                "note": "Verification is being sent to the calling queue using the provided number.",
+                "isCallAttempt": false,
+                "isEndUserFacing": false
+            },
+            {
+                "callDate": "2022-10-12T16:25:09-04:00",
+                "callOutcome": "Information Collected",
+                "callNumber": "5555555555",
+                "callBy": "Automated System",
+                "callsRemaining": 0,
+                "callsAttempted": 1,
+                "note": "Information verified by:  Westgate Village   Search identifiers used by Source to identify Subject: Name",
+                "isCallAttempt": false,
+                "isEndUserFacing": false
+            }
+        ],
+        "isInNeed": false,
+        "ssnTrace": []
+    }
+}

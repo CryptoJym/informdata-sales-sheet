@@ -1,0 +1,27 @@
+{
+    "order": {
+        "clientOrderId": "string",
+        "subject": {
+            "FirstName": "string",
+            "LastName": "string",
+            "Birthdate": "2000-08-11"
+        },
+        "product": {
+            "category": "MILITARY_VERIFICATION"
+        },
+        "jurisdiction": {
+            "county": "Statewide",
+            "state": "GA",
+            "country": "United States"
+        },
+        "militaryVerification": {
+            "branch": "string",
+            "country": "string",
+            "rank": "string",
+            "serviceFrom": "string",
+            "serviceTo": "string",
+            "lastDutyStation": "string",
+            "dischargeType": "string"
+        }
+    }
+}

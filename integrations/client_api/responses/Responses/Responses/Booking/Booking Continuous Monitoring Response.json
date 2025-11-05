@@ -1,0 +1,254 @@
+{
+    "order": {
+        "id": "5fcab032-6658-4c3c-90fe-0178b2d7e077",
+        "orderDate": "2021-04-08T14:56:35.443",
+        "dueDate": "2021-04-13T17:25:59",
+        "status": "COMPLETE",
+        "substatus": "RESULTS_FOUND",
+        "subject": {
+            "firstName": "ROBERT",
+            "lastName": "DUMMYDATA",
+            "birthdate": "1980-01-01T00:00:00",
+            "aliases": [],
+            "addresses": [],
+            "additionalIdentifiers": {},
+            "pastNames": [
+                {
+                    "firstName": "ROBERT",
+                    "middleName": "",
+                    "lastName": "DUMMYDATA",
+                    "suffix": ""
+                }
+            ]
+        },
+        "pricing": {
+            "cost": 0.0000,
+            "courtFeeCost": 0.0000,
+            "dataFeeCost": 0.0000
+        },
+        "product": {
+            "category": "BOOKING_CONTINUOUS_MONITORING"
+        },
+        "jurisdiction": {
+            "county": "Booking Search",
+            "state": "USA",
+            "country": "United States"
+        },
+        "activity": [
+            {
+                "note": "Assigned to Researcher",
+                "addedDate": "2021-04-08T15:01:44.307"
+            },
+            {
+                "note": "Booking Results Posted",
+                "addedDate": "2021-04-08T15:06:44.117"
+            },
+            {
+                "note": "Booking Results Posted",
+                "addedDate": "2021-04-13T06:26:45.9"
+            },
+            {
+                "note": "Booking Results Posted",
+                "addedDate": "2021-04-17T18:31:28.407"
+            },
+            {
+                "note": "Booking Results Posted",
+                "addedDate": "2021-05-03T19:16:30.53"
+            },
+            {
+                "note": "Booking Results Posted",
+                "addedDate": "2021-05-09T20:21:34.703"
+            },
+            {
+                "note": "Booking Results Posted",
+                "addedDate": "2021-05-27T12:56:34.59"
+            },
+            {
+                "note": "Booking Results Posted",
+                "addedDate": "2021-06-05T18:07:39.76"
+            },
+            {
+                "note": "Booking Results Posted",
+                "addedDate": "2021-06-17T14:15:38.347"
+            },
+            {
+                "note": "Booking Results Posted",
+                "addedDate": "2021-06-30T18:09:16.153"
+            },
+            {
+                "note": "Booking Results Posted",
+                "addedDate": "2021-08-09T00:21:50.72"
+            },
+            {
+                "note": "Booking Results Posted",
+                "addedDate": "2021-09-13T15:28:31.063"
+            },
+            {
+                "note": "Booking Results Posted",
+                "addedDate": "2021-09-25T14:04:50.06"
+            },
+            {
+                "note": "Booking Results Posted",
+                "addedDate": "2021-10-25T13:07:27.943"
+            },
+            {
+                "note": "Booking Results Posted",
+                "addedDate": "2022-10-26T17:47:12.917"
+            },
+            {
+                "note": "Booking Results Posted",
+                "addedDate": "2022-10-29T16:30:00.76"
+            },
+            {
+                "note": "Booking Results Posted",
+                "addedDate": "2022-10-29T16:32:55.007"
+            },
+            {
+                "note": "Booking Results Posted",
+                "addedDate": "2022-10-29T16:36:21.103"
+            },
+            {
+                "note": "Estimated Completion Date: 04/13/2021",
+                "addedDate": "2021-04-08T15:01:45.26"
+            },
+            {
+                "note": "Search Added",
+                "addedDate": "2021-04-08T14:56:35.443"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [],
+        "courtCopies": [],
+        "isInNeed": false,
+        "booking": {
+            "isMonitored": true,
+            "results": [
+                {
+                    "createdDate": "2021-04-13T06:26:45.86",
+                    "bookingDate": "2021-04-07T13:32:00",
+                    "bookingNumber": "56611",
+                    "bookingId": "182737434",
+                    "isMonitored": false,
+                    "inmateNumber": "56611",
+                    "offenderId": "56611",
+                    "releaseDate": "2021-10-25T09:02:00",
+                    "releaseReason": "Other reason",
+                    "source": {
+                        "siteId": 6000,
+                        "description": "Weld County Sheriff's Office",
+                        "phoneNumber": "9703564015",
+                        "streetAddress1": "2110 O St.",
+                        "city": "Greeley",
+                        "county": "Weld",
+                        "state": "CO",
+                        "postalCode": "80631"
+                    },
+                    "matchedOn": [
+                        "DOBExact",
+                        "NameExact"
+                    ],
+                    "identifiers": [
+                        {
+                            "type": "Address"
+                        },
+                        {
+                            "type": "DateOfBirth"
+                        },
+                        {
+                            "type": "YearOfBirth",
+                            "yearOfBirth": 1980
+                        },
+                        {
+                            "type": "DriverLicense"
+                        },
+                        {
+                            "type": "SocialSecurityNumber"
+                        },
+                        {
+                            "type": "Name",
+                            "firstName": "ROBERT",
+                            "middleName": "M",
+                            "lastName": "DUMMYDATA"
+                        },
+                        {
+                            "type": "Gender"
+                        }
+                    ],
+                    "charges": [
+                        {
+                            "chargeCode": "5015",
+                            "chargeCodeNormalized": "5015",
+                            "chargeDescription": "5015-FAILURE TO APPEAR (FTA)",
+                            "chargeDescriptionNormalized": "5015 5015-FAILURE TO APPEAR (FTA)",
+                            "mappedDescription": "FTA OR FAILURE TO APPEAR"
+                        },
+                        {
+                            "chargeCode": "4902",
+                            "chargeCodeNormalized": "4902",
+                            "chargeDescription": "4902-FLIGHT TO AVOID PROSECUT",
+                            "chargeDescriptionNormalized": "4902 4902-FLIGHT TO AVOID PROSECUTION",
+                            "mappedDescription": "FLEEING OR ESCAPE"
+                        }
+                    ]
+                },
+                {
+                    "createdDate": "2022-10-26T17:47:12.851",
+                    "bookingDate": "2022-10-26T00:00:00",
+                    "bookingNumber": "2022450469",
+                    "bookingId": "207315103",
+                    "isMonitored": false,
+                    "inmateNumber": "2022450469",
+                    "offenderId": "2022450469",
+                    "releaseReason": "BONDED OUT",
+                    "source": {
+                        "siteId": 6000,
+                        "description": "Denver County Sheriff's Office",
+                        "phoneNumber": "7209133600",
+                        "streetAddress1": "490 W. Colfax Ave.",
+                        "city": "Denver",
+                        "county": "Denver",
+                        "state": "CO",
+                        "postalCode": "80202"
+                    },
+                    "matchedOn": [
+                        "DOBExact",
+                        "NameExact"
+                    ],
+                    "identifiers": [
+                        {
+                            "type": "DateOfBirth"
+                        },
+                        {
+                            "type": "YearOfBirth",
+                            "yearOfBirth": 1980
+                        },
+                        {
+                            "type": "Name",
+                            "firstName": "ROBERT",
+                            "middleName": "M",
+                            "lastName": "DUMMYDATA"
+                        },
+                        {
+                            "type": "Address"
+                        },
+                        {
+                            "type": "SocialSecurityNumber"
+                        },
+                        {
+                            "type": "DriverLicense"
+                        },
+                        {
+                            "type": "Gender"
+                        }
+                    ],
+                    "charges": []
+                }
+            ]
+        },
+        "ssnTrace": []
+    }
+}

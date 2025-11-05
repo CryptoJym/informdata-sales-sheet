@@ -1,0 +1,32 @@
+{
+    "order": {
+        "clientOrderId": "string",
+        "subject": {
+            "FirstName": "string",
+            "LastName": "string",
+            "Birthdate": "2000-08-11",
+            "addresses": [
+                {
+                    "street1": "string",
+                    "street2": "string",
+                    "city": "string",
+                    "state": "string",
+                    "postalCode": "string",
+                    "country": "string",
+                    "addressType": "Residential",
+                    "dateFrom": "2019-08-24T14:15:22Z",
+                    "dateTo": "2019-08-24T14:15:22Z",
+                    "isCurrent": true/false
+                }
+            ]
+        },
+        "product": {
+            "category": "ADDRESS_VERIFICATION"
+        },
+        "jurisdiction": {
+            "county": "Statewide",
+            "state": "GA",
+            "country": "United States"
+        }
+    }
+}

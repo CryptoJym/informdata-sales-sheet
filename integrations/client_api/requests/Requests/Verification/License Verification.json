@@ -1,0 +1,35 @@
+{
+  "order": {
+    "clientOrderId": "string",
+    "subject": {
+      "FirstName": "string",
+      "LastName": "string",
+      "Birthdate": "2000-08-11"
+    },
+    "product": {
+      "category": "LICENSE_VERIFICATION"
+    },
+    "jurisdiction": {
+      "county": "Statewide",
+      "state": "GA",
+      "country": "United States"
+    },
+    "licenseVerification": {
+      "license": "string",
+      "issuedLocation": "string",
+      "issuedBy": "string",
+      "issuedDate": "string",
+      "expirationDate": "string",
+      "licenseIdNumber": "string"
+    },
+    "verificationCustomFields": [
+      {
+        "key": "InGoodStanding",
+        "provided": "Y"
+      },
+      {
+        "key": "LicenseType"
+      }
+    ]
+  }
+}

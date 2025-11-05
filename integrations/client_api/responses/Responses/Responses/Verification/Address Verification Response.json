@@ -1,0 +1,62 @@
+{
+    "order": {
+        "id": "123456789",
+        "orderDate": "2022-06-29T11:41:40.507",
+        "comments": "",
+        "clientOrderId": "987654321",
+        "status": "COMPLETE",
+        "substatus": "COMPLETE",
+        "subject": {
+            "firstName": "ROBERT",
+            "lastName": "DUMMYDATA",
+            "birthdate": "1980-01-01T00:00:00",
+            "aliases": [],
+            "addresses": [],
+            "additionalIdentifiers": {},
+            "pastNames": [
+                {
+                    "firstName": "ROBERT",
+                    "middleName": "",
+                    "lastName": "DUMMYDATA",
+                    "suffix": ""
+                }
+            ]
+        },
+        "product": {
+            "category": "ADDRESS_VERIFICATION"
+        },
+        "jurisdiction": {
+            "county": "Global",
+            "state": "Iran",
+            "country": "Iran"
+        },
+        "activity": [
+            {
+                "note": "Assigned to Researcher",
+                "addedDate": "2022-06-29T11:45:42.677"
+            },
+            {
+                "note": "Please provide the following: Per authorities, please confirm postal code for address Unit 3, No 3, 9th St, Hessari St, Mirdamad Blvd as it is invalid.",
+                "addedDate": "2022-07-01T12:24:38.923"
+            },
+            {
+                "note": "Requested the following: Per authorities, please confirm postal code for address Unit 3, No 3, 9th St, Hessari St, Mirdamad Blvd as it is invalid.  has been added",
+                "addedDate": "2022-07-06T12:39:22.62"
+            },
+            {
+                "note": "Search Added",
+                "addedDate": "2022-06-29T11:41:40.507"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [],
+        "courtCopies": [],
+        "otherResults": "First Name: ROBERT- Not Verified \r\nMiddle Name: \r\nLast Name : DUMMYDATA- Not Verified \r\nAddress:  123 Main St - Not Verified \r\nCity: Tehran-Not verified \r\nCountry:  Iran - Not Verified \r\nDate of Birth: 01-January-1980 - Not Verified \r\nThe candidates information could not be verified against the public records in Iran.",
+        "isInNeed": true,
+        "ssnTrace": []
+    }
+}

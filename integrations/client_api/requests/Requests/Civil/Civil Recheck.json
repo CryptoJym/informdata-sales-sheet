@@ -1,0 +1,20 @@
+{
+    "order": {
+        "clientOrderId": "string",
+        "subject": {
+            "FirstName": "string",
+            "LastName": "string",
+            "Birthdate": "2000-08-11"
+        },
+        "product": {
+            "category": "CIVIL_RECHECK",
+            "civilUpperYears": "7",
+            "civilLowerYears": "7"
+         },
+        "jurisdiction": {
+            "county": "string",
+            "state": "string",
+            "country": "string"
+        }
+    }
+}

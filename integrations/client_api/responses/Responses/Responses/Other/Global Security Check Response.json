@@ -1,0 +1,95 @@
+{
+    "order": {
+        "id": "123456789",
+        "orderDate": "2022-11-17T19:09:41.763",
+        "clientOrderId": "987654321",
+        "status": "COMPLETE",
+        "substatus": "RECORD",
+        "subject": {
+            "firstName": "ROBERT",
+            "lastName": "DUMMYDATA",
+            "birthdate": "1980-01-01T00:00:00",
+            "aliases": [],
+            "addresses": [],
+            "additionalIdentifiers": {},
+            "pastNames": [
+                {
+                    "firstName": "ROBERT",
+                    "middleName": "",
+                    "lastName": "DUMMYDATA",
+                    "suffix": ""
+                }
+            ]
+        },
+        "product": {
+            "category": "GLOBAL_SECURITY_CHECK"
+        },
+        "jurisdiction": {
+            "county": "Global",
+            "state": "Global",
+            "country": "Global"
+        },
+        "activity": [
+            {
+                "note": "Assigned to Researcher",
+                "addedDate": "2022-11-17T19:11:56.547"
+            },
+            {
+                "note": "Search Added",
+                "addedDate": "2022-11-17T19:09:42.1"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [
+            {
+                "groupId": "A431718218",
+                "fieldKey": "Source ID",
+                "fieldValue": "431718218",
+                "sort": 0
+            },
+            {
+                "groupId": "A431718218",
+                "fieldKey": "Original ID",
+                "fieldValue": "S4MR3N1LQ",
+                "sort": 0
+            },
+            {
+                "groupId": "A431718218",
+                "fieldKey": "Full Name",
+                "fieldValue": "ROBERT DUMMYDATA",
+                "sort": 0
+            },
+            {
+                "groupId": "A431718218",
+                "fieldKey": "First Name",
+                "fieldValue": "ROBERT",
+                "sort": 0
+            },
+            {
+                "groupId": "A431718218",
+                "fieldKey": "Middle Name",
+                "fieldValue": "M",
+                "sort": 0
+            },
+            {
+                "groupId": "A431718218",
+                "fieldKey": "Last Name",
+                "fieldValue": "DUMMYDATA",
+                "sort": 0
+            },
+            {
+                "groupId": "A431718218",
+                "fieldKey": "Source",
+                "fieldValue": "System for Award Management Exclusions",
+                "sort": 0
+            },
+        ],
+        "subscribers": [],
+        "cases": [],
+        "courtCopies": [],
+        "isInNeed": false,
+        "ssnTrace": []
+    }
+}

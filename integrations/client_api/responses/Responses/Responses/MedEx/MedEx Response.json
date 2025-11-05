@@ -1,0 +1,66 @@
+{
+    "order": {
+        "id": "123456789",
+        "orderDate": "2022-11-22T00:04:32.467",
+        "status": "COMPLETE",
+        "substatus": "RESULTS_FOUND",
+        "subject": {
+            "firstName": "Robert",
+            "lastName": "Dummydata",
+            "birthdate": "1980-01-01T00:00:00",
+            "aliases": [],
+            "addresses": [],
+            "pastNames": []
+        },
+        "product": {
+            "category": "MEDEX"
+        },
+        "jurisdiction": {
+            "county": "Medical Exclusions Search",
+            "state": "USA",
+            "country": "United States"
+        },
+        "activity": [
+            {
+                "note": "Assigned to Researcher",
+                "addedDate": "2022-11-22T00:06:34.94"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [],
+        "courtCopies": [],
+        "medical": {
+            "productType": "COMPLETE",
+            "shouldVerify": false,
+            "shouldMonitor": false,
+            "sanctionsState": "FL",
+            "isCombinedExclusionAndLicense": false,
+            "monitoringAlerts": [],
+            "exclusionResults": [
+                {
+                    "id": 5794286,
+                    "createdDate": "2022-11-22T00:08:04.757",
+                    "recordId": "18215361",
+                    "recordType": "I",
+                    "matchPercentage": 1.000,
+                    "verifiedResult": "UNVERIFIED",
+                    "verifiedMethod": "",
+                    "sourceName": "System for Award Management",
+                    "firstName": "ROBERT",
+                    "lastName": "DUMMYDATA",
+                    "actionType": "Prohibition/Restriction",
+                    "rawDetails": "\nClassification: Individual\nName: \nPrefix: \nFirst: ROBERT\nMiddle: \nLast: DUMMYDATA\nSuffix: \nAddress 1: \nAddress 2: \nAddress 3: \nAddress 4: \nCity: \nState / Province: \nCountry: COL\nZip Code: \nDUNS: \nExclusion Program: Reciprocal\nExcluding Agency: TREAS-OFAC\nCT Code: 03-SDNTK-01\nExclusion Type: Prohibition/Restriction\nAdditional Comments: PII data has been masked from view\nActive Date: \nTermination Date: Indefinite\nRecord Status: \nCross-Reference: \nSAM Number: S4MR3QDR9\nCAGE: \nNPI: \nCreation_Date: 3/18/2010\n \r\nCompleted At: 11/22/2022 12:07 AM",
+                    "sourceType": "FEDERAL EXCLUSION",
+                    "originalDocumentURL": ""
+                },
+            ],
+            "licenseResults": []
+        },
+        "isInNeed": false,
+        "ssnTrace": []
+    }
+}

@@ -1,0 +1,125 @@
+{
+    "order": {
+        "id": "36fa90b4-1a29-4097-89d3-01849f8d674d",
+        "orderDate": "2022-11-22T08:35:55.21",
+        "clientOrderId": "123456789",
+        "status": "COMPLETE",
+        "substatus": "RECORD",
+        "subject": {
+            "firstName": "ROBERT",
+            "lastName": "DUMMYDATA",
+            "birthdate": "1980-01-01T00:00:00",
+            "aliases": [],
+            "addresses": [],
+            "additionalIdentifiers": {},
+            "pastNames": [
+                {
+                    "firstName": "ROBERT",
+                    "middleName": "",
+                    "lastName": "DUMMYDATA",
+                    "suffix": ""
+                }
+            ]
+        },
+        "pricing": {
+            "cost": 1.0900,
+            "courtFeeCost": 0.0000,
+            "dataFeeCost": 0.0000
+        },
+        "product": {
+            "category": "SEX_OFFENDER"
+        },
+        "jurisdiction": {
+            "county": "National Sex Offender Registry",
+            "state": "USA",
+            "country": "United States"
+        },
+        "activity": [
+            {
+                "note": "Search Added",
+                "addedDate": "2022-11-22T08:35:55.58"
+            },
+            {
+                "note": "Assigned to Researcher",
+                "addedDate": "2022-11-22T08:42:46.23"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [
+            {
+                "id": "c7404419-b3d2-4ac8-baac-9e3054320f6a",
+                "caseNumber": "TEST1234",
+                "isCaseNumberUnavailable": false,
+                "courtFiledIn": "TEST COURT",
+                "countyFiledIn": "NATIONAL SEX OFFENDER REGISTRY",
+                "chargeDate": "2020-02-01T00:00:00",
+                "isChargeDateUnavailable": false,
+                "sentenceDate": "2020-04-01T00:00:00",
+                "isNextCourtDateUnavailable": true,
+                "offenseDate": "2020-01-01T00:00:00",
+                "dispositionDate": "2020-03-01T00:00:00",
+                "cannotComplete": false,
+                "caseIdentifiers": {
+                    "name": "DUMMYDATA, ROBERT",
+                    "isNameMatch": true,
+                    "firstName": "ROBERT",
+                    "isFirstNameMatch": true,
+                    "middleName": "",
+                    "isMiddleNameMatch": true,
+                    "lastName": "DUMMYDATA",
+                    "isLastNameMatch": true,
+                    "birthdate": "1980-01-01T00:00:00",
+                    "isBirthdateMatch": true,
+                    "isSSNMatch": false,
+                    "isDriverLicenseMatch": false,
+                    "isAddressMatch": false,
+                    "isAliasMatch": false,
+                    "other": "",
+                    "isOtherMatch": false,
+                    "additionalIdentifiersUnavailability": "NO_ADDITIONAL_ON_PRIMARY_INDEX"
+                },
+                "charges": [
+                    {
+                        "id": "1b05c6c6-2da1-45ff-bb75-ba5037e18ee5",
+                        "count": 1,
+                        "chargeDescription": "SEXUAL ASSAULT-ACT 2ND DEGREE",
+                        "isChargeDescriptionUnavailable": false,
+                        "chargeType": "FELONY",
+                        "isChargeTypeUnavailable": false,
+                        "disposition": "GUILTY",
+                        "isDispositionUnavailable": false,
+                        "comments": "",
+                        "sentence": {
+                            "hasProbation": false,
+                            "hasJail": false,
+                            "hasJailSuspended": false,
+                            "hasPrison": true,
+                            "prisonYears": 10,
+                            "hasPrisonSuspended": false,
+                            "hasCommunityService": false,
+                            "hasDriverLicenseSuspension": false,
+                            "hasCreditForTimeServed": false,
+                            "isFineWaived": false,
+                            "isFineUnspecified": false,
+                            "isCostWaived": false,
+                            "isCostUnspecified": false,
+                            "isRestitutionWaived": false,
+                            "isRestitutionUnspecified": false,
+                            "isFeeWaived": false,
+                            "isFeeUnspecified": false,
+                            "isSentenceNotReported": false
+                        },
+                        "isWarrantActive": false
+                    }
+                ]
+            }
+        ],
+        "courtCopies": [],
+        "isInNeed": false,
+        "ssnTrace": []
+    }
+}

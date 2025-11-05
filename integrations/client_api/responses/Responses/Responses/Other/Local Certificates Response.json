@@ -1,0 +1,54 @@
+{
+    "order": {
+        "id": "a839682c-cb0a-4b1e-a576-0184a1094c17",
+        "orderDate": "2022-11-22T15:30:51.923",
+        "clientOrderId": "TEST",
+        "status": "COMPLETE",
+        "substatus": "COMPLETE",
+        "subject": {
+            "firstName": "CASEY",
+            "lastName": "TEST",
+            "birthdate": "2000-08-11T00:00:00",
+            "aliases": [],
+            "addresses": [],
+            "additionalIdentifiers": {},
+            "pastNames": [
+                {
+                    "firstName": "Casey",
+                    "middleName": "",
+                    "lastName": "Test",
+                    "suffix": ""
+                }
+            ]
+        },
+        "pricing": {
+            "cost": 0.0000,
+            "courtFeeCost": 0.0000,
+            "dataFeeCost": 0.0000
+        },
+        "product": {
+            "category": "LOCAL_CERTIFICATES"
+        },
+        "jurisdiction": {
+            "county": "Cobb",
+            "state": "GA",
+            "country": "United States"
+        },
+        "activity": [
+            {
+                "note": "Search Added",
+                "addedDate": "2022-11-22T15:31:24.273"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [],
+        "courtCopies": [],
+        "otherResults": "TEST RESULTS",
+        "isInNeed": false,
+        "ssnTrace": []
+    }
+}

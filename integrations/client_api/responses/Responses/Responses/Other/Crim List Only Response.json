@@ -1,0 +1,54 @@
+{
+    "order": {
+        "id": "521b8c7a-d554-4d45-ad12-0184a092e1e9",
+        "orderDate": "2022-11-22T13:21:31.493",
+        "clientOrderId": "TEST",
+        "status": "COMPLETE",
+        "substatus": "COMPLETE",
+        "subject": {
+            "firstName": "CASEY",
+            "lastName": "TEST",
+            "birthdate": "2000-08-11T00:00:00",
+            "aliases": [],
+            "addresses": [],
+            "additionalIdentifiers": {},
+            "pastNames": [
+                {
+                    "firstName": "Casey",
+                    "middleName": "",
+                    "lastName": "Test",
+                    "suffix": ""
+                }
+            ]
+        },
+        "pricing": {
+            "cost": 0.0000,
+            "courtFeeCost": 0.0000,
+            "dataFeeCost": 0.0000
+        },
+        "product": {
+            "category": "CRIM_LIST_ONLY"
+        },
+        "jurisdiction": {
+            "county": "Cobb",
+            "state": "GA",
+            "country": "United States"
+        },
+        "activity": [
+            {
+                "note": "Search Added",
+                "addedDate": "2022-11-22T13:21:38.823"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [],
+        "courtCopies": [],
+        "otherResults": "TEST RESULTS",
+        "isInNeed": false,
+        "ssnTrace": []
+    }
+}

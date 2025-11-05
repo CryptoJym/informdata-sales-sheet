@@ -1,0 +1,151 @@
+{
+    "order": {
+        "id": "123456789",
+        "orderDate": "2022-11-16T10:45:14.067",
+        "dueDate": "2022-11-28T00:00:00",
+        "comments": "Please do not report any cases disposed with Abated by Death even if IDs match",
+        "clientOrderId": "987654321",
+        "status": "COMPLETE",
+        "substatus": "RECORD",
+        "subject": {
+            "firstName": "ROBERT",
+            "middleName": "M",
+            "lastName": "DUMMYDATA",
+            "birthdate": "1980-01-01T00:00:00",
+            "citizenship": "United Kingdom",
+            "passportNumber": "LT558159",
+            "passportCountry": "New Zealand",
+            "aliases": [],
+            "addresses": [
+                {
+                    "street1": "123 Main St",
+                    "street2": "From 2021-2-1 To 2021-10-1",
+                    "city": "Auckland",
+                    "state": "Auckland",
+                    "postalCode": "1050",
+                    "country": "New Zealand",
+                    "isCurrent": false
+                }
+            ],
+            "additionalIdentifiers": {},
+            "pastNames": [
+                {
+                    "firstName": "ROBERT",
+                    "middleName": "M",
+                    "lastName": "DUMMYDATA",
+                    "suffix": ""
+                }
+            ]
+        },
+        "product": {
+            "category": "CRIMINAL_INTERNATIONAL",
+            "felonyYears": 7,
+            "felonyScope": "STRICT_SCOPE",
+            "misdemeanorYears": 7,
+            "misdemeanorScope": "STRICT_SCOPE",
+            "trafficYears": 7,
+            "trafficScope": "STRICT_SCOPE",
+            "trafficLevel": "STANDARD_TRAFFIC",
+            "nonConvictionsYears": 7,
+            "nonConvictionsScope": "STRICT_SCOPE",
+            "violationsYears": 7,
+            "violationsScope": "STRICT_SCOPE"
+        },
+        "jurisdiction": {
+            "county": "Global",
+            "state": "New Zealand",
+            "country": "New Zealand"
+        },
+        "activity": [
+            {
+                "note": "Assigned to Researcher",
+                "addedDate": "2022-11-16T10:51:45.59"
+            },
+            {
+                "note": "Search Added",
+                "addedDate": "2022-11-16T10:45:15.443"
+            },
+            {
+                "note": "Search in Progress",
+                "addedDate": "2022-11-17T11:17:17.203"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [
+            {
+                "id": "3d963d00-bde4-488c-8a5d-7a5a8891c674",
+                "caseNumber": "CRI-2021-067-000062",
+                "isCaseNumberUnavailable": false,
+                "courtFiledIn": "AUCKLAND DISTRICT COURT",
+                "countyFiledIn": "GLOBAL",
+                "chargeDate": "2021-04-22T00:00:00",
+                "isChargeDateUnavailable": false,
+                "sentenceDate": "2021-04-22T00:00:00",
+                "isNextCourtDateUnavailable": false,
+                "offenseDate": "2021-04-22T00:00:00",
+                "dispositionDate": "2021-04-22T00:00:00",
+                "cannotComplete": false,
+                "caseIdentifiers": {
+                    "name": "DUMMYDATA, ROBERT",
+                    "isNameMatch": true,
+                    "firstName": "ROBERT",
+                    "isFirstNameMatch": true,
+                    "middleName": "M",
+                    "isMiddleNameMatch": true,
+                    "lastName": "DUMMYDATA",
+                    "isLastNameMatch": true,
+                    "birthdate": "1980-01-01T00:00:00",
+                    "isBirthdateMatch": true,
+                    "isSSNMatch": false,
+                    "isDriverLicenseMatch": false,
+                    "isAddressMatch": false,
+                    "isAliasMatch": false,
+                    "other": "",
+                    "isOtherMatch": false,
+                    "additionalIdentifiersUnavailability": "NO_ADDITIONAL_ON_FILE"
+                },
+                "charges": [
+                    {
+                        "id": "1aa7c56e-2b7e-44dd-8e40-a6395176ef5e",
+                        "count": 1,
+                        "chargeDescription": "DROVE WITH EXCESS BLOOD ALCOHOL\r\nCONTENT",
+                        "isChargeDescriptionUnavailable": false,
+                        "chargeType": "NOT AVAILABLE",
+                        "isChargeTypeUnavailable": false,
+                        "disposition": "GUILTY",
+                        "isDispositionUnavailable": false,
+                        "comments": "DISQUALIFICATION FROM DRIVING AMOUNT UNSPECIFIED.; ",
+                        "sentence": {
+                            "hasProbation": false,
+                            "hasJail": false,
+                            "hasJailSuspended": false,
+                            "hasPrison": false,
+                            "hasPrisonSuspended": false,
+                            "hasCommunityService": false,
+                            "hasDriverLicenseSuspension": false,
+                            "hasCreditForTimeServed": false,
+                            "isFineWaived": false,
+                            "isFineUnspecified": true,
+                            "isCostWaived": false,
+                            "isCostUnspecified": false,
+                            "isRestitutionWaived": false,
+                            "isRestitutionUnspecified": false,
+                            "isFeeWaived": false,
+                            "isFeeUnspecified": false,
+                            "isSentenceNotReported": false
+                        },
+                        "isWarrantActive": false
+                    }
+                ]
+            }
+        ],
+        "courtCopies": [],
+        "isInNeed": false,
+        "notificationPostURL": "https://task-international-search.eu.checkrhq.net/webhooks/sjv",
+        "ssnTrace": []
+    }
+}

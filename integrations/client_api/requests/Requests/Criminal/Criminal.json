@@ -1,0 +1,29 @@
+{
+    "order": {
+        "clientOrderId": "123456789",
+        "subject": {
+            "FirstName": "ROBERT",
+            "LastName": "DUMMYDATA",
+            "Birthdate": "2000-01-01"
+        },
+        "product": {
+            "category": "CRIMINAL",
+            "felonyYears": 7,
+            "felonyScope": "STRICT_SCOPE",
+            "misdemeanorYears": 7,
+            "misdemeanorScope": "STRICT_SCOPE",
+            "trafficYears": 7,
+            "trafficScope": "STRICT_SCOPE",
+            "trafficLevel": "NO_TRAFFIC",
+            "nonConvictionsYears": 7,
+            "nonConvictionsScope": "STRICT_SCOPE",
+            "violationsYears": 7,
+            "violationsScope": "STRICT_SCOPE"
+        },
+        "jurisdiction": {
+            "county": "Cobb",
+            "state": "GA",
+            "country": "United States"
+        }
+    }
+}

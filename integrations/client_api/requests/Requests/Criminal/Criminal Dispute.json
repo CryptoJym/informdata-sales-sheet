@@ -1,0 +1,19 @@
+{
+    "order": {
+        "clientOrderId": "string",
+        "subject": {
+            "FirstName": "string",
+            "LastName": "string",
+            "Birthdate": "2000-08-11",
+	    "ssn": "999-99-9999"
+        },
+        "product": {
+            "category": "CRIMINAL_DISPUTE"
+        },
+        "jurisdiction": {
+            "county": "Cobb",
+            "state": "GA",
+            "country": "United States"
+        }
+    }
+}

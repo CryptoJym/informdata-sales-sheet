@@ -1,0 +1,156 @@
+{
+    "order": {
+        "id": "123456789abcdefghe",
+        "orderDate": "2022-10-12T12:28:20.11",
+        "dueDate": "2022-10-17T12:28:20",
+        "comments": "string",
+        "clientOrderId": "123456abcdef",
+        "clientSubjectId": "123456abcdef",
+        "status": "COMPLETE",
+        "substatus": "VERIFIED_SUCCESS",
+        "subject": {
+            "firstName": "Fname",
+            "middleName": "Mname",
+            "lastName": "Lname",
+            "birthdate": "1980-01-01T00:00:00",
+            "aliases": [],
+            "addresses": [
+                {
+                    "street1": "",
+                    "street2": "",
+                    "city": "",
+                    "state": "",
+                    "postalCode": "",
+                    "country": "United States",
+                    "isCurrent": false
+                }
+            ],
+            "pastNames": []
+        },
+        "pricing": {
+            "cost": 0.0000,
+            "courtFeeCost": 0.0000,
+            "dataFeeCost": 0.0000
+        },
+        "product": {
+            "category": "EMPLOYMENT_VERIFICATION"
+        },
+        "jurisdiction": {
+            "county": "Local",
+            "state": "United States",
+            "country": "United States"
+        },
+        "activity": [
+            {
+                "note": "Assigned to Researcher",
+                "addedDate": "2022-10-12T12:32:18.523"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [],
+        "courtCopies": [],
+        "employmentVerification": {
+            "employer": "Sendoso",
+            "employerVerified": true,
+            "employerDiscovered": "Sendoso",
+            "address1": "",
+            "address1Verified": true,
+            "address1Discovered": "",
+            "address2": "",
+            "city": "Portland",
+            "cityVerified": true,
+            "cityDiscovered": "Portland",
+            "country": "United States",
+            "countryVerified": true,
+            "countryDiscovered": "United States",
+            "title": "Send Curator",
+            "titleVerified": true,
+            "titleDiscovered": "Send Curator",
+            "reasonForLeaving": "",
+            "reasonForLeavingVerified": true,
+            "reasonForLeavingDiscovered": "Not Applicable",
+            "compensation": "",
+            "compensationVerified": true,
+            "compensationDiscovered": " | ",
+            "bonus": "",
+            "bonusVerified": true,
+            "bonusDiscovered": "",
+            "employedFrom": "2021-11-01",
+            "employedFromVerified": true,
+            "employedFromDiscovered": "11/29/2021",
+            "employedTo": "2022-10-01",
+            "employedToVerified": false,
+            "employedToDiscovered": "Present",
+            "phone": "+1 888-717-3287",
+            "state": "OR",
+            "postalCode": "",
+            "supervisor": "Test Name",
+            "supervisorContactInfo": "+1 555-555-5555",
+            "rehireEligibility": "",
+            "rehireEligibilityVerified": true,
+            "rehireEligibilityDiscovered": "Not Applicable",
+            "currentEmploymentVerified": true,
+            "currentEmploymentDiscovered": "1",
+            "contractTypeVerified": false,
+            "contractTypeDiscovered": "",
+            "agentName": "TN",
+            "resultsDetails": "",
+            "verifiedDate": "2022-10-12T16:07:49",
+            "verifiedById": "Test Name",
+            "verifiedBySource": "Phone",
+            "verifiedByName": "Test Name",
+            "verifiedByTitle": "HR Operations Coordinator",
+            "verifiedByCallNumber": "(555) 555-5555"
+        },
+        "verificationCustomFields": [
+            {
+                "key": "Source Name",
+                "provided": "",
+                "isMatching": false,
+                "discovered": ""
+            }
+        ],
+        "verificationQuestions": [],
+        "verificationCalls": [
+            {
+                "callDate": "2022-10-12T11:41:08-04:00",
+                "callOutcome": "Using Provided Number",
+                "callNumber": "(555) 555-5555",
+                "callBy": "Automated System",
+                "callsRemaining": 4,
+                "callsAttempted": 0,
+                "note": "Provided number was verified via reverse lookup.  Verification is being sent to the calling queue using this number.",
+                "isCallAttempt": false,
+                "isEndUserFacing": false
+            },
+            {
+                "callDate": "2022-10-12T13:06:10-04:00",
+                "callOutcome": "Using Provided Number",
+                "callNumber": "(555) 555-5555",
+                "callBy": "Automated System",
+                "callsRemaining": 4,
+                "callsAttempted": 0,
+                "note": "Source submitted verification data via the online website.  We will evaluate the submission and send the results.",
+                "isCallAttempt": false,
+                "isEndUserFacing": false
+            },
+            {
+                "callDate": "2022-10-12T13:08:25-04:00",
+                "callOutcome": "Information Collected",
+                "callNumber": "(555) 555-5555",
+                "callBy": "Automated System",
+                "callsRemaining": 3,
+                "callsAttempted": 1,
+                "note": "Information verified by:  Test Name, HR Operations Coordinator  Search identifiers used by Source to identify Subject: Name and Social Security Number",
+                "isCallAttempt": false,
+                "isEndUserFacing": false
+            }
+        ],
+        "isInNeed": false,
+        "ssnTrace": []
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "order": {
+        "clientOrderId": "string",
+        "subject": {
+            "FirstName": "string",
+            "LastName": "string",
+            "Birthdate": "2000-08-11"
+        },
+        "product": {
+            "category": "CREDIT_REPORT"
+        },
+        "jurisdiction": {
+            "county": "string",
+            "state": "string",
+            "country": "string"
+        }
+    }
+}

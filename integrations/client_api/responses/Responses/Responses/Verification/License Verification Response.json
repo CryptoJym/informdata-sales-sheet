@@ -1,0 +1,139 @@
+{
+    "order": {
+        "id": "123456789",
+        "orderDate": "2022-11-19T11:19:36.297",
+        "dueDate": "2022-11-24T00:00:00",
+        "clientOrderId": "987654321",
+        "clientSubjectId": "987654321",
+        "status": "COMPLETE",
+        "substatus": "VERIFIED_SUCCESS",
+        "subject": {
+            "firstName": "ROBERT",
+            "middleName": "M",
+            "lastName": "DUMMYDATA",
+            "birthdate": "1980-01-01T00:00:00",
+            "aliases": [],
+            "addresses": [
+                {
+                    "street1": "",
+                    "street2": "",
+                    "city": "",
+                    "state": "",
+                    "postalCode": "",
+                    "country": "",
+                    "isCurrent": false
+                }
+            ],
+            "pastNames": []
+        },
+        "product": {
+            "category": "LICENSE_VERIFICATION"
+        },
+        "jurisdiction": {
+            "county": "Local",
+            "state": "United States",
+            "country": "United States"
+        },
+        "activity": [
+            {
+                "note": "Assigned to Researcher",
+                "addedDate": "2022-11-19T11:21:10.93"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [],
+        "courtCopies": [],
+        "licenseVerification": {
+            "license": "Healthcare, Registered Behavior Technician",
+            "issuedLocation": "GA",
+            "issuedLocationVerified": true,
+            "issuedLocationDiscovered": "GA",
+            "issuedBy": "Behavior Analyst Certification Board",
+            "issuedDate": "",
+            "issuedDateVerified": true,
+            "issuedDateDiscovered": "11/12/2022",
+            "expirationDate": "2023-11-12",
+            "expirationDateVerified": true,
+            "expirationDateDiscovered": "11/12/2023",
+            "licenseIdNumber": "RBT-22-243866",
+            "resultsDetails": "  Documents Used: No",
+            "verifiedDate": "2022-11-21T11:02:40",
+            "verifiedById": "Test Name",
+            "verifiedBySource": "Other Automated System",
+            "verifiedByName": "https://www.bacb.com",
+            "verifiedByTitle": "",
+            "verifiedByCallNumber": "",
+            "agentName": "TN"
+        },
+        "verificationCustomFields": [
+            {
+                "key": "InGoodStanding",
+                "provided": "",
+                "isMatching": false,
+                "discovered": "Yes"
+            },
+            {
+                "key": "FirstName",
+                "provided": "",
+                "isMatching": false,
+                "discovered": "ROBERT"
+            },
+            {
+                "key": "MiddleName",
+                "provided": "",
+                "isMatching": false,
+                "discovered": ""
+            },
+            {
+                "key": "LastName",
+                "provided": "",
+                "isMatching": false,
+                "discovered": "DUMMYDATA"
+            },
+            {
+                "key": "LicenseType",
+                "provided": "",
+                "isMatching": false,
+                "discovered": "Registered Behavior Technician"
+            },
+            {
+                "key": "LicenseAuthority",
+                "provided": "",
+                "isMatching": false,
+                "discovered": "Behavior Analyst Certification Board"
+            },
+            {
+                "key": "LicenseNumber",
+                "provided": "",
+                "isMatching": false,
+                "discovered": "RBT-22-243866"
+            },
+            {
+                "key": "Source Name",
+                "provided": "",
+                "isMatching": false,
+                "discovered": "Behavior Analyst Certification Board"
+            }
+        ],
+        "verificationQuestions": [],
+        "verificationCalls": [
+            {
+                "callDate": "2022-11-21T11:05:13-05:00",
+                "callOutcome": "Information Collected",
+                "callNumber": "",
+                "callBy": "Test Name",
+                "callsRemaining": 3,
+                "callsAttempted": 1,
+                "note": "Information verified by:  Website  Search identifiers used by Source to identify Subject: Name",
+                "isCallAttempt": false,
+                "isEndUserFacing": false
+            }
+        ],
+        "isInNeed": false,
+        "ssnTrace": []
+    }
+}

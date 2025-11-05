@@ -1,0 +1,63 @@
+{
+    "order": {
+        "id": "78cc803d-c1e2-455c-a147-0184a09d7cad",
+        "orderDate": "2022-11-22T13:33:06.467",
+        "dueDate": "2022-11-28T15:42:42",
+        "clientOrderId": "TEST",
+        "status": "COMPLETE",
+        "substatus": "COMPLETE",
+        "subject": {
+            "firstName": "CASEY",
+            "lastName": "TEST",
+            "birthdate": "2000-08-11T00:00:00",
+            "aliases": [],
+            "addresses": [],
+            "additionalIdentifiers": {},
+            "pastNames": [
+                {
+                    "firstName": "Casey",
+                    "middleName": "",
+                    "lastName": "Test",
+                    "suffix": ""
+                }
+            ]
+        },
+        "pricing": {
+            "cost": 7.0000,
+            "courtFeeCost": 0.0000,
+            "dataFeeCost": 0.0000
+        },
+        "product": {
+            "category": "INTERNATIONAL_SANCTIONS"
+        },
+        "jurisdiction": {
+            "county": "Cobb",
+            "state": "GA",
+            "country": "United States"
+        },
+        "activity": [
+            {
+                "note": "Assigned to Researcher",
+                "addedDate": "2022-11-22T13:35:58.393"
+            },
+            {
+                "note": "Estimated Completion Date: 11/28/2022",
+                "addedDate": "2022-11-22T13:35:59.443"
+            },
+            {
+                "note": "Search Added",
+                "addedDate": "2022-11-22T13:33:06.563"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [],
+        "courtCopies": [],
+        "otherResults": "TEST RESULTS",
+        "isInNeed": false,
+        "ssnTrace": []
+    }
+}

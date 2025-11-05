@@ -1,0 +1,24 @@
+{
+    "order": {
+        "clientOrderId": "string",
+        "subject": {
+            "firstName": "string",
+            "lastName": "string",
+            "birthdate": "1981-01-01",
+            "ssn": "999-99-9999"
+        },
+        "product": {
+            "category": "BOOKING_CONTINUOUS_MONITORING"
+        },
+        "jurisdiction": {
+            "county": "Booking Search",
+            "state": "USA",
+            "country": "US"
+        },
+        "booking": {
+            "group": "string",
+            "isNameAndDOBMatch": true/false,
+            "isSSNMatch": true/false
+        }
+    }
+}

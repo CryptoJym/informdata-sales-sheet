@@ -1,0 +1,302 @@
+Record
+
+{
+    "order": {
+        "id": "c0b46a4f-664a-ed11-aa48-a86cee4fab91",
+        "orderDate": "2022-10-12T15:44:41.187",
+        "dueDate": "2022-10-12T21:13:29.187",
+        "comments": "string",
+        "clientOrderId": "123abc",
+        "clientSubjectId": "123abc",
+        "clientExternalOrderId": "123abc",
+        "status": "COMPLETE",
+        "substatus": "RECORD",
+        "subject": {
+            "firstName": "FNAME",
+            "middleName": "MNAME",
+            "lastName": "LNAME",
+            "birthdate": "1980-01-01T00:00:00",
+            "driversLicenseNumber": "123456789",
+            "aliases": [],
+            "addresses": [],
+            "pastNames": []
+        },
+        "pricing": {
+            "cost": 0.0000,
+            "courtFeeCost": 0.0000,
+            "dataFeeCost": 0.0000
+        },
+        "product": {
+            "category": "CRIMINAL",
+            "felonyYears": 7,
+            "felonyScope": "STRICT_SCOPE",
+            "misdemeanorYears": 7,
+            "misdemeanorScope": "STRICT_SCOPE",
+            "trafficYears": 7,
+            "trafficScope": "STRICT_SCOPE",
+            "trafficLevel": "TRAFFIC_MISDEMEANORS_ONLY",
+            "nonConvictionsYears": 7,
+            "nonConvictionsScope": "STRICT_SCOPE",
+            "violationsScope": "DO_NOT_REPORT"
+        },
+        "jurisdiction": {
+            "county": "Benton",
+            "state": "AR",
+            "country": "United States"
+        },
+        "activity": [
+            {
+                "note": "Records Indicated - Under Review",
+                "addedDate": "2022-10-12T15:54:20.567"
+            },
+            {
+                "note": "Assigned to Researcher",
+                "addedDate": "2022-10-12T15:46:27.913"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [
+            {
+                "id": "123456abcdef",
+                "caseNumber": "CASE123",
+                "isCaseNumberUnavailable": false,
+                "courtFiledIn": "BENTON DISTRICT COURT",
+                "countyFiledIn": "BENTON",
+                "chargeDate": "2015-01-23T00:00:00",
+                "isChargeDateUnavailable": false,
+                "isNextCourtDateUnavailable": true,
+                "offenseDate": "2015-01-09T00:00:00",
+                "dispositionDate": "2015-04-01T00:00:00",
+                "hasActiveWarrant": false,
+                "cannotComplete": false,
+                "caseIdentifiers": {
+                    "name": "LNAME, FNAME MNAME",
+                    "isNameMatch": true,
+                    "firstName": "FNAME",
+                    "isFirstNameMatch": true,
+                    "middleName": "MNAME",
+                    "isMiddleNameMatch": true,
+                    "lastName": "LNAME",
+                    "isLastNameMatch": true,
+                    "birthdate": "1980-01-01T00:00:00",
+                    "isBirthdateMatch": true,
+                    "isSSNMatch": false,
+                    "isDriverLicenseMatch": false,
+                    "address": "",
+                    "isAddressMatch": false,
+                    "isAliasMatch": false,
+                    "other": "",
+                    "isOtherMatch": false,
+                    "additionalIdentifiersUnavailability": "NOT_APPLICABLE"
+                },
+                "charges": [
+                    {
+                        "id": "456789bcdefg",
+                        "count": 1,
+                        "chargeDescription": "DISORDERLY CONDUCT MISDEMEANOR",
+                        "isChargeDescriptionUnavailable": false,
+                        "chargeType": "MISDEMEANOR",
+                        "isChargeTypeUnavailable": false,
+                        "disposition": "GUILTY",
+                        "isDispositionUnavailable": false,
+                        "comments": "\nPLEA: GUILTY ALTERNATIVE ADJUDICATION: False;; ",
+                        "transferredToCaseNumber": "",
+                        "transferredToCaseJurisdiction": "",
+                        "alternativeAdjudication": "False",
+                        "sentence": {
+                            "hasProbation": false,
+                            "hasJail": false,
+                            "hasJailSuspended": false,
+                            "hasPrison": false,
+                            "hasPrisonSuspended": false,
+                            "hasCommunityService": false,
+                            "hasDriverLicenseSuspension": false,
+                            "hasCreditForTimeServed": false,
+                            "isFineWaived": false,
+                            "isFineUnspecified": false,
+                            "isCostWaived": false,
+                            "isCostUnspecified": false,
+                            "isRestitutionWaived": false,
+                            "isRestitutionUnspecified": false,
+                            "isFeeWaived": false,
+                            "isFeeUnspecified": false,
+                            "isSentenceNotReported": false
+                        }
+                    },
+                    {
+                        "id": "789123gheabc",
+                        "count": 2,
+                        "chargeDescription": "UNKNOWINGLY FURNISH ALCOHOL TO A MINOR MISDEMEANOR",
+                        "isChargeDescriptionUnavailable": false,
+                        "chargeType": "MISDEMEANOR",
+                        "isChargeTypeUnavailable": false,
+                        "disposition": "GUILTY",
+                        "isDispositionUnavailable": false,
+                        "comments": "\nPLEA: GUILTY ALTERNATIVE ADJUDICATION: False;; ",
+                        "transferredToCaseNumber": "",
+                        "transferredToCaseJurisdiction": "",
+                        "alternativeAdjudication": "False",
+                        "sentence": {
+                            "hasProbation": false,
+                            "hasJail": false,
+                            "hasJailSuspended": false,
+                            "hasPrison": false,
+                            "hasPrisonSuspended": false,
+                            "hasCommunityService": false,
+                            "hasDriverLicenseSuspension": false,
+                            "hasCreditForTimeServed": false,
+                            "isFineWaived": false,
+                            "isFineUnspecified": false,
+                            "isCostWaived": false,
+                            "isCostUnspecified": false,
+                            "isRestitutionWaived": false,
+                            "isRestitutionUnspecified": false,
+                            "isFeeWaived": false,
+                            "isFeeUnspecified": false,
+                            "isSentenceNotReported": false
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "123456abcdefg",
+                "caseNumber": "CASE456",
+                "isCaseNumberUnavailable": false,
+                "courtFiledIn": "BENTON DISTRICT COURT",
+                "countyFiledIn": "BENTON",
+                "chargeDate": "2015-06-04T00:00:00",
+                "isChargeDateUnavailable": false,
+                "isNextCourtDateUnavailable": true,
+                "offenseDate": "2015-05-27T00:00:00",
+                "dispositionDate": "2015-06-24T00:00:00",
+                "hasActiveWarrant": false,
+                "cannotComplete": false,
+                "caseIdentifiers": {
+                    "name": "LNAME, FNAME MNAME",
+                    "isNameMatch": true,
+                    "firstName": "FNAME",
+                    "isFirstNameMatch": true,
+                    "middleName": "MNAME",
+                    "isMiddleNameMatch": true,
+                    "lastName": "LNAME",
+                    "isLastNameMatch": true,
+                    "birthdate": "1980-01-01T00:00:00",
+                    "isBirthdateMatch": true,
+                    "isSSNMatch": false,
+                    "isDriverLicenseMatch": false,
+                    "address": "",
+                    "isAddressMatch": false,
+                    "isAliasMatch": false,
+                    "other": "",
+                    "isOtherMatch": false,
+                    "additionalIdentifiersUnavailability": "NOT_APPLICABLE"
+                },
+                "charges": [
+                    {
+                        "id": "123456abcdef",
+                        "count": 1,
+                        "chargeDescription": "FAILURE TO REGISTER VEHICLE",
+                        "isChargeDescriptionUnavailable": false,
+                        "chargeType": "UNKNOWN",
+                        "isChargeTypeUnavailable": false,
+                        "disposition": "GUILTY",
+                        "isDispositionUnavailable": false,
+                        "comments": "\nPLEA: GUILTY ALTERNATIVE ADJUDICATION: False;; ",
+                        "transferredToCaseNumber": "",
+                        "transferredToCaseJurisdiction": "",
+                        "alternativeAdjudication": "False",
+                        "sentence": {
+                            "hasProbation": false,
+                            "hasJail": false,
+                            "hasJailSuspended": false,
+                            "hasPrison": false,
+                            "hasPrisonSuspended": false,
+                            "hasCommunityService": false,
+                            "hasDriverLicenseSuspension": false,
+                            "hasCreditForTimeServed": false,
+                            "isFineWaived": false,
+                            "isFineUnspecified": false,
+                            "isCostWaived": false,
+                            "isCostUnspecified": false,
+                            "isRestitutionWaived": false,
+                            "isRestitutionUnspecified": false,
+                            "isFeeWaived": false,
+                            "isFeeUnspecified": false,
+                            "isSentenceNotReported": false
+                        }
+                    }
+                ]
+            }
+        ],
+        "courtCopies": [],
+        "isInNeed": false,
+        "ssnTrace": []
+    }
+}
+
+Clear
+
+{
+    "order": {
+        "id": "123456abcdef",
+        "orderDate": "2022-10-12T15:53:02.57",
+        "dueDate": "2022-10-13T21:43:26",
+        "comments": "string",
+        "clientSubjectId": "123456abcdef",
+        "clientExternalOrderId": "",
+        "status": "COMPLETE",
+        "substatus": "CLEAR",
+        "subject": {
+            "firstName": "FNAME",
+            "middleName": "MNAME",
+            "lastName": "LNAME",
+            "birthdate": "1980-01-01T00:00:00",
+            "driversLicenseNumber": "123456789",
+            "aliases": [],
+            "addresses": [],
+            "pastNames": []
+        },
+        "pricing": {
+            "cost": 0.0000,
+            "courtFeeCost": 0.0000,
+            "dataFeeCost": 0.0000
+        },
+        "product": {
+            "category": "CRIMINAL",
+            "felonyYears": 7,
+            "felonyScope": "STRICT_SCOPE",
+            "misdemeanorYears": 7,
+            "misdemeanorScope": "STRICT_SCOPE",
+            "trafficYears": 7,
+            "trafficScope": "STRICT_SCOPE",
+            "trafficLevel": "TRAFFIC_MISDEMEANORS_ONLY",
+            "nonConvictionsYears": 7,
+            "nonConvictionsScope": "STRICT_SCOPE",
+            "violationsScope": "DO_NOT_REPORT"
+        },
+        "jurisdiction": {
+            "county": "Newton",
+            "state": "GA",
+            "country": "United States"
+        },
+        "activity": [
+            {
+                "note": "Assigned to Researcher",
+                "addedDate": "2022-10-12T15:57:18.423"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [],
+        "courtCopies": [],
+        "isInNeed": false,
+        "ssnTrace": []
+    }
+}

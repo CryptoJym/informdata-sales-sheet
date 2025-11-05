@@ -1,0 +1,116 @@
+{
+    "order": {
+        "id": "123456789",
+        "orderDate": "2022-11-18T14:52:21.977",
+        "dueDate": "2022-11-23T00:00:00",
+        "comments": "",
+        "clientSubjectId": "987654321",
+        "clientExternalOrderId": "",
+        "status": "COMPLETE",
+        "substatus": "RECORD",
+        "subject": {
+            "firstName": "ROBERT",
+            "middleName": "M",
+            "lastName": "DUMMYDATA",
+            "birthdate": "1980-01-01T00:00:00",
+            "aliases": [],
+            "addresses": [],
+            "pastNames": []
+        },
+        "product": {
+            "category": "CIVIL",
+            "civilLowerYears": 7
+        },
+        "jurisdiction": {
+            "county": "Burlington",
+            "state": "NJ",
+            "country": "United States"
+        },
+        "activity": [
+            {
+                "note": "Assigned to Researcher",
+                "addedDate": "2022-11-18T14:55:50.76"
+            },
+            {
+                "note": "Estimated Completion Date: 11/23/2022",
+                "addedDate": "2022-11-18T14:55:51.533"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [
+            {
+                "id": "123456789",
+                "caseNumber": "DC008180-19",
+                "isCaseNumberUnavailable": false,
+                "courtFiledIn": "SUPERIOR COURT",
+                "countyFiledIn": "BURLINGTON",
+                "chargeDate": "2019-10-10T00:00:00",
+                "isChargeDateUnavailable": false,
+                "isNextCourtDateUnavailable": false,
+                "dispositionDate": "2019-12-30T00:00:00",
+                "plaintiff": "TESTNAME, LINDA",
+                "defendant": "DUMMYDATA, ROBERT",
+                "cannotComplete": false,
+                "caseIdentifiers": {
+                    "name": "DUMMBYDATA, ROBERT",
+                    "isNameMatch": true,
+                    "firstName": "ROBERT",
+                    "isFirstNameMatch": false,
+                    "middleName": "A.",
+                    "isMiddleNameMatch": false,
+                    "lastName": "DUMMYDATA",
+                    "isLastNameMatch": false,
+                    "isBirthdateMatch": false,
+                    "isSSNMatch": false,
+                    "isDriverLicenseMatch": false,
+                    "address": "",
+                    "isAddressMatch": false,
+                    "isAliasMatch": false,
+                    "other": "",
+                    "isOtherMatch": false,
+                    "additionalIdentifiersUnavailability": "NO_ADDITIONAL_ON_PRIMARY_INDEX"
+                },
+                "charges": [
+                    {
+                        "id": "8e66e9a6-924e-4755-b970-321396e7631e",
+                        "count": 1,
+                        "chargeDescription": "CONTRACT DISPUTE - DEMAND AMOUNT: $6,603.11",
+                        "isChargeDescriptionUnavailable": false,
+                        "chargeType": "CIVIL",
+                        "isChargeTypeUnavailable": false,
+                        "disposition": "DISMISSED BY COURT WITH PREJUDICE",
+                        "isDispositionUnavailable": false,
+                        "comments": "",
+                        "sentence": {
+                            "hasProbation": false,
+                            "hasJail": false,
+                            "hasJailSuspended": false,
+                            "hasPrison": false,
+                            "hasPrisonSuspended": false,
+                            "hasCommunityService": false,
+                            "hasDriverLicenseSuspension": false,
+                            "hasCreditForTimeServed": false,
+                            "isFineWaived": false,
+                            "isFineUnspecified": false,
+                            "isCostWaived": false,
+                            "isCostUnspecified": false,
+                            "isRestitutionWaived": false,
+                            "isRestitutionUnspecified": false,
+                            "isFeeWaived": false,
+                            "isFeeUnspecified": false,
+                            "isSentenceNotReported": false
+                        },
+                        "isWarrantActive": false
+                    }
+                ]
+            },
+        ],
+        "courtCopies": [],
+        "isInNeed": false,
+        "ssnTrace": []
+    }
+}

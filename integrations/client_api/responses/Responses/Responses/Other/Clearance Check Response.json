@@ -1,0 +1,69 @@
+{
+    "order": {
+        "id": "123456789",
+        "orderDate": "2022-11-17T14:16:16.027",
+        "dueDate": "2022-11-20T00:00:00",
+        "comments": "",
+        "status": "COMPLETE",
+        "substatus": "COMPLETE",
+        "subject": {
+            "firstName": "ROBERT",
+            "middleName": "M",
+            "lastName": "DUMMYDATA",
+            "birthdate": "1980-01-01T00:00:00",
+            "aliases": [],
+            "addresses": [],
+            "additionalIdentifiers": {},
+            "pastNames": [
+                {
+                    "firstName": "ROBERT",
+                    "middleName": "M",
+                    "lastName": "DUMMYDATA",
+                    "suffix": ""
+                }
+            ]
+        },
+        "product": {
+            "category": "CLEARANCE_CHECK"
+        },
+        "jurisdiction": {
+            "county": "Global",
+            "state": "Spain",
+            "country": "Spain"
+        },
+        "activity": [
+            {
+                "note": "Assigned to Researcher",
+                "addedDate": "2022-11-17T14:21:58.43"
+            },
+            {
+                "note": "Payment in progress",
+                "addedDate": "2022-11-21T07:40:23.933"
+            },
+            {
+                "note": "Requested Fee Approved; Reimbursement fee of $34",
+                "addedDate": "2022-11-18T12:20:07.167"
+            },
+            {
+                "note": "Search Added",
+                "addedDate": "2022-11-17T14:16:16.123"
+            }
+        ],
+        "documents": [
+            {
+                "name": "Documento sin título (1)",
+                "category": "OTHER",
+                "sequenceNumber": 1,
+                "accessUrl": ""
+            }
+        ],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [],
+        "courtCopies": [],
+        "isInNeed": true,
+        "ssnTrace": []
+    }
+}

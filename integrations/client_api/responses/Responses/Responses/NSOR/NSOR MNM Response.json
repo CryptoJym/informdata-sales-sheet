@@ -1,0 +1,55 @@
+{
+    "order": {
+        "id": "123456789",
+        "orderDate": "2022-03-25T10:58:16.223",
+        "status": "COMPLETE",
+        "substatus": "RECORD",
+        "subject": {
+            "firstName": "ROBERT",
+            "lastName": "DUMMYDATA",
+            "birthdate": "1980-01-01T00:00:00",
+            "aliases": [],
+            "addresses": [],
+            "additionalIdentifiers": {},
+            "pastNames": [
+                {
+                    "firstName": "ROBERT",
+                    "middleName": "",
+                    "lastName": "DUMMYDATA",
+                    "suffix": ""
+                }
+            ]
+        },
+        "product": {
+            "category": "SEX_OFFENDER_MNM"
+        },
+        "jurisdiction": {
+            "county": "National Sex Offender Registry",
+            "state": "USA",
+            "country": "United States"
+        },
+        "activity": [
+            {
+                "note": "Assigned to Researcher",
+                "addedDate": "2022-03-25T11:01:09.563"
+            },
+            {
+                "note": "Possible Match - Under Review",
+                "addedDate": "2022-03-30T10:38:16.01"
+            },
+            {
+                "note": "Search Added",
+                "addedDate": "2022-03-25T10:58:16.223"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [],
+        "courtCopies": [],
+        "isInNeed": false,
+        "ssnTrace": []
+    }
+}

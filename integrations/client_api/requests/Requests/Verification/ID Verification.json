@@ -1,0 +1,29 @@
+{
+    "order": {
+        "clientOrderId": "string",
+        "subject": {
+            "FirstName": "string",
+            "LastName": "string",
+            "Birthdate": "2000-08-11"
+        },
+        "product": {
+            "category": "ID_VERIFICATION"
+        },
+        "jurisdiction": {
+            "county": "Statewide",
+            "state": "GA",
+            "country": "United States"
+        },
+        "documents": [
+            {
+                "name": "string",
+                "base64EncodedContents": "string",
+                "category": "string"
+            }
+        ],
+        "idDocVerification": {
+            "documentType": "string",
+            "documentIdentificationNumber": "string"
+        }
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "order": {
+        "clientOrderId": "string",
+        "subject": {
+            "FirstName": "string",
+            "LastName": "string",
+            "Birthdate": "2000-08-11",
+            "ssn": "string"
+        },
+        "product": {
+            "category": "MEDEX"
+        },
+        "jurisdiction": {
+            "county": "Medical Exclusions Search",
+            "state": "USA",
+            "country": "United States"
+        },
+        "medical": {
+            "productType": "OIG", --Available Product Types ["OIG", "SAM", "PLUS", "PRO", "COMPLETE", "LICENSE", "ABUSE"]
+            "shouldVerify": true/false,
+            "shouldMonitor": true/false,
+            "licenseNumber": "string",
+            "licenseType": "string",
+            "licenseState": "string",
+            "sanctionsState": "string",
+            "isCombinedExclusionAndLicense": true/false,
+            "monitoring": { --"monitoring" object only needed if "shouldMonitor" is set to true. Otherwise it can be left off.
+                "alertLevel": "string",
+                "group": "string",
+                "filterRecordsBeforeDate": "2019-08-24T14:15:22Z"
+            }
+        }
+    }
+}

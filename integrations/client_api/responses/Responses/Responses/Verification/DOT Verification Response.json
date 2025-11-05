@@ -1,0 +1,70 @@
+{
+    "order": {
+        "id": "4a58e079-d0d4-481c-a776-01801e83e859",
+        "orderDate": "2022-04-12T12:03:22.833",
+        "dueDate": "2022-04-15T12:03:22",
+        "comments": "Alias/Maiden Name: Heather Test;",
+        "clientOrderId": "DOT Test",
+        "status": "COMPLETE",
+        "substatus": "UNVERIFIED_CLOSED",
+        "subject": {
+            "firstName": "HEATHER",
+            "lastName": "TESTING",
+            "birthdate": "1989-03-26T00:00:00",
+            "aliases": [],
+            "addresses": [],
+            "additionalIdentifiers": {},
+            "pastNames": [
+                {
+                    "firstName": "Heather",
+                    "middleName": "",
+                    "lastName": "Testing",
+                    "suffix": ""
+                }
+            ]
+        },
+        "pricing": {
+            "cost": 6.0000,
+            "courtFeeCost": 0.0000,
+            "dataFeeCost": 0.0000
+        },
+        "product": {
+            "category": "DOT_VERIFICATION"
+        },
+        "jurisdiction": {
+            "county": "Local",
+            "state": "United States",
+            "country": "United States"
+        },
+        "activity": [
+            {
+                "note": "Alias/Maiden Name: Heather Test;  |  |;",
+                "addedDate": "2022-04-12T12:03:22.917"
+            },
+            {
+                "note": "Assigned to Researcher",
+                "addedDate": "2022-04-12T12:05:54.86"
+            },
+            {
+                "note": "Estimated Completion Date: 04/15/2022",
+                "addedDate": "2022-04-12T12:05:56.387"
+            },
+            {
+                "note": "Search Added",
+                "addedDate": "2022-04-12T12:03:22.833"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [],
+        "courtCopies": [],
+        "verificationCustomFields": [],
+        "verificationQuestions": [],
+        "verificationCalls": [],
+        "isInNeed": false,
+        "ssnTrace": []
+    }
+}

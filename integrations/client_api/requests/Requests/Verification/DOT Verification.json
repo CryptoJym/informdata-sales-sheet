@@ -1,0 +1,40 @@
+{
+    "order": {
+        "clientOrderId": "string",
+        "subject": {
+            "FirstName": "string",
+            "LastName": "string",
+            "Birthdate": "2000-08-11"
+        },
+        "product": {
+            "category": "DOT_VERIFICATION"
+        },
+        "jurisdiction": {
+            "county": "Local",
+            "state": "United States",
+            "country": "United States"
+        },
+        "dotVerification": {
+            "employer": "string",
+            "address1": "string",
+            "address2": "string",
+            "city": "string",
+            "country": "string",
+            "title": "string",
+            "reasonForLeaving": "string",
+            "compensation": "string",
+            "bonus": "string",
+            "employedFrom": "string",
+            "employedTo": "string",
+            "phone": "string",
+            "state": "string",
+            "postalCode": "string",
+            "contractor": "string",
+            "supervisor": "string",
+            "supervisorContactInfo": "string",
+            "rehireEligibility": "string",
+            "currentEmployment": "string",
+            "contractType": "string"
+        }
+    }
+}

@@ -1,0 +1,133 @@
+{
+    "order": {
+        "id": "123456789",
+        "orderDate": "2022-11-22T00:35:07.62",
+        "dueDate": "2022-11-24T00:00:00",
+        "clientOrderId": "987654321",
+        "clientSubjectId": "456123789",
+        "clientExternalOrderId": "25436030",
+        "status": "COMPLETE",
+        "substatus": "RECORD",
+        "subject": {
+            "firstName": "ROBERT",
+            "middleName": "M",
+            "lastName": "DUMMYDATA",
+            "birthdate": "1980-01-01T00:00:00",
+            "aliases": [],
+            "addresses": [],
+            "additionalIdentifiers": {},
+            "pastNames": [
+                {
+                    "firstName": "ROBERT",
+                    "middleName": "M",
+                    "lastName": "DUMMYDATA",
+                    "suffix": ""
+                }
+            ]
+        },
+        "product": {
+            "category": "NATCRIM"
+        },
+        "jurisdiction": {
+            "county": "NatCrim",
+            "state": "USA",
+            "country": "United States"
+        },
+        "activity": [
+            {
+                "note": "Search Added",
+                "addedDate": "2022-11-22T00:35:07.88"
+            },
+            {
+                "note": "Assigned to Researcher",
+                "addedDate": "2022-11-22T00:35:08.5"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [
+            {
+                "recordId": 82126848,
+                "chargeId": 122023860,
+                "fieldKey": "SentenceLength",
+                "fieldValue": "10Y",
+                "sort": 0
+            }
+        ],
+        "subscribers": [],
+        "cases": [
+            {
+                "id": "1c69917c-d307-4c86-8e47-6462d3af31ef",
+                "caseNumber": "",
+                "isCaseNumberUnavailable": true,
+                "courtFiledIn": "",
+                "countyFiledIn": "TX SEX OFFENDER REGISTRY",
+                "isChargeDateUnavailable": true,
+                "isNextCourtDateUnavailable": false,
+                "dispositionDate": "2005-04-25T00:00:00",
+                "cannotComplete": false,
+                "caseIdentifiers": {
+                    "name": "DUMMYDATA, ROBERT",
+                    "isNameMatch": false,
+                    "firstName": "ROBERT",
+                    "isFirstNameMatch": false,
+                    "middleName": "",
+                    "isMiddleNameMatch": true,
+                    "lastName": "DUMMYDATA",
+                    "isLastNameMatch": true,
+                    "birthdate": "1980-01-01T00:00:00",
+                    "isBirthdateMatch": false,
+                    "isSSNMatch": false,
+                    "isDriverLicenseMatch": false,
+                    "address": "",
+                    "isAddressMatch": false,
+                    "alias": "",
+                    "isAliasMatch": false,
+                    "other": "",
+                    "isOtherMatch": false,
+                    "additionalIdentifiersUnavailability": "NOT_APPLICABLE"
+                },
+                "charges": [
+                    {
+                        "id": "20289978-eba0-4a81-b995-51a5ea727122",
+                        "count": 0,
+                        "chargeDescription": "SEXUAL ASSAULT OF A CHILD",
+                        "isChargeDescriptionUnavailable": false,
+                        "chargeType": "RISK LEVEL - 2",
+                        "isChargeTypeUnavailable": false,
+                        "disposition": "REGISTERED",
+                        "isDispositionUnavailable": false,
+                        "comments": "SENTENCELENGTH: 10Y CASE NUMBER: UNAVAILABLE; FILE DATE: UNAVAILABLE;; ",
+                        "statute": "TEx_AS PENAL CODE 22.011(a)(2)",
+                        "transferredToCaseNumber": "",
+                        "transferredToCaseJurisdiction": "",
+                        "sentence": {
+                            "hasProbation": false,
+                            "hasJail": false,
+                            "hasJailSuspended": false,
+                            "hasPrison": false,
+                            "hasPrisonSuspended": false,
+                            "hasCommunityService": false,
+                            "hasDriverLicenseSuspension": false,
+                            "hasCreditForTimeServed": false,
+                            "isFineWaived": false,
+                            "isFineUnspecified": false,
+                            "isCostWaived": false,
+                            "isCostUnspecified": false,
+                            "isRestitutionWaived": false,
+                            "isRestitutionUnspecified": false,
+                            "isFeeWaived": false,
+                            "isFeeUnspecified": false,
+                            "isSentenceNotReported": false
+                        },
+                        "isWarrantActive": false
+                    }
+                ]
+            }
+        ],
+        "courtCopies": [],
+        "isInNeed": false,
+        "ssnTrace": []
+    }
+}

@@ -1,0 +1,55 @@
+{
+  "order": {
+    "id": "123456789",
+    "orderDate": "2022-11-22T10:19:03.917",
+    "dueDate": "2022-11-22T10:34:03.917",
+    "comments": "",
+    "clientOrderId": "123abc",
+    "clientSubjectId": "123abc",
+    "clientExternalOrderId": "123abc",
+    "status": "COMPLETE",
+    "substatus": "RECORD",
+    "subject": {
+      "firstName": "ROBERT",
+      "middleName": "M",
+      "lastName": "DUMMYDATA",
+      "birthdate": "1980-01-01T00:00:00",
+      "aliases": [],
+      "addresses": [],
+      "pastNames": []
+    },
+    "product": {
+      "category": "CRIMINAL_MNM",
+      "felonyYears": 10,
+      "felonyScope": "ALL_AVAILABLE",
+      "misdemeanorYears": 10,
+      "misdemeanorScope": "MINIMUM_10_YEARS",
+      "trafficYears": 10,
+      "trafficScope": "MINIMUM_10_YEARS",
+      "trafficLevel": "STANDARD_TRAFFIC",
+      "nonConvictionsScope": "ALL_AVAILABLE",
+      "violationsYears": 7,
+      "violationsScope": "STRICT_SCOPE"
+    },
+    "jurisdiction": {
+      "county": "Lauderdale",
+      "state": "AL",
+      "country": "United States"
+    },
+    "activity": [
+      {
+        "note": "Assigned to Researcher",
+        "addedDate": "2022-11-22T10:22:04.377"
+      }
+    ],
+    "documents": [],
+    "knownCases": [],
+    "requestCustomFields": [],
+    "resultCustomFields": [],
+    "subscribers": [],
+    "cases": [],
+    "courtCopies": [],
+    "isInNeed": false,
+    "ssnTrace": []
+  }
+}

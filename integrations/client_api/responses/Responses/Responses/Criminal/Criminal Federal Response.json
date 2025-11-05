@@ -1,0 +1,123 @@
+{
+  "order": {
+    "id": "123456789",
+    "orderDate": "2022-11-21T09:54:09.027",
+    "dueDate": "2022-11-22T23:22:57",
+    "comments": "",
+    "clientOrderId": "123abc",
+    "clientSubjectId": "123abc",
+    "clientExternalOrderId": "123abc",
+    "status": "COMPLETE",
+    "substatus": "RECORD",
+    "subject": {
+      "firstName": "ROBERT",
+      "lastName": "DUMMYDATA",
+      "birthdate": "1980-01-01T00:00:00",
+      "aliases": [],
+      "addresses": [],
+      "pastNames": []
+    },
+    "product": {
+      "category": "CRIMINAL_FEDERAL",
+      "felonyYears": 10,
+      "felonyScope": "STRICT_SCOPE",
+      "misdemeanorYears": 10,
+      "misdemeanorScope": "STRICT_SCOPE",
+      "trafficYears": 10,
+      "trafficScope": "STRICT_SCOPE",
+      "trafficLevel": "NO_TRAFFIC",
+      "nonConvictionsScope": "DO_NOT_REPORT",
+      "violationsYears": 10,
+      "violationsScope": "STRICT_SCOPE"
+    },
+    "jurisdiction": {
+      "county": "Federal Criminal Search",
+      "state": "USA",
+      "country": "United States"
+    },
+    "activity": [
+      {
+        "note": "Assigned to Researcher",
+        "addedDate": "2022-11-21T10:04:57.697"
+      },
+      {
+        "note": "Estimated Completion Date: 11/22/2022",
+        "addedDate": "2022-11-21T10:05:15.81"
+      }
+    ],
+    "documents": [],
+    "knownCases": [],
+    "requestCustomFields": [],
+    "resultCustomFields": [],
+    "subscribers": [],
+    "cases": [
+      {
+        "id": "8fdc88b9-ce37-45f6-8312-2d1cde56a60f",
+        "caseNumber": "4:2022MJ00028",
+        "isCaseNumberUnavailable": false,
+        "courtFiledIn": "UNITED STATES DISTRICT COURT",
+        "countyFiledIn": "MIDDLE DISTRICT OF GEORGIA (COLUMBUS)",
+        "chargeDate": "2022-02-17T00:00:00",
+        "isChargeDateUnavailable": false,
+        "isNextCourtDateUnavailable": false,
+        "dispositionDate": "2022-04-28T00:00:00",
+        "cannotComplete": false,
+        "caseIdentifiers": {
+          "name": "DUMMYDATA, ROBERT",
+          "isNameMatch": true,
+          "firstName": "ROBERT",
+          "isFirstNameMatch": true,
+          "middleName": "M",
+          "isMiddleNameMatch": true,
+          "lastName": "DUMMYDATA",
+          "isLastNameMatch": true,
+          "isBirthdateMatch": false,
+          "isSSNMatch": false,
+          "isDriverLicenseMatch": false,
+          "isAddressMatch": false,
+          "isAliasMatch": false,
+          "other": "",
+          "isOtherMatch": false,
+          "additionalIdentifiersUnavailability": "NO_ADDITIONAL_ON_PRIMARY_INDEX"
+        },
+        "charges": [
+          {
+            "id": "995c0c32-2047-4eb5-a68e-89fa433c4e58",
+            "count": 1,
+            "chargeDescription": "VIOLENT AND TUMULTUOUS BEHAVIOR ON OR ABOUT 9/17/2021",
+            "isChargeDescriptionUnavailable": false,
+            "chargeType": "MISDEMEANOR",
+            "isChargeTypeUnavailable": false,
+            "disposition": "GUILTY",
+            "isDispositionUnavailable": false,
+            "comments": "$250 FINE, $25 MANDATORY COURT ASSESSMENT; ",
+            "sentence": {
+              "hasProbation": false,
+              "hasJail": false,
+              "hasJailSuspended": false,
+              "hasPrison": false,
+              "hasPrisonSuspended": false,
+              "hasCommunityService": false,
+              "hasDriverLicenseSuspension": false,
+              "hasCreditForTimeServed": false,
+              "fine": 250.0000,
+              "isFineWaived": false,
+              "isFineUnspecified": false,
+              "isCostWaived": false,
+              "isCostUnspecified": false,
+              "isRestitutionWaived": false,
+              "isRestitutionUnspecified": false,
+              "isFeeWaived": false,
+              "isFeeUnspecified": false,
+              "isSentenceNotReported": false
+            },
+            "isWarrantActive": false
+          }
+        ]
+      }
+    ],
+    "courtCopies": [],
+    "isInNeed": false,
+    "ssnTrace": []
+  }
+}

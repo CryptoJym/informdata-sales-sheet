@@ -1,0 +1,169 @@
+{
+    "order": {
+        "id": "123456789",
+        "orderDate": "2022-06-16T18:51:09.257",
+        "dueDate": "2022-06-18T00:00:00",
+        "status": "COMPLETE",
+        "substatus": "RECORD",
+        "subject": {
+            "firstName": "ROBERT",
+            "lastName": "DUMMYDATA",
+            "birthdate": "1980-01-01T00:00:00",
+            "aliases": [],
+            "addresses": [],
+            "additionalIdentifiers": {},
+            "pastNames": [
+                {
+                    "firstName": "ROBERT",
+                    "middleName": "",
+                    "lastName": "DUMMYDATA",
+                    "suffix": ""
+                }
+            ]
+        },
+        "product": {
+            "category": "NATCRIM_SSN_TRACE"
+        },
+        "jurisdiction": {
+            "county": "NatCrim",
+            "state": "USA",
+            "country": "United States"
+        },
+        "activity": [
+            {
+                "note": "Estimated Completion Date: 06/18/2022",
+                "addedDate": "2022-06-16T14:51:46.337"
+            },
+            {
+                "note": "Records Indicated - Under Review",
+                "addedDate": "2022-06-16T14:51:55.437"
+            },
+            {
+                "note": "Search Added",
+                "addedDate": "2022-06-16T18:51:09.257"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [
+            {
+                "id": "a73df157-9bb6-4d8c-a07e-b21ac498f5cf",
+                "caseNumber": "W2030151A",
+                "isCaseNumberUnavailable": false,
+                "courtFiledIn": "",
+                "countyFiledIn": "RI DEPT OF CORRECTIONS",
+                "isChargeDateUnavailable": true,
+                "isNextCourtDateUnavailable": false,
+                "dispositionDate": "2008-11-24T00:00:00",
+                "cannotComplete": false,
+                "caseIdentifiers": {
+                    "name": "DUMMYDATA, ROBERT",
+                    "isNameMatch": false,
+                    "firstName": "ROBERT",
+                    "isFirstNameMatch": true,
+                    "middleName": "M",
+                    "isMiddleNameMatch": true,
+                    "lastName": "DUMMYDATA",
+                    "isLastNameMatch": false,
+                    "isBirthdateMatch": false,
+                    "isSSNMatch": false,
+                    "isDriverLicenseMatch": false,
+                    "isAddressMatch": false,
+                    "isAliasMatch": false,
+                    "other": "Race: White; Age: 31",
+                    "isOtherMatch": false,
+                    "additionalIdentifiersUnavailability": "NOT_APPLICABLE"
+                },
+                "charges": [
+                    {
+                        "id": "8d8707d4-0985-4ee8-88d2-c106d8812d24",
+                        "count": 1,
+                        "chargeDescription": "SEXUAL ASSAULT IN 3RD DEGREE",
+                        "isChargeDescriptionUnavailable": false,
+                        "isChargeTypeUnavailable": false,
+                        "disposition": "CHARGE PENDING",
+                        "isDispositionUnavailable": false,
+                        "comments": "SENTENCELENGTH: 0Y 0M 30D RELEASEDATE: 20040116 ADMITTEDDATE: 20031217 CASENO: W2030151A FILE DATE: UNAVAILABLE; CHARGE TYPE: UNAVAILABLE;; Offense Date: 11/10/2008; ",
+                        "transferredToCaseNumber": "",
+                        "transferredToCaseJurisdiction": "",
+                        "sentence": {
+                            "hasProbation": false,
+                            "hasJail": false,
+                            "hasJailSuspended": false,
+                            "hasPrison": false,
+                            "hasPrisonSuspended": false,
+                            "hasCommunityService": false,
+                            "hasDriverLicenseSuspension": false,
+                            "hasCreditForTimeServed": false,
+                            "isFineWaived": false,
+                            "isFineUnspecified": false,
+                            "isCostWaived": false,
+                            "isCostUnspecified": false,
+                            "isRestitutionWaived": false,
+                            "isRestitutionUnspecified": false,
+                            "isFeeWaived": false,
+                            "isFeeUnspecified": false,
+                            "isSentenceNotReported": false
+                        },
+                        "isWarrantActive": false
+                    },
+             	]
+            }
+        ],
+        "courtCopies": [],
+        "isInNeed": false,
+        "ssnTrace": [
+            {
+                "dateOfBirths": [
+                    {
+                        "dob": "1980-01-01T00:00:00",
+                        "isAlias": false
+                    }
+                ],
+                "addresses": [
+                    {
+                        "street1": "100 Main St.",
+                        "city": "Kennesaw",
+                        "state": "GA",
+                        "country": "US",
+                        "isCurrent": false,
+                        "isAlias": false
+                    }
+                    
+                ]
+            },
+            {
+                "dateOfBirths": [
+                    {
+                        "dob": "1949-12-11T00:00:00",
+                        "isAlias": false
+                    }
+                ],
+                "addresses": [
+                    {
+                        "street1": "127 Lake Medford Ln",
+                        "city": "Little Egg Harbor Twp",
+                        "state": "NJ",
+                        "postalCode": "080873700",
+                        "country": "US",
+                        "isCurrent": false,
+                        "isAlias": false
+                    }
+                ],
+                "names": [
+                    {
+                        "prefix": "",
+                        "firstName": "ROBERT",
+                        "middleName": "M",
+                        "lastName": "DUMMYDATA",
+                        "suffix": "",
+                        "isAlias": false
+                    }
+                ]
+            }
+        ]
+    }
+}

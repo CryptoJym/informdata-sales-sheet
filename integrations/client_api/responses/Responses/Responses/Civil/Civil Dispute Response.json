@@ -1,0 +1,125 @@
+{
+    "order": {
+        "id": "61ba8756-5c57-4ddd-94e6-0178d1474247",
+        "orderDate": "2021-04-14T12:46:51.46",
+        "dueDate": "2021-04-16T13:52:15",
+        "comments": "DISPUTE. PLEASE confirm all identifiers on file for case number TEST-CASE-123. PLEASE provide a detailed comment if case is not located.",
+        "clientOrderId": "987654",
+        "status": "COMPLETE",
+        "substatus": "RECORD",
+        "subject": {
+            "firstName": "ROBERT",
+            "middleName": "M",
+            "lastName": "DUMMYDATA",
+            "birthdate": "1980-01-01T00:00:00",
+            "aliases": [],
+            "addresses": [],
+            "additionalIdentifiers": {},
+            "pastNames": [
+                {
+                    "firstName": "ROBERT",
+                    "middleName": "M",
+                    "lastName": "DUMMYDATA",
+                    "suffix": "          "
+                }
+            ]
+        },
+        "product": {
+            "category": "CIVIL_DISPUTE"
+        },
+        "jurisdiction": {
+            "county": "Santa Clara",
+            "state": "CA",
+            "country": "United States"
+        },
+        "activity": [
+            {
+                "note": "Assigned to Researcher",
+                "addedDate": "2021-04-14T12:52:19.257"
+            },
+            {
+                "note": "Estimated Completion Date: 04/16/2021",
+                "addedDate": "2021-04-14T12:52:21.627"
+            },
+            {
+                "note": "Search Added",
+                "addedDate": "2021-04-14T12:46:51.46"
+            }
+        ],
+        "documents": [],
+        "knownCases": [],
+        "requestCustomFields": [],
+        "resultCustomFields": [],
+        "subscribers": [],
+        "cases": [
+            {
+                "id": "6d487d46-8d67-4f6c-ac4d-756e1ccf372b",
+                "caseNumber": "20CV361586",
+                "isCaseNumberUnavailable": false,
+                "courtFiledIn": "SUPERIOR COURT",
+                "countyFiledIn": "SANTA CLARA",
+                "chargeDate": "2020-01-09T00:00:00",
+                "isChargeDateUnavailable": false,
+                "nextCourtDate": "2021-04-20T00:00:00",
+                "isNextCourtDateUnavailable": false,
+                "plaintiff": " TESTNAME, LINDA",
+                "defendant": " DUMMYDATA, ROBERT",
+                "cannotComplete": false,
+                "caseIdentifiers": {
+                    "name": "DUMMYDATA, ROBERT",
+                    "isNameMatch": true,
+                    "firstName": "ROBERT",
+                    "isFirstNameMatch": true,
+                    "middleName": "",
+                    "isMiddleNameMatch": true,
+                    "lastName": "DUMMYDATA",
+                    "isLastNameMatch": true,
+                    "isBirthdateMatch": false,
+                    "isSSNMatch": false,
+                    "isDriverLicenseMatch": false,
+                    "isAddressMatch": false,
+                    "isAliasMatch": false,
+                    "other": "",
+                    "isOtherMatch": false,
+                    "additionalIdentifiersUnavailability": "NO_ADDITIONAL_ON_FILE"
+                },
+                "charges": [
+                    {
+                        "id": "9994e0b8-6e6b-41fd-a307-275883592d63",
+                        "count": 1,
+                        "chargeDescription": "AUTO UNLIMITED ",
+                        "isChargeDescriptionUnavailable": false,
+                        "chargeType": "CIVIL",
+                        "isChargeTypeUnavailable": false,
+                        "disposition": "PENDING",
+                        "isDispositionUnavailable": false,
+                        "comments": "",
+                        "sentence": {
+                            "hasProbation": false,
+                            "hasJail": false,
+                            "hasJailSuspended": false,
+                            "hasPrison": false,
+                            "hasPrisonSuspended": false,
+                            "hasCommunityService": false,
+                            "hasDriverLicenseSuspension": false,
+                            "hasCreditForTimeServed": false,
+                            "isFineWaived": false,
+                            "isFineUnspecified": false,
+                            "isCostWaived": false,
+                            "isCostUnspecified": false,
+                            "isRestitutionWaived": false,
+                            "isRestitutionUnspecified": false,
+                            "isFeeWaived": false,
+                            "isFeeUnspecified": false,
+                            "isSentenceNotReported": false
+                        },
+                        "isWarrantActive": false
+                    }
+                ]
+            }
+        ],
+        "courtCopies": [],
+        "isInNeed": false,
+        "ssnTrace": []
+    }
+}
