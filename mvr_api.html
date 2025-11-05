@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InformData MVR API – Developer and Team Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/tokens.css" />
+  <style>
+    main { max-width: 1200px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; display: grid; gap: 1.5rem; }
+    h1 { margin: 0; font-size: var(--fs-xxl); letter-spacing: -0.02em; }
+    h2 { font-size: var(--fs-lg); margin: 0.25rem 0; }
+    p.lead { font-size: 1.05rem; color: var(--muted); max-width: 72ch; }
+    section.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); padding: 1.4rem 1.6rem; display: grid; gap: 0.8rem; }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    pre { background: #0f172a0d; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.9rem 1rem; overflow: auto; }
+    .grid-2 { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .kv { display: grid; grid-template-columns: 220px 1fr; gap: .5rem 1rem; }
+    .kv b { color: var(--text); }
+    ul.tight { margin: 0.25rem 0 0.25rem 1.2rem; }
+    .note { color: var(--muted); font-size: var(--fs-sm); }
+    .badge { display:inline-block; padding:.15rem .5rem; border:1px solid var(--border); border-radius: var(--radius-pill); font-size: var(--fs-xs); color: var(--muted); background:#fff; }
+  </style>
+</head>
+<body>
+  <div data-include="components/header.html"></div>
+  <main>
+    <section class="card">
+      <h1>MVR API – Build Guide</h1>
+      <p class="lead">Everything engineering, customer success, sales, and compliance need to request, track, and deliver Motor Vehicle Records (MVRs) via InformData Risk/Sentinel. Test access has been provisioned – see credentials flow below.</p>
+      <div class="grid-2">
+        <div>
+          <h2>Environments</h2>
+          <div class="kv">
+            <b>Test portal</b><span><a href="https://tst.sentinelinfosys.com/Account/Login">tst.sentinelinfosys.com</a></span>
+            <b>Test P2P</b><span><a href="https://p2ptst.sentinelinfosys.com/">p2ptst.sentinelinfosys.com</a></span>
+            <b>Production portal</b><span><span class="badge">After go‑live</span></span>
+          </div>
+          <p class="note">A welcome email for the test account was sent (per Cindy). Set the password before first use.</p>
+        </div>
+        <div>
+          <h2>Contacts</h2>
+          <div class="kv">
+            <b>MVR Customer Care</b><span><a href="mailto:customercare@informdata.com">customercare@informdata.com</a></span>
+            <b>Success (MVR)</b><span><a href="mailto:Cindy.Amaya@informdata.com">Cindy.Amaya@informdata.com</a></span>
+            <b>Onboarding</b><span><a href="mailto:Sabrina.Whittington@informdata.com">Sabrina.Whittington@informdata.com</a></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Authentication & Credentials</h2>
+      <ul class="tight">
+        <li>Use the test username from the welcome email; set your password via the portal link above.</li>
+        <li>Store secrets as environment variables, not in source control.</li>
+      </ul>
+      <pre><code># .env (local)
+MVR_BASE_URL_TST=https://p2ptst.sentinelinfosys.com
+MVR_USERNAME_TST=your_test_username
+MVR_PASSWORD_TST=your_strong_password
+# optional app identifiers
+MVR_WEBHOOK_SECRET=change-me
+MVR_APP_NAME=vuplicity-sales
+</code></pre>
+      <p class="note">If token‑based API auth is required for your tenant, request enablement from InformData and replace password auth with the issued token. This guide keeps examples credential‑agnostic.</p>
+    </section>
+
+    <section class="card">
+      <h2>Core Flow (Happy Path)</h2>
+      <ol>
+        <li>Validate driver identity and state eligibility client‑side (name, DOB, DL#, state).</li>
+        <li>Create an MVR order with the driver’s PII and compliance attestations.</li>
+        <li>Poll or subscribe to callbacks for status: <code>PENDING → IN_PROGRESS → COMPLETE</code>.</li>
+        <li>Retrieve the final report payload and PDF (store securely).</li>
+        <li>Surface adjudication‑friendly result to downstream systems (e.g., “clear”, “needs review”, codes).</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>Order – Request Schema</h2>
+      <p>Submit the minimum lawful/required PII and state‑specific consents. Fields may vary by state; keep the payload flexible.</p>
+      <pre><code class="language-json">POST ${MVR_BASE_URL}/api/mvr/orders
+Content-Type: application/json
+Authorization: Basic base64(MVR_USERNAME:MVR_PASSWORD) or Bearer &lt;token&gt;
+
+{
+  "applicant": {
+    "firstName": "Jane",
+    "middleName": "Q",
+    "lastName": "Driver",
+    "dob": "1988-04-12",
+    "licenseNumber": "D1234567",
+    "licenseState": "UT",
+    "ssnLast4": "1234"  
+  },
+  "purpose": "employment",
+  "consents": {
+    "federalDPPA": true,
+    "stateSpecific": [{ "state": "CA", "form": "INF1133", "approved": true }]
+  },
+  "options": {
+    "includeMedicalCDL": false,
+    "years": 7
+  },
+  "webhook": {
+    "url": "https://api.vuplicity.com/webhooks/mvr",
+    "secret": "${MVR_WEBHOOK_SECRET}"
+  },
+  "referenceId": "order-12345"
+}
+</code></pre>
+      <p class="note">Endpoint path and auth style can differ per tenant. Replace with the real API path once confirmed.</p>
+    </section>
+
+    <section class="card">
+      <h2>Status & Retrieval</h2>
+      <pre><code>GET ${MVR_BASE_URL}/api/mvr/orders/{orderId}
+# → 200 { status, state, eta, errors?, reportId? }
+
+GET ${MVR_BASE_URL}/api/mvr/reports/{reportId}
+# → 200 JSON (normalized fields) + links to PDF
+</code></pre>
+      <p class="note">If webhooks are enabled, you’ll receive signed POSTs at <code>/webhooks/mvr</code> for key transitions: PENDING, IN_PROGRESS, ADDL_INFO_REQUIRED, COMPLETE, FAILED.</p>
+    </section>
+
+    <section class="card">
+      <h2>Response (Normalized)</h2>
+      <pre><code class="language-json">{
+  "orderId": "ord_abc123",
+  "reportId": "rep_def456",
+  "status": "COMPLETE",
+  "state": "UT",
+  "createdAt": "2025-09-25T18:21:05Z",
+  "completedAt": "2025-09-25T18:23:10Z",
+  "result": {
+    "licenseClass": "C",
+    "currentStatus": "VALID",
+    "expirationDate": "2028-06-30",
+    "restrictions": ["Corrective lenses"],
+    "violations": [
+      { "code": "SPEED-15-OVER", "date": "2023-08-14", "points": 3, "description": "Speeding 15+ mph over limit" }
+    ],
+    "accidents": [],
+    "suspensions": []
+  },
+  "pdfUrl": "${MVR_BASE_URL}/files/rep_def456.pdf"
+}
+</code></pre>
+    </section>
+
+    <section class="card">
+      <h2>State Compliance & Setup</h2>
+      <ul class="tight">
+        <li><b>California</b>: INF 1133 approval letter required; attach provenance to orders when applicable.</li>
+        <li><b>Utah</b>: Link your state account to Sentinel/InformData as vendor; UT approval can be added incrementally.</li>
+        <li><b>Washington</b>: Driving Record Release of Interest (as applicable).</li>
+        <li><b>E&O insurance</b>: If required, store proof centrally for audits.</li>
+      </ul>
+      <p class="note">Process references from onboarding emails. Confirm with InformData for your latest state list and forms.</p>
+    </section>
+
+    <section class="card">
+      <h2>Security, Privacy, and Retention</h2>
+      <ul class="tight">
+        <li>Encrypt in transit (TLS) and at rest; restrict access by role.</li>
+        <li>Never log full SSN/DOB/License numbers; redact to last‑4 where possible.</li>
+        <li>Retention: keep raw MVR PDFs only as long as necessary for audit/compliance; store normalized fields for reporting.</li>
+        <li>Webhook verification: HMAC using <code>MVR_WEBHOOK_SECRET</code>.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Roles & Operational Runbooks</h2>
+      <div class="grid-2">
+        <div>
+          <h3>Engineering</h3>
+          <ul class="tight">
+            <li>Implement order creation, polling/webhooks, and retrieval.</li>
+            <li>Expose admin UI to re‑send webhooks and download PDFs.</li>
+            <li>Add feature flags per state to respect approvals.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Customer Success / Support</h3>
+          <ul class="tight">
+            <li>Monitor failed orders; re‑queue with corrected PII.</li>
+            <li>Handle state exceptions (missing consent, mismatched DL).</li>
+            <li>Coordinate with <a href="mailto:customercare@informdata.com">customercare@informdata.com</a>.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Compliance</h3>
+          <ul class="tight">
+            <li>Maintain DPPA and state‑form attestations; audit trails.</li>
+            <li>Approve retention and redaction policy.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Sales / RevOps</h3>
+          <ul class="tight">
+            <li>Position SW vs. county: “Unified – SW is source of truth (cost savings)”; “Repository – order county when SW is missing data.”</li>
+            <li>Share turnaround and coverage expectations with customers.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Sample Code (Node.js)</h2>
+      <pre><code class="language-js">import fetch from 'node-fetch';
+
+const base = process.env.MVR_BASE_URL_TST;
+const user = process.env.MVR_USERNAME_TST;
+const pass = process.env.MVR_PASSWORD_TST;
+
+function authHeader() {
+  const token = Buffer.from(`${user}:${pass}`).toString('base64');
+  return { 'Authorization': `Basic ${token}` };
+}
+
+export async function createOrder(payload) {
+  const res = await fetch(`${base}/api/mvr/orders`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...authHeader() },
+    body: JSON.stringify(payload)
+  });
+  if (!res.ok) throw new Error(`Create failed: ${res.status}`);
+  return res.json();
+}
+
+export async function getOrder(orderId) {
+  const res = await fetch(`${base}/api/mvr/orders/${orderId}`, { headers: authHeader() });
+  if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
+  return res.json();
+}
+</code></pre>
+      <p class="note">Replace paths/auth with your tenant‑specific details as provided by InformData.</p>
+    </section>
+
+    <section class="card">
+      <h2>Go‑Live Checklist</h2>
+      <ul class="tight">
+        <li>State approvals (CA INF 1133, UT vendor link, WA ROIs) attached in admin and enforced by flags.</li>
+        <li>Secrets in vault; audit logging enabled.</li>
+        <li>Webhook receiver deployed with signature verification and retries.</li>
+        <li>Backfill path for re‑requesting reports when state access changes.</li>
+      </ul>
+    </section>
+  </main>
+  <script src="components/include.js" defer></script>
+  <script>
+    // This page is static guidance. Replace placeholder endpoints with real tenant API routes if they differ.
+  </script>
+</body>
+</html>
+
