@@ -35,10 +35,11 @@
     <section>
       <h2>Dive deeper</h2>
       <div class="chip-row">
-        <button class="chip active" data-filter="all">All states</button>
-        <button class="chip" data-filter="statewide">Statewide covers counties</button>
-        <button class="chip" data-filter="county">County coverage</button>
+        <button type="button" class="chip active" data-filter="all">All states</button>
+        <button type="button" class="chip" data-filter="statewide">Statewide covers counties</button>
+        <button type="button" class="chip" data-filter="county">County coverage</button>
       </div>
+      <div class="table-responsive">
       <table id="coverage-table" aria-live="polite">
         <thead>
           <tr>
@@ -52,6 +53,7 @@
         </thead>
         <tbody></tbody>
       </table>
+      </div>
     </section>
 
     <section>

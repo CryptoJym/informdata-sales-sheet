@@ -46,6 +46,7 @@
     <section class="panel" id="statePanel">
       <h2>States with the broadest footprint</h2>
       <p>These jurisdictions supply the highest volume of records in the national file. Tie this back to the candidate’s work locations when setting expectations.</p>
+      <div class="table-responsive">
       <table>
         <thead>
           <tr>
@@ -55,6 +56,7 @@
         </thead>
         <tbody id="stateTable"></tbody>
       </table>
+      </div>
       <p class="note">Counts represent distinct feeds per state (statewide repositories, Department of Corrections, county contributions, and specialty datasets).</p>
     </section>
 
@@ -74,6 +76,7 @@
     <section class="panel" id="freshnessPanel">
       <h2>Data freshness by category</h2>
       <p>Transparency on update cadence builds trust with compliance teams. Highlight the categories that refreshed most recently.</p>
+      <div class="table-responsive">
       <table>
         <thead>
           <tr>
@@ -83,6 +86,7 @@
         </thead>
         <tbody id="freshnessTable"></tbody>
       </table>
+      </div>
     </section>
 
     <footer>
@@ -196,12 +200,14 @@
       panel.innerHTML = `
         <h2>International Watchlists by Jurisdiction</h2>
         <p>Breakdown of SWL sources grouped by jurisdiction (e.g., UN, EU, UK HMT, US federal). Totals exclude the generic aggregator “Every Politician.”</p>
-        <table>
+        <div class="table-responsive">
+      <table>
           <thead><tr><th>Jurisdiction</th><th>Sources</th></tr></thead>
           <tbody>
             ${Array.from(swlByJurisdiction.entries()).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<tr><td>${k}</td><td>${v.toLocaleString()}</td></tr>`).join('')}
           </tbody>
         </table>
+      </div>
       `;
       document.querySelector('.page')?.appendChild(panel);
     }).catch(err => {

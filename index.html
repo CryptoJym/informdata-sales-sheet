@@ -29,7 +29,7 @@
         </ul>
         <p>Compare recommended price vs. total cost to set margins in seconds.</p>
       </div>
-      <nav style="margin-top:1.25rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+      <nav class="mt-5 flex gap-3 flex-wrap">
         <a class="btn btn-outline" href="county_fee_breakdown.html">County fee dashboard</a>
         <a class="btn btn-outline" href="national_scan_components.html">National scan components</a>
         <a class="btn btn-outline" href="databases_coverage.html">Database coverage</a>
@@ -79,7 +79,7 @@
         <div>
           <label>Quick categories</label>
           <div class="chip-tray" id="chipTray">
-            <button class="chip" data-chip="Core Service">Core Service</button>
+            <button type="button" class="chip" data-chip="Core Service">Core Service</button>
             <button class="chip-toggle clear" type="button" id="clearChips">Clear all</button>
           </div>
         </div>
@@ -90,7 +90,7 @@
     <div id="emptyState" class="empty-state" hidden>
       <h2>No services match your filters</h2>
       <p>Try adjusting your search terms or clearing filters to see more results.</p>
-      <button class="btn btn-primary" type="button" onclick="document.getElementById('searchInput').value=''; document.getElementById('passFilter').value='all'; document.querySelectorAll('.chip.active').forEach(c => c.classList.remove('active')); state.search=''; state.passThrough='all'; state.categories.clear(); renderChips(); applyFilters();">Clear all filters</button>
+      <button id="clearAllFilters" class="btn btn-primary" type="button">Clear all filters</button>
     </div>
   </main>
   <button id="scrollTop" type="button" aria-label="Scroll to top">↑</button>
@@ -952,6 +952,15 @@
         applyFilters();
       });
       elements.clearChips.addEventListener('click', () => {
+        state.categories.clear();
+        renderChips();
+        applyFilters();
+      });
+      document.getElementById('clearAllFilters')?.addEventListener('click', () => {
+        elements.search.value = '';
+        elements.pass.value = 'all';
+        state.search = '';
+        state.passThrough = 'all';
         state.categories.clear();
         renderChips();
         applyFilters();

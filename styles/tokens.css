@@ -83,10 +83,24 @@
 
 /* Base elements */
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--bg); color: var(--text); line-height: var(--lh); font-family: var(--font-sans); }
+
+/* Links with visited state */
 a { color: var(--accent); text-decoration: none; transition: var(--transition-fast); }
 a:hover { text-decoration: underline; }
-a:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; border-radius: 2px; }
+a:visited { color: #1e40af; /* Darker blue for visited links */ }
+a:visited:hover { color: var(--accent); }
+a:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; border-radius: 3px; } /* Stronger focus */
+a:active { transform: scale(0.98); } /* Touch feedback */
+
+/* External link indicator */
+a[target="_blank"]::after {
+  content: " ↗";
+  font-size: 0.85em;
+  opacity: 0.7;
+}
+a[target="_blank"].btn::after { content: none; } /* Don't show on buttons */
 
 /* Skip link for accessibility */
 .skip-link {
@@ -139,6 +153,29 @@ table { width: 100%; border-collapse: collapse; border: 1px solid var(--border);
 thead th { background: var(--accent-soft); padding: 0.75rem; font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.04em; text-align: left; }
 tbody td { padding: 0.7rem; border-bottom: 1px solid var(--border); vertical-align: top; font-size: 0.95rem; }
 tbody tr:nth-child(even) { background: rgba(37, 99, 235, 0.05); }
+
+/* Table Responsiveness */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1rem 0;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+}
+.table-responsive table {
+  margin: 0;
+  min-width: 600px;
+}
+
+/* Table Caption */
+table caption {
+  caption-side: top;
+  padding: 0.75rem 0.5rem;
+  font-weight: 600;
+  text-align: left;
+  color: var(--text);
+  font-size: 0.95rem;
+}
 
 /* Callout */
 .callout { background: rgba(15, 23, 42, 0.06); border-left: 4px solid var(--accent); padding: 0.9rem 1.1rem; border-radius: var(--radius-sm); color: var(--muted); }
@@ -752,5 +789,76 @@ ul.tight { margin: 0.25rem 0 0.25rem 1.2rem; }
 @media (min-width: 641px) and (max-width: 1024px) {
   .container { padding: var(--space-8) var(--space-5); }
   .page, main { padding: 2.5rem 1.25rem 4rem; }
+}
+
+/* Dark Mode Transition */
+body, .card, .btn, a {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Print Styles */
+@media print {
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  /* Hide interactive elements */
+  .site-header, .site-footer, .btn, button, nav, #scrollTop, .sticky-controls, .chip-tray {
+    display: none !important;
+  }
+
+  /* Show all content */
+  .hidden {
+    display: block !important;
+  }
+
+  /* Page breaks */
+  h1, h2, h3 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  table, figure, img {
+    page-break-inside: avoid;
+  }
+
+  /* Links */
+  a {
+    text-decoration: underline;
+  }
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    font-weight: normal;
+  }
+
+  /* Tables */
+  table {
+    border: 1px solid #000;
+  }
+  thead th {
+    background: #f0f0f0 !important;
+    border-bottom: 2px solid #000;
+  }
+
+  /* Reduce margins */
+  .page, main {
+    padding: 0;
+    margin: 0;
+  }
+
+  .card {
+    border: 1px solid #ddd !important;
+    margin-bottom: 1rem;
+    padding: 1rem;
+  }
 }
 

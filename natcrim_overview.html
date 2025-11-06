@@ -21,10 +21,12 @@
     <section class="card">
       <h2>Coverage domains</h2>
       <div class="filters" id="domainFilters"></div>
+      <div class="table-responsive">
       <table>
         <thead><tr><th>State</th><th>Domain</th><th>Sources</th><th>Total records</th></tr></thead>
         <tbody id="domainTable"></tbody>
       </table>
+      </div>
     </section>
 
     <section class="card">
@@ -36,10 +38,12 @@
     <section class="card">
       <h2>Source directory</h2>
       <div class="filters" id="recordFilters"></div>
+      <div class="table-responsive">
       <table>
         <thead><tr><th>State</th><th>Record type</th><th>Source</th><th>Scope</th><th>Level</th><th>Last refresh</th><th>Records</th></tr></thead>
         <tbody id="sourceTable"></tbody>
       </table>
+      </div>
     </section>
   </main>
 
@@ -85,7 +89,7 @@
         const domains = Array.from(new Set(scope.map(r=>r.coverage_domain))).sort();
         let active = domains[0]||null;
         function renderDomainFilters(){
-          domainFilters.innerHTML = domains.map(d=>`<button class="chip ${d===active?'active':''}" data-d="${d}">${d.replace(/_/g,' ')}</button>`).join('');
+          domainFilters.innerHTML = domains.map(d=>`<button type="button" class="chip ${d===active?'active':''}" data-d="${d}">${d.replace(/_/g,' ')}</button>`).join('');
           domainFilters.querySelectorAll('button').forEach(b=>b.onclick=()=>{ active=b.dataset.d; renderDomainFilters(); renderDomainTable(); });
         }
         function renderDomainTable(){
@@ -108,7 +112,7 @@
         const types = ['ALL', ...Array.from(new Set(sources.map(r=>r.type))).sort()];
         let tActive = 'ALL';
         function renderTypeFilters(){
-          recordFilters.innerHTML = types.map(t=>`<button class="chip ${t===tActive?'active':''}" data-t="${t}">${t}</button>`).join('');
+          recordFilters.innerHTML = types.map(t=>`<button type="button" class="chip ${t===tActive?'active':''}" data-t="${t}">${t}</button>`).join('');
           recordFilters.querySelectorAll('button').forEach(b=> b.onclick=()=>{ tActive=b.dataset.t; renderTable(); renderTypeFilters(); });
         }
         function renderTable(){

@@ -62,7 +62,8 @@
         <section id="environments">
           <h2>2. API setup: choose the right environment</h2>
           <p>Use sandbox while you test. Use production for real customers. Tokens last only a short time, so refresh them often.</p>
-          <table>
+          <div class="table-responsive">
+      <table>
             <thead>
               <tr>
                 <th>Environment</th>
@@ -83,6 +84,7 @@
               </tr>
             </tbody>
           </table>
+      </div>
           <div class="grid two">
             <div class="card">
               <strong>Before you start</strong>
@@ -187,7 +189,8 @@ await webhooks.webhooksPost({
   },
 });</code></pre>
           </div>
-          <table>
+          <div class="table-responsive">
+      <table>
             <thead>
               <tr>
                 <th>Event</th>
@@ -218,6 +221,7 @@ await webhooks.webhooksPost({
               </tr>
             </tbody>
           </table>
+      </div>
           <div class="note">
             InformData retries for about 24 hours. Use <code>order.id</code> + event type + document <code>sequenceNumber</code> as your idempotency key.
           </div>
@@ -288,7 +292,8 @@ pnpm ts-node src/replay.ts --input samples/criminal.ndjson --target http://local
 
         <section id="errors">
           <h2>10. If something goes wrong</h2>
-          <table>
+          <div class="table-responsive">
+      <table>
             <thead>
               <tr>
                 <th>What you see</th>
@@ -324,6 +329,7 @@ pnpm ts-node src/replay.ts --input samples/criminal.ndjson --target http://local
               </tr>
             </tbody>
           </table>
+      </div>
         </section>
 
         <section id="resources">

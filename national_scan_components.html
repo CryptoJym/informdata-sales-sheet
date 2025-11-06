@@ -36,7 +36,8 @@
       <div class="filters" id="domainFilters"></div>
       <div class="stat-grid" id="domainStats"></div>
       <div class="chart-container small">
-        <table id="domain-table">
+        <div class="table-responsive">
+      <table id="domain-table">
           <thead>
             <tr>
               <th>State</th>
@@ -47,12 +48,14 @@
           <tbody></tbody>
         </table>
       </div>
+      </div>
     </section>
 
     <section>
       <h2>Sample sources by state</h2>
       <p>Scroll or filter to find specific states or record types. dataset: <code>content/pricing/natcrim_sources_2025-10-03.csv</code></p>
       <div class="filters" id="recordFilters"></div>
+      <div class="table-responsive">
       <table id="source-table">
         <thead>
           <tr>
@@ -67,6 +70,7 @@
         </thead>
         <tbody></tbody>
       </table>
+      </div>
     </section>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
@@ -208,7 +212,7 @@
           <div class="stat-card">
             <strong>${formatNumber(item.records)}</strong>
             <span>${item.domain.replace(/_/g, ' ')} records</span>
-            <span style="display:block;margin-top:0.35rem;font-size:0.8rem;opacity:0.8;">${formatNumber(item.sources)} sources</span>
+            <span class="block mt-1 text-xs">${formatNumber(item.sources)} sources</span>
           </div>
         `).join('');
       }
