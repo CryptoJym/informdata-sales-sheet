@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="../styles/tokens.css" />
 </head>
 <body class="page-docs">
+  <div data-include="../components/header.html"></div>
   <header class="top-nav">
     <a href="../index.html">Pricing Home</a>
     <a href="../docs/sales/pricing_sheet.md">Pricing Sheet (MD)</a>
@@ -17,7 +18,7 @@
     <a href="../county_fee_breakdown.html">County Fees</a>
     <a href="../national_scan_components.html">National Scan</a>
   </header>
-  <main class="page">
+  <main class="page" id="main-content">
     <header class="hero">
       <div class="badge badge-accent">InformData Connect</div>
       <h1>InformData API &amp; Webhook Guide</h1>
@@ -366,5 +367,7 @@ pnpm ts-node src/replay.ts --input samples/criminal.ndjson --target http://local
       </nav>
     </div>
   </main>
+  <div data-include="../components/footer.html"></div>
+  <script src="../components/include.js" defer></script>
 </body>
 </html>
