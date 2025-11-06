@@ -23,7 +23,7 @@
       <div class="filters" id="domainFilters"></div>
       <div class="table-responsive">
       <table>
-        <thead><tr><th>State</th><th>Domain</th><th>Sources</th><th>Total records</th></tr></thead>
+        <caption>Top States by Coverage Domain and Record Count</caption> <caption>National Criminal Database Summary Statistics</caption><thead><tr><th>State</th><th>Domain</th><th>Sources</th><th>Total records</th></tr></thead>
         <tbody id="domainTable"></tbody>
       </table>
       </div>
@@ -90,7 +90,7 @@
         let active = domains[0]||null;
         function renderDomainFilters(){
           domainFilters.innerHTML = domains.map(d=>`<button type="button" class="chip ${d===active?'active':''}" data-d="${d}">${d.replace(/_/g,' ')}</button>`).join('');
-          domainFilters.querySelectorAll('button').forEach(b=>b.onclick=()=>{ active=b.dataset.d; renderDomainFilters(); renderDomainTable(); });
+          domainFilters.querySelectorAll('button').forEach(b=>b.addEventListener('click', ()=>{ active=b.dataset.d; renderDomainFilters(); renderDomainTable(); }));
         }
         function renderDomainTable(){
           const rows = scope.filter(r=>!active||r.coverage_domain===active).sort((a,b)=> (+b.total_records||0) - (+a.total_records||0)).slice(0,20);
@@ -113,7 +113,7 @@
         let tActive = 'ALL';
         function renderTypeFilters(){
           recordFilters.innerHTML = types.map(t=>`<button type="button" class="chip ${t===tActive?'active':''}" data-t="${t}">${t}</button>`).join('');
-          recordFilters.querySelectorAll('button').forEach(b=> b.onclick=()=>{ tActive=b.dataset.t; renderTable(); renderTypeFilters(); });
+          recordFilters.querySelectorAll('button').forEach(b=> b.addEventListener('click', ()=>{ tActive=b.dataset.t; renderTable(); renderTypeFilters(); }));
         }
         function renderTable(){
           const rows = sources.filter(r=> tActive==='ALL' || r.type===tActive).slice(0,500);

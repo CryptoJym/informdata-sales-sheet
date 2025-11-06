@@ -65,7 +65,7 @@
         <div class="filter-row">
           <div>
             <label for="searchInput">Search</label>
-            <input id="searchInput" type="search" placeholder="Search service, use case, compliance notes..." />
+            <input id="searchInput" type="search" placeholder="Search service, use case, compliance notes..." autocomplete="off" />
           </div>
           <div>
             <label for="passFilter">Pass-through</label>
@@ -967,10 +967,17 @@
       });
       elements.summaryCards.forEach(card => {
         const btn = card.querySelector('.info');
-        btn.addEventListener('click', () => {
+        const toggleTooltip = () => {
           const isOpen = card.getAttribute('data-open') === 'true';
           document.querySelectorAll('.summary-card').forEach(c => c.setAttribute('data-open', 'false'));
           card.setAttribute('data-open', String(!isOpen));
+        };
+        btn.addEventListener('click', toggleTooltip);
+        btn.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleTooltip();
+          }
         });
       });
       document.addEventListener('click', event => {
