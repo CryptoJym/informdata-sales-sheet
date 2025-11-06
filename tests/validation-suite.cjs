@@ -281,15 +281,15 @@ function testComponentInclusion() {
     // Skip component files themselves
     if (file.includes('components/')) return;
 
-    // Check for header inclusion
-    if (content.includes('data-include="components/header.html"')) {
+    // Check for header inclusion (supports any relative path)
+    if (content.match(/data-include="[\.\/]*components\/header\.html"/)) {
       pass('Header Inclusion', `${file} includes header component`);
     } else {
       warn('Header Inclusion', `${file} may be missing header component`);
     }
 
-    // Check for footer inclusion
-    if (content.includes('data-include="components/footer.html"')) {
+    // Check for footer inclusion (supports any relative path)
+    if (content.match(/data-include="[\.\/]*components\/footer\.html"/)) {
       pass('Footer Inclusion', `${file} includes footer component`);
     } else {
       warn('Footer Inclusion', `${file} may be missing footer component`);
