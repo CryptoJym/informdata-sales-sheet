@@ -138,6 +138,23 @@
       </div>
     </section>
 
+    <section class="card">
+      <h2>Ops & Runbook (for engineers)</h2>
+      <ul>
+        <li>Metrics: <code>/api/metrics/health</code>, <code>/api/metrics/pending</code>, <code>/api/metrics/dlq</code> (see <code>api/metrics/readme.md</code>).</li>
+        <li>DLQ retry: <code>npm run dlq:retry</code> (defined in <code>vuplicity-api/package.json</code>); reprocess endpoint <code>/api/dlq/reprocess</code>.</li>
+        <li>Billing reconcile stub: <code>/api/billing/reconcile</code>; schema notes in <code>api/billing/readme.md</code>.</li>
+        <li>RLS/PII: tightened policies; SSN must stay in <code>consumer_ssn</code> (service_role only). See <code>supabase/security-hardening.sql</code>.</li>
+        <li>County orchestration: syndicated-state collapse & ZIP merge; mapper in <code>vuplicity-workers/src/utils/jurisdiction-mapper.js</code>.</li>
+      </ul>
+      <h3>Local preview</h3>
+      <ul>
+        <li>Install: <code>npm install</code></li>
+        <li>Preview this site: <code>npm run dev</code> (if configured) or open <code>index.html</code> directly.</li>
+        <li>API/Workers: set <code>.env</code> with SUPABASE_URL/SERVICE_KEY, INFORMDATA_API_KEY, STRIPE keys; run per repo README.</li>
+      </ul>
+    </section>
+
     <footer>
       Sources: InformData (https://www.informdata.com/) · This repo’s reference sheets (links above).
     </footer>
